@@ -12,11 +12,13 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://yourdomain.com/about/">
+        <link rel="canonical" href="https://yourdomain.com/next-steps/">
       
       
-        <link rel="prev" href="../next-steps/https-nginx/">
+        <link rel="prev" href="../installation/windows-native/">
       
+      
+        <link rel="next" href="https-nginx/">
       
       
         
@@ -27,7 +29,7 @@
     
     
       
-        <title>About - HCPI Documentation</title>
+        <title>Overview - HCPI Documentation</title>
       
     
     
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about-hcpi" class="md-skip">
+        <a href="#next-steps" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              About
+              Overview
             
           </span>
         </div>
@@ -494,8 +496,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -506,13 +510,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -533,7 +535,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -548,10 +550,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../next-steps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -567,6 +596,187 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#for-production-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Production Deployments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Production Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-set-up-https-with-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Set Up HTTPS with Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-database-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Database Backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monitoring-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Monitoring &amp; Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-development-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Development Environments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Development Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-module-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Module Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Version Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -579,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../next-steps/https-nginx/" class="md-nav__link">
+      <a href="https-nginx/" class="md-nav__link">
         
   
   
@@ -611,37 +821,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
         
   
   
@@ -657,175 +840,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#built-on-odoo-18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Built on Odoo 18
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Features
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#data-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Collection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#analysis-reporting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Analysis &amp; Reporting
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multi-organization-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Multi-Organization Support
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Directory Structure
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Technical Stack
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#live-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live Example
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#download-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Download Files
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Cases
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support-resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support &amp; Resources
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        License
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -857,44 +871,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#for-production-deployments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        For Production Deployments
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#built-on-odoo-18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Built on Odoo 18
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Features
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Features">
+    <nav class="md-nav" aria-label="For Production Deployments">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#data-collection" class="md-nav__link">
+  <a href="#1-set-up-https-with-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Collection
+        1. Set Up HTTPS with Nginx
       
     </span>
   </a>
@@ -902,10 +894,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#analysis-reporting" class="md-nav__link">
+  <a href="#2-database-backups" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Analysis &amp; Reporting
+        2. Database Backups
       
     </span>
   </a>
@@ -913,10 +905,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multi-organization-support" class="md-nav__link">
+  <a href="#3-monitoring-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-Organization Support
+        3. Monitoring &amp; Logging
       
     </span>
   </a>
@@ -929,76 +921,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#directory-structure" class="md-nav__link">
+  <a href="#for-development-environments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Directory Structure
+        For Development Environments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Development Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. User Management
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#technical-stack" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-module-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Technical Stack
+        2. Module Configuration
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#live-example" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#3-version-control" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Live Example
+        3. Version Control
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#download-files" class="md-nav__link">
+  <a href="#general-best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Download Files
+        General Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        Performance
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#support-resources" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Support &amp; Resources
+        Maintenance
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
+  <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License
+        Additional Resources
       
     </span>
   </a>
@@ -1022,83 +1048,53 @@
 
 
 
-<h1 id="about-hcpi">About HCPI</h1>
-<h2 id="overview">Overview</h2>
-<p>HCPI (Harmonized Consumer Price Index) is a comprehensive system designed for statistical organizations to collect, manage, and analyze price data for consumer price index calculations.</p>
-<h2 id="built-on-odoo-18">Built on Odoo 18</h2>
-<p>HCPI is built on top of <a href="https://www.odoo.com/documentation/18.0/">Odoo 18</a>, a powerful open-source business application platform. This provides HCPI with:</p>
+<h1 id="next-steps">Next Steps</h1>
+<p>After successfully installing HCPI, here are the recommended next steps to secure, optimize, and prepare your installation for production use.</p>
+<h2 id="for-production-deployments">For Production Deployments</h2>
+<p>If you're deploying HCPI for production use, follow these guides:</p>
+<h3 id="1-set-up-https-with-nginx">1. <a href="https-nginx/">Set Up HTTPS with Nginx</a></h3>
+<p>Configure a reverse proxy with Nginx and SSL/TLS certificates to secure your HCPI installation.</p>
+<h3 id="2-database-backups">2. Database Backups</h3>
+<p>Set up regular automated backups of your PostgreSQL database to prevent data loss.</p>
+<h3 id="3-monitoring-logging">3. Monitoring &amp; Logging</h3>
+<p>Configure system monitoring and centralized logging to track performance and troubleshoot issues.</p>
+<h2 id="for-development-environments">For Development Environments</h2>
+<p>If you're using HCPI for development:</p>
+<h3 id="1-user-management">1. User Management</h3>
+<p>Create user accounts and configure permissions within HCPI for your team.</p>
+<h3 id="2-module-configuration">2. Module Configuration</h3>
+<p>Configure HCPI modules according to your organization's requirements.</p>
+<h3 id="3-version-control">3. Version Control</h3>
+<p>Set up version control for your custom modules and configurations.</p>
+<h2 id="general-best-practices">General Best Practices</h2>
+<h3 id="security">Security</h3>
 <ul>
-<li>A robust framework for data management</li>
-<li>User authentication and access control</li>
-<li>Flexible reporting capabilities</li>
-<li>Mobile-friendly interface</li>
-<li>Extensive customization options</li>
+<li>Change default passwords immediately</li>
+<li>Keep your system and dependencies updated</li>
+<li>Restrict database access to localhost</li>
+<li>Use strong passwords for all accounts</li>
+<li>Enable firewall rules appropriately</li>
 </ul>
-<h2 id="key-features">Key Features</h2>
-<h3 id="data-collection">Data Collection</h3>
+<h3 id="performance">Performance</h3>
 <ul>
-<li>Streamlined price data entry</li>
-<li>Support for field data collection operations</li>
-<li>Mobile-responsive interface for on-the-go data entry</li>
+<li>Monitor resource usage regularly</li>
+<li>Optimize database queries as needed</li>
+<li>Configure appropriate memory limits</li>
+<li>Consider load balancing for high-traffic deployments</li>
 </ul>
-<h3 id="analysis-reporting">Analysis &amp; Reporting</h3>
+<h3 id="maintenance">Maintenance</h3>
 <ul>
-<li>Price trend analysis</li>
-<li>Statistical calculations</li>
-<li>Customizable reports</li>
-<li>Data visualization tools</li>
+<li>Schedule regular system updates</li>
+<li>Test backups periodically</li>
+<li>Monitor log files for errors</li>
+<li>Document your configuration changes</li>
 </ul>
-<h3 id="multi-organization-support">Multi-Organization Support</h3>
+<h2 id="additional-resources">Additional Resources</h2>
 <ul>
-<li>Used by EAC Statistics bodies</li>
-<li>Configurable for different organizational needs</li>
-<li>Multi-user access with role-based permissions</li>
+<li><a href="https://www.odoo.com/documentation/18.0/">Odoo 18 Documentation</a></li>
+<li><a href="https://www.postgresql.org/docs/">PostgreSQL Documentation</a></li>
+<li><a href="https://nginx.org/en/docs/">Nginx Documentation</a></li>
 </ul>
-<h2 id="directory-structure">Directory Structure</h2>
-<p>The HCPI installation consists of the following components:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/opt/hcpi/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── conf/          # Configuration files
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── custom/        # Custom modules including HCPI
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── HCPI/      # Main HCPI module
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── log/           # Application logs
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── odoo/          # Odoo 18 core codebase
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── venv/          # Python virtual environment
-</code></pre></div>
-<h2 id="technical-stack">Technical Stack</h2>
-<ul>
-<li><strong>Backend</strong>: Python 3.10+</li>
-<li><strong>Framework</strong>: Odoo 18</li>
-<li><strong>Database</strong>: PostgreSQL 12+</li>
-<li><strong>Frontend</strong>: Web-based (HTML, JavaScript, CSS)</li>
-<li><strong>Reporting</strong>: wkhtmltopdf for PDF generation</li>
-</ul>
-<h2 id="live-example">Live Example</h2>
-<p>A live deployment of HCPI can be accessed at:
-<a href="https://uboscpi.ubos.org/odoo">https://uboscpi.ubos.org/odoo</a></p>
-<p>This is the Ugandan version managed by UBOS (Uganda Bureau of Statistics).</p>
-<h2 id="download-files">Download Files</h2>
-<p>Installation files are available at:
-<a href="http://statistics.ubos.org/hcpishare">http://statistics.ubos.org/hcpishare</a></p>
-<ul>
-<li><strong>hcpi-code.zip</strong>: Complete HCPI application code</li>
-<li><strong>hcpi-sql.zip</strong>: Sample PostgreSQL database</li>
-</ul>
-<h2 id="use-cases">Use Cases</h2>
-<p>HCPI is designed for:</p>
-<ul>
-<li>National statistics offices</li>
-<li>Regional statistical organizations</li>
-<li>Research institutions studying price trends</li>
-<li>Economic analysis organizations</li>
-</ul>
-<h2 id="support-resources">Support &amp; Resources</h2>
-<ul>
-<li><strong>Odoo Documentation</strong>: <a href="https://www.odoo.com/documentation/18.0/">https://www.odoo.com/documentation/18.0/</a></li>
-<li><strong>Installation Guides</strong>: See the Installation section in this documentation</li>
-<li><strong>Getting Started</strong>: Review the <a href="../getting-started/prerequisites/">Prerequisites</a> page</li>
-</ul>
-<h2 id="license">License</h2>
-<p>HCPI is built on Odoo, which is available under the LGPL v3 license. Please refer to the Odoo documentation for specific licensing details.</p>
 
 
 
@@ -1134,7 +1130,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../next-steps/https-nginx/" class="md-footer__link md-footer__link--prev" aria-label="Previous: HTTPS with Nginx">
+          <a href="../installation/windows-native/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Windows Native">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1144,11 +1140,27 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                HTTPS with Nginx
+                Windows Native
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="https-nginx/" class="md-footer__link md-footer__link--next" aria-label="Next: HTTPS with Nginx">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                HTTPS with Nginx
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

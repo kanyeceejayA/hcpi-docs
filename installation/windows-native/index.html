@@ -18,7 +18,7 @@
         <link rel="prev" href="../windows-wsl/">
       
       
-        <link rel="next" href="../../about/">
+        <link rel="next" href="../../next-steps/">
       
       
         
@@ -66,6 +66,8 @@
   
     
     
+      
+    
     
     
     
@@ -90,7 +92,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
@@ -120,7 +124,33 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -174,95 +204,6 @@
       
         
           
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../getting-started/prerequisites/" class="md-tabs__link">
-          
-  
-  
-  Getting Started
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../linux/" class="md-tabs__link">
-          
-  
-  
-  Installation
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../about/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  About
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -276,10 +217,8 @@
                     
 
 
-  
 
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
@@ -330,19 +269,21 @@
     
     
       
-      
+        
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -420,9 +361,6 @@
     
       
         
-        
-      
-      
         
       
     
@@ -586,10 +524,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-install-python" class="md-nav__link">
+  <a href="#step-1-enable-powershell-script-execution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Install Python
+        Step 1: Enable PowerShell Script Execution
       
     </span>
   </a>
@@ -597,10 +535,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-install-postgresql" class="md-nav__link">
+  <a href="#step-2-install-python" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Install PostgreSQL
+        Step 2: Install Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Install Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-current-python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Current Python Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-python-313-is-installed-or-no-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Python 3.13+ is Installed (or No Python)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-installing-python-fresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Installing Python Fresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-install-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Install PostgreSQL
       
     </span>
   </a>
@@ -608,10 +596,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-install-git-optional-but-recommended" class="md-nav__link">
+  <a href="#step-4-install-git" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3: Install Git (Optional but Recommended)
+        Step 4: Install Git
       
     </span>
   </a>
@@ -619,10 +607,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-install-wkhtmltopdf" class="md-nav__link">
+  <a href="#step-5-install-wkhtmltopdf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: Install wkhtmltopdf
+        Step 5: Install wkhtmltopdf
       
     </span>
   </a>
@@ -630,10 +618,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-set-up-postgresql-database" class="md-nav__link">
+  <a href="#step-6-set-up-postgresql-database" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Set Up PostgreSQL Database
+        Step 6: Set Up PostgreSQL Database
       
     </span>
   </a>
@@ -641,10 +629,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-create-directory-structure" class="md-nav__link">
+  <a href="#step-7-create-directory-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6: Create Directory Structure
+        Step 7: Create Directory Structure
       
     </span>
   </a>
@@ -652,10 +640,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-extract-hcpi-files" class="md-nav__link">
+  <a href="#step-8-download-and-set-up-hcpi-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 7: Extract HCPI Files
+        Step 8: Download and Set Up HCPI Files
       
     </span>
   </a>
@@ -663,10 +651,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-8-set-up-python-virtual-environment" class="md-nav__link">
+  <a href="#step-9-set-up-python-virtual-environment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 8: Set Up Python Virtual Environment
+        Step 9: Set Up Python Virtual Environment
       
     </span>
   </a>
@@ -674,10 +662,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-9-configure-odoo" class="md-nav__link">
+  <a href="#step-10-configure-odoo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 9: Configure Odoo
+        Step 10: Configure Odoo
       
     </span>
   </a>
@@ -685,10 +673,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-10-restore-database-optional" class="md-nav__link">
+  <a href="#step-11-restore-database-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 10: Restore Database (Optional)
+        Step 11: Restore Database (Optional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 11: Restore Database (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-start-with-sample-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Start with Sample Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-start-with-empty-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Start with Empty Instance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-12-start-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 12: Start HCPI
       
     </span>
   </a>
@@ -696,24 +723,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-11-start-hcpi" class="md-nav__link">
+  <a href="#step-13-access-hcpi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 11: Start HCPI
+        Step 13: Access HCPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 13: Access HCPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-missing-icons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix Missing Icons
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-12-access-hcpi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 12: Access HCPI
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -774,6 +807,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#database-connection-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Connection Failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#module-import-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -785,10 +829,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#port-8069-already-in-use" class="md-nav__link">
+  <a href="#port-9201-already-in-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Port 8069 Already in Use
+        Port 9201 Already in Use
       
     </span>
   </a>
@@ -807,10 +851,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#module-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Not Found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#antivirus-interference" class="md-nav__link">
     <span class="md-ellipsis">
       
         Antivirus Interference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Issues
       
     </span>
   </a>
@@ -848,6 +914,123 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -914,10 +1097,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-install-python" class="md-nav__link">
+  <a href="#step-1-enable-powershell-script-execution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Install Python
+        Step 1: Enable PowerShell Script Execution
       
     </span>
   </a>
@@ -925,10 +1108,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-install-postgresql" class="md-nav__link">
+  <a href="#step-2-install-python" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Install PostgreSQL
+        Step 2: Install Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Install Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-current-python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Current Python Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-python-313-is-installed-or-no-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Python 3.13+ is Installed (or No Python)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-installing-python-fresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Installing Python Fresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-install-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Install PostgreSQL
       
     </span>
   </a>
@@ -936,10 +1169,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-install-git-optional-but-recommended" class="md-nav__link">
+  <a href="#step-4-install-git" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3: Install Git (Optional but Recommended)
+        Step 4: Install Git
       
     </span>
   </a>
@@ -947,10 +1180,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-install-wkhtmltopdf" class="md-nav__link">
+  <a href="#step-5-install-wkhtmltopdf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: Install wkhtmltopdf
+        Step 5: Install wkhtmltopdf
       
     </span>
   </a>
@@ -958,10 +1191,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-set-up-postgresql-database" class="md-nav__link">
+  <a href="#step-6-set-up-postgresql-database" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Set Up PostgreSQL Database
+        Step 6: Set Up PostgreSQL Database
       
     </span>
   </a>
@@ -969,10 +1202,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-create-directory-structure" class="md-nav__link">
+  <a href="#step-7-create-directory-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6: Create Directory Structure
+        Step 7: Create Directory Structure
       
     </span>
   </a>
@@ -980,10 +1213,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-extract-hcpi-files" class="md-nav__link">
+  <a href="#step-8-download-and-set-up-hcpi-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 7: Extract HCPI Files
+        Step 8: Download and Set Up HCPI Files
       
     </span>
   </a>
@@ -991,10 +1224,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-8-set-up-python-virtual-environment" class="md-nav__link">
+  <a href="#step-9-set-up-python-virtual-environment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 8: Set Up Python Virtual Environment
+        Step 9: Set Up Python Virtual Environment
       
     </span>
   </a>
@@ -1002,10 +1235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-9-configure-odoo" class="md-nav__link">
+  <a href="#step-10-configure-odoo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 9: Configure Odoo
+        Step 10: Configure Odoo
       
     </span>
   </a>
@@ -1013,10 +1246,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-10-restore-database-optional" class="md-nav__link">
+  <a href="#step-11-restore-database-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 10: Restore Database (Optional)
+        Step 11: Restore Database (Optional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 11: Restore Database (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-start-with-sample-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Start with Sample Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-start-with-empty-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Start with Empty Instance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-12-start-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 12: Start HCPI
       
     </span>
   </a>
@@ -1024,24 +1296,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-11-start-hcpi" class="md-nav__link">
+  <a href="#step-13-access-hcpi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 11: Start HCPI
+        Step 13: Access HCPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 13: Access HCPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-missing-icons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix Missing Icons
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-12-access-hcpi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 12: Access HCPI
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1102,6 +1380,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#database-connection-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Connection Failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#module-import-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1113,10 +1402,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#port-8069-already-in-use" class="md-nav__link">
+  <a href="#port-9201-already-in-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Port 8069 Already in Use
+        Port 9201 Already in Use
       
     </span>
   </a>
@@ -1135,10 +1424,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#module-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Not Found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#antivirus-interference" class="md-nav__link">
     <span class="md-ellipsis">
       
         Antivirus Interference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Issues
       
     </span>
   </a>
@@ -1192,21 +1503,59 @@
 <h1 id="windows-native-installation">Windows Native Installation</h1>
 <p>This guide covers installing HCPI directly on Windows without WSL.</p>
 <div class="admonition warning">
-<p class="admonition-title">Production Warning</p>
-<p>Windows native installation is suitable for testing and development purposes only. This setup may have minor differences and compatibility issues compared to the Linux version used in production. For production deployments, use <a href="../linux/">Linux</a> or <a href="../windows-wsl/">Windows WSL</a>.</p>
+<p class="admonition-title">Limited Development Suitability</p>
+<p>Windows native installation has significant limitations even for development work. Due to path handling differences and platform-specific behaviors, some features may not work as expected. Even for development and testing, <a href="../windows-wsl/">Windows WSL</a> is strongly recommended as it provides a Linux environment with better compatibility. For production deployments, always use <a href="../linux/">Linux</a>.</p>
+<p>Use Windows native installation only if WSL is not available on your system.</p>
 </div>
-<h2 id="step-1-install-python">Step 1: Install Python</h2>
-<p>Download and install Python 3.10 or later from <a href="https://www.python.org/downloads/">python.org</a>:</p>
+<h2 id="step-1-enable-powershell-script-execution">Step 1: Enable PowerShell Script Execution</h2>
+<p>Before installing Python, enable PowerShell to run scripts. Open PowerShell as Administrator and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</code></pre></div>
+<p>This allows you to run local scripts, which is needed for some installation steps.</p>
+<h2 id="step-2-install-python">Step 2: Install Python</h2>
+<div class="admonition warning">
+<p class="admonition-title">Python Version Requirement</p>
+<p>HCPI works best with Python 3.10, 3.11, or 3.12. Python 3.13+ may have compatibility issues with some Odoo dependencies.</p>
+</div>
+<h3 id="check-current-python-version">Check Current Python Version</h3>
+<p>First, check if you have Python installed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">python</span> <span class="p">-</span><span class="n">-version</span>
+</code></pre></div>
+<h3 id="if-python-313-is-installed-or-no-python">If Python 3.13+ is Installed (or No Python)</h3>
+<details>
+<summary><b>Click here if you have Python 3.13+ or need to install Python 3.12</b></summary>
+
+If you have Python 3.13 or later, use pyenv-win to install Python 3.12:
+
+**Install pyenv-win:**
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">Invoke-WebRequest</span> <span class="n">-UseBasicParsing</span> <span class="n">-Uri</span> <span class="s2">&quot;https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1&quot;</span> <span class="n">-OutFile</span> <span class="s2">&quot;./install-pyenv-win.ps1&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">./</span><span class="nb">install-pyenv</span><span class="n">-win</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+
+Close and reopen PowerShell, then install Python 3.12:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pyenv</span> <span class="n">install</span> <span class="n">3</span><span class="p">.</span><span class="n">12</span><span class="p">.</span><span class="n">8</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">pyenv</span> <span class="n">global</span> <span class="n">3</span><span class="p">.</span><span class="n">12</span><span class="p">.</span><span class="n">8</span>
+</code></pre></div>
+
+Verify the version:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">python</span> <span class="p">-</span><span class="n">-version</span>
+</code></pre></div>
+
+</details>
+
+<h3 id="if-installing-python-fresh">If Installing Python Fresh</h3>
+<p>Download and install Python 3.12.x from <a href="https://www.python.org/downloads/">python.org</a>:</p>
 <ol>
-<li>Download the Windows installer</li>
+<li>Download the Python 3.12.x Windows installer</li>
 <li><strong>Important</strong>: Check "Add Python to PATH" during installation</li>
 <li>Complete the installation</li>
 </ol>
-<p>Verify installation in Command Prompt:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python --version
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip --version
+<p>Verify installation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">python</span> <span class="p">-</span><span class="n">-version</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">pip</span> <span class="p">-</span><span class="n">-version</span>
 </code></pre></div>
-<h2 id="step-2-install-postgresql">Step 2: Install PostgreSQL</h2>
+<h2 id="step-3-install-postgresql">Step 3: Install PostgreSQL</h2>
 <p>Download and install PostgreSQL from <a href="https://www.postgresql.org/download/windows/">postgresql.org</a>:</p>
 <ol>
 <li>Download the Windows installer (version 12 or later)</li>
@@ -1220,116 +1569,201 @@
 1. Open System Properties → Environment Variables
 2. Edit <code>Path</code> variable
 3. Add: <code>C:\Program Files\PostgreSQL\15\bin</code> (adjust version number as needed)</p>
-<h2 id="step-3-install-git-optional-but-recommended">Step 3: Install Git (Optional but Recommended)</h2>
+<h2 id="step-4-install-git">Step 4: Install Git</h2>
 <p>Download and install Git from <a href="https://git-scm.com/download/win">git-scm.com</a>:</p>
 <ol>
 <li>Download and run the installer</li>
 <li>Use default options during installation</li>
 </ol>
-<h2 id="step-4-install-wkhtmltopdf">Step 4: Install wkhtmltopdf</h2>
+<h2 id="step-5-install-wkhtmltopdf">Step 5: Install wkhtmltopdf</h2>
 <p>Download and install wkhtmltopdf from <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf.org</a>:</p>
 <ol>
 <li>Download the Windows installer</li>
 <li>Install to default location</li>
 <li>Add to PATH: <code>C:\Program Files\wkhtmltopdf\bin</code></li>
 </ol>
-<h2 id="step-5-set-up-postgresql-database">Step 5: Set Up PostgreSQL Database</h2>
-<p>Open Command Prompt as Administrator and create a database:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>psql -U postgres
+<h2 id="step-6-set-up-postgresql-database">Step 6: Set Up PostgreSQL Database</h2>
+<p>Open Command Prompt as Administrator and create user and database:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>psql -U postgres
 </code></pre></div>
 <p>Enter the postgres password you set during installation. Then in the PostgreSQL prompt:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">hcpi</span><span class="p">;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">hcpiuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;your_secure_password&#39;</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">hcpiuser</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="err">\</span><span class="n">q</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;your_secure_password&#39;</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">OWNER</span><span class="w"> </span><span class="n">hcpi</span><span class="p">;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">hcpi</span><span class="p">;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="err">\</span><span class="n">q</span>
 </code></pre></div>
-<h2 id="step-6-create-directory-structure">Step 6: Create Directory Structure</h2>
-<p>Open Command Prompt and create the directory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir C:\hcpi
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>cd C:\hcpi
-</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Database User</p>
+<p>We're using <code>hcpi</code> as both the database name and username. You can choose different names, but update the configuration file accordingly.</p>
+</div>
+<h2 id="step-7-create-directory-structure">Step 7: Create Directory Structure</h2>
+<p>Open Command Prompt or PowerShell and create the directory:</p>
+<p><strong>Command Prompt:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir C:\hcpi
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cd C:\hcpi
+</code></pre></div></p>
+<p><strong>PowerShell:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Path</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">Set-Location</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Custom Installation Path</p>
+<p>If you choose a different path than <code>C:\hcpi</code>, you'll need to update the paths in the configuration file (see Step 8).</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Alternative Location</p>
 <p>While the Linux version uses <code>/opt/hcpi</code>, on Windows we use <code>C:\hcpi</code> for simplicity. You can choose a different location if preferred.</p>
 </div>
-<h2 id="step-7-extract-hcpi-files">Step 7: Extract HCPI Files</h2>
-<p>Extract <code>hcpi-code.zip</code> to <code>C:\hcpi</code>:</p>
+<h2 id="step-8-download-and-set-up-hcpi-files">Step 8: Download and Set Up HCPI Files</h2>
+<p>Download files from <a href="http://statistics.ubos.org/hcpishare">http://statistics.ubos.org/hcpishare</a> and set up:</p>
 <ol>
-<li>Download <code>hcpi-code.zip</code> from <a href="http://statistics.ubos.org/hcpishare">http://statistics.ubos.org/hcpishare</a></li>
-<li>Right-click the zip file → Extract All</li>
+<li>Download <code>hcpi-files.zip</code></li>
 <li>Extract contents to <code>C:\hcpi</code></li>
 </ol>
-<p>You should now have:
-- <code>C:\hcpi\conf\</code>
-- <code>C:\hcpi\custom\</code>
-- <code>C:\hcpi\log\</code>
-- <code>C:\hcpi\odoo\</code>
-- <code>C:\hcpi\venv\</code></p>
-<h2 id="step-8-set-up-python-virtual-environment">Step 8: Set Up Python Virtual Environment</h2>
+<p>Clone Odoo 18 and create log directory:</p>
+<p><strong>Command Prompt:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cd C:\hcpi
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>mkdir log
+</code></pre></div></p>
+<p><strong>PowerShell:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">Set-Location</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">git</span> <span class="n">clone</span> <span class="p">-</span><span class="n">-depth</span> <span class="n">1</span> <span class="p">-</span><span class="n">-branch</span> <span class="n">18</span><span class="p">.</span><span class="n">0</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">odoo</span><span class="p">/</span><span class="n">odoo</span><span class="p">.</span><span class="n">git</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Path</span> <span class="n">log</span>
+</code></pre></div></p>
+<p>You should now have:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>C:\hcpi\
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── conf\          # Configuration files (from hcpi-files.zip)
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├── custom\        # Contains HCPI module (from hcpi-files.zip)
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│   └── HCPI\      # Main HCPI module
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>├── log\           # Log files (created)
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>├── odoo\          # Odoo 18 codebase (cloned)
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>└── venv\          # Python virtual environment (will create next)
+</code></pre></div>
+<h2 id="step-9-set-up-python-virtual-environment">Step 9: Set Up Python Virtual Environment</h2>
 <p>Open Command Prompt in <code>C:\hcpi</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cd C:\hcpi
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python -m venv venv
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>venv\Scripts\activate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cd C:\hcpi
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>python -m venv venv
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>venv\Scripts\activate
 </code></pre></div>
 <p>Your prompt should now show <code>(venv)</code>.</p>
 <p>Install dependencies:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python -m pip install --upgrade pip
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>pip install wheel
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>pip install -r odoo\requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python -m pip install --upgrade pip
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>pip install wheel
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>pip install numpy
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>pip install -r odoo\requirements.txt
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Installation Issues</p>
 <p>If you encounter errors installing some packages, you may need to install Visual C++ Build Tools from Microsoft.</p>
 </div>
-<h2 id="step-9-configure-odoo">Step 9: Configure Odoo</h2>
-<p>Edit or create <code>C:\hcpi\conf\odoo.conf</code> with a text editor (Notepad, VS Code, etc.):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[options]</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="na">admin_passwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">admin_password_change_this</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="na">db_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="na">db_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="na">db_user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hcpiuser</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_secure_password</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="na">logfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\log\odoo.log</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="na">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">info</span>
+<div class="admonition info">
+<p class="admonition-title">NumPy Requirement</p>
+<p>NumPy is required for HCPI but not included in Odoo's default requirements, so we install it separately.</p>
+</div>
+<h2 id="step-10-configure-odoo">Step 10: Configure Odoo</h2>
+<p>The configuration file is already provided in <code>C:\hcpi\conf\hcpi.conf</code>. Review and update the following settings:</p>
+<p>Edit with a text editor (Notepad, VS Code, etc.) and adjust these key settings:</p>
+<p><strong>Key settings to update:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[options]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1">; Change this to a strong password for database management operations</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="na">admin_passwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_strong_admin_password</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1">; Windows requires explicit host</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="na">db_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="na">db_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">; Set this to match the PostgreSQL password from Step 5</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_secure_password</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="c1">; UPDATE THESE PATHS if you installed to a different location - use backslashes (\)</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="na">logfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\log\hcpi.log</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="c1">; Change this if port 9201 is already in use</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9201</span>
 </code></pre></div>
 <div class="admonition warning">
-<p class="admonition-title">Backslashes in Paths</p>
-<p>Windows uses backslashes (<code>\</code>) in paths. Make sure to use backslashes in the config file.</p>
+<p class="admonition-title">Important Windows-Specific Settings</p>
+<ul>
+<li><strong>admin_passwd</strong>: Used for database management operations - choose a strong password</li>
+<li><strong>db_password</strong>: Must match the PostgreSQL password you created in Step 5</li>
+<li><strong>db_host</strong>: Must be <code>localhost</code> on Windows (unlike Linux where it can be <code>False</code>)</li>
+<li><strong>Paths</strong>: Must use backslashes (<code>\</code>), not forward slashes (<code>/</code>)</li>
+<li><strong>Paths location</strong>: Update <code>addons_path</code> and <code>logfile</code> if you chose a different installation location</li>
+<li><strong>http_port</strong>: Change if port 9201 is already in use</li>
+</ul>
 </div>
-<h2 id="step-10-restore-database-optional">Step 10: Restore Database (Optional)</h2>
-<p>If you want to start with sample data:</p>
+<h2 id="step-11-restore-database-optional">Step 11: Restore Database (Optional)</h2>
+<h3 id="option-a-start-with-sample-data">Option A: Start with Sample Data</h3>
+<p>If you want to start with existing data:</p>
 <ol>
-<li>Extract <code>hcpi-sql.zip</code></li>
-<li>Open Command Prompt and run:</li>
+<li>Download and extract <code>hcpi-db.zip</code></li>
+<li>Open Command Prompt or PowerShell and run:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>psql -U hcpiuser -d hcpi -f path\to\hcpi_dump.sql
-</code></pre></div>
-<p>Enter the hcpiuser password when prompted.</p>
-<div class="admonition info">
-<p class="admonition-title">Skip for Empty Instance</p>
-<p>Skip this step if you want to start with an empty HCPI instance.</p>
+<p><strong>Command Prompt:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2&gt; restore_errors.log
+</code></pre></div></p>
+<p><strong>PowerShell:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">psql</span> <span class="n">-U</span> <span class="n">hcpi</span> <span class="n">-d</span> <span class="n">hcpi</span> <span class="n">-v</span> <span class="n">ON_ERROR_STOP</span><span class="p">=</span><span class="n">0</span> <span class="o">-f</span> <span class="n">path</span><span class="p">\</span><span class="n">to</span><span class="p">\</span><span class="n">hcpi</span><span class="p">.</span><span class="n">sql</span> <span class="n">2</span><span class="p">&gt;</span> <span class="n">restore_errors</span><span class="p">.</span><span class="n">log</span>
+</code></pre></div></p>
+<p>Enter the hcpi user password when prompted.</p>
+<div class="admonition warning">
+<p class="admonition-title">Windows Restore Issues</p>
+<p>The <code>-v ON_ERROR_STOP=0</code> flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to <code>restore_errors.log</code> for review. Most errors related to permissions or Linux-specific features can be safely ignored.</p>
 </div>
-<h2 id="step-11-start-hcpi">Step 11: Start HCPI</h2>
+<h3 id="option-b-start-with-empty-instance">Option B: Start with Empty Instance</h3>
+<p>Simply skip this step. Odoo will initialize the database when you first run it with the <code>-i HCPI</code> flag (see Step 12).</p>
+<h2 id="step-12-start-hcpi">Step 12: Start HCPI</h2>
 <p>Open Command Prompt in <code>C:\hcpi</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cd C:\hcpi
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>venv\Scripts\activate
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>python odoo\odoo-bin -c conf\odoo.conf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cd C:\hcpi
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>venv\Scripts\activate
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>python odoo\odoo-bin -c conf\hcpi.conf
 </code></pre></div>
 <p>For first-time setup with empty database:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python odoo\odoo-bin -c conf\odoo.conf -i HCPI
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>python odoo\odoo-bin -c conf\hcpi.conf -u all --dev=all
 </code></pre></div>
-<h2 id="step-12-access-hcpi">Step 12: Access HCPI</h2>
+<p>This ensures icons and assets are properly generated on the first run.</p>
+<div class="admonition info">
+<p class="admonition-title">First-Time Startup</p>
+<p>The first time you start HCPI, it may take a few minutes to initialize. Be patient during the initial load. Subsequent starts will be much faster.</p>
+</div>
+<h2 id="step-13-access-hcpi">Step 13: Access HCPI</h2>
 <p>Open your web browser and navigate to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>http://localhost:8069
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>http://localhost:9201
+</code></pre></div>
+<p>Or if you changed the port in the configuration, use that port instead.</p>
+<div class="admonition tip">
+<p class="admonition-title">Checking the Port</p>
+<p>If you're unsure which port HCPI is running on, check the configuration file or look for a line in the logs that says "HTTP service (werkzeug) running on..."</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">First Load May Be Slow</p>
+<p>The first time you access HCPI, the page may take 30-60 seconds to load as it initializes the interface. After this initial load, performance should be normal.</p>
+</div>
+<h3 id="fix-missing-icons">Fix Missing Icons</h3>
+<p>If you notice missing icons in the interface after installation:</p>
+<p><strong>Before (missing icons):</strong></p>
+<p><img alt="Missing Icons" src="../../img/no-icons.png" /></p>
+<p><strong>To fix:</strong></p>
+<ol>
+<li>Click on your username in the top right</li>
+<li>Go to <strong>Settings</strong> → <strong>Activate the developer mode</strong></li>
+<li>Then go to <strong>Settings</strong> → <strong>Technical</strong> → <strong>User Interface</strong> → <strong>Regenerate Assets Bundles</strong></li>
+<li>Refresh the page</li>
+</ol>
+<p><strong>After (icons restored):</strong></p>
+<p><img alt="Icons Restored" src="../../img/after-regeneration.png" /></p>
+<p>Alternatively, you can restart HCPI with the asset regeneration flag:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>python odoo\odoo-bin -c conf\hcpi.conf -u all --dev=all
 </code></pre></div>
 <h2 id="creating-a-startup-batch-file">Creating a Startup Batch File</h2>
 <p>Create <code>C:\hcpi\start-hcpi.bat</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">@</span><span class="k">echo</span> off
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">cd</span> C:\hcpi
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">call</span> venv\Scripts\activate
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>python odoo\odoo-bin -c conf\odoo.conf
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">pause</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">@</span><span class="k">echo</span> off
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">cd</span> C:\hcpi
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">call</span> venv\Scripts\activate
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>python odoo\odoo-bin -c conf\hcpi.conf
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="k">pause</span>
 </code></pre></div>
 <p>Now you can double-click this file to start HCPI.</p>
 <h2 id="running-as-a-windows-service-advanced">Running as a Windows Service (Advanced)</h2>
@@ -1340,34 +1774,42 @@
 <li>Navigate to NSSM directory</li>
 <li>Run:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>nssm install HCPI
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>nssm install HCPI
 </code></pre></div>
 <p>Configure:
 - Path: <code>C:\hcpi\venv\Scripts\python.exe</code>
 - Startup directory: <code>C:\hcpi</code>
-- Arguments: <code>odoo\odoo-bin -c conf\odoo.conf</code></p>
+- Arguments: <code>odoo\odoo-bin -c conf\hcpi.conf</code></p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="python-not-found">Python Not Found</h3>
 <p>Ensure Python is in your PATH:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>where python
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>where python
 </code></pre></div></p>
 <h3 id="postgresql-connection-errors">PostgreSQL Connection Errors</h3>
 <p>Check if PostgreSQL service is running:
 - Open Services (Win+R → <code>services.msc</code>)
 - Find "postgresql-x64-15" (version may vary)
 - Ensure it's running</p>
+<h3 id="database-connection-failed">Database Connection Failed</h3>
+<p>Make sure <code>db_host</code> is set to <code>localhost</code> in the config file (not <code>False</code> like in Linux).</p>
 <h3 id="module-import-errors">Module Import Errors</h3>
 <p>Ensure virtual environment is activated:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>venv\Scripts\activate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>venv\Scripts\activate
 </code></pre></div></p>
-<h3 id="port-8069-already-in-use">Port 8069 Already in Use</h3>
-<p>Change the port in <code>conf\odoo.conf</code>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="na">xmlrpc_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">8070</span>
+<h3 id="port-9201-already-in-use">Port 9201 Already in Use</h3>
+<p>Change the port in <code>conf\hcpi.conf</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9202</span>
 </code></pre></div></p>
 <h3 id="check-logs">Check Logs</h3>
-<p>Open <code>C:\hcpi\log\odoo.log</code> in a text editor to see error messages.</p>
+<p>Open <code>C:\hcpi\log\hcpi.log</code> in a text editor to see error messages.</p>
+<h3 id="module-not-found">Module Not Found</h3>
+<p>Verify the addons_path in the config file uses Windows paths:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</span>
+</code></pre></div>
 <h3 id="antivirus-interference">Antivirus Interference</h3>
 <p>Some antivirus software may block Odoo. Add <code>C:\hcpi</code> to your antivirus exclusions if you experience issues.</p>
+<h3 id="path-issues">Path Issues</h3>
+<p>Make sure all paths in <code>hcpi.conf</code> use backslashes (<code>\</code>), not forward slashes (<code>/</code>).</p>
 <h2 id="known-limitations-on-windows">Known Limitations on Windows</h2>
 <ul>
 <li>Some Odoo modules may have compatibility issues with Windows</li>
@@ -1381,6 +1823,7 @@
 <li>For a more production-like environment, consider using <a href="../windows-wsl/">Windows WSL</a></li>
 <li>Configure HCPI modules for your needs</li>
 <li>Set up regular database backups using pgAdmin or command-line tools</li>
+<li>Configure user accounts and permissions in HCPI</li>
 </ul>
 
 
@@ -1412,6 +1855,46 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../windows-wsl/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Windows WSL">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Windows WSL
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../next-steps/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1437,7 +1920,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
