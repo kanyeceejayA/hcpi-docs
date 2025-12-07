@@ -1,4 +1,4 @@
 /venv
 .claude/settings.local.json
-site/*
 plan.md
+site/*
