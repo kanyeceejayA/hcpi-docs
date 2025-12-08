@@ -1502,10 +1502,9 @@
 
 <h1 id="windows-native-installation">Windows Native Installation</h1>
 <p>This guide covers installing HCPI directly on Windows without WSL.</p>
-<div class="admonition warning">
-<p class="admonition-title">Limited Development Suitability</p>
-<p>Windows native installation has significant limitations even for development work. Due to path handling differences and platform-specific behaviors, some features may not work as expected. Even for development and testing, <a href="../windows-wsl/">Windows WSL</a> is strongly recommended as it provides a Linux environment with better compatibility. For production deployments, always use <a href="../linux/">Linux</a>.</p>
-<p>Use Windows native installation only if WSL is not available on your system.</p>
+<div class="admonition info">
+<p class="admonition-title">Windows Native Installation</p>
+<p>Windows native installation works well for development and testing. However, it's not recommended for production deployments. You may encounter a few oddities or minor bugs due to path handling differences and platform-specific behaviors. For production environments, use <a href="../linux/">Linux</a>. If you want the best Windows experience, <a href="../windows-wsl/">Windows WSL</a> provides a Linux environment with better compatibility.</p>
 </div>
 <h2 id="step-1-enable-powershell-script-execution">Step 1: Enable PowerShell Script Execution</h2>
 <p>Before installing Python, enable PowerShell to run scripts. Open PowerShell as Administrator and run:</p>
