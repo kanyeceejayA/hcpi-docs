@@ -2,10 +2,8 @@
 
 This guide covers installing HCPI directly on Windows without WSL.
 
-!!! warning "Limited Development Suitability"
-    Windows native installation has significant limitations even for development work. Due to path handling differences and platform-specific behaviors, some features may not work as expected. Even for development and testing, [Windows WSL](windows-wsl.md) is strongly recommended as it provides a Linux environment with better compatibility. For production deployments, always use [Linux](linux.md).
-
-    Use Windows native installation only if WSL is not available on your system.
+!!! info "Windows Native Installation"
+    Windows native installation works well for development and testing. However, it's not recommended for production deployments. You may encounter a few oddities or minor bugs due to path handling differences and platform-specific behaviors. For production environments, use [Linux](linux.md). If you want the best Windows experience, [Windows WSL](windows-wsl.md) provides a Linux environment with better compatibility.
 
 ## Step 1: Enable PowerShell Script Execution
 
