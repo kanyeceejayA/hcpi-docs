@@ -12,20 +12,20 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://yourdomain.com/installation/windows-native/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/installation/windows-native/">
       
       
         <link rel="prev" href="../windows-wsl/">
       
       
-        <link rel="next" href="../../next-steps/">
+        <link rel="next" href="../linux/">
       
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -351,6 +351,95 @@
       
   
   
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -369,10 +458,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -390,8 +479,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -400,34 +489,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../linux/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Linux Server
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -626,6 +687,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Step 6: Set Up PostgreSQL Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-using-psql-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Using psql (Command Line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-using-pgadmin-4-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Using pgAdmin 4 (GUI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -640,10 +729,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-8-download-and-set-up-hcpi-files" class="md-nav__link">
+  <a href="#step-8-set-up-hcpi-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 8: Download and Set Up HCPI Files
+        Step 8: Set Up HCPI Files
       
     </span>
   </a>
@@ -662,10 +751,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-10-configure-odoo" class="md-nav__link">
+  <a href="#step-10-open-the-project-in-an-ide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 10: Configure Odoo
+        Step 10: Open the Project in an IDE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 10: Open the Project in an IDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs-code-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-configure-odoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 11: Configure Odoo
       
     </span>
   </a>
@@ -673,22 +790,83 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-11-restore-database-optional" class="md-nav__link">
+  <a href="#step-12-set-up-your-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 11: Restore Database (Optional)
+        Step 12: Set Up Your Data
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 11: Restore Database (Optional)">
+    <nav class="md-nav" aria-label="Step 12: Set Up Your Data">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-a-start-with-sample-data" class="md-nav__link">
+  <a href="#option-a-restore-from-an-existing-instance-recommended-if-you-have-the-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option A: Start with Sample Data
+        Option A: Restore from an existing instance (recommended if you have the files)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Option A: Restore from an existing instance (recommended if you have the files)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1-restore-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A1: Restore the database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-restore-the-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A2: Restore the filestore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-1-powershell-recommended-one-command-does-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: PowerShell (recommended — one command does everything)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-file-explorer-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: File Explorer (step by step)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirm-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confirm the result
       
     </span>
   </a>
@@ -712,27 +890,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-12-start-hcpi" class="md-nav__link">
+  <a href="#step-13-start-hcpi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 12: Start HCPI
+        Step 13: Start HCPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 13: Start HCPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start HCPI
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#step-13-access-hcpi" class="md-nav__link">
+  <a href="#step-14-access-hcpi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 13: Access HCPI
+        Step 14: Access HCPI
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 13: Access HCPI">
+    <nav class="md-nav" aria-label="Step 14: Access HCPI">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sign-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign in
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#fix-missing-icons" class="md-nav__link">
@@ -919,6 +1125,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -948,10 +1182,127 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -969,8 +1320,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -995,6 +1346,34 @@
     
   
     Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
   
 
     
@@ -1199,6 +1578,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Step 6: Set Up PostgreSQL Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-using-psql-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Using psql (Command Line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-using-pgadmin-4-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Using pgAdmin 4 (GUI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1213,10 +1620,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-8-download-and-set-up-hcpi-files" class="md-nav__link">
+  <a href="#step-8-set-up-hcpi-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 8: Download and Set Up HCPI Files
+        Step 8: Set Up HCPI Files
       
     </span>
   </a>
@@ -1235,10 +1642,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-10-configure-odoo" class="md-nav__link">
+  <a href="#step-10-open-the-project-in-an-ide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 10: Configure Odoo
+        Step 10: Open the Project in an IDE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 10: Open the Project in an IDE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs-code-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-configure-odoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 11: Configure Odoo
       
     </span>
   </a>
@@ -1246,22 +1681,83 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-11-restore-database-optional" class="md-nav__link">
+  <a href="#step-12-set-up-your-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 11: Restore Database (Optional)
+        Step 12: Set Up Your Data
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 11: Restore Database (Optional)">
+    <nav class="md-nav" aria-label="Step 12: Set Up Your Data">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-a-start-with-sample-data" class="md-nav__link">
+  <a href="#option-a-restore-from-an-existing-instance-recommended-if-you-have-the-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Option A: Start with Sample Data
+        Option A: Restore from an existing instance (recommended if you have the files)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Option A: Restore from an existing instance (recommended if you have the files)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1-restore-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A1: Restore the database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-restore-the-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A2: Restore the filestore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-1-powershell-recommended-one-command-does-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: PowerShell (recommended — one command does everything)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-file-explorer-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: File Explorer (step by step)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirm-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confirm the result
       
     </span>
   </a>
@@ -1285,27 +1781,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-12-start-hcpi" class="md-nav__link">
+  <a href="#step-13-start-hcpi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 12: Start HCPI
+        Step 13: Start HCPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 13: Start HCPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start HCPI
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#step-13-access-hcpi" class="md-nav__link">
+  <a href="#step-14-access-hcpi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 13: Access HCPI
+        Step 14: Access HCPI
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 13: Access HCPI">
+    <nav class="md-nav" aria-label="Step 14: Access HCPI">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sign-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign in
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#fix-missing-icons" class="md-nav__link">
@@ -1582,6 +2106,8 @@ Verify the version:
 <li>Add to PATH: <code>C:\Program Files\wkhtmltopdf\bin</code></li>
 </ol>
 <h2 id="step-6-set-up-postgresql-database">Step 6: Set Up PostgreSQL Database</h2>
+<p>You can do this with either <code>psql</code> on the command line or with pgAdmin 4 (installed alongside PostgreSQL in Step 3). Use whichever you're more comfortable with — pgAdmin 4 is a good fallback if <code>psql</code> isn't on your PATH or the CLI gives you trouble.</p>
+<h3 id="option-a-using-psql-command-line">Option A: Using psql (Command Line)</h3>
 <p>Open Command Prompt as Administrator and create user and database:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>psql -U postgres
 </code></pre></div>
@@ -1591,44 +2117,63 @@ Verify the version:
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">hcpi</span><span class="p">;</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="err">\</span><span class="n">q</span>
 </code></pre></div>
+<h3 id="option-b-using-pgadmin-4-gui">Option B: Using pgAdmin 4 (GUI)</h3>
+<ol>
+<li>Open <strong>pgAdmin 4</strong> from the Start menu and connect to your local PostgreSQL server (enter the <code>postgres</code> password from Step 3 when prompted).</li>
+<li><strong>Create the login role:</strong><ul>
+<li>In the browser tree, expand your server → right-click <strong>Login/Group Roles</strong> → <strong>Create</strong> → <strong>Login/Group Role...</strong></li>
+<li><strong>General</strong> tab: Name → <code>hcpi</code></li>
+<li><strong>Definition</strong> tab: Password → <code>your_secure_password</code></li>
+<li><strong>Privileges</strong> tab: enable <strong>Can login?</strong> and <strong>Create databases?</strong></li>
+<li>Click <strong>Save</strong></li>
+</ul>
+</li>
+<li><strong>Create the database:</strong><ul>
+<li>Right-click <strong>Databases</strong> → <strong>Create</strong> → <strong>Database...</strong></li>
+<li><strong>Database</strong>: <code>hcpi</code></li>
+<li><strong>Owner</strong>: <code>hcpi</code></li>
+<li>Click <strong>Save</strong></li>
+</ul>
+</li>
+<li>
+<p>(Optional) Grant all privileges — since <code>hcpi</code> is already the owner this is usually unnecessary, but if you want to match the CLI exactly, open the <strong>Query Tool</strong> on the <code>hcpi</code> database and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">hcpi</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
 <div class="admonition tip">
 <p class="admonition-title">Database User</p>
 <p>We're using <code>hcpi</code> as both the database name and username. You can choose different names, but update the configuration file accordingly.</p>
 </div>
 <h2 id="step-7-create-directory-structure">Step 7: Create Directory Structure</h2>
-<p>Open Command Prompt or PowerShell and create the directory:</p>
-<p><strong>Command Prompt:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir C:\hcpi
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cd C:\hcpi
-</code></pre></div></p>
-<p><strong>PowerShell:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Path</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">Set-Location</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
-</code></pre></div></p>
+<p>Open PowerShell and create the directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">mkdir</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Custom Installation Path</p>
-<p>If you choose a different path than <code>C:\hcpi</code>, you'll need to update the paths in the configuration file (see Step 8).</p>
+<p>If you choose a different path than <code>C:\hcpi</code>, you'll need to update the paths in the configuration file (see Step 11).</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Alternative Location</p>
 <p>While the Linux version uses <code>/opt/hcpi</code>, on Windows we use <code>C:\hcpi</code> for simplicity. You can choose a different location if preferred.</p>
 </div>
-<h2 id="step-8-download-and-set-up-hcpi-files">Step 8: Download and Set Up HCPI Files</h2>
-<p>Download files from <a href="http://statistics.ubos.org/hcpishare">http://statistics.ubos.org/hcpishare</a> and set up:</p>
-<ol>
-<li>Download <code>hcpi-files.zip</code></li>
-<li>Extract contents to <code>C:\hcpi</code></li>
-</ol>
-<p>Clone Odoo 18 and create log directory:</p>
-<p><strong>Command Prompt:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cd C:\hcpi
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>mkdir log
+<h2 id="step-8-set-up-hcpi-files">Step 8: Set Up HCPI Files</h2>
+<p>By now you should already have <code>hcpi-files.zip</code> — produced from your country's server using the <a href="../../extraction/linux-export/">extraction guide</a>. See <a href="../../getting-started/prerequisites/#get-the-required-files">Prerequisites → Get the Required Files</a> if you don't.</p>
+<p>Extract <code>hcpi-files.zip</code> into <code>C:\hcpi</code>. You can right-click the zip → <strong>Extract All...</strong> → browse to <code>C:\hcpi</code> as the destination. After extracting, confirm you see <code>conf\</code> and <code>custom\</code> folders directly under <code>C:\hcpi</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">If you see a nested <code>opt\hcpi\</code> folder</p>
+<p>Older exports (before the extraction guide was updated) preserved the full server path, so you'd end up with <code>C:\hcpi\opt\hcpi\conf\</code> instead. If that happened, move <code>conf\</code> and <code>custom\</code> up so they sit directly under <code>C:\hcpi</code>, then delete the empty <code>opt\</code> folder. Re-exports from the current guide won't have this problem.</p>
+</div>
+<p>Create the log directory:</p>
+<p><strong>PowerShell:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">Set-Location</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Path</span> <span class="n">log</span>
 </code></pre></div></p>
+<p>Then clone Odoo 18. It's a separate command so you can re-run it on its own if the download fails partway (this can take a few minutes depending on your connection):</p>
 <p><strong>PowerShell:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">Set-Location</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">git</span> <span class="n">clone</span> <span class="p">-</span><span class="n">-depth</span> <span class="n">1</span> <span class="p">-</span><span class="n">-branch</span> <span class="n">18</span><span class="p">.</span><span class="n">0</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">odoo</span><span class="p">/</span><span class="n">odoo</span><span class="p">.</span><span class="n">git</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Path</span> <span class="n">log</span>
 </code></pre></div></p>
 <p>You should now have:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>C:\hcpi\
@@ -1640,7 +2185,7 @@ Verify the version:
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>└── venv\          # Python virtual environment (will create next)
 </code></pre></div>
 <h2 id="step-9-set-up-python-virtual-environment">Step 9: Set Up Python Virtual Environment</h2>
-<p>Open Command Prompt in <code>C:\hcpi</code>:</p>
+<p>Open Terminal/Powershell in <code>C:\hcpi</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cd C:\hcpi
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>python -m venv venv
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>venv\Scripts\activate
@@ -1660,76 +2205,202 @@ Verify the version:
 <p class="admonition-title">NumPy Requirement</p>
 <p>NumPy is required for HCPI but not included in Odoo's default requirements, so we install it separately.</p>
 </div>
-<h2 id="step-10-configure-odoo">Step 10: Configure Odoo</h2>
+<h2 id="step-10-open-the-project-in-an-ide">Step 10: Open the Project in an IDE</h2>
+<p>Editing <code>hcpi.conf</code> with Notepad works, but for the rest of your HCPI work — exploring modules, debugging, following the code — a proper IDE is much nicer. Set it up once now so the next step (and everything after) is easier. VS Code is the recommended choice; PyCharm is a fine alternative if you already know it.</p>
+<h3 id="vs-code-recommended">VS Code (recommended)</h3>
+<p>VS Code is fully free and works natively on Windows. All features are available without a paid tier.</p>
+<ol>
+<li><strong>Install VS Code</strong> if you don't have it: <a href="https://code.visualstudio.com/">code.visualstudio.com</a>. During installation, <strong>tick "Add to PATH"</strong> — this is what lets you launch VS Code with <code>code .</code> from any terminal. It's on by default but worth confirming.</li>
+<li>
+<p><strong>Open the project</strong>. From PowerShell in <code>C:\hcpi</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">code</span> <span class="p">.</span>
+</code></pre></div>
+<p>Or launch VS Code from the Start menu, then File → Open Folder → <code>C:\hcpi</code>.</p>
+</li>
+<li>
+<p><strong>Install the Python extension.</strong> Open the Extensions panel (Ctrl+Shift+X — circled in red below), search for "Python", and install the Microsoft one (highlighted in the rectangle):</p>
+<p><img alt="Install Python extension in VS Code" src="../../img/install_python_vscode.png" /></p>
+</li>
+<li>
+<p><strong>Select the interpreter.</strong> Press <code>Ctrl+Shift+P</code> and start typing <code>Python: Select Interpreter</code>:</p>
+<p><img alt="Select Python interpreter command" src="../../img/select_interpreter1.png" /></p>
+<p>In the list you'll typically see your venv shown as something like <code>.\venv\Scripts\python.exe</code> (a relative path) — pick that:</p>
+<p><img alt="Pick the venv from the interpreter list" src="../../img/select_venv.png" /></p>
+<p>If you don't see it, click "Enter interpreter path..." and paste the full path:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>C:\hcpi\venv\Scripts\python.exe
+</code></pre></div>
+</li>
+<li>
+<p><strong>Install the Odoo extension.</strong> In Extensions, search for <em>Odoo</em> and install the one published by <strong>Odoo S.A.</strong> (the official one — free, despite the publisher name). It adds autocomplete and navigation for Odoo models, fields, XML views, and decorators — very useful once you start editing modules. You won't need it to just run HCPI, but you'll want it before making your first code change.</p>
+</li>
+</ol>
+<details class="note">
+<summary><code>code .</code> returns 'not recognized'</summary>
+<p>Means VS Code isn't on your PATH. Try these in order:</p>
+<ol>
+<li><strong>Close and reopen PowerShell.</strong> PATH changes only take effect in new shells.</li>
+<li><strong>Reinstall VS Code</strong> and make sure "Add to PATH" is ticked in the installer. (The installer also offers to do this without a full reinstall — re-run the installer and pick <em>Modify</em>.)</li>
+<li><strong>Add it manually</strong>: open System Properties → Environment Variables → edit <code>Path</code> → add <code>C:\Users\&lt;you&gt;\AppData\Local\Programs\Microsoft VS Code\bin</code>. Then open a fresh PowerShell window.</li>
+<li><strong>As a fallback</strong>, skip <code>code .</code> entirely — open VS Code from the Start menu and use File → Open Folder → <code>C:\hcpi</code>.</li>
+</ol>
+</details>
+<details class="note">
+<summary>PyCharm alternative</summary>
+<p>PyCharm Community is free, but several features useful for Odoo work are <strong>Professional-only</strong> (~$99/year):</p>
+<ul>
+<li>Database tools</li>
+<li>HTTP client</li>
+<li>Remote development</li>
+</ul>
+<p>Community edition is fine for editing code and managing the interpreter; Professional adds nicer DB/HTTP integration.</p>
+<ol>
+<li><strong>Install PyCharm</strong> (Community or Professional): <a href="https://www.jetbrains.com/pycharm/">jetbrains.com/pycharm</a>.</li>
+<li><strong>Open the project</strong>: File → Open → <code>C:\hcpi</code>.</li>
+<li><strong>Add the interpreter</strong>: File → Settings → Project: hcpi → Python Interpreter → gear icon → Add → <em>System Interpreter</em> → browse to <code>C:\hcpi\venv\Scripts\python.exe</code>.</li>
+</ol>
+</details>
+<h2 id="step-11-configure-odoo">Step 11: Configure Odoo</h2>
 <p>The configuration file is already provided in <code>C:\hcpi\conf\hcpi.conf</code>. Review and update the following settings:</p>
 <p>Edit with a text editor (Notepad, VS Code, etc.) and adjust these key settings:</p>
 <p><strong>Key settings to update:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[options]</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1">; Change this to a strong password for database management operations</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="na">admin_passwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_strong_admin_password</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1">; Windows requires explicit host</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="na">db_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="na">db_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">; Set this to match the PostgreSQL password from Step 5</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_secure_password</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="c1">; UPDATE THESE PATHS if you installed to a different location - use backslashes (\)</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</span>
-<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="na">logfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\log\hcpi.log</span>
-<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>
-<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="c1">; Change this if port 9201 is already in use</span>
-<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9201</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[options]</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1">; Windows requires explicit host</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="na">db_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="na">db_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1">; Set this to match the PostgreSQL password you set for the hcpi user in Step 6</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_secure_password</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="c1">; UPDATE THESE PATHS if you installed to a different location - use backslashes (\)</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="na">logfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\log\hcpi.log</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1">; Change this if port 9201 is already in use</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9201</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Important Windows-Specific Settings</p>
 <ul>
-<li><strong>admin_passwd</strong>: Used for database management operations - choose a strong password</li>
-<li><strong>db_password</strong>: Must match the PostgreSQL password you created in Step 5</li>
+<li><strong>db_password</strong>: Must match the PostgreSQL password you set for the <code>hcpi</code> user in Step 6</li>
 <li><strong>db_host</strong>: Must be <code>localhost</code> on Windows (unlike Linux where it can be <code>False</code>)</li>
 <li><strong>Paths</strong>: Must use backslashes (<code>\</code>), not forward slashes (<code>/</code>)</li>
 <li><strong>Paths location</strong>: Update <code>addons_path</code> and <code>logfile</code> if you chose a different installation location</li>
 <li><strong>http_port</strong>: Change if port 9201 is already in use</li>
 </ul>
 </div>
-<h2 id="step-11-restore-database-optional">Step 11: Restore Database (Optional)</h2>
-<h3 id="option-a-start-with-sample-data">Option A: Start with Sample Data</h3>
-<p>If you want to start with existing data:</p>
-<ol>
-<li>Download and extract <code>hcpi-db.zip</code></li>
-<li>Open Command Prompt or PowerShell and run:</li>
-</ol>
-<p><strong>Command Prompt:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2&gt; restore_errors.log
-</code></pre></div></p>
-<p><strong>PowerShell:</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">psql</span> <span class="n">-U</span> <span class="n">hcpi</span> <span class="n">-d</span> <span class="n">hcpi</span> <span class="n">-v</span> <span class="n">ON_ERROR_STOP</span><span class="p">=</span><span class="n">0</span> <span class="o">-f</span> <span class="n">path</span><span class="p">\</span><span class="n">to</span><span class="p">\</span><span class="n">hcpi</span><span class="p">.</span><span class="n">sql</span> <span class="n">2</span><span class="p">&gt;</span> <span class="n">restore_errors</span><span class="p">.</span><span class="n">log</span>
-</code></pre></div></p>
-<p>Enter the hcpi user password when prompted.</p>
-<div class="admonition warning">
-<p class="admonition-title">Windows Restore Issues</p>
+<div class="admonition info">
+<p class="admonition-title">About <code>admin_passwd</code></p>
+<p>The config from your export already has an <code>admin_passwd</code> set — that's the master password for database management operations (backup, restore, drop via Odoo's database manager UI). Leave it as-is to keep using the source instance's value, or change it here if you want a different one. It's not related to user logins, just DB-level admin actions.</p>
+</div>
+<h2 id="step-12-set-up-your-data">Step 12: Set Up Your Data</h2>
+<p>Pick one of the two options below. Both are equally valid — your choice depends on whether you have an existing database to clone from, or want to start fresh.</p>
+<h3 id="option-a-restore-from-an-existing-instance-recommended-if-you-have-the-files">Option A: Restore from an existing instance (recommended if you have the files)</h3>
+<p>A full restore has <strong>two parts</strong> that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images in the restored instance.</p>
+<h4 id="a1-restore-the-database">A1: Restore the database</h4>
+<p>Use the <code>hcpi.dump</code> file produced by the <a href="../../extraction/linux-export/">extraction guide</a> (PostgreSQL custom format). In Command Prompt or PowerShell:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 C:\hcpi-export\hcpi.dump
+</code></pre></div>
+<p>Adjust the path if you saved the export somewhere else. Enter the <code>hcpi</code> user password when prompted. <code>pg_restore</code> handles cross-platform differences more gracefully than <code>psql</code>, so you should see few or no errors.</p>
+<details class="note">
+<summary>Re-running the restore / getting 'already exists' errors</summary>
+<p><code>pg_restore</code> expects an empty database. If you're running it a second time — because the first run failed partway, or you want to start over — you'll see errors like <code>relation "..." already exists</code> or <code>constraint "..." already exists</code>, because the tables from the first attempt are still there.</p>
+<p>The cleanest fix is to drop the database and recreate it empty, then re-run the restore:</p>
+<p><strong>Step 1.</strong> Make sure Odoo isn't running (it holds a DB connection that blocks the drop). If Odoo is running in another terminal, stop it with <code>Ctrl+C</code>.</p>
+<p><strong>Step 2.</strong> Drop the old database (enter the postgres user password when prompted):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>dropdb -U postgres hcpi
+</code></pre></div>
+<p><strong>Step 3.</strong> Recreate it empty, owned by the hcpi user:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>createdb -U postgres -O hcpi hcpi
+</code></pre></div>
+<p><strong>Step 4.</strong> Re-run the restore:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 C:\hcpi-export\hcpi.dump
+</code></pre></div>
+<p>If <code>dropdb</code> fails with "database is being accessed by other users", some process still has a connection. Close any running <code>psql</code>/pgAdmin sessions, stop Odoo, and try again. As a last resort, force-close other connections from pgAdmin 4 → right-click the database → Disconnect Database, or run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>psql -U postgres -c &quot;SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname=&#39;hcpi&#39; AND pid &lt;&gt; pg_backend_pid();&quot;
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>dropdb -U postgres hcpi
+</code></pre></div>
+<p>After the fresh restore, also <strong>wipe the filestore</strong> if you're re-importing from scratch — otherwise you'll have orphan files from the previous attempt mixed in with the new ones. In File Explorer, delete <code>%LOCALAPPDATA%\Odoo\filestore\hcpi</code>, then re-do the A2 filestore step below.</p>
+</details>
+<details class="note">
+<summary>If you have a plain <code>hcpi.sql</code> file instead (legacy)</summary>
+<p>Older exports sometimes ship as a plain SQL file inside <code>hcpi-db.zip</code>. The current extraction flow does <strong>not</strong> produce this — if you have one, it's from an older process.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2&gt; restore_errors.log
+</code></pre></div>
 <p>The <code>-v ON_ERROR_STOP=0</code> flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to <code>restore_errors.log</code> for review. Most errors related to permissions or Linux-specific features can be safely ignored.</p>
+</details>
+<h4 id="a2-restore-the-filestore">A2: Restore the filestore</h4>
+<p>On native Windows, Odoo stores the filestore under your user profile at <code>%LOCALAPPDATA%\Odoo\filestore\&lt;db_name&gt;</code>. For most users that expands to <code>C:\Users\&lt;YourName&gt;\AppData\Local\Odoo\filestore\hcpi</code>.</p>
+<p>The folder doesn't exist yet — Odoo creates it on first use. Since you're restoring before that first use, <strong>you need to create it manually</strong>. The easiest way is PowerShell, which creates any missing parent folders for you.</p>
+<h3 id="option-1-powershell-recommended-one-command-does-everything">Option 1: PowerShell (recommended — one command does everything)</h3>
+<p>Open PowerShell and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nv">$dest</span> <span class="p">=</span> <span class="s2">&quot;$env:LOCALAPPDATA\Odoo\filestore&quot;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$dest</span> <span class="p">|</span> <span class="nb">Out-Null</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">Expand-Archive</span> <span class="n">-Path</span> <span class="s2">&quot;C:\hcpi-export\hcpi-filestore.zip&quot;</span> <span class="n">-DestinationPath</span> <span class="nv">$dest</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">Get-ChildItem</span> <span class="nv">$dest</span>
+</code></pre></div>
+<p>This creates the folder, extracts the zip, and lists the result. You should see one line: a folder named <code>hcpi</code>.</p>
+<p>Adjust the <code>-Path</code> if your zip is somewhere other than <code>C:\hcpi-export\</code>.</p>
+<h3 id="option-2-file-explorer-step-by-step">Option 2: File Explorer (step by step)</h3>
+<p><strong>Step 1 — Open your Local AppData folder.</strong> Paste this into File Explorer's address bar and press Enter:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>%LOCALAPPDATA%
+</code></pre></div>
+<p>This folder always exists — it's <code>C:\Users\&lt;YourName&gt;\AppData\Local</code>.</p>
+<p><strong>Step 2 — Create the <code>Odoo</code> folder.</strong> Inside <code>AppData\Local</code>, right-click in empty space → <strong>New</strong> → <strong>Folder</strong> → name it <code>Odoo</code>. Open it.</p>
+<p><strong>Step 3 — Create the <code>filestore</code> folder.</strong> Inside <code>Odoo</code>, right-click → <strong>New</strong> → <strong>Folder</strong> → name it <code>filestore</code>. Open it.</p>
+<p><strong>Step 4 — Extract <code>hcpi-filestore.zip</code> into <code>filestore</code>.</strong> In File Explorer, right-click <code>hcpi-filestore.zip</code> (in <code>C:\hcpi-export\</code>) → <strong>Extract All...</strong> → for the destination, paste <code>%LOCALAPPDATA%\Odoo\filestore\</code> (Windows will expand it). Click Extract.</p>
+<h3 id="confirm-the-result">Confirm the result</h3>
+<p>Inside <code>%LOCALAPPDATA%\Odoo\filestore\</code> you should now see a folder named <code>hcpi</code> (or whatever your <code>db_name</code> is). Open it — you should see many two-character folders (<code>01</code>, <code>02</code>, <code>03</code>, ...) and a <code>checklist</code> file. That's the correct structure.</p>
+<div class="admonition warning">
+<p class="admonition-title">Path must match db_name exactly</p>
+<p>The folder inside <code>filestore\</code> must be named exactly the same as <code>db_name</code> in <code>hcpi.conf</code>. If the extracted folder is <code>hcpi</code> but you named your database <code>ug_hcpi</code>, rename the folder or Odoo won't find the attachments. (Older exports may extract with wrapper folders like <code>home\hcpi\.local\share\Odoo\filestore\hcpi\</code> — if you see that, move the inner <code>hcpi</code> folder directly under <code>%LOCALAPPDATA%\Odoo\filestore\</code>.)</p>
 </div>
 <h3 id="option-b-start-with-empty-instance">Option B: Start with Empty Instance</h3>
-<p>Simply skip this step. Odoo will initialize the database when you first run it with the <code>-i HCPI</code> flag (see Step 12).</p>
-<h2 id="step-12-start-hcpi">Step 12: Start HCPI</h2>
-<p>Open Command Prompt in <code>C:\hcpi</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cd C:\hcpi
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>venv\Scripts\activate
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>python odoo\odoo-bin -c conf\hcpi.conf
+<p>Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the <code>-i HCPI</code> flag (see Step 13).</p>
+<h2 id="step-13-start-hcpi">Step 13: Start HCPI</h2>
+<p>Open PowerShell in <code>C:\hcpi</code> and activate the venv:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">hcpi</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span>
 </code></pre></div>
-<p>For first-time setup with empty database:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>python odoo\odoo-bin -c conf\hcpi.conf -u all --dev=all
+<h3 id="start-hcpi">Start HCPI</h3>
+<p>Whether you restored from a dump (Step 12 Option A) or will start fresh in a moment, the command to run HCPI is the same:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">python</span> <span class="n">odoo</span><span class="p">\</span><span class="n">odoo-bin</span> <span class="n">-c</span> <span class="n">conf</span><span class="p">\</span><span class="n">hcpi</span><span class="p">.</span><span class="n">conf</span>
 </code></pre></div>
-<p>This ensures icons and assets are properly generated on the first run.</p>
+<p>Every time you want to run HCPI going forward, use this command.</p>
+<details class="note">
+<summary>Used empty database (Option B)? Do this once first</summary>
+<p>If you skipped the restore step and are starting with an empty database, you need a one-time initialization command to install the HCPI module into the fresh DB:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">python</span> <span class="n">odoo</span><span class="p">\</span><span class="n">odoo-bin</span> <span class="n">-c</span> <span class="n">conf</span><span class="p">\</span><span class="n">hcpi</span><span class="p">.</span><span class="n">conf</span> <span class="n">-i</span> <span class="n">HCPI</span> <span class="p">-</span><span class="n">-stop-after-init</span>
+</code></pre></div>
+<p><code>-i HCPI</code> tells Odoo to <em>install</em> the HCPI module (and its dependencies) into the empty database. <code>--stop-after-init</code> runs the install and exits cleanly. Run this once, then start HCPI normally with the command above.</p>
+</details>
 <div class="admonition info">
-<p class="admonition-title">First-Time Startup</p>
-<p>The first time you start HCPI, it may take a few minutes to initialize. Be patient during the initial load. Subsequent starts will be much faster.</p>
+<p class="admonition-title">First-time startup can take 1–3 minutes</p>
+<p>On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the terminal for the line <code>HTTP service (werkzeug) running on ... port 9201</code> — that's your cue it's ready.</p>
 </div>
-<h2 id="step-13-access-hcpi">Step 13: Access HCPI</h2>
+<details class="note">
+<summary><code>odoo-bin</code> fails to start — common causes</summary>
+<p>Read the last lines of the traceback carefully; the error type below usually tells you what's wrong.</p>
+<p><strong><code>psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"</code></strong>
+<code>db_password</code> in <code>hcpi.conf</code> doesn't match what PostgreSQL has. Reset it — in <code>psql -U postgres</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">hcpi</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;your_secure_password&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Then make sure the exact same string is in <code>conf\hcpi.conf</code>.</p>
+<p><strong><code>could not connect to server: ... localhost:5432</code></strong>
+PostgreSQL isn't running. Open Services (Win+R → <code>services.msc</code>), find <code>postgresql-x64-15</code> (version may vary), and start it.</p>
+<p><strong><code>psycopg2.OperationalError: ... Peer authentication failed</code></strong>
+You somehow have <code>db_host = False</code> in the config. On Windows this won't work — set <code>db_host = localhost</code> and <code>db_port = 5432</code>.</p>
+<p><strong><code>ImportError: No module named '...'</code> / <code>ModuleNotFoundError</code></strong>
+Your venv isn't active, or a dependency didn't install. Activate the venv (<code>venv\Scripts\activate</code> — your prompt should show <code>(venv)</code>) and re-run <code>pip install -r odoo\requirements.txt</code>.</p>
+<p><strong><code>FileNotFoundError: ... HCPI</code></strong> or the module isn't found
+The <code>addons_path</code> in <code>hcpi.conf</code> is wrong. Confirm it uses backslashes and points to the right folders: <code>addons_path = C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</code>.</p>
+<p><strong><code>queue_job</code> not found</strong>
+The exported config has <code>server_wide_modules = base,web,queue_job</code>. Confirm <code>C:\hcpi\custom\HCPI\queue_job\</code> exists. If missing, the export is incomplete — re-run the extraction guide. As a workaround, you can temporarily remove <code>queue_job</code> from <code>server_wide_modules</code> in <code>hcpi.conf</code>.</p>
+<p><strong>Port 9201 already in use</strong>
+Another instance is running, or something else is on that port. Find it: <code>Get-NetTCPConnection -LocalPort 9201</code> in PowerShell. Kill the owning process or change <code>http_port</code> in <code>hcpi.conf</code>.</p>
+</details>
+<h2 id="step-14-access-hcpi">Step 14: Access HCPI</h2>
 <p>Open your web browser and navigate to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>http://localhost:9201
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>http://localhost:9201
 </code></pre></div>
 <p>Or if you changed the port in the configuration, use that port instead.</p>
 <div class="admonition tip">
@@ -1740,6 +2411,14 @@ Verify the version:
 <p class="admonition-title">First Load May Be Slow</p>
 <p>The first time you access HCPI, the page may take 30-60 seconds to load as it initializes the interface. After this initial load, performance should be normal.</p>
 </div>
+<h3 id="sign-in">Sign in</h3>
+<p><strong>If you restored from an existing database</strong> (Option A in Step 12): sign in with the same credentials you use on the source instance's web version — the users from the source DB are in your restored copy.</p>
+<p><strong>If you started empty</strong> (Option B in Step 12): Odoo created a default admin user. Log in with:</p>
+<ul>
+<li><strong>Email</strong>: <code>admin</code></li>
+<li><strong>Password</strong>: <code>admin</code></li>
+</ul>
+<p>Then immediately change it: top-right user menu → <strong>My Profile</strong> → <strong>Preferences</strong> → change the password. For a real deployment, also create a second admin-level user (Settings → Users &amp; Companies → Users) so you don't get locked out if you lose the admin account.</p>
 <h3 id="fix-missing-icons">Fix Missing Icons</h3>
 <p>If you notice missing icons in the interface after installation:</p>
 <p><strong>Before (missing icons):</strong></p>
@@ -1754,15 +2433,15 @@ Verify the version:
 <p><strong>After (icons restored):</strong></p>
 <p><img alt="Icons Restored" src="../../img/after-regeneration.png" /></p>
 <p>Alternatively, you can restart HCPI with the asset regeneration flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>python odoo\odoo-bin -c conf\hcpi.conf -u all --dev=all
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>python odoo\odoo-bin -c conf\hcpi.conf -u all --dev=all
 </code></pre></div>
 <h2 id="creating-a-startup-batch-file">Creating a Startup Batch File</h2>
 <p>Create <code>C:\hcpi\start-hcpi.bat</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">@</span><span class="k">echo</span> off
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">cd</span> C:\hcpi
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">call</span> venv\Scripts\activate
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>python odoo\odoo-bin -c conf\hcpi.conf
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="k">pause</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="p">@</span><span class="k">echo</span> off
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="k">cd</span> C:\hcpi
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="k">call</span> venv\Scripts\activate
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>python odoo\odoo-bin -c conf\hcpi.conf
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="k">pause</span>
 </code></pre></div>
 <p>Now you can double-click this file to start HCPI.</p>
 <h2 id="running-as-a-windows-service-advanced">Running as a Windows Service (Advanced)</h2>
@@ -1773,7 +2452,7 @@ Verify the version:
 <li>Navigate to NSSM directory</li>
 <li>Run:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>nssm install HCPI
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>nssm install HCPI
 </code></pre></div>
 <p>Configure:
 - Path: <code>C:\hcpi\venv\Scripts\python.exe</code>
@@ -1782,7 +2461,7 @@ Verify the version:
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="python-not-found">Python Not Found</h3>
 <p>Ensure Python is in your PATH:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>where python
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>where python
 </code></pre></div></p>
 <h3 id="postgresql-connection-errors">PostgreSQL Connection Errors</h3>
 <p>Check if PostgreSQL service is running:
@@ -1793,17 +2472,17 @@ Verify the version:
 <p>Make sure <code>db_host</code> is set to <code>localhost</code> in the config file (not <code>False</code> like in Linux).</p>
 <h3 id="module-import-errors">Module Import Errors</h3>
 <p>Ensure virtual environment is activated:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>venv\Scripts\activate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>venv\Scripts\activate
 </code></pre></div></p>
 <h3 id="port-9201-already-in-use">Port 9201 Already in Use</h3>
 <p>Change the port in <code>conf\hcpi.conf</code>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9202</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9202</span>
 </code></pre></div></p>
 <h3 id="check-logs">Check Logs</h3>
 <p>Open <code>C:\hcpi\log\hcpi.log</code> in a text editor to see error messages.</p>
 <h3 id="module-not-found">Module Not Found</h3>
 <p>Verify the addons_path in the config file uses Windows paths:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI</span>
 </code></pre></div>
 <h3 id="antivirus-interference">Antivirus Interference</h3>
 <p>Some antivirus software may block Odoo. Add <code>C:\hcpi</code> to your antivirus exclusions if you experience issues.</p>
@@ -1817,6 +2496,11 @@ Verify the version:
 <li>Some system-level features may not work identically to Linux</li>
 </ul>
 <h2 id="next-steps">Next Steps</h2>
+<p>HCPI is now running on your machine. To start working with the code:</p>
+<p>➡️ <strong><a href="../../understanding-the-codebase/">Understanding the Codebase</a></strong> — a map of what's where and how to find things.</p>
+<p>Then:</p>
+<p>➡️ <strong><a href="../../first-edits/">Making Your First Edits</a></strong> — small, safe changes to build confidence.</p>
+<p>For further reading and setup:</p>
 <ul>
 <li>Review the <a href="https://www.odoo.com/documentation/18.0/">Odoo 18 documentation</a></li>
 <li>For a more production-like environment, consider using <a href="../windows-wsl/">Windows WSL</a></li>
@@ -1876,13 +2560,13 @@ Verify the version:
         
         
           
-          <a href="../../next-steps/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="../linux/" class="md-footer__link md-footer__link--next" aria-label="Next: Linux Server">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                Linux Server
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1919,10 +2603,10 @@ Verify the version:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://yourdomain.com/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/about/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/about/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/getting-started/prerequisites/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/extraction/linux-export/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/installation/linux/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/first-edits/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/installation/windows-native/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/getting-started/prerequisites/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/installation/windows-wsl/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/installation/linux/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/next-steps/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/installation/windows-native/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
     <url>
-         <loc>https://yourdomain.com/next-steps/https-nginx/</loc>
-         <lastmod>2025-12-08</lastmod>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/installation/windows-wsl/</loc>
+         <lastmod>2026-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/next-steps/</loc>
+         <lastmod>2026-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/next-steps/https-apache/</loc>
+         <lastmod>2026-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/next-steps/https-nginx/</loc>
+         <lastmod>2026-04-23</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/</loc>
+         <lastmod>2026-04-23</lastmod>
     </url>
 </urlset>

@@ -1,0 +1,1795 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/extraction/linux-export/">
+      
+      
+        <link rel="prev" href="../../getting-started/prerequisites/">
+      
+      
+        <link rel="next" href="../../installation/windows-wsl/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>From a Linux Server - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exporting-hcpi-from-a-linux-server" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              From a Linux Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-ssh-into-the-server-and-find-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: SSH into the server and find the installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-read-the-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Read the config file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-set-shell-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Set shell variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-create-a-staging-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create a staging folder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-export-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Export the database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-export-the-code-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Export the code and configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-export-the-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Export the filestore
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Export the filestore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-the-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find the filestore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zip it
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-make-the-files-readable-by-your-ssh-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Make the files readable by your SSH user
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-copy-the-files-to-your-windows-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Copy the files to your Windows machine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-clean-up-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 10: Clean up the server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-record-what-you-exported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 11: Record what you exported
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What next?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-when-listing-opthcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Permission denied" when listing /opt/hcpi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pg_dump-says-the-database-doesnt-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pg_dump says the database doesn't exist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scp-is-very-slow-or-fails-partway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scp is very slow or fails partway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-admin-password-in-hcpiconf-is-in-plain-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The admin password in hcpi.conf is in plain text
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-begin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you begin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-ssh-into-the-server-and-find-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: SSH into the server and find the installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-read-the-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Read the config file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-set-shell-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Set shell variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-create-a-staging-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create a staging folder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-export-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Export the database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-export-the-code-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Export the code and configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-export-the-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Export the filestore
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Export the filestore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-the-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find the filestore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zip-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zip it
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-make-the-files-readable-by-your-ssh-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Make the files readable by your SSH user
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-copy-the-files-to-your-windows-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9: Copy the files to your Windows machine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-clean-up-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 10: Clean up the server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-record-what-you-exported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 11: Record what you exported
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What next?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-when-listing-opthcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Permission denied" when listing /opt/hcpi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pg_dump-says-the-database-doesnt-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pg_dump says the database doesn't exist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scp-is-very-slow-or-fails-partway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scp is very slow or fails partway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-admin-password-in-hcpiconf-is-in-plain-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The admin password in hcpi.conf is in plain text
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exporting-hcpi-from-a-linux-server">Exporting HCPI from a Linux Server</h1>
+<p>This guide shows you how to extract an existing HCPI installation from a Linux server so you can clone it to another machine or country setup. You will end up with three files:</p>
+<ul>
+<li><code>hcpi-files.zip</code> — the application code and configuration</li>
+<li><code>hcpi-db.dump</code> — the database dump (PostgreSQL custom format)</li>
+<li><code>hcpi-filestore.zip</code> — uploaded attachments and images</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Who this is for</p>
+<p>If you can SSH into your country's server, you can follow these steps as-is. A handful of values (port, database name) may differ — you'll discover them in Step 1.</p>
+</div>
+<h2 id="before-you-begin">Before you begin</h2>
+<p>You need:</p>
+<ul>
+<li>An SSH login for the server running HCPI (username, hostname/IP, port, password)</li>
+<li><code>sudo</code> privileges on that server</li>
+<li>A Windows machine with PowerShell (built into Windows 10/11)</li>
+</ul>
+<h2 id="step-1-ssh-into-the-server-and-find-the-installation">Step 1: SSH into the server and find the installation</h2>
+<p><strong>What this step does:</strong> Connects you to the HCPI server and shows you three things at once — which user owns HCPI, where it's installed, and where its config file lives.</p>
+<p>Open PowerShell on your Windows machine and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ssh</span> <span class="n">youruser</span><span class="nv">@your</span><span class="n">-hcpi-server</span> <span class="n">-p</span> <span class="p">&lt;</span><span class="n">ssh_port</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Replace:</p>
+<ul>
+<li><code>youruser</code> with your SSH username</li>
+<li><code>your-hcpi-server</code> with the hostname or IP (e.g. <code>uboscpi.ubos.org</code>)</li>
+<li><code>&lt;ssh_port&gt;</code> with the SSH port (often <code>22</code>; ask whoever set up the server)</li>
+</ul>
+<p>Enter your password when prompted. Your prompt should change to something like <code>youruser@hcpi-server:~$</code>, meaning you're now on the server.</p>
+<p>Now run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ps<span class="w"> </span>auxf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;odoo-bin|hcpi&#39;</span>
+</code></pre></div>
+<p>You are looking for a line that looks like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hcpi  2119675  ... /opt/hcpi/venv/bin/python3 /opt/hcpi/odoo/odoo-bin -c /opt/hcpi/conf/hcpi.conf
+</code></pre></div>
+<p>That one line tells you everything:</p>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First column (<code>hcpi</code>)</td>
+<td>The <strong>user</strong> that owns the installation</td>
+</tr>
+<tr>
+<td><code>/opt/hcpi/...</code></td>
+<td>The <strong>install folder</strong></td>
+</tr>
+<tr>
+<td><code>-c /opt/hcpi/conf/hcpi.conf</code></td>
+<td>The <strong>config file</strong> path</td>
+</tr>
+</tbody>
+</table>
+<p>Write these three values down — you'll need them in Step 3.</p>
+<details class="note">
+<summary>Didn't see anything? Try these fallbacks</summary>
+<p>If <code>ps</code> returned nothing, HCPI may not be running. Try:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># List services that look HCPI-related</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>systemctl<span class="w"> </span>list-units<span class="w"> </span>--type<span class="o">=</span>service<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;odoo|hcpi&#39;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Or work backwards from the public URL via the reverse proxy</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>ls<span class="w"> </span>/etc/apache2/sites-enabled/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>ls<span class="w"> </span>/etc/nginx/sites-enabled/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+<p>Read the config it points to, find the backend port (e.g. <code>9201</code>), then:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>ss<span class="w"> </span>-ltnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">9201</span>
+</code></pre></div>
+<p>That will show the process and you can follow the <code>/proc/&lt;PID&gt;/cwd</code> symlink to the install folder.</p>
+</details>
+<h2 id="step-2-read-the-config-file">Step 2: Read the config file</h2>
+<p><strong>What this step does:</strong> Opens the HCPI configuration so you can capture the database name, ports, and passwords. These values drive every command in the rest of the guide.</p>
+<p>The install folder is owned by the HCPI user, so you'll need <code>sudo</code> to read it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>cat<span class="w"> </span>/opt/hcpi/conf/hcpi.conf
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Use your path, not ours</p>
+<p><code>/opt/hcpi/conf/hcpi.conf</code> is the path on Uganda's server. If Step 1 showed a different path on your server, use that one instead.</p>
+</div>
+<p>From the output, find and note these values:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">db_user</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">hcpi</span><span class="w">          </span><span class="c1">; ← DB_USER</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="na">db_name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">hcpi</span><span class="w">          </span><span class="c1">; ← DB_NAME</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="na">db_host</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w">         </span><span class="c1">; ← note if this is False or a real hostname</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w">         </span><span class="c1">; ← note if this is False or a real password</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="na">admin_passwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">UGhci876@</span><span class="w">    </span><span class="c1">; ← the master password (keep this safe)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="na">http_port</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">9201</span><span class="w">          </span><span class="c1">; ← for reference</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/opt/hcpi/odoo/addons,/opt/hcpi/custom/HCPI</span>
+</code></pre></div>
+<p>What these mean for you:</p>
+<ul>
+<li><strong><code>db_host = False</code> and <code>db_password = False</code></strong>: HCPI connects to PostgreSQL through a local socket as the system user. You won't need a DB password to dump the database — Step 5 uses a trick that bypasses it.</li>
+<li><strong><code>db_host = localhost</code> (or a hostname) with a real <code>db_password</code></strong>: HCPI uses a real password. Note it — Step 5 has an alternative command that uses it.</li>
+<li><strong><code>admin_passwd</code></strong>: This is HCPI's master password (used in the database manager UI). Save it alongside the export — you'll want it when restoring elsewhere.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Treat these values as secrets</p>
+<p>The <code>admin_passwd</code> and any <code>db_password</code> are sensitive. Don't paste them into chat messages or commit them to Git.</p>
+</div>
+<h2 id="step-3-set-shell-variables">Step 3: Set shell variables</h2>
+<p><strong>What this step does:</strong> Saves the values you noted in Steps 1–2 into shell variables so every later command picks them up automatically. If your server uses different values, you only change them here.</p>
+<p>If your Step 1/2 values differ from the examples (e.g. the install lives in a different folder or the DB is not named <code>hcpi</code>), edit the lines below before pasting.</p>
+<p>If not, then copy and paste this whole block into your SSH session, then press Enter:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">INSTALL</span><span class="o">=</span>/opt/hcpi
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">RUN_USER</span><span class="o">=</span>hcpi
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">DB_NAME</span><span class="o">=</span>hcpi
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">DB_USER</span><span class="o">=</span>hcpi
+</code></pre></div>
+<p>Verify the variables took effect:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;INSTALL=</span><span class="nv">$INSTALL</span><span class="s2">  DB_NAME=</span><span class="nv">$DB_NAME</span><span class="s2">  RUN_USER=</span><span class="nv">$RUN_USER</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>You should see the values you set echoed back.</p>
+<div class="admonition warning">
+<p class="admonition-title">These variables only last for the current SSH session</p>
+<p>If you disconnect and reconnect, run Step 3 again before continuing.</p>
+</div>
+<h2 id="step-4-create-a-staging-folder">Step 4: Create a staging folder</h2>
+<p><strong>What this step does:</strong> Creates a temporary folder on the server where we'll collect all the export files before downloading them.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">STAGING</span><span class="o">=</span>/tmp/hcpi-export
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$STAGING</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span><span class="nv">$STAGING</span>
+</code></pre></div>
+<p>The <code>chmod 777</code> is important: in Step 5 the <code>postgres</code> system user needs to write into this folder, and it's a different user than you.</p>
+<div class="admonition info">
+<p class="admonition-title">Only want the code, not the data?</p>
+<p>If your goal is a clean install with this country's HCPI modules but <strong>no existing data</strong>, you can skip Steps 5 and 7 (database and filestore). Just run Step 6 to get <code>hcpi-files.zip</code>, then follow your target machine's installation guide and pick "Start with Empty Instance" in the Restore step. Odoo will create a fresh database the first time it runs.</p>
+</div>
+<h2 id="step-5-export-the-database">Step 5: Export the database</h2>
+<p><strong>What this step does:</strong> Produces a single compressed database dump file in PostgreSQL's "custom" format. It's smaller and faster to restore than a plain SQL file, and works across operating systems.</p>
+<p>Dump the database. This works whether <code>db_password</code> was <code>False</code> or a real value — we run <code>pg_dump</code> as the <code>postgres</code> system user, which has full DB access via local socket authentication:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_dump<span class="w"> </span>-F<span class="w"> </span>c<span class="w"> </span>-f<span class="w"> </span><span class="nv">$STAGING</span>/hcpi.dump<span class="w"> </span><span class="nv">$DB_NAME</span>
+</code></pre></div>
+<p>Check the file was created:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span><span class="nv">$STAGING</span>/hcpi.dump
+</code></pre></div>
+<p>You should see a file sized anywhere from a few MB to several GB depending on data volume.</p>
+<div class="admonition info">
+<p class="admonition-title">If the command fails with an authentication error</p>
+<p>Your server may have <code>pg_hba.conf</code> configured to require passwords even for the <code>postgres</code> user. Use this instead and enter the <code>db_password</code> from Step 2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="nv">$DB_USER</span><span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-F<span class="w"> </span>c<span class="w"> </span>-f<span class="w"> </span><span class="nv">$STAGING</span>/hcpi.dump<span class="w"> </span><span class="nv">$DB_NAME</span>
+</code></pre></div>
+</div>
+<h2 id="step-6-export-the-code-and-configuration">Step 6: Export the code and configuration</h2>
+<p><strong>What this step does:</strong> Bundles the HCPI application code and config into a single zip matching the layout the installation guides expect.</p>
+<p>Zip the <code>conf/</code> and <code>custom/</code> folders from the install. The <code>cd</code> has to happen <strong>inside</strong> the elevated shell — your own user can't enter <code>/opt/hcpi</code> (it's owned by the <code>hcpi</code> user), and <code>cd</code> is a shell builtin so plain <code>sudo cd</code> doesn't work. Running the <code>cd</code> + <code>zip</code> together under <code>sudo bash -c</code> handles both. The <code>cd</code> matters because it makes the zip store clean relative paths (<code>conf/</code>, <code>custom/</code>) instead of the full server path (<code>opt/hcpi/conf/...</code>), which would otherwise force whoever extracts it on Windows to dig through nested folders.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;cd </span><span class="nv">$INSTALL</span><span class="s2"> &amp;&amp; zip -r </span><span class="nv">$STAGING</span><span class="s2">/hcpi-files.zip conf custom&quot;</span>
+</code></pre></div>
+<p>The <code>odoo/</code> folder is <strong>not</strong> included — it will be re-downloaded from GitHub on the target machine. The <code>venv/</code> and <code>log/</code> folders are also excluded.</p>
+<p>Verify the zip has a clean top-level layout:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>unzip<span class="w"> </span>-l<span class="w"> </span><span class="nv">$STAGING</span>/hcpi-files.zip<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+</code></pre></div>
+<p>You should see entries starting with <code>conf/</code> and <code>custom/</code> — <strong>not</strong> <code>opt/hcpi/conf/</code> or similar.</p>
+<h2 id="step-7-export-the-filestore">Step 7: Export the filestore</h2>
+<p><strong>What this step does:</strong> Packages the folder where Odoo stores uploaded attachments (images, PDFs, etc.). The database holds references to these files but not the files themselves — <strong>without this step, attachments and images in your restored instance will be broken</strong>.</p>
+<h3 id="find-the-filestore">Find the filestore</h3>
+<p>The filestore lives under the run user's HOME directory — but on some servers HOME is <code>/home/hcpi</code>, on others it's <code>/opt/hcpi</code>, etc. Ask the system directly instead of guessing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">RUN_USER_HOME</span><span class="o">=</span><span class="k">$(</span>getent<span class="w"> </span>passwd<span class="w"> </span><span class="nv">$RUN_USER</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f6<span class="k">)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">FILESTORE_PARENT</span><span class="o">=</span><span class="nv">$RUN_USER_HOME</span>/.local/share/Odoo/filestore
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">FILESTORE</span><span class="o">=</span><span class="nv">$FILESTORE_PARENT</span>/<span class="nv">$DB_NAME</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Looking for filestore at: </span><span class="nv">$FILESTORE</span><span class="s2">&quot;</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>sudo<span class="w"> </span>ls<span class="w"> </span><span class="nv">$FILESTORE</span>
+</code></pre></div>
+<p>You should see a bunch of two-character folders (<code>01</code>, <code>02</code>, <code>03</code>, ... plus a <code>checklist</code> file). That's the filestore.</p>
+<details class="note">
+<summary>Didn't find it there?</summary>
+<p>The server may have overridden the default location. Try these in order:</p>
+<ol>
+<li>
+<p><strong>Check the config for a <code>data_dir</code> line:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;^\s*data_dir&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf
+</code></pre></div>
+<p>If it prints something, the filestore is at <code>&lt;data_dir&gt;/filestore/$DB_NAME</code>.</p>
+</li>
+<li>
+<p><strong>Search the filesystem:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>find<span class="w"> </span>/<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span>filestore<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+<p>You may see several results (e.g. older Odoo installs). Pick the one that contains a subfolder matching your <code>$DB_NAME</code>. Then set the path manually:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">FILESTORE_PARENT</span><span class="o">=</span>/the/path/you/found
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nv">FILESTORE</span><span class="o">=</span><span class="nv">$FILESTORE_PARENT</span>/<span class="nv">$DB_NAME</span>
+</code></pre></div>
+</li>
+</ol>
+</details>
+<h3 id="zip-it">Zip it</h3>
+<p>Once <code>sudo ls $FILESTORE</code> confirms the right folder, zip it. Same approach as Step 6 — <code>cd</code> into the filestore's parent inside the elevated shell, so the zip stores a clean top-level <code>$DB_NAME/</code> entry instead of the full server path:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;cd </span><span class="nv">$FILESTORE_PARENT</span><span class="s2"> &amp;&amp; zip -r </span><span class="nv">$STAGING</span><span class="s2">/hcpi-filestore.zip </span><span class="nv">$DB_NAME</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Check the result and confirm the layout:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span><span class="nv">$STAGING</span>/hcpi-filestore.zip
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>unzip<span class="w"> </span>-l<span class="w"> </span><span class="nv">$STAGING</span>/hcpi-filestore.zip<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+</code></pre></div>
+<p>The first entries should be <code>hcpi/</code> (or whatever your <code>$DB_NAME</code> is) and <code>hcpi/01/...</code> — <strong>not</strong> <code>home/hcpi/.local/share/Odoo/filestore/hcpi/...</code>.</p>
+<h2 id="step-8-make-the-files-readable-by-your-ssh-user">Step 8: Make the files readable by your SSH user</h2>
+<p><strong>What this step does:</strong> The files were created by <code>sudo</code> and <code>postgres</code>, so they're owned by different users. This hands ownership to your SSH user so you can download them.</p>
+<p>Replace <code>youruser</code> with your actual SSH username (the one you used in Step 1):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="nv">$USER</span>:<span class="nv">$USER</span><span class="w"> </span><span class="nv">$STAGING</span>/*
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>ls<span class="w"> </span>-lh<span class="w"> </span><span class="nv">$STAGING</span>
+</code></pre></div>
+<p>You should see the database dump, files zip, and filestore zip all owned by you.</p>
+<h2 id="step-9-copy-the-files-to-your-windows-machine">Step 9: Copy the files to your Windows machine</h2>
+<p><strong>What this step does:</strong> Downloads the three export files from the server to your local machine.</p>
+<p><strong>Open a new PowerShell window on your Windows machine</strong> (don't close the SSH session yet — you may want to clean up after). Create a local folder, then pull the files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">mkdir</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi-export</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">scp</span> <span class="n">-P</span> <span class="p">&lt;</span><span class="n">ssh_port</span><span class="p">&gt;</span> <span class="n">youruser</span><span class="nv">@your</span><span class="n">-hcpi-server</span><span class="p">:/</span><span class="n">tmp</span><span class="p">/</span><span class="n">hcpi-export</span><span class="p">/*</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi-export</span><span class="p">\</span>
+</code></pre></div>
+<p>Replace:</p>
+<ul>
+<li><code>&lt;ssh_port&gt;</code> with your server's SSH port (often <code>22</code>, sometimes different — ask whoever set up the server)</li>
+<li><code>youruser@your-hcpi-server</code> with your SSH login</li>
+</ul>
+<p>You'll be prompted for your password. After the transfer, check the files arrived:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">dir </span><span class="n">C</span><span class="p">:\</span><span class="n">hcpi-export</span>
+</code></pre></div>
+<p>You should see <code>hcpi.dump</code>, <code>hcpi-files.zip</code>, and <code>hcpi-filestore.zip</code>.</p>
+<h2 id="step-10-clean-up-the-server">Step 10: Clean up the server</h2>
+<p>Back in the SSH session, delete the staging folder so the export files don't sit on the server:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$STAGING</span>
+</code></pre></div>
+<h2 id="step-11-record-what-you-exported">Step 11: Record what you exported</h2>
+<p>Before you forget, create a small notes file next to your zips on Windows so you remember what came from where. Open a text editor and save <code>C:\hcpi-export\EXPORT_NOTES.md</code> with:</p>
+<ul>
+<li>Source server hostname</li>
+<li>Date of export</li>
+<li>Values from Step 3 (<code>INSTALL</code>, <code>RUN_USER</code>, <code>DB_NAME</code>, <code>DB_USER</code>, <code>HTTP_PORT</code>)</li>
+<li><strong>Odoo version</strong> — confirm by reading the Odoo folder's git branch. The <code>odoo/</code> subdirectory is owned by the run user, so use <code>sudo</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sudo<span class="w"> </span>cat<span class="w"> </span><span class="nv">$INSTALL</span>/odoo/.git/HEAD
+</code></pre></div>
+<p>You should see something like <code>ref: refs/heads/18.0</code>. The number after <code>heads/</code> is the Odoo major version. HCPI installs are expected to run on <code>18.0</code> — flag it if you see anything else.</p>
+<ul>
+<li><strong>Python version</strong> — run on the server:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>sudo<span class="w"> </span><span class="nv">$INSTALL</span>/venv/bin/python3<span class="w"> </span>--version
+</code></pre></div>
+<details class="note">
+<summary>If <code>sudo cat .../HEAD</code> fails</summary>
+<p>As an alternative, use <code>git -C &lt;path&gt;</code> so git runs against the repo without needing to <code>cd</code> into it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sudo<span class="w"> </span>git<span class="w"> </span>-C<span class="w"> </span><span class="nv">$INSTALL</span>/odoo<span class="w"> </span>log<span class="w"> </span>-1<span class="w"> </span>--oneline
+</code></pre></div>
+<p>You can then look up the commit on <a href="https://github.com/odoo/odoo">github.com/odoo/odoo</a> to confirm which branch/version it belongs to.</p>
+</details>
+<h2 id="what-next">What next?</h2>
+<p>You now have everything needed to install HCPI somewhere else. Proceed to the installation guide that matches your target machine:</p>
+<ul>
+<li><a href="../../installation/linux/">Linux Server Installation</a></li>
+<li><a href="../../installation/windows-wsl/">Windows WSL Installation</a></li>
+<li><a href="../../installation/windows-native/">Windows Native Installation</a></li>
+</ul>
+<p>When those guides ask for <code>hcpi-files.zip</code>, use the one you just created. When they ask for the database dump, use <code>hcpi.dump</code> (the install guides include restore instructions for this format). The filestore zip can be extracted into the new machine's filestore folder after the first successful startup.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="permission-denied-when-listing-opthcpi">"Permission denied" when listing <code>/opt/hcpi</code></h3>
+<p>Expected. The install is owned by the <code>hcpi</code> user. Prefix commands with <code>sudo</code>, or switch user with <code>sudo -iu hcpi</code>.</p>
+<h3 id="pg_dump-says-the-database-doesnt-exist"><code>pg_dump</code> says the database doesn't exist</h3>
+<p>Re-check Step 2 — the <code>db_name</code> in the config is authoritative. On some servers it's not <code>hcpi</code>.</p>
+<h3 id="scp-is-very-slow-or-fails-partway"><code>scp</code> is very slow or fails partway</h3>
+<p>Run it again — <code>scp</code> does not resume, but repeating the command will re-copy from scratch. For large filestores, consider <code>rsync</code> instead if it's available:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">rsync</span> <span class="n">-avP</span> <span class="n">-e</span> <span class="s2">&quot;ssh -p &lt;ssh_port&gt;&quot;</span> <span class="n">youruser</span><span class="nv">@your</span><span class="n">-hcpi-server</span><span class="p">:/</span><span class="n">tmp</span><span class="p">/</span><span class="n">hcpi-export</span><span class="p">/</span> <span class="n">C</span><span class="p">:\</span><span class="n">hcpi-export</span><span class="p">\</span>
+</code></pre></div>
+<h3 id="the-admin-password-in-hcpiconf-is-in-plain-text">The admin password in <code>hcpi.conf</code> is in plain text</h3>
+<p>That's normal for Odoo. Before sharing the export with anyone, consider opening <code>hcpi.conf</code> in the zip and replacing <code>admin_passwd</code> with a placeholder. The target country should set their own password during installation anyway.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../getting-started/prerequisites/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Prerequisites">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Prerequisites
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../installation/windows-wsl/" class="md-footer__link md-footer__link--next" aria-label="Next: Windows WSL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Windows WSL
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
