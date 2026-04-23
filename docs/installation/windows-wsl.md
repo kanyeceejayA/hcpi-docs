@@ -336,6 +336,47 @@ pg_restore -U hcpi -h localhost -d hcpi --no-owner --no-privileges -j 4 hcpi.dum
 
 Enter the `hcpi` user password when prompted.
 
+??? note "Re-running the restore / getting 'already exists' errors"
+    `pg_restore` expects an empty database. If you're running it a second time — because the first run failed partway, or you want to start over — you'll see errors like `relation "..." already exists` or `constraint "..." already exists`, because the tables from the first attempt are still there.
+
+    The cleanest fix is to drop the database and recreate it empty, then re-run the restore:
+
+    **Step 1.** Make sure Odoo isn't running (it holds a DB connection that blocks the drop). If Odoo is running in another WSL terminal, stop it with `Ctrl+C`.
+
+    **Step 2.** Drop the old database:
+
+    ```bash
+    sudo -u postgres dropdb hcpi
+    ```
+
+    **Step 3.** Recreate it empty, owned by the hcpi user:
+
+    ```bash
+    sudo -u postgres createdb -O hcpi hcpi
+    ```
+
+    **Step 4.** Re-run the restore (same command as above):
+
+    ```bash
+    cd /opt/hcpi
+    pg_restore -U hcpi -h localhost -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
+    ```
+
+    If `dropdb` fails with "database is being accessed by other users", some process still has a connection. Close any running `psql` sessions, stop Odoo, and try again. As a last resort, force-close other connections:
+
+    ```bash
+    sudo -u postgres psql -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname='hcpi' AND pid <> pg_backend_pid();"
+    sudo -u postgres dropdb hcpi
+    ```
+
+    After the fresh restore, also **wipe the filestore** if you're re-importing from scratch — otherwise you'll have orphan files from the previous attempt mixed in with the new ones:
+
+    ```bash
+    rm -rf ~/.local/share/Odoo/filestore/hcpi
+    ```
+
+    Then re-do the A2 filestore step below.
+
 !!! info "Why `-h localhost`?"
     Without it, `pg_restore` uses the Unix socket and PostgreSQL tries peer authentication — matching your Linux username to a PostgreSQL user of the same name. Since you're logged in as yourself (not `hcpi`), that fails. `-h localhost` forces TCP, which uses password auth instead.
 
@@ -388,27 +429,25 @@ cd /opt/hcpi
 source venv/bin/activate
 ```
 
-### Pick the right command for your situation
+### Start HCPI
 
-**First run, empty database** (you skipped the restore step): install the HCPI module into the fresh DB and exit:
+??? note "Used empty database (Option B)? Do this once first"
+    If you skipped the restore step and are starting with an empty database, you need a one-time initialization command to install the HCPI module into the fresh DB:
 
-```bash
-python odoo/odoo-bin -c conf/hcpi.conf -i HCPI --stop-after-init
-```
+    ```bash
+    python odoo/odoo-bin -c conf/hcpi.conf -i HCPI --stop-after-init
+    ```
 
-`-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. This step is a one-time thing.
+    `-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. Run this once, then start HCPI normally with the command below.
 
-**First run after a database restore**: nothing special needed — just start normally:
 
-```bash
-python odoo/odoo-bin -c conf/hcpi.conf
-```
-
-**Every subsequent run** (whether you started empty or from a dump):
+Whether you restored from a dump (Step 11 Option A) or will start fresh in a moment, the command to run HCPI is the same:
 
 ```bash
 python odoo/odoo-bin -c conf/hcpi.conf
 ```
+
+Every time you want to run HCPI going forward, use this command.
 
 !!! info "First-time startup can take 1–3 minutes"
     On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the log (or the terminal output) for the line `HTTP service (werkzeug) running on ... port 9201`, that's your cue it's ready.

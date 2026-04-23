@@ -169,17 +169,23 @@ Enter the `hcpi` user password when prompted.
 
     The cleanest fix is to drop the database and recreate it empty, then re-run the restore:
 
+    **Step 1.** Make sure Odoo isn't running (it holds a DB connection that blocks the drop). If Odoo is running in another terminal, stop it with `Ctrl+C`.
+
+    **Step 2.** Drop the old database:
+
     ```bash
-    # 1. Make sure Odoo isn't running (it holds a DB connection that blocks the drop)
-    #    If Odoo is running in another terminal, stop it with Ctrl+C.
-
-    # 2. Drop the old database
     sudo -u postgres dropdb hcpi
+    ```
 
-    # 3. Recreate it empty, owned by the hcpi user
+    **Step 3.** Recreate it empty, owned by the hcpi user:
+
+    ```bash
     sudo -u postgres createdb -O hcpi hcpi
+    ```
 
-    # 4. Re-run the restore (same command as above)
+    **Step 4.** Re-run the restore (same command as above):
+
+    ```bash
     cd /opt/hcpi
     pg_restore -U hcpi -h localhost -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
     ```
@@ -250,27 +256,24 @@ cd /opt/hcpi
 source venv/bin/activate
 ```
 
-### Pick the right command for your situation
+### Start HCPI
 
-**First run, empty database** (you skipped the restore step): install the HCPI module into the fresh DB and exit:
-
-```bash
-python odoo/odoo-bin -c conf/hcpi.conf -i HCPI --stop-after-init
-```
-
-`-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. This step is a one-time thing.
-
-**First run after a database restore**: nothing special needed — just start normally:
+Whether you restored from a dump (Step 8 Option A) or will start fresh in a moment, the command to run HCPI is the same:
 
 ```bash
 python odoo/odoo-bin -c conf/hcpi.conf
 ```
 
-**Every subsequent run** (whether you started empty or from a dump):
+Every time you want to run HCPI going forward, use this command.
 
-```bash
-python odoo/odoo-bin -c conf/hcpi.conf
-```
+??? note "Used empty database (Option B)? Do this once first"
+    If you skipped the restore step and are starting with an empty database, you need a one-time initialization command to install the HCPI module into the fresh DB:
+
+    ```bash
+    python odoo/odoo-bin -c conf/hcpi.conf -i HCPI --stop-after-init
+    ```
+
+    `-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. Run this once, then start HCPI normally with the command above.
 
 !!! info "First-time startup can take 1–3 minutes"
     On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the log for `HTTP service (werkzeug) running on ... port 9201` — that's your cue it's ready.

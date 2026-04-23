@@ -335,6 +335,40 @@ pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 C:\hcpi-export\hcpi.d
 
 Adjust the path if you saved the export somewhere else. Enter the `hcpi` user password when prompted. `pg_restore` handles cross-platform differences more gracefully than `psql`, so you should see few or no errors.
 
+??? note "Re-running the restore / getting 'already exists' errors"
+    `pg_restore` expects an empty database. If you're running it a second time — because the first run failed partway, or you want to start over — you'll see errors like `relation "..." already exists` or `constraint "..." already exists`, because the tables from the first attempt are still there.
+
+    The cleanest fix is to drop the database and recreate it empty, then re-run the restore:
+
+    **Step 1.** Make sure Odoo isn't running (it holds a DB connection that blocks the drop). If Odoo is running in another terminal, stop it with `Ctrl+C`.
+
+    **Step 2.** Drop the old database (enter the postgres user password when prompted):
+
+    ```cmd
+    dropdb -U postgres hcpi
+    ```
+
+    **Step 3.** Recreate it empty, owned by the hcpi user:
+
+    ```cmd
+    createdb -U postgres -O hcpi hcpi
+    ```
+
+    **Step 4.** Re-run the restore:
+
+    ```cmd
+    pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 C:\hcpi-export\hcpi.dump
+    ```
+
+    If `dropdb` fails with "database is being accessed by other users", some process still has a connection. Close any running `psql`/pgAdmin sessions, stop Odoo, and try again. As a last resort, force-close other connections from pgAdmin 4 → right-click the database → Disconnect Database, or run:
+
+    ```cmd
+    psql -U postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname='hcpi' AND pid <> pg_backend_pid();"
+    dropdb -U postgres hcpi
+    ```
+
+    After the fresh restore, also **wipe the filestore** if you're re-importing from scratch — otherwise you'll have orphan files from the previous attempt mixed in with the new ones. In File Explorer, delete `%LOCALAPPDATA%\Odoo\filestore\hcpi`, then re-do the A2 filestore step below.
+
 ??? note "If you have a plain `hcpi.sql` file instead (legacy)"
     Older exports sometimes ship as a plain SQL file inside `hcpi-db.zip`. The current extraction flow does **not** produce this — if you have one, it's from an older process.
 
@@ -346,21 +380,13 @@ Adjust the path if you saved the export somewhere else. Enter the `hcpi` user pa
 
 #### A2: Restore the filestore
 
-On native Windows, Odoo stores the filestore under your user profile at `%LOCALAPPDATA%\Odoo\filestore\<db_name>` (which expands to something like `C:\Users\YourName\AppData\Local\Odoo\filestore\hcpi`).
+On native Windows, Odoo stores the filestore under your user profile at `%LOCALAPPDATA%\Odoo\filestore\<db_name>`. For most users that expands to `C:\Users\<YourName>\AppData\Local\Odoo\filestore\hcpi`.
 
-**Step 1 — Create the folder**, open File Explorer and paste this into the address bar:
+The folder doesn't exist yet — Odoo creates it on first use. Since you're restoring before that first use, **you need to create it manually**. The easiest way is PowerShell, which creates any missing parent folders for you.
 
-```
-%LOCALAPPDATA%\Odoo\filestore
-```
+### Option 1: PowerShell (recommended — one command does everything)
 
-If the folder doesn't exist, create it (Explorer will offer to create missing parts of the path).
-
-**Step 2 — Extract `hcpi-filestore.zip` into that folder.** You can right-click the zip → "Extract All..." → browse to `%LOCALAPPDATA%\Odoo\filestore\` as the destination.
-
-**Step 3 — Confirm the result.** Inside `%LOCALAPPDATA%\Odoo\filestore\` you should now see a folder named `hcpi` (or whatever your `db_name` is). Open it — you should see many two-character folders (`01`, `02`, `03`, ...) and a `checklist` file.
-
-Or do it from PowerShell:
+Open PowerShell and run:
 
 ```powershell
 $dest = "$env:LOCALAPPDATA\Odoo\filestore"
@@ -368,6 +394,30 @@ New-Item -ItemType Directory -Force -Path $dest | Out-Null
 Expand-Archive -Path "C:\hcpi-export\hcpi-filestore.zip" -DestinationPath $dest
 Get-ChildItem $dest
 ```
+
+This creates the folder, extracts the zip, and lists the result. You should see one line: a folder named `hcpi`.
+
+Adjust the `-Path` if your zip is somewhere other than `C:\hcpi-export\`.
+
+### Option 2: File Explorer (step by step)
+
+**Step 1 — Open your Local AppData folder.** Paste this into File Explorer's address bar and press Enter:
+
+```
+%LOCALAPPDATA%
+```
+
+This folder always exists — it's `C:\Users\<YourName>\AppData\Local`.
+
+**Step 2 — Create the `Odoo` folder.** Inside `AppData\Local`, right-click in empty space → **New** → **Folder** → name it `Odoo`. Open it.
+
+**Step 3 — Create the `filestore` folder.** Inside `Odoo`, right-click → **New** → **Folder** → name it `filestore`. Open it.
+
+**Step 4 — Extract `hcpi-filestore.zip` into `filestore`.** In File Explorer, right-click `hcpi-filestore.zip` (in `C:\hcpi-export\`) → **Extract All...** → for the destination, paste `%LOCALAPPDATA%\Odoo\filestore\` (Windows will expand it). Click Extract.
+
+### Confirm the result
+
+Inside `%LOCALAPPDATA%\Odoo\filestore\` you should now see a folder named `hcpi` (or whatever your `db_name` is). Open it — you should see many two-character folders (`01`, `02`, `03`, ...) and a `checklist` file. That's the correct structure.
 
 !!! warning "Path must match db_name exactly"
     The folder inside `filestore\` must be named exactly the same as `db_name` in `hcpi.conf`. If the extracted folder is `hcpi` but you named your database `ug_hcpi`, rename the folder or Odoo won't find the attachments. (Older exports may extract with wrapper folders like `home\hcpi\.local\share\Odoo\filestore\hcpi\` — if you see that, move the inner `hcpi` folder directly under `%LOCALAPPDATA%\Odoo\filestore\`.)
@@ -385,27 +435,24 @@ cd C:\hcpi
 venv\Scripts\activate
 ```
 
-### Pick the right command for your situation
+### Start HCPI
 
-**First run, empty database** (you skipped the restore step): install the HCPI module into the fresh DB and exit:
-
-```powershell
-python odoo\odoo-bin -c conf\hcpi.conf -i HCPI --stop-after-init
-```
-
-`-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. This step is a one-time thing.
-
-**First run after a database restore**: nothing special needed — just start normally:
+Whether you restored from a dump (Step 12 Option A) or will start fresh in a moment, the command to run HCPI is the same:
 
 ```powershell
 python odoo\odoo-bin -c conf\hcpi.conf
 ```
 
-**Every subsequent run** (whether you started empty or from a dump):
+Every time you want to run HCPI going forward, use this command.
 
-```powershell
-python odoo\odoo-bin -c conf\hcpi.conf
-```
+??? note "Used empty database (Option B)? Do this once first"
+    If you skipped the restore step and are starting with an empty database, you need a one-time initialization command to install the HCPI module into the fresh DB:
+
+    ```powershell
+    python odoo\odoo-bin -c conf\hcpi.conf -i HCPI --stop-after-init
+    ```
+
+    `-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. Run this once, then start HCPI normally with the command above.
 
 !!! info "First-time startup can take 1–3 minutes"
     On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the terminal for the line `HTTP service (werkzeug) running on ... port 9201` — that's your cue it's ready.
