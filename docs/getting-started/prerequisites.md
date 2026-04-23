@@ -49,6 +49,11 @@ Before starting installation, download the required files from:
 1. **hcpi-code.zip** - Contains the HCPI application code
 2. **hcpi-sql.zip** - Contains the PostgreSQL database dump (optional)
 
+!!! warning "These are Uganda's test files"
+    The files at the link above are from Uganda's instance and are intended for testing or reference. If you are setting up HCPI for another country, you should start by **cloning the code and database from your own country's server** instead.
+
+    See [Exporting HCPI from a Linux Server](../extraction/linux-export.md) for how to produce your own `hcpi-files.zip` and `hcpi-db.zip` from a live installation.
+
 !!! tip "Database Restore"
     Only download and restore hcpi-sql.zip if you want to start with sample data. You can skip this for a fresh, empty instance.
 

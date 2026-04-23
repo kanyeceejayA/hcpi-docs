@@ -6,8 +6,11 @@ After successfully installing HCPI, here are the recommended next steps to secur
 
 If you're deploying HCPI for production use, follow these guides:
 
-### 1. [Set Up HTTPS with Nginx](https-nginx.md)
-Configure a reverse proxy with Nginx and SSL/TLS certificates to secure your HCPI installation.
+### 1. Set Up HTTPS
+Configure a reverse proxy with SSL/TLS certificates to secure your HCPI installation. Choose the web server that matches your environment:
+
+- [HTTPS with Apache](https-apache.md) — used by most existing HCPI deployments
+- [HTTPS with Nginx](https-nginx.md) — an alternative if you prefer Nginx
 
 ### 2. Database Backups
 Set up regular automated backups of your PostgreSQL database to prevent data loss.

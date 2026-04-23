@@ -3,23 +3,39 @@
 This guide shows you how to extract an existing HCPI installation from a Linux server so you can clone it to another machine or country setup. You will end up with three files:
 
 - `hcpi-files.zip` — the application code and configuration
-- `hcpi-db.zip` — the database dump
+- `hcpi-db.dump` — the database dump (PostgreSQL custom format)
 - `hcpi-filestore.zip` — uploaded attachments and images
 
 !!! info "Who this is for"
-    HCPI deployments across EAC countries were set up by the same company and share the same layout. If you can SSH into your country's server, you can almost certainly follow these steps as-is. Only a handful of values (port, database name) may differ — you'll discover them in Step 1.
+    If you can SSH into your country's server, you can follow these steps as-is. A handful of values (port, database name) may differ — you'll discover them in Step 1.
 
 ## Before you begin
 
 You need:
 
-- SSH access to the server running HCPI (e.g. `ssh youruser@your-hcpi-server`)
+- An SSH login for the server running HCPI (username, hostname/IP, port, password)
 - `sudo` privileges on that server
-- An SSH client on your Windows machine (built into Windows 10/11 — just open PowerShell)
+- A Windows machine with PowerShell (built into Windows 10/11)
 
-## Step 1: Find the installation
+## Step 1: SSH into the server and find the installation
 
-Log in over SSH, then run:
+**What this step does:** Connects you to the HCPI server and shows you three things at once — which user owns HCPI, where it's installed, and where its config file lives.
+
+Open PowerShell on your Windows machine and run:
+
+```powershell
+ssh youruser@your-hcpi-server -p <ssh_port>
+```
+
+Replace:
+
+- `youruser` with your SSH username
+- `your-hcpi-server` with the hostname or IP (e.g. `uboscpi.ubos.org`)
+- `<ssh_port>` with the SSH port (often `22`; ask whoever set up the server)
+
+Enter your password when prompted. Your prompt should change to something like `youruser@hcpi-server:~$`, meaning you're now on the server.
+
+Now run:
 
 ```bash
 ps auxf | grep -E 'odoo-bin|hcpi'
@@ -38,6 +54,8 @@ That one line tells you everything:
 | First column (`hcpi`) | The **user** that owns the installation |
 | `/opt/hcpi/...` | The **install folder** |
 | `-c /opt/hcpi/conf/hcpi.conf` | The **config file** path |
+
+Write these three values down — you'll need them in Step 3.
 
 ??? note "Didn't see anything? Try these fallbacks"
     If `ps` returned nothing, HCPI may not be running. Try:
@@ -61,27 +79,43 @@ That one line tells you everything:
 
 ## Step 2: Read the config file
 
-The install folder is owned by the `hcpi` user, so you'll need `sudo` to read it:
+**What this step does:** Opens the HCPI configuration so you can capture the database name, ports, and passwords. These values drive every command in the rest of the guide.
+
+The install folder is owned by the HCPI user, so you'll need `sudo` to read it:
 
 ```bash
 sudo cat /opt/hcpi/conf/hcpi.conf
 ```
 
-Find and note these values — you'll use them in later steps:
+!!! tip "Use your path, not ours"
+    `/opt/hcpi/conf/hcpi.conf` is the path on Uganda's server. If Step 1 showed a different path on your server, use that one instead.
+
+From the output, find and note these values:
 
 ```ini
-db_user = hcpi          ; ← DB_USER
-db_name = hcpi          ; ← DB_NAME
-http_port = 9201        ; ← HTTP_PORT (for reference)
+db_user     = hcpi          ; ← DB_USER
+db_name     = hcpi          ; ← DB_NAME
+db_host     = False         ; ← note if this is False or a real hostname
+db_password = False         ; ← note if this is False or a real password
+admin_passwd = UGhci876@    ; ← the master password (keep this safe)
+http_port   = 9201          ; ← for reference
 addons_path = /opt/hcpi/odoo/addons,/opt/hcpi/custom/HCPI
 ```
 
-!!! tip "Write these down"
-    On Uganda's server these are all `hcpi`. On your server they might match, or the DB name might be different (e.g. `kenya_hcpi`). Whatever you see, note them down.
+What these mean for you:
+
+- **`db_host = False` and `db_password = False`**: HCPI connects to PostgreSQL through a local socket as the system user. You won't need a DB password to dump the database — Step 5 uses a trick that bypasses it.
+- **`db_host = localhost` (or a hostname) with a real `db_password`**: HCPI uses a real password. Note it — Step 5 has an alternative command that uses it.
+- **`admin_passwd`**: This is HCPI's master password (used in the database manager UI). Save it alongside the export — you'll want it when restoring elsewhere.
+
+!!! warning "Treat these values as secrets"
+    The `admin_passwd` and any `db_password` are sensitive. Don't paste them into chat messages or commit them to Git.
 
 ## Step 3: Set shell variables
 
-Now set four shell variables. **Every command in the rest of this guide uses them**, so if your values differ, you only change them here.
+**What this step does:** Saves the values you noted in Steps 1–2 into shell variables so every later command picks them up automatically. If your server uses different values, you only change them here.
+
+Copy and paste this whole block into your SSH session, then press Enter:
 
 ```bash
 INSTALL=/opt/hcpi
@@ -90,47 +124,59 @@ DB_NAME=hcpi
 DB_USER=hcpi
 ```
 
+If your Step 1/2 values differ (e.g. the install lives in a different folder or the DB is named `kenya_hcpi`), edit the lines before pasting.
+
+Verify the variables took effect:
+
+```bash
+echo "INSTALL=$INSTALL  DB_NAME=$DB_NAME  RUN_USER=$RUN_USER"
+```
+
+You should see the values you set echoed back.
+
 !!! warning "These variables only last for the current SSH session"
     If you disconnect and reconnect, run Step 3 again before continuing.
 
 ## Step 4: Create a staging folder
 
-A temporary folder on the server to collect the export files:
+**What this step does:** Creates a temporary folder on the server where we'll collect all the export files before downloading them.
 
 ```bash
 STAGING=/tmp/hcpi-export
 mkdir -p $STAGING
+chmod 777 $STAGING
 ```
+
+The `chmod 777` is important: in Step 5 the `postgres` system user needs to write into this folder, and it's a different user than you.
 
 ## Step 5: Export the database
 
-Dump the database using the `postgres` system user (no password needed — this works because HCPI uses local socket authentication):
+**What this step does:** Produces a single compressed database dump file in PostgreSQL's "custom" format. It's smaller and faster to restore than a plain SQL file, and works across operating systems.
+
+Dump the database. This works whether `db_password` was `False` or a real value — we run `pg_dump` as the `postgres` system user, which has full DB access via local socket authentication:
 
 ```bash
-sudo -u postgres pg_dump -f $STAGING/hcpi.sql $DB_NAME
+sudo -u postgres pg_dump -F c -f $STAGING/hcpi.dump $DB_NAME
 ```
 
-Then zip it to match the filename used elsewhere in HCPI docs:
+Check the file was created:
 
 ```bash
-cd $STAGING
-zip hcpi-db.zip hcpi.sql
+ls -lh $STAGING/hcpi.dump
 ```
 
-Check the file was created and has a reasonable size:
+You should see a file sized anywhere from a few MB to several GB depending on data volume.
 
-```bash
-ls -lh $STAGING/hcpi-db.zip
-```
-
-!!! info "If that fails with an authentication error"
-    Your server may require a password. Use this instead, and enter the `db_password` from the config when prompted:
+!!! info "If the command fails with an authentication error"
+    Your server may have `pg_hba.conf` configured to require passwords even for the `postgres` user. Use this instead and enter the `db_password` from Step 2:
 
     ```bash
-    pg_dump -U $DB_USER -h localhost -f $STAGING/hcpi.sql $DB_NAME
+    pg_dump -U $DB_USER -h localhost -F c -f $STAGING/hcpi.dump $DB_NAME
     ```
 
 ## Step 6: Export the code and configuration
+
+**What this step does:** Bundles the HCPI application code and config into a single zip matching the layout the installation guides expect.
 
 Zip the `conf/` and `custom/` folders from the install:
 
@@ -151,7 +197,9 @@ The `odoo/` folder is **not** included — it will be re-downloaded from GitHub 
 
 ## Step 7: Export the filestore
 
-The filestore holds uploaded attachments (images, PDFs, etc.). It lives in the run user's home folder:
+**What this step does:** Packages the folder where Odoo stores uploaded attachments (images, PDFs, etc.). Without this, your restored instance would be missing files that the database references.
+
+The filestore lives in the run user's home folder:
 
 ```bash
 FILESTORE=/home/$RUN_USER/.local/share/Odoo/filestore/$DB_NAME
@@ -174,22 +222,26 @@ sudo zip -r $STAGING/hcpi-filestore.zip $DB_NAME
 
 ## Step 8: Make the files readable by your SSH user
 
-The zips were created with `sudo`, so they are owned by `root`. Change ownership so your SSH user can download them. Replace `youruser` with your actual SSH username:
+**What this step does:** The files were created by `sudo` and `postgres`, so they're owned by different users. This hands ownership to your SSH user so you can download them.
+
+Replace `youruser` with your actual SSH username (the one you used in Step 1):
 
 ```bash
-sudo chown youruser:youruser $STAGING/*.zip
+sudo chown youruser:youruser $STAGING/*
 ls -lh $STAGING
 ```
 
-You should see all three zips owned by you.
+You should see the database dump, files zip, and filestore zip all owned by you.
 
 ## Step 9: Copy the files to your Windows machine
+
+**What this step does:** Downloads the three export files from the server to your local machine.
 
 **Open a new PowerShell window on your Windows machine** (don't close the SSH session yet — you may want to clean up after). Create a local folder, then pull the files:
 
 ```powershell
 mkdir C:\hcpi-export
-scp -P <ssh_port> youruser@your-hcpi-server:/tmp/hcpi-export/*.zip C:\hcpi-export\
+scp -P <ssh_port> youruser@your-hcpi-server:/tmp/hcpi-export/* C:\hcpi-export\
 ```
 
 Replace:
@@ -202,6 +254,8 @@ You'll be prompted for your password. After the transfer, check the files arrive
 ```powershell
 dir C:\hcpi-export
 ```
+
+You should see `hcpi.dump`, `hcpi-files.zip`, and `hcpi-filestore.zip`.
 
 ## Step 10: Clean up the server
 
@@ -238,7 +292,7 @@ You now have everything needed to install HCPI somewhere else. Proceed to the in
 - [Windows WSL Installation](../installation/windows-wsl.md)
 - [Windows Native Installation](../installation/windows-native.md)
 
-When those guides ask for `hcpi-files.zip` and `hcpi-db.zip`, use the ones you just created. The filestore zip can be extracted into the new machine's filestore folder after the first successful startup.
+When those guides ask for `hcpi-files.zip`, use the one you just created. When they ask for the database dump, use `hcpi.dump` (the install guides include restore instructions for this format). The filestore zip can be extracted into the new machine's filestore folder after the first successful startup.
 
 ## Troubleshooting
 

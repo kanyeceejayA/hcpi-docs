@@ -202,6 +202,16 @@ http_port = 9201
 
 If you want to work with existing data:
 
+If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
+
+```bash
+cd /opt/hcpi
+cp /mnt/c/Users/YourWindowsUsername/Downloads/hcpi.dump .
+pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
+```
+
+If your dump is a plain `hcpi.sql` file:
+
 ```bash
 cd /opt/hcpi
 cp /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-db.zip .
@@ -210,6 +220,15 @@ psql -U hcpi -d hcpi -f hcpi.sql
 ```
 
 Enter the hcpi user password when prompted.
+
+!!! tip "Restoring the filestore"
+    If you also have `hcpi-filestore.zip` from the extraction guide, unpack it into your WSL filestore folder:
+
+    ```bash
+    mkdir -p ~/.local/share/Odoo/filestore
+    cd ~/.local/share/Odoo/filestore
+    unzip /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-filestore.zip
+    ```
 
 ### Option B: Start with Empty Instance
 

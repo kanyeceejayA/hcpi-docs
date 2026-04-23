@@ -33,14 +33,15 @@ nav:
   - Home: index.md
   - Getting Started:
     - Prerequisites: getting-started/prerequisites.md
+  - Exporting:
+    - From a Linux Server: extraction/linux-export.md
   - Installation:
     - Linux Server: installation/linux.md
     - Windows WSL: installation/windows-wsl.md
     - Windows Native: installation/windows-native.md
-  - Exporting:
-    - From a Linux Server: extraction/linux-export.md
   - Next Steps:
     - Overview: next-steps/index.md
+    - HTTPS with Apache: next-steps/https-apache.md
     - HTTPS with Nginx: next-steps/https-nginx.md
   - About: about.md
 

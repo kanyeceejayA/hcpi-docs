@@ -245,25 +245,29 @@ http_port = 9201
 
 ### Option A: Start with Sample Data
 
-If you want to start with existing data:
+If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
+
+**Command Prompt or PowerShell:**
+```cmd
+pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 path\to\hcpi.dump
+```
+
+Enter the hcpi user password when prompted. `pg_restore` handles cross-platform differences more gracefully than `psql`, so you should see few or no errors.
+
+If your dump is a plain `hcpi.sql` file:
 
 1. Download and extract `hcpi-db.zip`
-2. Open Command Prompt or PowerShell and run:
+2. Run:
 
-**Command Prompt:**
 ```cmd
 psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2> restore_errors.log
 ```
 
-**PowerShell:**
-```powershell
-psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2> restore_errors.log
-```
+!!! warning "Windows Restore Issues (plain SQL only)"
+    The `-v ON_ERROR_STOP=0` flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to `restore_errors.log` for review. Most errors related to permissions or Linux-specific features can be safely ignored. This flag is **not** needed when using `pg_restore`.
 
-Enter the hcpi user password when prompted.
-
-!!! warning "Windows Restore Issues"
-    The `-v ON_ERROR_STOP=0` flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to `restore_errors.log` for review. Most errors related to permissions or Linux-specific features can be safely ignored.
+!!! tip "Restoring the filestore"
+    If you also have `hcpi-filestore.zip` from the extraction guide, unpack it into your Odoo data folder. The default location on Windows is `%LOCALAPPDATA%\Odoo\filestore` — use your file explorer to extract the zip there so the database name folder (e.g. `hcpi`) ends up under `filestore`.
 
 ### Option B: Start with Empty Instance
 
