@@ -55,7 +55,7 @@ To produce them, follow the [Exporting HCPI from a Linux Server](../extraction/l
     You only need `hcpi-files.zip`. Skip the database dump and filestore — Odoo will initialize a blank database when it first runs. This is the simplest starting point if you don't have existing data to migrate.
 
 ??? note "No access to a source server?"
-    [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare) hosts a zipped set from Uganda's instance. These are intended for testing or reference only. They can let you understand the basics of the HCPI system, but there might be some variations between that system and what your country is running. For a real deployment, prefer files exported from your country's own server.
+    [http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w) hosts a zipped set from Uganda's instance. These are intended for testing or reference only. They can let you understand the basics of the HCPI system, but there might be some variations between that system and what your country is running. For a real deployment, prefer files exported from your country's own server.
 
 ### Which combination do I need?
 

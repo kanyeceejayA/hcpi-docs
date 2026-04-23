@@ -37,7 +37,7 @@ HCPI is built on Odoo 18 and consists of:
 ## Download Files
 
 Installation files are available at:
-[http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare)
+[http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w)
 
 - **hcpi-files.zip**: Contains the `conf` and `custom` folders with HCPI modules
 - **hcpi.dump**: PostgreSQL database dump in custom format (optional — only needed if you want sample data). Restored with `pg_restore`.

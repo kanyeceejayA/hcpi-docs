@@ -64,7 +64,7 @@ This is the Ugandan version managed by UBOS (Uganda Bureau of Statistics).
 ## Download Files
 
 Installation files are available at:
-[http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare)
+[http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w)
 
 - **hcpi-files.zip**: HCPI application code and configuration
 - **hcpi.dump**: Sample PostgreSQL database dump (custom format, restored with `pg_restore`)

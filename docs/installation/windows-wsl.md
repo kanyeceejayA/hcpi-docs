@@ -5,28 +5,56 @@ This guide shows you how to install HCPI on Windows using WSL (Windows Subsystem
 !!! info "What is WSL?"
     WSL allows you to run a Linux distribution alongside your Windows installation. This provides better compatibility with Odoo and HCPI compared to native Windows installation.
 
-## Step 1: Install WSL
+## Step 1: Install WSL and Ubuntu
 
-Open PowerShell as Administrator and run:
+First, check what you already have. Open **PowerShell** (regular, not Administrator) and run:
+
+```powershell
+wsl -l -v
+```
+
+You'll see one of three outcomes:
+
+- **"Windows Subsystem for Linux has no installed distributions"** — you need a fresh install. Continue with **Option A** below.
+- **A list that includes `Ubuntu`** — you already have Ubuntu. Skip to **Option C**.
+- **A list with other distros but no Ubuntu** (e.g. only `docker-desktop`) — Ubuntu isn't installed yet. Use **Option B**.
+
+### Option A: Fresh install (no WSL yet)
+
+Open **PowerShell as Administrator** and run:
 
 ```powershell
 wsl --install
 ```
 
-This installs WSL with Ubuntu by default. Restart your computer when prompted.
+This enables WSL and installs Ubuntu by default. **Restart your computer when prompted.** After the restart, continue with Step 2.
 
-!!! tip "Existing WSL Installation"
-    If you already have WSL installed, you can install Ubuntu with:
-    ```powershell
-    wsl --install -d Ubuntu
-    ```
+### Option B: WSL is installed but Ubuntu isn't
 
-## Step 2: Set Up Ubuntu
+From a regular PowerShell:
 
-After restart, Ubuntu will open automatically. Create your Linux username and password when prompted.
+```powershell
+wsl --install -d Ubuntu
+```
+
+No restart needed. Continue with Step 2.
+
+### Option C: Ubuntu is already installed
+
+Skip Step 2. Go straight to Step 3 and open your existing Ubuntu terminal (Start menu → Ubuntu, or run `wsl` from PowerShell).
+
+## Step 2: Set Up Ubuntu (first-time only)
+
+After installing Ubuntu, launch it:
+
+- **If Ubuntu didn't open automatically after the install/restart**, open the Start menu, search for **Ubuntu**, and click it. Or run `wsl` from PowerShell.
+- On **first launch**, Ubuntu takes a minute to finish setting itself up, then prompts you to create a Linux username and password.
 
 !!! warning "Remember Your Password"
-    You'll need this password for sudo commands. Make sure to remember it!
+    You'll need this password for sudo commands inside WSL. Make sure to remember it — resetting it later is a hassle.
+
+!!! tip "The Linux username is separate from your Windows username"
+    They can be the same if you want, but they don't have to be. Lowercase only, no spaces.
 
 ## Step 3: Update Ubuntu Packages
 
@@ -168,7 +196,7 @@ git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 
     ```bash
     cd /opt/hcpi
-    wget http://statistics.ubos.org/hcpishare/hcpi-files.zip
+    wget http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w/hcpi-files.zip
     unzip hcpi-files.zip
     mkdir -p log
     ```

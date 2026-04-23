@@ -73,7 +73,7 @@ git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 
     ```bash
     cd /opt/hcpi
-    wget http://statistics.ubos.org/hcpishare/hcpi-files.zip
+    wget http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w/hcpi-files.zip
     unzip hcpi-files.zip
     mkdir -p log
     ```
