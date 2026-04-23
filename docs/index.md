@@ -4,7 +4,7 @@ Welcome to the HCPI (Harmonized Consumer Price Index) documentation. HCPI is a c
 
 ## What is HCPI?
 
-HCPI is a Cost Price Index system built on [Odoo 18](https://www.odoo.com/documentation/18.0/) that enables statistical organizations to:
+HCPI is built on [Odoo 18](https://www.odoo.com/documentation/18.0/) and enables statistical organizations to:
 
 - Collect price data efficiently
 - Analyze pricing trends
@@ -34,19 +34,19 @@ HCPI is built on Odoo 18 and consists of:
 - **PostgreSQL Database**: For data storage
 - **Python Virtual Environment**: For dependency management
 
-## Download Files
+## Getting the Installation Files
 
-Installation files are available at:
-[http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w)
+For a real deployment, you produce the installation files from your own country's HCPI server. The [Exporting HCPI from a Linux Server](extraction/linux-export.md) guide walks you through it, and you'll end up with:
 
-- **hcpi-files.zip**: Contains the `conf` and `custom` folders with HCPI modules
-- **hcpi.dump**: PostgreSQL database dump in custom format (optional — only needed if you want sample data). Restored with `pg_restore`.
+- **`hcpi-files.zip`** — the `conf` and `custom` folders (application code and configuration)
+- **`hcpi.dump`** — PostgreSQL database dump in custom format (optional — skip for an empty instance)
+- **`hcpi-filestore.zip`** — uploaded attachments and images (optional — skip for an empty instance)
 
 !!! info "Empty Instance"
-    You don't need to restore the database if you want to start with an empty HCPI instance. Odoo will initialize a fresh database for you.
+    You don't need the database dump or filestore if you want to start with an empty HCPI instance. Odoo will initialize a fresh database for you on first run.
 
-!!! warning "Files at this link are Uganda's test data"
-    To set HCPI up for another country, produce your own export from that country's server first — see [Exporting HCPI from a Linux Server](extraction/linux-export.md).
+??? note "No access to a source server? Use Uganda's test files as a fallback"
+    [https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w) hosts a zipped set from Uganda's instance. Intended for evaluation and reference only — use them if you want to try HCPI before setting it up for your own country. For a real deployment, prefer files exported from your country's own server.
 
 ## Need Help?
 

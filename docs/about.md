@@ -61,13 +61,9 @@ A live deployment of HCPI can be accessed at:
 
 This is the Ugandan version managed by UBOS (Uganda Bureau of Statistics).
 
-## Download Files
+## Getting the Installation Files
 
-Installation files are available at:
-[http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w)
-
-- **hcpi-files.zip**: HCPI application code and configuration
-- **hcpi.dump**: Sample PostgreSQL database dump (custom format, restored with `pg_restore`)
+For a real deployment, produce the installation files from your country's HCPI server using the [Exporting HCPI from a Linux Server](extraction/linux-export.md) guide. For evaluation, a zipped sample from Uganda's instance is available at [https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w).
 
 ## Use Cases
 

@@ -3,7 +3,7 @@
 This guide shows you how to extract an existing HCPI installation from a Linux server so you can clone it to another machine or country setup. You will end up with three files:
 
 - `hcpi-files.zip` — the application code and configuration
-- `hcpi-db.dump` — the database dump (PostgreSQL custom format)
+- `hcpi.dump` — the database dump (PostgreSQL custom format)
 - `hcpi-filestore.zip` — uploaded attachments and images
 
 !!! info "Who this is for"
