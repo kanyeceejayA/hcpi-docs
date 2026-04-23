@@ -340,10 +340,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#download-files" class="md-nav__link">
+  <a href="#getting-the-installation-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Download Files
+        Getting the Installation Files
       
     </span>
   </a>
@@ -1052,10 +1052,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#download-files" class="md-nav__link">
+  <a href="#getting-the-installation-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Download Files
+        Getting the Installation Files
       
     </span>
   </a>
@@ -1093,7 +1093,7 @@
 <h1 id="hcpi-documentation">HCPI Documentation</h1>
 <p>Welcome to the HCPI (Harmonized Consumer Price Index) documentation. HCPI is a comprehensive system for collecting and analyzing price data, used by EAC Statistics bodies.</p>
 <h2 id="what-is-hcpi">What is HCPI?</h2>
-<p>HCPI is a Cost Price Index system built on <a href="https://www.odoo.com/documentation/18.0/">Odoo 18</a> that enables statistical organizations to:</p>
+<p>HCPI is built on <a href="https://www.odoo.com/documentation/18.0/">Odoo 18</a> and enables statistical organizations to:</p>
 <ul>
 <li>Collect price data efficiently</li>
 <li>Analyze pricing trends</li>
@@ -1119,21 +1119,21 @@
 <li><strong>PostgreSQL Database</strong>: For data storage</li>
 <li><strong>Python Virtual Environment</strong>: For dependency management</li>
 </ul>
-<h2 id="download-files">Download Files</h2>
-<p>Installation files are available at:
-<a href="http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w">http://https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w</a></p>
+<h2 id="getting-the-installation-files">Getting the Installation Files</h2>
+<p>For a real deployment, you produce the installation files from your own country's HCPI server. The <a href="extraction/linux-export/">Exporting HCPI from a Linux Server</a> guide walks you through it, and you'll end up with:</p>
 <ul>
-<li><strong>hcpi-files.zip</strong>: Contains the <code>conf</code> and <code>custom</code> folders with HCPI modules</li>
-<li><strong>hcpi.dump</strong>: PostgreSQL database dump in custom format (optional — only needed if you want sample data). Restored with <code>pg_restore</code>.</li>
+<li><strong><code>hcpi-files.zip</code></strong> — the <code>conf</code> and <code>custom</code> folders (application code and configuration)</li>
+<li><strong><code>hcpi.dump</code></strong> — PostgreSQL database dump in custom format (optional — skip for an empty instance)</li>
+<li><strong><code>hcpi-filestore.zip</code></strong> — uploaded attachments and images (optional — skip for an empty instance)</li>
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Empty Instance</p>
-<p>You don't need to restore the database if you want to start with an empty HCPI instance. Odoo will initialize a fresh database for you.</p>
+<p>You don't need the database dump or filestore if you want to start with an empty HCPI instance. Odoo will initialize a fresh database for you on first run.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Files at this link are Uganda's test data</p>
-<p>To set HCPI up for another country, produce your own export from that country's server first — see <a href="extraction/linux-export/">Exporting HCPI from a Linux Server</a>.</p>
-</div>
+<details class="note">
+<summary>No access to a source server? Use Uganda's test files as a fallback</summary>
+<p><a href="https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w">https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w</a> hosts a zipped set from Uganda's instance. Intended for evaluation and reference only — use them if you want to try HCPI before setting it up for your own country. For a real deployment, prefer files exported from your country's own server.</p>
+</details>
 <h2 id="need-help">Need Help?</h2>
 <p>If you encounter issues during installation or usage, please refer to the specific installation guide for your platform or consult the <a href="https://www.odoo.com/documentation/18.0/">Odoo 18 documentation</a>.</p>
 
