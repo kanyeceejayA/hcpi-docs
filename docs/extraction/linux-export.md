@@ -115,7 +115,9 @@ What these mean for you:
 
 **What this step does:** Saves the values you noted in Steps 1–2 into shell variables so every later command picks them up automatically. If your server uses different values, you only change them here.
 
-Copy and paste this whole block into your SSH session, then press Enter:
+If your Step 1/2 values differ from the examples (e.g. the install lives in a different folder or the DB is not named `hcpi`), edit the lines below before pasting.
+
+If not, then copy and paste this whole block into your SSH session, then press Enter:
 
 ```bash
 INSTALL=/opt/hcpi
@@ -124,7 +126,7 @@ DB_NAME=hcpi
 DB_USER=hcpi
 ```
 
-If your Step 1/2 values differ (e.g. the install lives in a different folder or the DB is named `kenya_hcpi`), edit the lines before pasting.
+
 
 Verify the variables took effect:
 
@@ -181,19 +183,10 @@ You should see a file sized anywhere from a few MB to several GB depending on da
 Zip the `conf/` and `custom/` folders from the install:
 
 ```bash
-cd $INSTALL
-sudo zip -r $STAGING/hcpi-files.zip conf custom
+sudo zip -r $STAGING/hcpi-files.zip $INSTALL/conf $INSTALL/custom
 ```
 
 The `odoo/` folder is **not** included — it will be re-downloaded from GitHub on the target machine. The `venv/` and `log/` folders are also excluded.
-
-??? note "Excluding stray files"
-    You may have old notes or log files mixed into `custom/HCPI/`. To skip them:
-
-    ```bash
-    sudo zip -r $STAGING/hcpi-files.zip conf custom \
-      -x 'custom/HCPI/*.md' 'custom/HCPI/*.yaml'
-    ```
 
 ## Step 7: Export the filestore
 

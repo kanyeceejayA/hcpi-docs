@@ -41,21 +41,26 @@ The following will be installed during the setup process:
 - virtualenv (for Python virtual environment management)
 - wkhtmltopdf (for PDF report generation)
 
-## Download Required Files
+## Get the Required Files
 
-Before starting installation, download the required files from:
-[http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare)
+You need two things:
 
-1. **hcpi-code.zip** - Contains the HCPI application code
-2. **hcpi-sql.zip** - Contains the PostgreSQL database dump (optional)
+1. **`hcpi-files.zip`** — the HCPI application code and configuration
+2. **`hcpi.dump`** — a PostgreSQL database dump (optional, only if you want to start with existing data)
 
-!!! warning "These are Uganda's test files"
-    The files at the link above are from Uganda's instance and are intended for testing or reference. If you are setting up HCPI for another country, you should start by **cloning the code and database from your own country's server** instead.
+Plus optionally:
 
-    See [Exporting HCPI from a Linux Server](../extraction/linux-export.md) for how to produce your own `hcpi-files.zip` and `hcpi-db.zip` from a live installation.
+3. **`hcpi-filestore.zip`** — uploaded attachments and images from the source instance
 
-!!! tip "Database Restore"
-    Only download and restore hcpi-sql.zip if you want to start with sample data. You can skip this for a fresh, empty instance.
+### Where to get them
+
+!!! warning "The files at the public link are Uganda's test data"
+    [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare) hosts an older zipped set from Uganda's instance, intended for testing or reference only.
+
+    If you are setting HCPI up for another country, **do not use those files**. Produce your own export from your country's server first — see [Exporting HCPI from a Linux Server](../extraction/linux-export.md). That guide walks you through generating all three files above.
+
+!!! tip "Starting empty"
+    You can skip the database dump entirely if you want a fresh, empty HCPI instance. Odoo will initialize the database when it first runs.
 
 ## Knowledge Prerequisites
 

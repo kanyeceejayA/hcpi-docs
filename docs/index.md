@@ -40,10 +40,13 @@ Installation files are available at:
 [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare)
 
 - **hcpi-files.zip**: Contains the `conf` and `custom` folders with HCPI modules
-- **hcpi-db.zip**: Contains `hcpi.sql` PostgreSQL database dump (optional - only needed if you want sample data)
+- **hcpi.dump**: PostgreSQL database dump in custom format (optional — only needed if you want sample data). Restored with `pg_restore`.
 
 !!! info "Empty Instance"
     You don't need to restore the database if you want to start with an empty HCPI instance. Odoo will initialize a fresh database for you.
+
+!!! warning "Files at this link are Uganda's test data"
+    To set HCPI up for another country, produce your own export from that country's server first — see [Exporting HCPI from a Linux Server](extraction/linux-export.md).
 
 ## Need Help?
 
