@@ -130,11 +130,15 @@ http_port = 9201
     - **Paths**: Update `addons_path` and `logfile` if you chose a different installation location
     - **http_port**: Change if port 9201 is already in use
 
-## Step 8: Restore Database (Optional)
+## Step 8: Restore Data (Optional)
+
+You have two choices here. A full restore brings in another instance's data and attachments. An empty start gives you a clean HCPI with just the modules.
 
 ### Option A: Start with Sample Data
 
-If you want to work with existing data, restore the database.
+A full restore has **two parts** that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images in the restored instance.
+
+#### A1: Restore the database
 
 If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
 
@@ -153,20 +157,35 @@ psql -U hcpi -d hcpi -f hcpi.sql
 
 Enter the hcpi user password when prompted.
 
-!!! tip "Restoring the filestore"
-    If you also have `hcpi-filestore.zip` from the extraction guide, unpack it into the new server's filestore folder:
+#### A2: Restore the filestore
+
+The filestore goes under the user that will run HCPI — typically **your current user**, not the source server's user. Odoo looks for it under the current user's HOME at `~/.local/share/Odoo/filestore/<db_name>`.
+
+```bash
+mkdir -p ~/.local/share/Odoo/filestore
+cd ~/.local/share/Odoo/filestore
+unzip /path/to/hcpi-filestore.zip
+```
+
+After unzipping, confirm the folder name matches your `db_name`:
+
+```bash
+ls ~/.local/share/Odoo/filestore
+# Should show: hcpi   (or whatever db_name you're using)
+```
+
+!!! warning "If you run HCPI as a different system user (e.g. via systemd)"
+    Odoo reads the filestore from the HOME of the user the Odoo process runs as. If you configured a dedicated `hcpi` system user in the service file later, move the filestore there:
 
     ```bash
-    mkdir -p ~/.local/share/Odoo/filestore
-    cd ~/.local/share/Odoo/filestore
-    unzip /path/to/hcpi-filestore.zip
+    sudo mkdir -p ~hcpi/.local/share/Odoo/filestore
+    sudo mv ~/.local/share/Odoo/filestore/hcpi ~hcpi/.local/share/Odoo/filestore/
+    sudo chown -R hcpi:hcpi ~hcpi/.local
     ```
 
 ### Option B: Start with Empty Instance
 
-If you want a fresh HCPI instance with just the modules:
-
-Simply skip this step. Odoo will initialize the database when you first run it with the `-i HCPI` flag (see Step 9).
+If you want a fresh HCPI instance with just the modules, skip this step entirely — no database restore, no filestore. Odoo will initialize an empty database when you first run it with the `-i HCPI` flag (see Step 9).
 
 ## Step 9: Start HCPI
 

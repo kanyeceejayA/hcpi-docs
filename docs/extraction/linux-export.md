@@ -151,6 +151,9 @@ chmod 777 $STAGING
 
 The `chmod 777` is important: in Step 5 the `postgres` system user needs to write into this folder, and it's a different user than you.
 
+!!! info "Only want the code, not the data?"
+    If your goal is a clean install with this country's HCPI modules but **no existing data**, you can skip Steps 5 and 7 (database and filestore). Just run Step 6 to get `hcpi-files.zip`, then follow your target machine's installation guide and pick "Start with Empty Instance" in the Restore step. Odoo will create a fresh database the first time it runs.
+
 ## Step 5: Export the database
 
 **What this step does:** Produces a single compressed database dump file in PostgreSQL's "custom" format. It's smaller and faster to restore than a plain SQL file, and works across operating systems.
@@ -190,28 +193,60 @@ The `odoo/` folder is **not** included — it will be re-downloaded from GitHub 
 
 ## Step 7: Export the filestore
 
-**What this step does:** Packages the folder where Odoo stores uploaded attachments (images, PDFs, etc.). Without this, your restored instance would be missing files that the database references.
+**What this step does:** Packages the folder where Odoo stores uploaded attachments (images, PDFs, etc.). The database holds references to these files but not the files themselves — **without this step, attachments and images in your restored instance will be broken**.
 
-The filestore lives in the run user's home folder:
+### Find the filestore
+
+The filestore lives under the run user's HOME directory — but on some servers HOME is `/home/hcpi`, on others it's `/opt/hcpi`, etc. Ask the system directly instead of guessing:
 
 ```bash
-FILESTORE=/home/$RUN_USER/.local/share/Odoo/filestore/$DB_NAME
+RUN_USER_HOME=$(getent passwd $RUN_USER | cut -d: -f6)
+FILESTORE_PARENT=$RUN_USER_HOME/.local/share/Odoo/filestore
+FILESTORE=$FILESTORE_PARENT/$DB_NAME
+
+echo "Looking for filestore at: $FILESTORE"
 sudo ls $FILESTORE
 ```
 
-If that lists files, zip it:
+You should see a bunch of two-character folders (`01`, `02`, `03`, ... plus a `checklist` file). That's the filestore.
+
+??? note "Didn't find it there?"
+    The server may have overridden the default location. Try these in order:
+
+    1. **Check the config for a `data_dir` line:**
+
+        ```bash
+        sudo grep -E '^\s*data_dir' /opt/hcpi/conf/hcpi.conf
+        ```
+
+        If it prints something, the filestore is at `<data_dir>/filestore/$DB_NAME`.
+
+    2. **Search the filesystem:**
+
+        ```bash
+        sudo find / -type d -name filestore 2>/dev/null
+        ```
+
+        You may see several results (e.g. older Odoo installs). Pick the one that contains a subfolder matching your `$DB_NAME`. Then set the path manually:
+
+        ```bash
+        FILESTORE_PARENT=/the/path/you/found
+        FILESTORE=$FILESTORE_PARENT/$DB_NAME
+        ```
+
+### Zip it
+
+Once `sudo ls $FILESTORE` confirms the right folder, zip it:
 
 ```bash
-cd /home/$RUN_USER/.local/share/Odoo/filestore
-sudo zip -r $STAGING/hcpi-filestore.zip $DB_NAME
+sudo zip -r $STAGING/hcpi-filestore.zip $FILESTORE_PARENT/ $DB_NAME
 ```
 
-!!! info "No filestore folder?"
-    Some servers store it elsewhere. Check the config for a `data_dir = ...` line. If there isn't one, search:
+Check the result:
 
-    ```bash
-    sudo find / -type d -name filestore 2>/dev/null
-    ```
+```bash
+ls -lh $STAGING/hcpi-filestore.zip
+```
 
 ## Step 8: Make the files readable by your SSH user
 
@@ -220,7 +255,7 @@ sudo zip -r $STAGING/hcpi-filestore.zip $DB_NAME
 Replace `youruser` with your actual SSH username (the one you used in Step 1):
 
 ```bash
-sudo chown youruser:youruser $STAGING/*
+sudo chown $USER:$USER $STAGING/*
 ls -lh $STAGING
 ```
 

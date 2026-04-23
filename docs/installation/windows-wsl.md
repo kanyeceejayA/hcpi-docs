@@ -196,11 +196,15 @@ http_port = 9201
 !!! tip "Save in Nano"
     Press `Ctrl+X`, then `Y`, then `Enter` to save and exit nano.
 
-## Step 10: Restore Database (Optional)
+## Step 10: Restore Data (Optional)
+
+You have two choices: a full restore (database + filestore) or a clean empty instance.
 
 ### Option A: Start with Sample Data
 
-If you want to work with existing data:
+A full restore has **two parts** that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images.
+
+#### A1: Restore the database
 
 If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
 
@@ -221,18 +225,29 @@ psql -U hcpi -d hcpi -f hcpi.sql
 
 Enter the hcpi user password when prompted.
 
-!!! tip "Restoring the filestore"
-    If you also have `hcpi-filestore.zip` from the extraction guide, unpack it into your WSL filestore folder:
+#### A2: Restore the filestore
 
-    ```bash
-    mkdir -p ~/.local/share/Odoo/filestore
-    cd ~/.local/share/Odoo/filestore
-    unzip /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-filestore.zip
-    ```
+The filestore goes under your WSL user's HOME, at `~/.local/share/Odoo/filestore/<db_name>`:
+
+```bash
+mkdir -p ~/.local/share/Odoo/filestore
+cd ~/.local/share/Odoo/filestore
+unzip /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-filestore.zip
+```
+
+After unzipping, confirm the folder name matches your `db_name`:
+
+```bash
+ls ~/.local/share/Odoo/filestore
+# Should show: hcpi   (or whatever db_name you're using)
+```
+
+!!! info "Why HOME?"
+    Odoo looks for the filestore under the HOME of the user running the Odoo process. In WSL development setups that's typically the same user you're logged in as.
 
 ### Option B: Start with Empty Instance
 
-Simply skip this step. Odoo will initialize the database when you first run it with the `-i HCPI` flag (see Step 11).
+Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the `-i HCPI` flag (see Step 11).
 
 ## Step 11: Start HCPI
 

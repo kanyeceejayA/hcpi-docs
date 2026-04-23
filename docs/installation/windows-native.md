@@ -241,9 +241,15 @@ http_port = 9201
     - **Paths location**: Update `addons_path` and `logfile` if you chose a different installation location
     - **http_port**: Change if port 9201 is already in use
 
-## Step 11: Restore Database (Optional)
+## Step 11: Restore Data (Optional)
+
+You have two choices: a full restore (database + filestore) or a clean empty instance.
 
 ### Option A: Start with Sample Data
+
+A full restore has **two parts** that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images in the restored instance.
+
+#### A1: Restore the database
 
 If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
 
@@ -266,12 +272,37 @@ psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2> restore_errors.lo
 !!! warning "Windows Restore Issues (plain SQL only)"
     The `-v ON_ERROR_STOP=0` flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to `restore_errors.log` for review. Most errors related to permissions or Linux-specific features can be safely ignored. This flag is **not** needed when using `pg_restore`.
 
-!!! tip "Restoring the filestore"
-    If you also have `hcpi-filestore.zip` from the extraction guide, unpack it into your Odoo data folder. The default location on Windows is `%LOCALAPPDATA%\Odoo\filestore` — use your file explorer to extract the zip there so the database name folder (e.g. `hcpi`) ends up under `filestore`.
+#### A2: Restore the filestore
+
+On native Windows, Odoo stores the filestore under your user profile at `%LOCALAPPDATA%\Odoo\filestore\<db_name>` (which expands to something like `C:\Users\YourName\AppData\Local\Odoo\filestore\hcpi`).
+
+**Step 1 — Create the folder**, open File Explorer and paste this into the address bar:
+
+```
+%LOCALAPPDATA%\Odoo\filestore
+```
+
+If the folder doesn't exist, create it (Explorer will offer to create missing parts of the path).
+
+**Step 2 — Extract `hcpi-filestore.zip` into that folder.** You can right-click the zip → "Extract All..." → browse to `%LOCALAPPDATA%\Odoo\filestore\` as the destination.
+
+**Step 3 — Confirm the result.** Inside `%LOCALAPPDATA%\Odoo\filestore\` you should now see a folder named `hcpi` (or whatever your `db_name` is). Open it — you should see many two-character folders (`01`, `02`, `03`, ...) and a `checklist` file.
+
+Or do it from PowerShell:
+
+```powershell
+$dest = "$env:LOCALAPPDATA\Odoo\filestore"
+New-Item -ItemType Directory -Force -Path $dest | Out-Null
+Expand-Archive -Path "C:\path\to\hcpi-filestore.zip" -DestinationPath $dest
+Get-ChildItem $dest
+```
+
+!!! warning "Path must match db_name exactly"
+    The folder inside `filestore\` must be named exactly the same as `db_name` in `hcpi.conf`. If the extracted folder is `hcpi` but you named your database `ug_hcpi`, rename the folder or Odoo won't find the attachments.
 
 ### Option B: Start with Empty Instance
 
-Simply skip this step. Odoo will initialize the database when you first run it with the `-i HCPI` flag (see Step 12).
+Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the `-i HCPI` flag (see Step 12).
 
 ## Step 12: Start HCPI
 
