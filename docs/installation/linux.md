@@ -47,9 +47,9 @@ cd /opt/hcpi
 !!! warning "Custom Installation Path"
     If you choose a different path than `/opt/hcpi`, you'll need to update the paths in the configuration file (see Step 7).
 
-## Step 5: Download and Set Up HCPI Files
+## Step 5: Set Up HCPI Files
 
-Download the files from [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare) and set up the directory structure:
+By now you should already have `hcpi-files.zip` — produced from your country's server using the [extraction guide](../extraction/linux-export.md). See [Prerequisites → Get the Required Files](../getting-started/prerequisites.md#get-the-required-files) if you don't. Copy it into `/opt/hcpi` (e.g. via `scp` from your Windows machine, or `wget` from wherever you've staged it), then:
 
 ```bash
 cd /opt/hcpi
@@ -63,6 +63,17 @@ git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 # Create log directory
 mkdir -p log
 ```
+
+??? note "No export files? Download Uganda's test files instead"
+    For testing or reference only, you can pull the Uganda test set:
+
+    ```bash
+    cd /opt/hcpi
+    wget http://statistics.ubos.org/hcpishare/hcpi-files.zip
+    unzip hcpi-files.zip
+    git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
+    mkdir -p log
+    ```
 
 After this, you should have:
 
@@ -140,22 +151,23 @@ A full restore has **two parts** that must both be done: the database, then the 
 
 #### A1: Restore the database
 
-If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
+Use the `hcpi.dump` file produced by the [extraction guide](../extraction/linux-export.md) (PostgreSQL custom format):
 
 ```bash
 cd /opt/hcpi
 pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
 ```
 
-If your dump is a plain `hcpi.sql` file:
+Enter the `hcpi` user password when prompted.
 
-```bash
-cd /opt/hcpi
-unzip hcpi-db.zip
-psql -U hcpi -d hcpi -f hcpi.sql
-```
+??? note "If you have a plain `hcpi.sql` file instead (legacy)"
+    Older exports sometimes ship as a plain SQL file inside `hcpi-db.zip`. The current extraction flow does **not** produce this — if you have one, it's from an older process.
 
-Enter the hcpi user password when prompted.
+    ```bash
+    cd /opt/hcpi
+    unzip hcpi-db.zip
+    psql -U hcpi -d hcpi -f hcpi.sql
+    ```
 
 #### A2: Restore the filestore
 

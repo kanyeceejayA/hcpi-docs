@@ -152,16 +152,11 @@ cd /opt/hcpi
 cp /mnt/c/hcpi-export/hcpi-files.zip .
 unzip hcpi-files.zip
 
-# Clone Odoo 18
+# Clone Odoo 18 (this can take a few minutes depending on your connection)
 git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 
 # Create log directory
 mkdir -p log
-```
-Then clone Odoo 18 into the folder. This step might take a while depending on your internet connection.
-```bash
-# Clone Odoo 18
-git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 ```
 
 ??? note "No export files? Download Uganda's test files instead"
@@ -254,7 +249,7 @@ A full restore has **two parts** that must both be done: the database, then the 
 
 #### A1: Restore the database
 
-If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
+Use the `hcpi.dump` file produced by the [extraction guide](../extraction/linux-export.md) (PostgreSQL custom format):
 
 ```bash
 cd /opt/hcpi
@@ -262,16 +257,17 @@ cp /mnt/c/hcpi-export/hcpi.dump .
 pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
 ```
 
-If your dump is a plain `hcpi.sql` file:
+Enter the `hcpi` user password when prompted.
 
-```bash
-cd /opt/hcpi
-cp /mnt/c/hcpi-export/hcpi-db.zip .
-unzip hcpi-db.zip
-psql -U hcpi -d hcpi -f hcpi.sql
-```
+??? note "If you have a plain `hcpi.sql` file instead (legacy)"
+    Older exports sometimes ship as a plain SQL file inside `hcpi-db.zip`. The current extraction flow does **not** produce this — if you have one, it's from an older process.
 
-Enter the hcpi user password when prompted.
+    ```bash
+    cd /opt/hcpi
+    cp /mnt/c/hcpi-export/hcpi-db.zip .
+    unzip hcpi-db.zip
+    psql -U hcpi -d hcpi -f hcpi.sql
+    ```
 
 #### A2: Restore the filestore
 
