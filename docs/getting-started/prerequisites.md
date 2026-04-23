@@ -43,29 +43,25 @@ The following will be installed during the setup process:
 
 ## Get the Required Files
 
-You need two things:
+You'll need these files, produced from your own country's HCPI server:
 
 1. **`hcpi-files.zip`** — the HCPI application code and configuration
-2. **`hcpi.dump`** — a PostgreSQL database dump (optional, only if you want to start with existing data)
+2. **`hcpi.dump`** — the PostgreSQL database dump (optional — skip if you want to start empty)
+3. **`hcpi-filestore.zip`** — uploaded attachments and images (optional — skip if you're starting empty)
 
-Plus optionally:
+To produce them, follow the [Exporting HCPI from a Linux Server](../extraction/linux-export.md) guide. It walks you through generating all three files in one pass.
 
-3. **`hcpi-filestore.zip`** — uploaded attachments and images from the source instance
+!!! tip "Starting with an empty instance?"
+    You only need `hcpi-files.zip`. Skip the database dump and filestore — Odoo will initialize a blank database when it first runs. This is the simplest starting point if you don't have existing data to migrate.
 
-### Where to get them
+??? note "No access to a source server?"
+    [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare) hosts a zipped set from Uganda's instance. These are intended for testing or reference only. They can let you understand the basics of the HCPI system, but there might be some variations between that system and what your country is running. For a real deployment, prefer files exported from your country's own server.
 
-!!! warning "The files at the public link are Uganda's test data"
-    [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare) hosts an older zipped set from Uganda's instance, intended for testing or reference only.
+### Which combination do I need?
 
-    If you are setting HCPI up for another country, **do not use those files**. Produce your own export from your country's server first — see [Exporting HCPI from a Linux Server](../extraction/linux-export.md). That guide walks you through generating all three files above.
-
-!!! tip "Starting empty"
-    You can skip the database dump **and** the filestore entirely if you want a fresh, empty HCPI instance. You only need `hcpi-files.zip` (the code and configuration). Odoo will initialize a blank database when it first runs with the `-i HCPI --dev=all` flags — covered in the installation guides.
-
-!!! info "Three useful combinations"
-    - **Empty instance, any country**: just `hcpi-files.zip`. No source server needed — if you're setting up HCPI for the first time in a new country, this is the simplest starting point.
-    - **Full clone with data**: `hcpi-files.zip` + `hcpi.dump` + `hcpi-filestore.zip`. Use this to migrate a working instance to a new machine.
-    - **Code only from a source server**: `hcpi-files.zip` alone, produced via the extraction guide. Use this when you want another country's custom modules but no data.
+- **Full clone with data**: all three files. Use this to migrate a working instance to a new machine.
+- **Empty instance**: just `hcpi-files.zip`. Odoo creates a fresh database on first run.
+- **Code only from a source server**: just `hcpi-files.zip`, produced via the extraction guide. Use this when you want another country's custom modules but no data.
 
 ## Knowledge Prerequisites
 

@@ -300,17 +300,28 @@ Before you forget, create a small notes file next to your zips on Windows so you
 - Source server hostname
 - Date of export
 - Values from Step 3 (`INSTALL`, `RUN_USER`, `DB_NAME`, `DB_USER`, `HTTP_PORT`)
-- Odoo version — get it with:
+- **Odoo version** — confirm by reading the Odoo folder's git branch. The `odoo/` subdirectory is owned by the run user, so use `sudo`:
 
   ```bash
-  sudo -u $RUN_USER bash -c "cd $INSTALL/odoo && git log -1 --oneline"
+  sudo cat $INSTALL/odoo/.git/HEAD
   ```
 
-- Python version:
+  You should see something like `ref: refs/heads/18.0`. The number after `heads/` is the Odoo major version. HCPI installs are expected to run on `18.0` — flag it if you see anything else.
+
+- **Python version** — run on the server:
 
   ```bash
-  $INSTALL/venv/bin/python3 --version
+  sudo $INSTALL/venv/bin/python3 --version
   ```
+
+??? note "If `sudo cat .../HEAD` fails"
+    As an alternative, use `git -C <path>` so git runs against the repo without needing to `cd` into it:
+
+    ```bash
+    sudo git -C $INSTALL/odoo log -1 --oneline
+    ```
+
+    You can then look up the commit on [github.com/odoo/odoo](https://github.com/odoo/odoo) to confirm which branch/version it belongs to.
 
 ## What next?
 
