@@ -103,6 +103,10 @@ Download and install wkhtmltopdf from [wkhtmltopdf.org](https://wkhtmltopdf.org/
 
 ## Step 6: Set Up PostgreSQL Database
 
+You can do this with either `psql` on the command line or with pgAdmin 4 (installed alongside PostgreSQL in Step 3). Use whichever you're more comfortable with — pgAdmin 4 is a good fallback if `psql` isn't on your PATH or the CLI gives you trouble.
+
+### Option A: Using psql (Command Line)
+
 Open Command Prompt as Administrator and create user and database:
 
 ```cmd
@@ -118,23 +122,36 @@ GRANT ALL PRIVILEGES ON DATABASE hcpi TO hcpi;
 \q
 ```
 
+### Option B: Using pgAdmin 4 (GUI)
+
+1. Open **pgAdmin 4** from the Start menu and connect to your local PostgreSQL server (enter the `postgres` password from Step 3 when prompted).
+2. **Create the login role:**
+    - In the browser tree, expand your server → right-click **Login/Group Roles** → **Create** → **Login/Group Role...**
+    - **General** tab: Name → `hcpi`
+    - **Definition** tab: Password → `your_secure_password`
+    - **Privileges** tab: enable **Can login?** and **Create databases?**
+    - Click **Save**
+3. **Create the database:**
+    - Right-click **Databases** → **Create** → **Database...**
+    - **Database**: `hcpi`
+    - **Owner**: `hcpi`
+    - Click **Save**
+4. (Optional) Grant all privileges — since `hcpi` is already the owner this is usually unnecessary, but if you want to match the CLI exactly, open the **Query Tool** on the `hcpi` database and run:
+
+    ```sql
+    GRANT ALL PRIVILEGES ON DATABASE hcpi TO hcpi;
+    ```
+
 !!! tip "Database User"
     We're using `hcpi` as both the database name and username. You can choose different names, but update the configuration file accordingly.
 
 ## Step 7: Create Directory Structure
 
-Open Command Prompt or PowerShell and create the directory:
+Open PowerShell and create the directory:
 
-**Command Prompt:**
-```cmd
+```powershell
 mkdir C:\hcpi
 cd C:\hcpi
-```
-
-**PowerShell:**
-```powershell
-New-Item -ItemType Directory -Path C:\hcpi
-Set-Location C:\hcpi
 ```
 
 !!! warning "Custom Installation Path"
@@ -143,21 +160,16 @@ Set-Location C:\hcpi
 !!! tip "Alternative Location"
     While the Linux version uses `/opt/hcpi`, on Windows we use `C:\hcpi` for simplicity. You can choose a different location if preferred.
 
-## Step 8: Download and Set Up HCPI Files
+## Step 8: Set Up HCPI Files
 
-Download files from [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare) and set up:
+By now you should already have `hcpi-files.zip` — produced from your country's server using the [extraction guide](../extraction/linux-export.md), or (for testing only) downloaded from [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare). See [Prerequisites → Get the Required Files](../getting-started/prerequisites.md#get-the-required-files) if you don't.
 
-1. Download `hcpi-files.zip`
-2. Extract contents to `C:\hcpi`
+Extract `hcpi-files.zip` into `C:\hcpi`. You can right-click the zip → **Extract All...** → browse to `C:\hcpi` as the destination. After extracting, confirm you see `conf\` and `custom\` folders directly under `C:\hcpi`.
 
-Clone Odoo 18 and create log directory:
+!!! tip "If the zip extracts with a nested folder"
+    Zips produced on Linux sometimes preserve the full server path (e.g. `opt\hcpi\conf\`). If that happens, move `conf\` and `custom\` up so they sit directly under `C:\hcpi`.
 
-**Command Prompt:**
-```cmd
-cd C:\hcpi
-git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-mkdir log
-```
+Clone Odoo 18 and create the log directory:
 
 **PowerShell:**
 ```powershell
@@ -222,7 +234,7 @@ admin_passwd = your_strong_admin_password
 db_host = localhost
 db_port = 5432
 
-; Set this to match the PostgreSQL password from Step 5
+; Set this to match the PostgreSQL password you set for the hcpi user in Step 6
 db_password = your_secure_password
 
 ; UPDATE THESE PATHS if you installed to a different location - use backslashes (\)
@@ -235,7 +247,7 @@ http_port = 9201
 
 !!! warning "Important Windows-Specific Settings"
     - **admin_passwd**: Used for database management operations - choose a strong password
-    - **db_password**: Must match the PostgreSQL password you created in Step 5
+    - **db_password**: Must match the PostgreSQL password you set for the `hcpi` user in Step 6
     - **db_host**: Must be `localhost` on Windows (unlike Linux where it can be `False`)
     - **Paths**: Must use backslashes (`\`), not forward slashes (`/`)
     - **Paths location**: Update `addons_path` and `logfile` if you chose a different installation location
@@ -251,26 +263,22 @@ A full restore has **two parts** that must both be done: the database, then the 
 
 #### A1: Restore the database
 
-If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [extraction guide](../extraction/linux-export.md)):
-
-**Command Prompt or PowerShell:**
-```cmd
-pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 path\to\hcpi.dump
-```
-
-Enter the hcpi user password when prompted. `pg_restore` handles cross-platform differences more gracefully than `psql`, so you should see few or no errors.
-
-If your dump is a plain `hcpi.sql` file:
-
-1. Download and extract `hcpi-db.zip`
-2. Run:
+Use the `hcpi.dump` file produced by the [extraction guide](../extraction/linux-export.md) (PostgreSQL custom format). In Command Prompt or PowerShell:
 
 ```cmd
-psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2> restore_errors.log
+pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 C:\hcpi-export\hcpi.dump
 ```
 
-!!! warning "Windows Restore Issues (plain SQL only)"
-    The `-v ON_ERROR_STOP=0` flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to `restore_errors.log` for review. Most errors related to permissions or Linux-specific features can be safely ignored. This flag is **not** needed when using `pg_restore`.
+Adjust the path if you saved the export somewhere else. Enter the `hcpi` user password when prompted. `pg_restore` handles cross-platform differences more gracefully than `psql`, so you should see few or no errors.
+
+??? note "If you have a plain `hcpi.sql` file instead (legacy)"
+    Older exports sometimes ship as a plain SQL file inside `hcpi-db.zip`. The current extraction flow does **not** produce this — if you have one, it's from an older process.
+
+    ```cmd
+    psql -U hcpi -d hcpi -v ON_ERROR_STOP=0 -f path\to\hcpi.sql 2> restore_errors.log
+    ```
+
+    The `-v ON_ERROR_STOP=0` flag prevents the restore from stopping on minor errors (common when restoring Linux dumps on Windows). Errors are logged to `restore_errors.log` for review. Most errors related to permissions or Linux-specific features can be safely ignored.
 
 #### A2: Restore the filestore
 
@@ -293,12 +301,12 @@ Or do it from PowerShell:
 ```powershell
 $dest = "$env:LOCALAPPDATA\Odoo\filestore"
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
-Expand-Archive -Path "C:\path\to\hcpi-filestore.zip" -DestinationPath $dest
+Expand-Archive -Path "C:\hcpi-export\hcpi-filestore.zip" -DestinationPath $dest
 Get-ChildItem $dest
 ```
 
 !!! warning "Path must match db_name exactly"
-    The folder inside `filestore\` must be named exactly the same as `db_name` in `hcpi.conf`. If the extracted folder is `hcpi` but you named your database `ug_hcpi`, rename the folder or Odoo won't find the attachments.
+    The folder inside `filestore\` must be named exactly the same as `db_name` in `hcpi.conf`. If the extracted folder is `hcpi` but you named your database `ug_hcpi`, rename the folder or Odoo won't find the attachments. If the zip extracted with an extra wrapper folder (e.g. `filestore\filestore\hcpi`), move the inner `hcpi` folder up one level.
 
 ### Option B: Start with Empty Instance
 

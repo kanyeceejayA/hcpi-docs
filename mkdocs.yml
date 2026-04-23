@@ -36,9 +36,9 @@ nav:
   - Exporting:
     - From a Linux Server: extraction/linux-export.md
   - Installation:
-    - Linux Server: installation/linux.md
     - Windows WSL: installation/windows-wsl.md
     - Windows Native: installation/windows-native.md
+    - Linux Server: installation/linux.md
   - Next Steps:
     - Overview: next-steps/index.md
     - HTTPS with Apache: next-steps/https-apache.md
