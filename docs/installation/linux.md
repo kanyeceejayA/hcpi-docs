@@ -126,9 +126,6 @@ nano /opt/hcpi/conf/hcpi.conf
 
 ```ini
 [options]
-; Change this to a strong password for database management operations
-admin_passwd = your_strong_admin_password
-
 ; Set this to match the PostgreSQL password from Step 3
 db_password = your_secure_password
 
@@ -141,16 +138,18 @@ http_port = 9201
 ```
 
 !!! warning "Important"
-    - **admin_passwd**: Used for database management operations - choose a strong password
     - **db_password**: Must match the PostgreSQL password you created in Step 3
     - **Paths**: Update `addons_path` and `logfile` if you chose a different installation location
     - **http_port**: Change if port 9201 is already in use
 
-## Step 8: Restore Data (Optional)
+!!! info "About `admin_passwd`"
+    The config from your export already has an `admin_passwd` set — that's the master password for database management operations (backup, restore, drop via Odoo's database manager UI). Leave it as-is to keep using the source instance's value, or change it here if you want a different one. It's not related to user logins, just DB-level admin actions.
 
-You have two choices here. A full restore brings in another instance's data and attachments. An empty start gives you a clean HCPI with just the modules.
+## Step 8: Set Up Your Data
 
-### Option A: Start with Sample Data
+Pick one of the two options below. Both are equally valid — your choice depends on whether you have an existing database to clone from, or want to start fresh.
+
+### Option A: Restore from an existing instance (recommended if you have the files)
 
 A full restore has **two parts** that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images in the restored instance.
 
@@ -160,10 +159,48 @@ Use the `hcpi.dump` file produced by the [extraction guide](../extraction/linux-
 
 ```bash
 cd /opt/hcpi
-pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
+pg_restore -U hcpi -h localhost -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
 ```
 
 Enter the `hcpi` user password when prompted.
+
+??? note "Re-running the restore / getting 'already exists' errors"
+    `pg_restore` expects an empty database. If you're running it a second time — because the first run failed partway, or you want to start over — you'll see errors like `relation "..." already exists` or `constraint "..." already exists`, because the tables from the first attempt are still there.
+
+    The cleanest fix is to drop the database and recreate it empty, then re-run the restore:
+
+    ```bash
+    # 1. Make sure Odoo isn't running (it holds a DB connection that blocks the drop)
+    #    If Odoo is running in another terminal, stop it with Ctrl+C.
+
+    # 2. Drop the old database
+    sudo -u postgres dropdb hcpi
+
+    # 3. Recreate it empty, owned by the hcpi user
+    sudo -u postgres createdb -O hcpi hcpi
+
+    # 4. Re-run the restore (same command as above)
+    cd /opt/hcpi
+    pg_restore -U hcpi -h localhost -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
+    ```
+
+    If `dropdb` fails with "database is being accessed by other users", some process still has a connection. Close any running `psql` sessions, stop Odoo, and try again. As a last resort, force-close other connections:
+
+    ```bash
+    sudo -u postgres psql -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname='hcpi' AND pid <> pg_backend_pid();"
+    sudo -u postgres dropdb hcpi
+    ```
+
+    After the fresh restore, also **wipe the filestore** if you're re-importing from scratch — otherwise you'll have orphan files from the previous attempt mixed in with the new ones:
+
+    ```bash
+    rm -rf ~/.local/share/Odoo/filestore/hcpi
+    ```
+
+    Then re-do the A2 filestore step below.
+
+!!! info "Why `-h localhost`?"
+    Without it, `pg_restore` uses the Unix socket and PostgreSQL tries peer authentication — matching your Linux username to a PostgreSQL user of the same name. Unless you're logged in as the `hcpi` Linux user, peer auth fails. `-h localhost` forces TCP, which uses password auth instead.
 
 ??? note "If you have a plain `hcpi.sql` file instead (legacy)"
     Older exports sometimes ship as a plain SQL file inside `hcpi-db.zip`. The current extraction flow does **not** produce this — if you have one, it's from an older process.
@@ -211,18 +248,57 @@ Start Odoo with the HCPI configuration:
 ```bash
 cd /opt/hcpi
 source venv/bin/activate
+```
+
+### Pick the right command for your situation
+
+**First run, empty database** (you skipped the restore step): install the HCPI module into the fresh DB and exit:
+
+```bash
+python odoo/odoo-bin -c conf/hcpi.conf -i HCPI --stop-after-init
+```
+
+`-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. This step is a one-time thing.
+
+**First run after a database restore**: nothing special needed — just start normally:
+
+```bash
 python odoo/odoo-bin -c conf/hcpi.conf
 ```
 
-!!! tip "First Run with Empty Database"
-    If you didn't restore a database, use this command on first run to install the HCPI module and generate assets:
-    ```bash
-    python odoo/odoo-bin -c conf/hcpi.conf -u all --dev=all
-    ```
-    This ensures icons and assets are properly generated on the first run.
+**Every subsequent run** (whether you started empty or from a dump):
 
-!!! info "First-Time Startup"
-    The first time you start HCPI, it may take a few minutes to initialize. Be patient during the initial load. Subsequent starts will be much faster.
+```bash
+python odoo/odoo-bin -c conf/hcpi.conf
+```
+
+!!! info "First-time startup can take 1–3 minutes"
+    On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the log for `HTTP service (werkzeug) running on ... port 9201` — that's your cue it's ready.
+
+??? note "`odoo-bin` fails to start — common causes"
+    Read the last lines of the traceback; the error type below usually tells you what's wrong.
+
+    **`psycopg2.OperationalError: ... Peer authentication failed for user "hcpi"`**
+    Peer auth needs the Linux user running Odoo to match the PostgreSQL username. If they don't match, either run Odoo as the `hcpi` Linux user, or set `db_host = localhost` in `hcpi.conf` to force TCP + password auth.
+
+    **`psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"`**
+    `db_password` in `hcpi.conf` doesn't match what PostgreSQL has. Reset it:
+
+    ```bash
+    sudo -u postgres psql -c "ALTER USER hcpi WITH PASSWORD 'your_secure_password';"
+    ```
+
+    **`could not connect to server: No such file or directory`**
+    PostgreSQL isn't running. `sudo systemctl start postgresql`.
+
+    **`ImportError` / `ModuleNotFoundError`**
+    Your venv isn't active or a dependency is missing. `source venv/bin/activate` then `pip install -r odoo/requirements.txt`.
+
+    **Module `HCPI` or `queue_job` not found**
+    The `addons_path` in `hcpi.conf` is wrong, or modules are missing from `custom/HCPI/`. Confirm `ls custom/HCPI/` shows the expected module folders (including `queue_job`).
+
+    **Port 9201 already in use**
+    `sudo ss -ltnp | grep 9201`, then either kill the owner or change `http_port` in `hcpi.conf`.
 
 ## Step 10: Configure Firewall
 
@@ -248,6 +324,17 @@ http://your_server_ip:9201
 
 !!! warning "First Load May Be Slow"
     The first time you access HCPI, the page may take 30-60 seconds to load as it initializes the interface. After this initial load, performance should be normal.
+
+### Sign in
+
+**If you restored from an existing database** (Option A in Step 8): sign in with the same credentials you use on the source instance's web version — the users from the source DB are in your restored copy.
+
+**If you started empty** (Option B in Step 8): Odoo created a default admin user. Log in with:
+
+- **Email**: `admin`
+- **Password**: `admin`
+
+Then immediately change it: top-right user menu → **My Profile** → **Preferences** → change the password. For a real deployment, also create a second admin-level user (Settings → Users & Companies → Users) so you don't get locked out if you lose the admin account.
 
 ### Fix Missing Icons
 
@@ -368,7 +455,17 @@ addons_path = /opt/hcpi/odoo/addons,/opt/hcpi/custom/HCPI
 
 ## Next Steps
 
-- Set up SSL/TLS with nginx or Apache as a reverse proxy
+HCPI is now running on your server. To start working with the code:
+
+➡️ **[Understanding the Codebase](../understanding-the-codebase/index.md)** — a map of what's where and how to find things.
+
+Then:
+
+➡️ **[Making Your First Edits](../first-edits/index.md)** — small, safe changes to build confidence.
+
+For production hardening:
+
+- Set up SSL/TLS with [Apache](../next-steps/https-apache.md) or [nginx](../next-steps/https-nginx.md) as a reverse proxy
 - Configure regular database backups
 - Review the [Odoo 18 documentation](https://www.odoo.com/documentation/18.0/) for advanced configuration
 - Configure user accounts and permissions in HCPI

@@ -134,7 +134,7 @@ cd /opt/hcpi
 ```
 
 !!! warning "Custom Installation Path"
-    If you choose a different path than `/opt/hcpi`, you'll need to update the paths in the configuration file (see Step 8).
+    If you choose a different path than `/opt/hcpi`, you'll need to update the paths in the configuration file (see Step 10).
 
 ## Step 7: Transfer and Set Up Files
 
@@ -209,7 +209,73 @@ pip install -r odoo/requirements.txt
 !!! info "NumPy Requirement"
     NumPy is required for HCPI but not included in Odoo's default requirements, so we install it separately.
 
-## Step 9: Configure Odoo
+## Step 9: Open the Project in an IDE
+
+Editing `hcpi.conf` with `nano` works, but for the rest of your HCPI work — exploring modules, debugging, following the code — a proper IDE is much nicer. Set it up once now so the next step (and everything after) is easier. VS Code is the recommended choice for WSL; PyCharm is a fine alternative if you already know it.
+
+### VS Code (recommended for WSL)
+
+VS Code is fully free and has first-class WSL integration. All features are available without a paid tier.
+
+1. **Install VS Code** on Windows if you don't have it: [code.visualstudio.com](https://code.visualstudio.com/). During installation, **tick "Add to PATH"** — this is what lets you launch VS Code with `code .` from any terminal. It's on by default but worth confirming.
+2. **Install the WSL extension**: in VS Code, open the Extensions panel (Ctrl+Shift+X), search for *WSL*, install the one by Microsoft.
+3. **Open the project from inside WSL**. In your WSL terminal, run:
+
+    ```bash
+    cd /opt/hcpi
+    code .
+    ```
+
+    On first run this installs the VS Code Server into your WSL. A VS Code window will open, connected to WSL (you'll see "WSL: Ubuntu" in the bottom-left status bar).
+
+4. **Install the Python extension** in this VS Code window. Open the Extensions panel (Ctrl+Shift+X — circled in red below), search for "Python", and install the Microsoft one (highlighted in the rectangle):
+
+    ![Install Python extension in VS Code](../img/install_python_vscode.png)
+
+5. **Select the interpreter**. Press `Ctrl+Shift+P` and start typing `Python: Select Interpreter`:
+
+    ![Select Python interpreter command](../img/select_interpreter1.png)
+
+    In the list you'll typically see your venv shown as something like `./venv/bin/python3` (a relative path) — pick that:
+
+    ![Pick the venv from the interpreter list](../img/select_venv.png)
+
+    If you don't see it, click "Enter interpreter path..." and paste the full path:
+
+    ```
+    /opt/hcpi/venv/bin/python3
+    ```
+
+6. **Install the Odoo extension.** In Extensions, search for *Odoo* and install the one published by **Odoo S.A.** (the official one — free, despite the publisher name). It adds autocomplete and navigation for Odoo models, fields, XML views, and decorators — very useful once you start editing modules. You won't need it to just run HCPI, but you'll want it before making your first code change.
+
+??? note "`code .` returns 'command not found'"
+    Means WSL can't find the VS Code launcher. Try these in order:
+
+    1. **Close and reopen your WSL terminal.** VS Code's WSL integration installs `code` into your `$PATH`, but only new shells pick it up.
+    2. **Restart WSL entirely.** From PowerShell on Windows: `wsl --shutdown`, then reopen your WSL terminal.
+    3. **Confirm VS Code on Windows can run `code`.** Open PowerShell (not WSL) and run `code --version`. If that also says "not recognized", VS Code wasn't added to your Windows PATH — reinstall VS Code and make sure "Add to PATH" is ticked, or manually add `C:\Users\<you>\AppData\Local\Programs\Microsoft VS Code\bin` to the PATH environment variable.
+    4. **As a fallback, connect to WSL from VS Code directly** (no terminal needed):
+        - Open VS Code from the Start menu on Windows.
+        - Make sure the **WSL extension** is installed (Extensions panel → search "WSL" → install the Microsoft one).
+        - Press `Ctrl+Shift+P` → run **WSL: Connect to WSL**. VS Code will reload into a WSL-connected window; you'll see **WSL: Ubuntu** in the bottom-left status bar.
+        - Then **File → Open Folder** → navigate to `/opt/hcpi` and open it.
+        - Continue with step 4 above (install Python extension, select interpreter).
+
+??? note "PyCharm alternative"
+    PyCharm Community is free, but several features useful for Odoo work are **Professional-only** (~$99/year):
+
+    - Remote development over SSH or WSL
+    - Database tools
+    - HTTP client
+    - Docker integration
+
+    If you're working inside WSL and using Community edition, you'll be operating over the `\\wsl$\Ubuntu\...` network path, which is slower than VS Code's WSL Remote approach. For that reason **VS Code is a better fit for WSL workflows**, but PyCharm is still a fine choice if you already know it.
+
+    1. **Install PyCharm** (Community or Professional): [jetbrains.com/pycharm](https://www.jetbrains.com/pycharm/).
+    2. **Open the project**: File → Open → navigate to `\\wsl$\Ubuntu\opt\hcpi` (Windows File Explorer can browse WSL paths, and so can PyCharm).
+    3. **Add the interpreter**: File → Settings → Project: hcpi → Python Interpreter → Add → *WSL* (Professional only) or *System Interpreter* → browse to `\\wsl$\Ubuntu\opt\hcpi\venv\bin\python3`.
+
+## Step 10: Configure Odoo
 
 The configuration file is already provided in `/opt/hcpi/conf/hcpi.conf`. Review and update the following settings:
 
@@ -221,8 +287,11 @@ nano /opt/hcpi/conf/hcpi.conf
 
 ```ini
 [options]
-; Change this to a strong password for database management operations
-admin_passwd = your_strong_admin_password
+; Force TCP + password auth instead of the Unix-socket peer auth the exported
+; config assumes. Without these your WSL Linux username won't match "hcpi"
+; and connection will fail.
+db_host = localhost
+db_port = 5432
 
 ; Set this to match the PostgreSQL password from Step 5
 db_password = your_secure_password
@@ -236,19 +305,22 @@ http_port = 9201
 ```
 
 !!! warning "Important"
-    - **admin_passwd**: Used for database management operations - choose a strong password
+    - **db_host / db_port**: The exported config has `db_host = False` which relies on Unix-socket peer authentication (matching Linux username to PostgreSQL username). In your WSL you're logged in as yourself, not as `hcpi`, so peer auth fails. Setting `db_host = localhost` forces TCP + password auth, which works.
     - **db_password**: Must match the PostgreSQL password you created in Step 5
     - **Paths**: Update `addons_path` and `logfile` if you chose a different installation location
     - **http_port**: Change if port 9201 is already in use
 
+!!! info "About `admin_passwd`"
+    The config from your export already has an `admin_passwd` set — that's the master password for database management operations (backup, restore, drop via Odoo's database manager UI). Leave it as-is to keep using the source instance's value, or change it here if you want a different one. It's not related to user logins, just DB-level admin actions.
+
 !!! tip "Save in Nano"
     Press `Ctrl+X`, then `Y`, then `Enter` to save and exit nano.
 
-## Step 10: Restore Data (Optional)
+## Step 11: Set Up Your Data
 
-You have two choices: a full restore (database + filestore) or a clean empty instance.
+Pick one of the two options below. Both are equally valid — your choice depends on whether you have an existing database to clone from, or want to start fresh.
 
-### Option A: Start with Sample Data
+### Option A: Restore from an existing instance (recommended if you have the files)
 
 A full restore has **two parts** that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images.
 
@@ -259,10 +331,13 @@ Use the `hcpi.dump` file produced by the [extraction guide](../extraction/linux-
 ```bash
 cd /opt/hcpi
 cp /mnt/c/hcpi-export/hcpi.dump .
-pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
+pg_restore -U hcpi -h localhost -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
 ```
 
 Enter the `hcpi` user password when prompted.
+
+!!! info "Why `-h localhost`?"
+    Without it, `pg_restore` uses the Unix socket and PostgreSQL tries peer authentication — matching your Linux username to a PostgreSQL user of the same name. Since you're logged in as yourself (not `hcpi`), that fails. `-h localhost` forces TCP, which uses password auth instead.
 
 ??? note "If you have a plain `hcpi.sql` file instead (legacy)"
     Older exports sometimes ship as a plain SQL file inside `hcpi-db.zip`. The current extraction flow does **not** produce this — if you have one, it's from an older process.
@@ -296,9 +371,9 @@ ls ~/.local/share/Odoo/filestore
 
 ### Option B: Start with Empty Instance
 
-Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the `-i HCPI` flag (see Step 11).
+Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the `-i HCPI` flag (see Step 12).
 
-## Step 11: Start HCPI
+## Step 12: Start HCPI
 
 Make sure PostgreSQL is running:
 
@@ -311,21 +386,64 @@ Start HCPI:
 ```bash
 cd /opt/hcpi
 source venv/bin/activate
+```
+
+### Pick the right command for your situation
+
+**First run, empty database** (you skipped the restore step): install the HCPI module into the fresh DB and exit:
+
+```bash
+python odoo/odoo-bin -c conf/hcpi.conf -i HCPI --stop-after-init
+```
+
+`-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. This step is a one-time thing.
+
+**First run after a database restore**: nothing special needed — just start normally:
+
+```bash
 python odoo/odoo-bin -c conf/hcpi.conf
 ```
 
-For first-time setup with empty database:
+**Every subsequent run** (whether you started empty or from a dump):
 
 ```bash
-python odoo/odoo-bin -c conf/hcpi.conf -u all --dev=all
+python odoo/odoo-bin -c conf/hcpi.conf
 ```
 
-This ensures icons and assets are properly generated on the first run.
+!!! info "First-time startup can take 1–3 minutes"
+    On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the log (or the terminal output) for the line `HTTP service (werkzeug) running on ... port 9201`, that's your cue it's ready.
 
-!!! info "First-Time Startup"
-    The first time you start HCPI, it may take a few minutes to initialize. Be patient during the initial load. Subsequent starts will be much faster.
+??? note "`odoo-bin` fails to start — common causes"
+    Read the last lines of the traceback carefully; the error type below usually tells you what's wrong.
 
-## Step 12: Access HCPI
+    **`psycopg2.OperationalError: ... Peer authentication failed for user "hcpi"`**
+    The config still has `db_host = False` or is missing the db_host line entirely. Re-check Step 10: `db_host = localhost`, `db_port = 5432`, `db_password` matches what you set in Step 5.
+
+    **`psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"`**
+    `db_password` in `hcpi.conf` doesn't match what PostgreSQL has. Reset it:
+
+    ```bash
+    sudo -u postgres psql -c "ALTER USER hcpi WITH PASSWORD 'your_secure_password';"
+    ```
+
+    Then make sure the exact same string is in `hcpi.conf`.
+
+    **`could not connect to server: No such file or directory`**
+    PostgreSQL isn't running. `sudo systemctl start postgresql`.
+
+    **`ImportError: No module named '...'` / `ModuleNotFoundError`**
+    Your venv isn't active, or a dependency didn't install. Activate the venv (`source venv/bin/activate` — your prompt should show `(venv)`) and re-run `pip install -r odoo/requirements.txt`.
+
+    **`FileNotFoundError: ... HCPI`** or the module isn't found
+    The `addons_path` in `hcpi.conf` is wrong. Confirm the path points to the folder that *contains* `HCPI/`, not to `HCPI/` itself: `/opt/hcpi/custom/HCPI` means "look for modules inside HCPI/", which usually isn't what you want if you have multiple modules. Correct form: `/opt/hcpi/odoo/addons,/opt/hcpi/custom/HCPI` works because `custom/HCPI` is the folder containing the individual module subfolders.
+
+    **`queue_job` not found**
+    The exported config has `server_wide_modules = base,web,queue_job`. Confirm `/opt/hcpi/custom/HCPI/queue_job/` exists. If missing, the export is incomplete — re-run the extraction guide. As a workaround, you can temporarily remove `queue_job` from `server_wide_modules` in `hcpi.conf`.
+
+    **Port 9201 already in use**
+    Another Odoo instance is running, or something else is on that port. Find it: `sudo ss -ltnp | grep 9201`. Kill it or change `http_port` in `hcpi.conf`.
+
+## Step 13: Access HCPI
 
 Open your Windows web browser and navigate to:
 
@@ -335,6 +453,17 @@ http://localhost:9201
 
 !!! warning "First Load May Be Slow"
     The first time you access HCPI, the page may take 30-60 seconds to load as it initializes the interface. After this initial load, performance should be normal.
+
+### Sign in
+
+**If you restored from an existing database** (Option A in Step 11): sign in with the same credentials you use on the source instance's web version — the users from the source DB are in your restored copy.
+
+**If you started empty** (Option B in Step 11): Odoo created a default admin user. Log in with:
+
+- **Email**: `admin`
+- **Password**: `admin`
+
+Then immediately change it: top-right user menu → **My Profile** → **Preferences** → change the password. For a real deployment, also create a second admin-level user (Settings → Users & Companies → Users) so you don't get locked out if you lose the admin account.
 
 ### Fix Missing Icons
 
@@ -466,7 +595,16 @@ tail -f /opt/hcpi/log/hcpi.log
 
 ## Next Steps
 
+HCPI is now running on your machine. To start working with the code:
+
+➡️ **[Understanding the Codebase](../understanding-the-codebase/index.md)** — a map of what's where and how to find things.
+
+Then:
+
+➡️ **[Making Your First Edits](../first-edits/index.md)** — small, safe changes to build confidence.
+
+For further reading and setup:
+
 - Review the [Odoo 18 documentation](https://www.odoo.com/documentation/18.0/) for configuration options
-- Set up your development environment
 - Configure HCPI modules for your organization's needs
 - Configure user accounts and permissions in HCPI

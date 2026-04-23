@@ -39,6 +39,9 @@ nav:
     - Windows WSL: installation/windows-wsl.md
     - Windows Native: installation/windows-native.md
     - Linux Server: installation/linux.md
+  - Working with the Code:
+    - Understanding the Codebase: understanding-the-codebase/index.md
+    - Making Your First Edits: first-edits/index.md
   - Next Steps:
     - Overview: next-steps/index.md
     - HTTPS with Apache: next-steps/https-apache.md

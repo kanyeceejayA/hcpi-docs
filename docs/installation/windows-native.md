@@ -155,7 +155,7 @@ cd C:\hcpi
 ```
 
 !!! warning "Custom Installation Path"
-    If you choose a different path than `C:\hcpi`, you'll need to update the paths in the configuration file (see Step 8).
+    If you choose a different path than `C:\hcpi`, you'll need to update the paths in the configuration file (see Step 11).
 
 !!! tip "Alternative Location"
     While the Linux version uses `/opt/hcpi`, on Windows we use `C:\hcpi` for simplicity. You can choose a different location if preferred.
@@ -199,7 +199,7 @@ C:\hcpi\
 
 ## Step 9: Set Up Python Virtual Environment
 
-Open Command Prompt in `C:\hcpi`:
+Open Terminal/Powershell in `C:\hcpi`:
 
 ```cmd
 cd C:\hcpi
@@ -224,7 +224,65 @@ pip install -r odoo\requirements.txt
 !!! info "NumPy Requirement"
     NumPy is required for HCPI but not included in Odoo's default requirements, so we install it separately.
 
-## Step 10: Configure Odoo
+## Step 10: Open the Project in an IDE
+
+Editing `hcpi.conf` with Notepad works, but for the rest of your HCPI work — exploring modules, debugging, following the code — a proper IDE is much nicer. Set it up once now so the next step (and everything after) is easier. VS Code is the recommended choice; PyCharm is a fine alternative if you already know it.
+
+### VS Code (recommended)
+
+VS Code is fully free and works natively on Windows. All features are available without a paid tier.
+
+1. **Install VS Code** if you don't have it: [code.visualstudio.com](https://code.visualstudio.com/). During installation, **tick "Add to PATH"** — this is what lets you launch VS Code with `code .` from any terminal. It's on by default but worth confirming.
+2. **Open the project**. From PowerShell in `C:\hcpi`:
+
+    ```powershell
+    code .
+    ```
+
+    Or launch VS Code from the Start menu, then File → Open Folder → `C:\hcpi`.
+
+3. **Install the Python extension.** Open the Extensions panel (Ctrl+Shift+X — circled in red below), search for "Python", and install the Microsoft one (highlighted in the rectangle):
+
+    ![Install Python extension in VS Code](../img/install_python_vscode.png)
+
+4. **Select the interpreter.** Press `Ctrl+Shift+P` and start typing `Python: Select Interpreter`:
+
+    ![Select Python interpreter command](../img/select_interpreter1.png)
+
+    In the list you'll typically see your venv shown as something like `.\venv\Scripts\python.exe` (a relative path) — pick that:
+
+    ![Pick the venv from the interpreter list](../img/select_venv.png)
+
+    If you don't see it, click "Enter interpreter path..." and paste the full path:
+
+    ```
+    C:\hcpi\venv\Scripts\python.exe
+    ```
+
+5. **Install the Odoo extension.** In Extensions, search for *Odoo* and install the one published by **Odoo S.A.** (the official one — free, despite the publisher name). It adds autocomplete and navigation for Odoo models, fields, XML views, and decorators — very useful once you start editing modules. You won't need it to just run HCPI, but you'll want it before making your first code change.
+
+??? note "`code .` returns 'not recognized'"
+    Means VS Code isn't on your PATH. Try these in order:
+
+    1. **Close and reopen PowerShell.** PATH changes only take effect in new shells.
+    2. **Reinstall VS Code** and make sure "Add to PATH" is ticked in the installer. (The installer also offers to do this without a full reinstall — re-run the installer and pick *Modify*.)
+    3. **Add it manually**: open System Properties → Environment Variables → edit `Path` → add `C:\Users\<you>\AppData\Local\Programs\Microsoft VS Code\bin`. Then open a fresh PowerShell window.
+    4. **As a fallback**, skip `code .` entirely — open VS Code from the Start menu and use File → Open Folder → `C:\hcpi`.
+
+??? note "PyCharm alternative"
+    PyCharm Community is free, but several features useful for Odoo work are **Professional-only** (~$99/year):
+
+    - Database tools
+    - HTTP client
+    - Remote development
+
+    Community edition is fine for editing code and managing the interpreter; Professional adds nicer DB/HTTP integration.
+
+    1. **Install PyCharm** (Community or Professional): [jetbrains.com/pycharm](https://www.jetbrains.com/pycharm/).
+    2. **Open the project**: File → Open → `C:\hcpi`.
+    3. **Add the interpreter**: File → Settings → Project: hcpi → Python Interpreter → gear icon → Add → *System Interpreter* → browse to `C:\hcpi\venv\Scripts\python.exe`.
+
+## Step 11: Configure Odoo
 
 The configuration file is already provided in `C:\hcpi\conf\hcpi.conf`. Review and update the following settings:
 
@@ -234,9 +292,6 @@ Edit with a text editor (Notepad, VS Code, etc.) and adjust these key settings:
 
 ```ini
 [options]
-; Change this to a strong password for database management operations
-admin_passwd = your_strong_admin_password
-
 ; Windows requires explicit host
 db_host = localhost
 db_port = 5432
@@ -253,18 +308,20 @@ http_port = 9201
 ```
 
 !!! warning "Important Windows-Specific Settings"
-    - **admin_passwd**: Used for database management operations - choose a strong password
     - **db_password**: Must match the PostgreSQL password you set for the `hcpi` user in Step 6
     - **db_host**: Must be `localhost` on Windows (unlike Linux where it can be `False`)
     - **Paths**: Must use backslashes (`\`), not forward slashes (`/`)
     - **Paths location**: Update `addons_path` and `logfile` if you chose a different installation location
     - **http_port**: Change if port 9201 is already in use
 
-## Step 11: Restore Data (Optional)
+!!! info "About `admin_passwd`"
+    The config from your export already has an `admin_passwd` set — that's the master password for database management operations (backup, restore, drop via Odoo's database manager UI). Leave it as-is to keep using the source instance's value, or change it here if you want a different one. It's not related to user logins, just DB-level admin actions.
 
-You have two choices: a full restore (database + filestore) or a clean empty instance.
+## Step 12: Set Up Your Data
 
-### Option A: Start with Sample Data
+Pick one of the two options below. Both are equally valid — your choice depends on whether you have an existing database to clone from, or want to start fresh.
+
+### Option A: Restore from an existing instance (recommended if you have the files)
 
 A full restore has **two parts** that must both be done: the database, then the filestore. Missing the filestore will leave broken attachments and images in the restored instance.
 
@@ -317,30 +374,73 @@ Get-ChildItem $dest
 
 ### Option B: Start with Empty Instance
 
-Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the `-i HCPI` flag (see Step 12).
+Skip this step entirely — no database restore, no filestore. Odoo will initialize a fresh empty database when you first run it with the `-i HCPI` flag (see Step 13).
 
-## Step 12: Start HCPI
+## Step 13: Start HCPI
 
-Open Command Prompt in `C:\hcpi`:
+Open PowerShell in `C:\hcpi` and activate the venv:
 
-```cmd
+```powershell
 cd C:\hcpi
 venv\Scripts\activate
+```
+
+### Pick the right command for your situation
+
+**First run, empty database** (you skipped the restore step): install the HCPI module into the fresh DB and exit:
+
+```powershell
+python odoo\odoo-bin -c conf\hcpi.conf -i HCPI --stop-after-init
+```
+
+`-i HCPI` tells Odoo to *install* the HCPI module (and its dependencies) into the empty database. `--stop-after-init` runs the install and exits cleanly. This step is a one-time thing.
+
+**First run after a database restore**: nothing special needed — just start normally:
+
+```powershell
 python odoo\odoo-bin -c conf\hcpi.conf
 ```
 
-For first-time setup with empty database:
+**Every subsequent run** (whether you started empty or from a dump):
 
-```cmd
-python odoo\odoo-bin -c conf\hcpi.conf -u all --dev=all
+```powershell
+python odoo\odoo-bin -c conf\hcpi.conf
 ```
 
-This ensures icons and assets are properly generated on the first run.
+!!! info "First-time startup can take 1–3 minutes"
+    On the very first run, Odoo builds asset bundles (JS/CSS) and populates base data. Subsequent starts are much faster. Watch the terminal for the line `HTTP service (werkzeug) running on ... port 9201` — that's your cue it's ready.
 
-!!! info "First-Time Startup"
-    The first time you start HCPI, it may take a few minutes to initialize. Be patient during the initial load. Subsequent starts will be much faster.
+??? note "`odoo-bin` fails to start — common causes"
+    Read the last lines of the traceback carefully; the error type below usually tells you what's wrong.
 
-## Step 13: Access HCPI
+    **`psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"`**
+    `db_password` in `hcpi.conf` doesn't match what PostgreSQL has. Reset it — in `psql -U postgres`:
+
+    ```sql
+    ALTER USER hcpi WITH PASSWORD 'your_secure_password';
+    ```
+
+    Then make sure the exact same string is in `conf\hcpi.conf`.
+
+    **`could not connect to server: ... localhost:5432`**
+    PostgreSQL isn't running. Open Services (Win+R → `services.msc`), find `postgresql-x64-15` (version may vary), and start it.
+
+    **`psycopg2.OperationalError: ... Peer authentication failed`**
+    You somehow have `db_host = False` in the config. On Windows this won't work — set `db_host = localhost` and `db_port = 5432`.
+
+    **`ImportError: No module named '...'` / `ModuleNotFoundError`**
+    Your venv isn't active, or a dependency didn't install. Activate the venv (`venv\Scripts\activate` — your prompt should show `(venv)`) and re-run `pip install -r odoo\requirements.txt`.
+
+    **`FileNotFoundError: ... HCPI`** or the module isn't found
+    The `addons_path` in `hcpi.conf` is wrong. Confirm it uses backslashes and points to the right folders: `addons_path = C:\hcpi\odoo\addons,C:\hcpi\custom\HCPI`.
+
+    **`queue_job` not found**
+    The exported config has `server_wide_modules = base,web,queue_job`. Confirm `C:\hcpi\custom\HCPI\queue_job\` exists. If missing, the export is incomplete — re-run the extraction guide. As a workaround, you can temporarily remove `queue_job` from `server_wide_modules` in `hcpi.conf`.
+
+    **Port 9201 already in use**
+    Another instance is running, or something else is on that port. Find it: `Get-NetTCPConnection -LocalPort 9201` in PowerShell. Kill the owning process or change `http_port` in `hcpi.conf`.
+
+## Step 14: Access HCPI
 
 Open your web browser and navigate to:
 
@@ -355,6 +455,17 @@ Or if you changed the port in the configuration, use that port instead.
 
 !!! warning "First Load May Be Slow"
     The first time you access HCPI, the page may take 30-60 seconds to load as it initializes the interface. After this initial load, performance should be normal.
+
+### Sign in
+
+**If you restored from an existing database** (Option A in Step 12): sign in with the same credentials you use on the source instance's web version — the users from the source DB are in your restored copy.
+
+**If you started empty** (Option B in Step 12): Odoo created a default admin user. Log in with:
+
+- **Email**: `admin`
+- **Password**: `admin`
+
+Then immediately change it: top-right user menu → **My Profile** → **Preferences** → change the password. For a real deployment, also create a second admin-level user (Settings → Users & Companies → Users) so you don't get locked out if you lose the admin account.
 
 ### Fix Missing Icons
 
@@ -475,6 +586,16 @@ Make sure all paths in `hcpi.conf` use backslashes (`\`), not forward slashes (`
 - Some system-level features may not work identically to Linux
 
 ## Next Steps
+
+HCPI is now running on your machine. To start working with the code:
+
+➡️ **[Understanding the Codebase](../understanding-the-codebase/index.md)** — a map of what's where and how to find things.
+
+Then:
+
+➡️ **[Making Your First Edits](../first-edits/index.md)** — small, safe changes to build confidence.
+
+For further reading and setup:
 
 - Review the [Odoo 18 documentation](https://www.odoo.com/documentation/18.0/)
 - For a more production-like environment, consider using [Windows WSL](windows-wsl.md)
