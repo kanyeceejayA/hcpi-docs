@@ -57,11 +57,15 @@ cd /opt/hcpi
 # Extract HCPI files (contains conf and custom folders)
 unzip hcpi-files.zip
 
-# Clone Odoo 18
-git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-
 # Create log directory
 mkdir -p log
+```
+
+Then clone Odoo 18. It's a separate command so you can re-run it on its own if the download fails partway (this can take a few minutes depending on your connection):
+
+```bash
+cd /opt/hcpi
+git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 ```
 
 ??? note "No export files? Download Uganda's test files instead"
@@ -71,9 +75,10 @@ mkdir -p log
     cd /opt/hcpi
     wget http://statistics.ubos.org/hcpishare/hcpi-files.zip
     unzip hcpi-files.zip
-    git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
     mkdir -p log
     ```
+
+    Then run the separate `git clone` command above.
 
 After this, you should have:
 

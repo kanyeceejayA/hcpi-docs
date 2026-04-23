@@ -169,13 +169,20 @@ Extract `hcpi-files.zip` into `C:\hcpi`. You can right-click the zip → **Extra
 !!! tip "If you see a nested `opt\hcpi\` folder"
     Older exports (before the extraction guide was updated) preserved the full server path, so you'd end up with `C:\hcpi\opt\hcpi\conf\` instead. If that happened, move `conf\` and `custom\` up so they sit directly under `C:\hcpi`, then delete the empty `opt\` folder. Re-exports from the current guide won't have this problem.
 
-Clone Odoo 18 and create the log directory:
+Create the log directory:
+
+**PowerShell:**
+```powershell
+Set-Location C:\hcpi
+New-Item -ItemType Directory -Path log
+```
+
+Then clone Odoo 18. It's a separate command so you can re-run it on its own if the download fails partway (this can take a few minutes depending on your connection):
 
 **PowerShell:**
 ```powershell
 Set-Location C:\hcpi
 git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-New-Item -ItemType Directory -Path log
 ```
 
 You should now have:
