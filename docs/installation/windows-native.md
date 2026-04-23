@@ -162,12 +162,12 @@ cd C:\hcpi
 
 ## Step 8: Set Up HCPI Files
 
-By now you should already have `hcpi-files.zip` — produced from your country's server using the [extraction guide](../extraction/linux-export.md), or (for testing only) downloaded from [http://statistics.ubos.org/hcpishare](http://statistics.ubos.org/hcpishare). See [Prerequisites → Get the Required Files](../getting-started/prerequisites.md#get-the-required-files) if you don't.
+By now you should already have `hcpi-files.zip` — produced from your country's server using the [extraction guide](../extraction/linux-export.md). See [Prerequisites → Get the Required Files](../getting-started/prerequisites.md#get-the-required-files) if you don't.
 
 Extract `hcpi-files.zip` into `C:\hcpi`. You can right-click the zip → **Extract All...** → browse to `C:\hcpi` as the destination. After extracting, confirm you see `conf\` and `custom\` folders directly under `C:\hcpi`.
 
-!!! tip "If the zip extracts with a nested folder"
-    Zips produced on Linux sometimes preserve the full server path (e.g. `opt\hcpi\conf\`). If that happens, move `conf\` and `custom\` up so they sit directly under `C:\hcpi`.
+!!! tip "If you see a nested `opt\hcpi\` folder"
+    Older exports (before the extraction guide was updated) preserved the full server path, so you'd end up with `C:\hcpi\opt\hcpi\conf\` instead. If that happened, move `conf\` and `custom\` up so they sit directly under `C:\hcpi`, then delete the empty `opt\` folder. Re-exports from the current guide won't have this problem.
 
 Clone Odoo 18 and create the log directory:
 
@@ -306,7 +306,7 @@ Get-ChildItem $dest
 ```
 
 !!! warning "Path must match db_name exactly"
-    The folder inside `filestore\` must be named exactly the same as `db_name` in `hcpi.conf`. If the extracted folder is `hcpi` but you named your database `ug_hcpi`, rename the folder or Odoo won't find the attachments. If the zip extracted with an extra wrapper folder (e.g. `filestore\filestore\hcpi`), move the inner `hcpi` folder up one level.
+    The folder inside `filestore\` must be named exactly the same as `db_name` in `hcpi.conf`. If the extracted folder is `hcpi` but you named your database `ug_hcpi`, rename the folder or Odoo won't find the attachments. (Older exports may extract with wrapper folders like `home\hcpi\.local\share\Odoo\filestore\hcpi\` — if you see that, move the inner `hcpi` folder directly under `%LOCALAPPDATA%\Odoo\filestore\`.)
 
 ### Option B: Start with Empty Instance
 

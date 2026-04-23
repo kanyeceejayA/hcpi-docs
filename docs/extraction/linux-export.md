@@ -183,13 +183,21 @@ You should see a file sized anywhere from a few MB to several GB depending on da
 
 **What this step does:** Bundles the HCPI application code and config into a single zip matching the layout the installation guides expect.
 
-Zip the `conf/` and `custom/` folders from the install:
+Zip the `conf/` and `custom/` folders from the install. The `cd` has to happen **inside** the elevated shell — your own user can't enter `/opt/hcpi` (it's owned by the `hcpi` user), and `cd` is a shell builtin so plain `sudo cd` doesn't work. Running the `cd` + `zip` together under `sudo bash -c` handles both. The `cd` matters because it makes the zip store clean relative paths (`conf/`, `custom/`) instead of the full server path (`opt/hcpi/conf/...`), which would otherwise force whoever extracts it on Windows to dig through nested folders.
 
 ```bash
-sudo zip -r $STAGING/hcpi-files.zip $INSTALL/conf $INSTALL/custom
+sudo bash -c "cd $INSTALL && zip -r $STAGING/hcpi-files.zip conf custom"
 ```
 
 The `odoo/` folder is **not** included — it will be re-downloaded from GitHub on the target machine. The `venv/` and `log/` folders are also excluded.
+
+Verify the zip has a clean top-level layout:
+
+```bash
+unzip -l $STAGING/hcpi-files.zip | head
+```
+
+You should see entries starting with `conf/` and `custom/` — **not** `opt/hcpi/conf/` or similar.
 
 ## Step 7: Export the filestore
 
@@ -236,17 +244,20 @@ You should see a bunch of two-character folders (`01`, `02`, `03`, ... plus a `c
 
 ### Zip it
 
-Once `sudo ls $FILESTORE` confirms the right folder, zip it:
+Once `sudo ls $FILESTORE` confirms the right folder, zip it. Same approach as Step 6 — `cd` into the filestore's parent inside the elevated shell, so the zip stores a clean top-level `$DB_NAME/` entry instead of the full server path:
 
 ```bash
-sudo zip -r $STAGING/hcpi-filestore.zip $FILESTORE_PARENT/ $DB_NAME
+sudo bash -c "cd $FILESTORE_PARENT && zip -r $STAGING/hcpi-filestore.zip $DB_NAME"
 ```
 
-Check the result:
+Check the result and confirm the layout:
 
 ```bash
 ls -lh $STAGING/hcpi-filestore.zip
+unzip -l $STAGING/hcpi-filestore.zip | head
 ```
+
+The first entries should be `hcpi/` (or whatever your `$DB_NAME` is) and `hcpi/01/...` — **not** `home/hcpi/.local/share/Odoo/filestore/hcpi/...`.
 
 ## Step 8: Make the files readable by your SSH user
 

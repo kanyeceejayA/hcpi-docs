@@ -51,13 +51,68 @@ sudo apt install -y git python3 python3-pip python3-dev python3-venv \
 
 ## Step 5: Configure PostgreSQL
 
-Start PostgreSQL service:
+Modern WSL2 installations have systemd enabled by default — this guide assumes that's the case. Quick sanity check:
 
 ```bash
-sudo service postgresql start
+systemctl is-system-running
 ```
 
-Create a PostgreSQL user and database:
+You should see `running` or `degraded` (either is fine). If not, expand the block below before continuing.
+
+??? note "If systemd isn't active"
+    The fix depends on whether you're on WSL2 (where systemd can be enabled) or WSL1 (where it can't). Check your version first.
+
+    **Find out which WSL version you're on.** Open **PowerShell on Windows** (not inside WSL) and run:
+
+    ```powershell
+    wsl -l -v
+    ```
+
+    You'll see a table. Look at the `VERSION` column for your distribution — it will be either `1` or `2`.
+
+    **If you're on WSL2**, turn systemd on. Back in your WSL terminal:
+
+    ```bash
+    sudo nano /etc/wsl.conf
+    ```
+
+    Add:
+
+    ```ini
+    [boot]
+    systemd=true
+    ```
+
+    Save (`Ctrl+X`, `Y`, `Enter`), then from **PowerShell on Windows**:
+
+    ```powershell
+    wsl --shutdown
+    ```
+
+    Reopen your WSL terminal and re-run `systemctl is-system-running`. You should now see `running` or `degraded`, and you can continue with the golden path below.
+
+    **If you're on WSL1**, systemd isn't available — period. Upgrading to WSL2 is recommended (from PowerShell: `wsl --set-version <DistroName> 2`). If you want to stay on WSL1, skip the `systemctl` commands below and use the legacy form instead:
+
+    ```bash
+    sudo service postgresql start
+    echo "sudo service postgresql start" >> ~/.bashrc
+    ```
+
+    Downside of the WSL1 route: each new terminal window will prompt for your sudo password, and auto-start is tied to shell open (not VM boot).
+
+### Start PostgreSQL and enable auto-start
+
+```bash
+sudo systemctl enable --now postgresql
+systemctl status postgresql
+```
+
+`status` should show `active (running)`. From now on, PostgreSQL starts automatically every time WSL boots.
+
+!!! info "Does PostgreSQL run when WSL is closed?"
+    No. WSL2 shuts down its VM shortly after the last terminal window closes, and everything inside — including PostgreSQL — stops with it. When you next open a WSL terminal, systemd starts the VM back up and PostgreSQL comes online a second or two later. This is fine for development use.
+
+### Create the database user and database
 
 ```bash
 sudo -u postgres createuser -s hcpi
@@ -67,12 +122,6 @@ sudo -u postgres createdb -O hcpi hcpi
 
 !!! tip "Database User"
     We're using `hcpi` as both the database name and username. You can choose different names, but update the configuration file accordingly.
-
-!!! tip "Auto-start PostgreSQL"
-    PostgreSQL doesn't auto-start in WSL. You'll need to run `sudo service postgresql start` each time you open WSL, or add it to your `.bashrc`:
-    ```bash
-    echo "sudo service postgresql start" >> ~/.bashrc
-    ```
 
 ## Step 6: Create Directory Structure
 
@@ -89,17 +138,18 @@ cd /opt/hcpi
 
 ## Step 7: Transfer and Set Up Files
 
-### Option A: Access Windows Files from WSL
+This step assumes your exported files are at `C:\hcpi-export\` on Windows — the default location used by the [extraction guide](../extraction/linux-export.md). WSL can read your Windows drives through `/mnt/c/...`, so the Windows path `C:\hcpi-export\` is `/mnt/c/hcpi-export/` when viewed from WSL.
 
-Your Windows drives are accessible at `/mnt/c/`, `/mnt/d/`, etc.
+!!! tip "Files in a different folder?"
+    Replace `/mnt/c/hcpi-export` in the commands below with the WSL path to wherever you put them. For example, `C:\Users\YourName\Downloads\` becomes `/mnt/c/Users/YourName/Downloads/`.
 
-If you've downloaded the files to your Windows Downloads folder:
+Copying to `/opt/hcpi` (on WSL's Linux filesystem) is a one-time cost that gives you much faster performance than running HCPI off `/mnt/c/` would.
 
 ```bash
 cd /opt/hcpi
 
 # Copy and extract HCPI files (contains conf and custom folders)
-cp /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-files.zip .
+cp /mnt/c/hcpi-export/hcpi-files.zip .
 unzip hcpi-files.zip
 
 # Clone Odoo 18
@@ -108,24 +158,22 @@ git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
 # Create log directory
 mkdir -p log
 ```
-
-### Option B: Download Directly in WSL
-
-If you can access the files via URL:
-
+Then clone Odoo 18 into the folder. This step might take a while depending on your internet connection.
 ```bash
-cd /opt/hcpi
-
-# Download and extract HCPI files
-wget http://statistics.ubos.org/hcpishare/hcpi-files.zip
-unzip hcpi-files.zip
-
 # Clone Odoo 18
 git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-
-# Create log directory
-mkdir -p log
 ```
+
+??? note "No export files? Download Uganda's test files instead"
+    If you don't have your own country's export, you can pull the Uganda test set directly in WSL:
+
+    ```bash
+    cd /opt/hcpi
+    wget http://statistics.ubos.org/hcpishare/hcpi-files.zip
+    unzip hcpi-files.zip
+    git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
+    mkdir -p log
+    ```
 
 After this, you should have:
 
@@ -210,7 +258,7 @@ If your dump is `hcpi.dump` (PostgreSQL custom format — the default from the [
 
 ```bash
 cd /opt/hcpi
-cp /mnt/c/Users/YourWindowsUsername/Downloads/hcpi.dump .
+cp /mnt/c/hcpi-export/hcpi.dump .
 pg_restore -U hcpi -d hcpi --no-owner --no-privileges -j 4 hcpi.dump
 ```
 
@@ -218,7 +266,7 @@ If your dump is a plain `hcpi.sql` file:
 
 ```bash
 cd /opt/hcpi
-cp /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-db.zip .
+cp /mnt/c/hcpi-export/hcpi-db.zip .
 unzip hcpi-db.zip
 psql -U hcpi -d hcpi -f hcpi.sql
 ```
@@ -232,7 +280,7 @@ The filestore goes under your WSL user's HOME, at `~/.local/share/Odoo/filestore
 ```bash
 mkdir -p ~/.local/share/Odoo/filestore
 cd ~/.local/share/Odoo/filestore
-unzip /mnt/c/Users/YourWindowsUsername/Downloads/hcpi-filestore.zip
+unzip /mnt/c/hcpi-export/hcpi-filestore.zip
 ```
 
 After unzipping, confirm the folder name matches your `db_name`:
