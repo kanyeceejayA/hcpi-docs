@@ -11,9 +11,9 @@ HCPI is a Cost Price Index system built on [Odoo 18](https://www.odoo.com/docume
 - Generate statistical reports
 - Manage field data collection operations
 
-## Live Demo
+## Live Version
 
-You can explore a live instance of the Ugandan version at [https://uboscpi.ubos.org/odoo](https://uboscpi.ubos.org/odoo)
+You can explore a live instance of the Ugandan version at [https://uboscpi.ubos.org/odoo](https://uboscpi.ubos.org/odoo). Other versions for other countries are hosted on their specific links
 
 ## Getting Started
 
