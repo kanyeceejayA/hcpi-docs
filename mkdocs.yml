@@ -46,6 +46,17 @@ nav:
     - Overview: next-steps/index.md
     - HTTPS with Apache: next-steps/https-apache.md
     - HTTPS with Nginx: next-steps/https-nginx.md
+  - Training:
+    - Overview: training/index.md
+    - "Day 1 – Setup & Foundations":
+      - Introduction to HCPI: training/day1/introduction.md
+      - Server Setup: training/day1/server-setup.md
+      - Installing Dependencies: training/day1/dependencies.md
+      - PostgreSQL Setup: training/day1/postgresql.md
+      - Virtual Environment & HCPI Install: training/day1/virtualenv-install.md
+      - Development Environment: training/day1/dev-environment.md
+      - Configuration File: training/day1/configuration.md
+      - User Administration: training/day1/user-administration.md
   - About: about.md
 
 markdown_extensions:
