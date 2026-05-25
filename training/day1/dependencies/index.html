@@ -12,31 +12,31 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/getting-started/prerequisites/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/training/day1/dependencies/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../server-setup/">
       
       
-        <link rel="next" href="../getting-the-code/">
+        <link rel="next" href="../postgresql/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Prerequisites - HCPI Documentation</title>
+        <title>Installing Dependencies - HCPI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prerequisites" class="md-skip">
+        <a href="#installing-dependencies" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Prerequisites
+              Installing Dependencies
             
           </span>
         </div>
@@ -220,7 +220,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -238,7 +238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -262,8 +262,6 @@
       
   
   
-    
-  
   
   
     
@@ -276,11 +274,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -301,7 +301,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -316,37 +316,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prerequisites
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../getting-started/prerequisites/" class="md-nav__link">
         
   
   
@@ -362,148 +335,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Requirements
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-linux-and-windows-wsl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Linux and Windows WSL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-windows-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Windows Native
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Software Dependencies
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Dependencies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Tools
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Get the Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Knowledge Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -516,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-the-code/" class="md-nav__link">
+      <a href="../../../getting-started/getting-the-code/" class="md-nav__link">
         
   
   
@@ -605,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extraction/linux-export/" class="md-nav__link">
+      <a href="../../../extraction/linux-export/" class="md-nav__link">
         
   
   
@@ -694,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/windows-wsl/" class="md-nav__link">
+      <a href="../../../installation/windows-wsl/" class="md-nav__link">
         
   
   
@@ -722,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/windows-native/" class="md-nav__link">
+      <a href="../../../installation/windows-native/" class="md-nav__link">
         
   
   
@@ -750,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/linux/" class="md-nav__link">
+      <a href="../../../installation/linux/" class="md-nav__link">
         
   
   
@@ -839,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/cpi-explained/" class="md-nav__link">
+      <a href="../../../concepts/cpi-explained/" class="md-nav__link">
         
   
   
@@ -867,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
+      <a href="../../../concepts/cpi-concepts/" class="md-nav__link">
         
   
   
@@ -895,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/data-flow/" class="md-nav__link">
+      <a href="../../../concepts/data-flow/" class="md-nav__link">
         
   
   
@@ -923,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/glossary/" class="md-nav__link">
+      <a href="../../../concepts/glossary/" class="md-nav__link">
         
   
   
@@ -1012,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
         
   
   
@@ -1040,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/" class="md-nav__link">
         
   
   
@@ -1068,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/module-reference/" class="md-nav__link">
         
   
   
@@ -1096,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
   
   
@@ -1124,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-edits/" class="md-nav__link">
+      <a href="../../../first-edits/" class="md-nav__link">
         
   
   
@@ -1159,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/" class="md-nav__link">
+      <a href="../../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -1240,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/" class="md-nav__link">
+      <a href="../../../next-steps/" class="md-nav__link">
         
   
   
@@ -1268,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/https-apache/" class="md-nav__link">
+      <a href="../../../next-steps/https-apache/" class="md-nav__link">
         
   
   
@@ -1296,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+      <a href="../../../next-steps/https-nginx/" class="md-nav__link">
         
   
   
@@ -1328,8 +1159,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1340,13 +1173,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
@@ -1367,7 +1198,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1385,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1410,6 +1241,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1419,13 +1252,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
         
           
           <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
@@ -1446,7 +1277,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1464,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1492,7 +1323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/server-setup/" class="md-nav__link">
+      <a href="../server-setup/" class="md-nav__link">
         
   
   
@@ -1517,10 +1348,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../training/day1/dependencies/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1536,6 +1394,125 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-single-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The single command
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-toolchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python toolchain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-tools-and-c-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build tools and C libraries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontend-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend &amp; reports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-the-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validating the install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-not-in-the-system-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's not in the system install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1548,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/postgresql/" class="md-nav__link">
+      <a href="../postgresql/" class="md-nav__link">
         
   
   
@@ -1576,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+      <a href="../virtualenv-install/" class="md-nav__link">
         
   
   
@@ -1604,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+      <a href="../dev-environment/" class="md-nav__link">
         
   
   
@@ -1632,7 +1609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -1660,7 +1637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/user-administration/" class="md-nav__link">
+      <a href="../user-administration/" class="md-nav__link">
         
   
   
@@ -1703,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         
   
   
@@ -1750,68 +1727,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#the-single-command" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System Requirements
+        The single command
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="System Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-linux-and-windows-wsl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Linux and Windows WSL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-windows-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Windows Native
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#software-dependencies" class="md-nav__link">
+  <a href="#python-toolchain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Software Dependencies
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Dependencies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
+        Python toolchain
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#postgresql" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1821,28 +1758,12 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Tools
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#get-the-code" class="md-nav__link">
+  <a href="#build-tools-and-c-libraries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Get the Code
+        Build tools and C libraries
       
     </span>
   </a>
@@ -1850,10 +1771,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
+  <a href="#frontend-reports" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Knowledge Prerequisites
+        Frontend &amp; reports
       
     </span>
   </a>
@@ -1861,10 +1782,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#utilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Steps
+        Utilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validating-the-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validating the install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-not-in-the-system-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's not in the system install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical steps
       
     </span>
   </a>
@@ -1888,92 +1842,175 @@
 
 
 
-<h1 id="prerequisites">Prerequisites</h1>
-<p>Before installing HCPI, ensure your system meets the following requirements.</p>
-<h2 id="system-requirements">System Requirements</h2>
-<h3 id="for-linux-and-windows-wsl">For Linux and Windows WSL</h3>
-<ul>
-<li><strong>Operating System</strong>: Ubuntu 20.04 LTS or later (or compatible Linux distribution)</li>
-<li><strong>RAM</strong>: Minimum 4GB (8GB recommended for production)</li>
-<li><strong>Disk Space</strong>: At least 10GB free space</li>
-<li><strong>User Privileges</strong>: Sudo access for package installation</li>
-</ul>
-<h3 id="for-windows-native">For Windows Native</h3>
-<ul>
-<li><strong>Operating System</strong>: Windows 10 or Windows Server 2016 or later</li>
-<li><strong>RAM</strong>: Minimum 4GB (8GB recommended)</li>
-<li><strong>Disk Space</strong>: At least 10GB free space</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Production Deployment</p>
-<p>Windows native installation is suitable for testing and development. For production deployments, use Linux or Windows WSL for better compatibility and performance.</p>
-</div>
-<h2 id="software-dependencies">Software Dependencies</h2>
-<h3 id="python">Python</h3>
-<ul>
-<li><strong>Version</strong>: Python 3.10 or later</li>
-<li>Used for running Odoo and HCPI modules</li>
-</ul>
-<h3 id="postgresql">PostgreSQL</h3>
-<ul>
-<li><strong>Version</strong>: PostgreSQL 12 or later</li>
-<li>The database backend for HCPI</li>
-</ul>
-<h3 id="additional-tools">Additional Tools</h3>
-<p>The following will be installed during the setup process:</p>
-<ul>
-<li>Git (for version control)</li>
-<li>pip (Python package manager)</li>
-<li>virtualenv (for Python virtual environment management)</li>
-<li>wkhtmltopdf (for PDF report generation)</li>
-</ul>
-<h2 id="get-the-code">Get the Code</h2>
-<p>Three sources, depending on your situation:</p>
+<h1 id="installing-dependencies">Installing Dependencies</h1>
+<p>HCPI is mostly Python, but it needs a layer of system-level libraries underneath. This page walks through <em>what</em> each dependency is for — so when something fails to install you have a fighting chance of knowing why.</p>
+<h2 id="the-single-command">The single command</h2>
+<p>The full install command from the <a href="../../../installation/windows-wsl/">WSL guide</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-dev<span class="w"> </span>python3-venv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span>postgresql<span class="w"> </span>postgresql-contrib<span class="w"> </span>libpq-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>build-essential<span class="w"> </span>libssl-dev<span class="w"> </span>libffi-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxslt1-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span>zlib1g-dev<span class="w"> </span>libjpeg-dev<span class="w"> </span>libsasl2-dev<span class="w"> </span>libldap2-dev<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span>node-less<span class="w"> </span>npm<span class="w"> </span>wkhtmltopdf<span class="w"> </span>unzip
+</code></pre></div>
+<p>Twenty-odd packages. Below is what each one is for, grouped.</p>
+<h2 id="python-toolchain">Python toolchain</h2>
 <table>
 <thead>
 <tr>
-<th>Source</th>
-<th>Best for</th>
-<th>Has data?</th>
+<th>Package</th>
+<th>What it's for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Clone the EAC upstream repo</strong> (request access from <a href="mailto:mkakinyi@eachq.org">mkakinyi@eachq.org</a>)</td>
-<td>New deployments, new country adoption</td>
-<td>❌ Empty instance</td>
+<td><code>python3</code></td>
+<td>The Python interpreter HCPI runs on (3.10+)</td>
 </tr>
 <tr>
-<td><strong>Export from a country's HCPI server</strong> (<a href="../../extraction/linux-export/">extraction guide</a>)</td>
-<td>Migrating an existing instance</td>
-<td>✅ Full data</td>
+<td><code>python3-pip</code></td>
+<td>Python's package installer — used inside the venv to install Odoo's deps</td>
 </tr>
 <tr>
-<td><strong>Uganda's test files</strong> (<a href="https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w">statistics.ubos.org</a>)</td>
-<td>Evaluation, training, reference</td>
-<td>✅ Sample data</td>
+<td><code>python3-dev</code></td>
+<td>Python C headers — needed when pip has to compile a C extension (e.g. <code>lxml</code>, <code>psycopg2-binary</code> fallback)</td>
+</tr>
+<tr>
+<td><code>python3-venv</code></td>
+<td>The <code>venv</code> module — creates the isolated environment we install everything into</td>
 </tr>
 </tbody>
 </table>
-<p>See <strong><a href="../getting-the-code/">Getting the Code</a></strong> for the full walkthrough of all three options, including the minimal <code>hcpi.conf</code> template if you're cloning fresh from the upstream repo.</p>
-<div class="admonition tip">
-<p class="admonition-title">Not sure which one?</p>
-<p>For most new users — including any country setting up HCPI from scratch — <strong>clone the EAC upstream repo</strong>. It's the canonical source code and you start with a clean instance.</p>
-</div>
-<h2 id="knowledge-prerequisites">Knowledge Prerequisites</h2>
-<p>This documentation assumes you have:</p>
+<h2 id="postgresql">PostgreSQL</h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it's for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>postgresql</code></td>
+<td>The database server itself</td>
+</tr>
+<tr>
+<td><code>postgresql-contrib</code></td>
+<td>Useful extensions bundled with PostgreSQL (we don't strictly need all of them, but it's the conventional install)</td>
+</tr>
+<tr>
+<td><code>libpq-dev</code></td>
+<td>C client library for PostgreSQL — <code>psycopg2</code> (the Python driver) compiles against this</td>
+</tr>
+</tbody>
+</table>
+<p>More on the database itself on the <a href="../postgresql/">PostgreSQL Setup</a> page.</p>
+<h2 id="build-tools-and-c-libraries">Build tools and C libraries</h2>
+<p>Many of Odoo's Python dependencies have C components. If pre-built wheels aren't available for your platform, pip falls back to building from source — and that needs a C compiler plus a few common libraries.</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What's compiled against it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build-essential</code></td>
+<td><code>gcc</code>, <code>make</code>, and friends — the compiler toolchain</td>
+</tr>
+<tr>
+<td><code>libssl-dev</code></td>
+<td>OpenSSL — used by Python's <code>cryptography</code> package</td>
+</tr>
+<tr>
+<td><code>libffi-dev</code></td>
+<td>Foreign Function Interface — also <code>cryptography</code></td>
+</tr>
+<tr>
+<td><code>libxml2-dev</code>, <code>libxslt1-dev</code></td>
+<td>XML parsing — <code>lxml</code> (Odoo uses heavily for views, QWeb templates)</td>
+</tr>
+<tr>
+<td><code>zlib1g-dev</code></td>
+<td>Compression — used by Pillow, lxml, others</td>
+</tr>
+<tr>
+<td><code>libjpeg-dev</code></td>
+<td>JPEG support for Pillow (image processing)</td>
+</tr>
+<tr>
+<td><code>libsasl2-dev</code>, <code>libldap2-dev</code></td>
+<td>Authentication libraries — used if you ever wire Odoo into LDAP</td>
+</tr>
+</tbody>
+</table>
+<p>You won't see these mentioned again, but without them <code>pip install -r requirements.txt</code> will fail with a compile error somewhere deep in the trace.</p>
+<h2 id="frontend-reports">Frontend &amp; reports</h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it's for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node-less</code></td>
+<td>LESS → CSS compiler — Odoo uses LESS for its stylesheets</td>
+</tr>
+<tr>
+<td><code>npm</code></td>
+<td>Node package manager — Odoo's web client tooling needs it for asset bundling</td>
+</tr>
+<tr>
+<td><code>wkhtmltopdf</code></td>
+<td>Headless WebKit-to-PDF converter — Odoo uses this to render reports to PDF</td>
+</tr>
+</tbody>
+</table>
+<p><code>wkhtmltopdf</code> is the one most likely to cause trouble in production deployments because Odoo expects a specific patched version. The Ubuntu package version usually works for development, but for production you may need a hand-built binary. Not a Day 1 concern.</p>
+<h2 id="utilities">Utilities</h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it's for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git</code></td>
+<td>Cloning Odoo 18 from GitHub</td>
+</tr>
+<tr>
+<td><code>unzip</code></td>
+<td>Extracting <code>hcpi-files.zip</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="validating-the-install">Validating the install</h2>
+<p>After <code>apt install</code> completes, sanity-check the key tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>--version<span class="w">          </span><span class="c1"># Expect 3.10 or later</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>psql<span class="w"> </span>--version<span class="w">             </span><span class="c1"># Expect 14+</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>git<span class="w"> </span>--version
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>wkhtmltopdf<span class="w"> </span>--version
+</code></pre></div>
+<p>If any are missing, re-run the <code>apt install</code> line and check the output for failed packages.</p>
+<h2 id="whats-not-in-the-system-install">What's <em>not</em> in the system install</h2>
+<p>Two things people expect to find here but aren't:</p>
 <ul>
-<li>Basic command-line familiarity</li>
-<li>Basic understanding of Python environments</li>
-<li>Basic Linux/Unix command knowledge (for Linux and WSL installations)</li>
+<li><strong>Odoo itself.</strong> Odoo isn't an apt package — we clone it from GitHub later (covered on <a href="../virtualenv-install/">Virtual Environment &amp; HCPI Install</a>).</li>
+<li><strong>Odoo's Python dependencies</strong> (<code>werkzeug</code>, <code>lxml</code>, <code>psycopg2</code>, <code>passlib</code>, ...). These go inside the Python venv via <code>pip install -r odoo/requirements.txt</code>. We install them <em>into the venv</em> deliberately — they don't go in the system Python.</li>
 </ul>
-<h2 id="next-steps">Next Steps</h2>
-<p>Once you've confirmed your system meets these requirements and obtained the code, proceed to the installation guide for your platform:</p>
+<p>The system packages above are just the foundation those next layers build on.</p>
+<h2 id="practical-steps">Practical steps</h2>
+<p>Follow the install guide for your machine:</p>
 <ul>
-<li><a href="../../installation/linux/">Linux Server Installation</a></li>
-<li><a href="../../installation/windows-wsl/">Windows WSL Installation</a></li>
-<li><a href="../../installation/windows-native/">Windows Native Installation</a></li>
+<li><strong><a href="../../../installation/windows-wsl/">Windows WSL</a></strong> — Step 4</li>
+<li><strong><a href="../../../installation/linux/">Linux Server</a></strong> — Step 2</li>
+<li><strong><a href="../../../installation/windows-native/">Windows Native</a></strong> — the dependencies page within</li>
 </ul>
+<p>➡️ Next: <a href="../postgresql/">PostgreSQL Setup</a></p>
 
 
 
@@ -2009,7 +2046,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+          <a href="../server-setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Server Setup">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2019,20 +2056,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Home
+                Server Setup
               </div>
             </div>
           </a>
         
         
           
-          <a href="../getting-the-code/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting the Code">
+          <a href="../postgresql/" class="md-footer__link md-footer__link--next" aria-label="Next: PostgreSQL Setup">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Getting the Code
+                PostgreSQL Setup
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2069,10 +2106,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

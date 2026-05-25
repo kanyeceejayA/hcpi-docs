@@ -1,0 +1,2718 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/odoo-basics/">
+      
+      
+        <link rel="prev" href="../../concepts/glossary/">
+      
+      
+        <link rel="next" href="../">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Odoo Basics - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#odoo-basics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Odoo Basics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/getting-the-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cpi-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-second-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four-second tour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models-the-database-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models — the database side
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models — the database side">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-types-youll-meet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field types you'll meet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_inherit-extending-an-existing-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _inherit — extending an existing model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#views-what-the-user-sees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views — what the user sees
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Views — what the user sees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-five-common-view-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The five common view types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-view-is-just-a-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A view is just a record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tree-means-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Tree" means "list"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions-what-happens-when-you-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions — what happens when you click
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actions — what happens when you click">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-action-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common action types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menus-the-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menus — the navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-who-can-do-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security — who can do what
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security — who can do what">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irmodelaccesscsv-model-level-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ir.model.access.csv — model-level CRUD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irrule-record-level-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ir.rule — record-level filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-in-the-database-vs-whats-in-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's in the database vs. what's in the source
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What&#39;s in the database vs. what&#39;s in the source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables-youll-see-when-you-poke-at-the-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables you'll see when you poke at the DB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-orm-your-interface-to-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ORM — your interface to the database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-python-xml-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Python ↔ XML loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developer-mode-your-superpower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developer mode — your superpower
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-should-remember" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you should remember
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../module-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../country-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Variants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1 – Setup & Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1 – Setup & Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/server-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environment & HCPI Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/user-administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-second-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four-second tour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models-the-database-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models — the database side
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models — the database side">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-types-youll-meet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field types you'll meet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_inherit-extending-an-existing-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        _inherit — extending an existing model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#views-what-the-user-sees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views — what the user sees
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Views — what the user sees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-five-common-view-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The five common view types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-view-is-just-a-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A view is just a record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tree-means-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Tree" means "list"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions-what-happens-when-you-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions — what happens when you click
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actions — what happens when you click">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-action-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common action types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menus-the-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menus — the navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-who-can-do-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security — who can do what
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security — who can do what">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irmodelaccesscsv-model-level-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ir.model.access.csv — model-level CRUD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irrule-record-level-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ir.rule — record-level filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-in-the-database-vs-whats-in-the-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's in the database vs. what's in the source
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What&#39;s in the database vs. what&#39;s in the source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables-youll-see-when-you-poke-at-the-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables you'll see when you poke at the DB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-orm-your-interface-to-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ORM — your interface to the database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-python-xml-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Python ↔ XML loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developer-mode-your-superpower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developer mode — your superpower
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-should-remember" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you should remember
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="odoo-basics">Odoo Basics</h1>
+<p>Before you start editing HCPI, you need a working mental model of how Odoo is put together. This page explains the handful of concepts everything else in the docs assumes: <strong>models, fields, records, views, actions, menus</strong>, and how they live in the database vs. in the source files.</p>
+<p>If you've used Odoo before, skim it. If not, read it carefully — it'll save you confusion later.</p>
+<h2 id="the-four-second-tour">The four-second tour</h2>
+<p>A user clicks "Outlets" in HCPI's app launcher. Here's what happens in your head:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>  Menu  ──▶  Action  ──▶  View  ──▶  Model  ──▶  Database
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>(&quot;Outlets&quot;)  (open list)  (list/    (hcpi.outlet)  (PostgreSQL)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                          form)
+</code></pre></div>
+<p>That's the whole chain. Every clickable thing in Odoo's UI follows this path. The rest of the page expands each box.</p>
+<h2 id="models-the-database-side">Models — the database side</h2>
+<p>A <strong>model</strong> in Odoo is a Python class that becomes a database table. Each instance of the class is a <strong>record</strong> (a row). Each attribute of the class is a <strong>field</strong> (a column).</p>
+<p>From <code>hcpi_outlet/models/hcpi_outlet.py</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Outlet</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;hcpi.outlet&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">_description</span> <span class="o">=</span> <span class="s2">&quot;Outlet&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">_inherit</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mail.thread&#39;</span><span class="p">,</span> <span class="s1">&#39;image.mixin&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">outlet_code</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">consumption_segment_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s1">&#39;hcpi.consumption.segment&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">latitude</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Float</span><span class="p">()</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">outlet_item_ids</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">One2many</span><span class="p">(</span><span class="s1">&#39;hcpi.outlet.item&#39;</span><span class="p">,</span> <span class="s1">&#39;outlet_id&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This declaration produces a PostgreSQL table — its name is the model's <code>_name</code> with dots replaced by underscores: <code>hcpi_outlet</code>. Connect to the DB and you can see it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>psql<span class="w"> </span>-U<span class="w"> </span>hcpi<span class="w"> </span>-d<span class="w"> </span>hcpi<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT id, name, outlet_code FROM hcpi_outlet LIMIT 5;&quot;</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What it is</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Model</strong></td>
+<td>A Python class that maps to a DB table</td>
+<td><code>hcpi.outlet</code></td>
+</tr>
+<tr>
+<td><strong>Record</strong></td>
+<td>One row in that table</td>
+<td>A specific outlet, e.g. "Kikuubo Wholesale Market"</td>
+</tr>
+<tr>
+<td><strong>Field</strong></td>
+<td>A column on the table</td>
+<td><code>name</code>, <code>outlet_code</code>, <code>latitude</code></td>
+</tr>
+<tr>
+<td><strong>Recordset</strong></td>
+<td>Zero or more records of the same model, treated as one object</td>
+<td><code>self.env['hcpi.outlet'].search([])</code> returns all outlets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="field-types-youll-meet">Field types you'll meet</h3>
+<table>
+<thead>
+<tr>
+<th>Field type</th>
+<th>What it stores</th>
+<th>PostgreSQL column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Char(...)</code></td>
+<td>Short string</td>
+<td><code>VARCHAR</code></td>
+</tr>
+<tr>
+<td><code>Text(...)</code></td>
+<td>Long string</td>
+<td><code>TEXT</code></td>
+</tr>
+<tr>
+<td><code>Integer(...)</code></td>
+<td>Whole number</td>
+<td><code>INTEGER</code></td>
+</tr>
+<tr>
+<td><code>Float(...)</code></td>
+<td>Decimal</td>
+<td><code>NUMERIC</code></td>
+</tr>
+<tr>
+<td><code>Boolean(...)</code></td>
+<td>True/false</td>
+<td><code>BOOLEAN</code></td>
+</tr>
+<tr>
+<td><code>Date(...)</code> / <code>Datetime(...)</code></td>
+<td>Date / timestamp</td>
+<td><code>DATE</code> / <code>TIMESTAMP</code></td>
+</tr>
+<tr>
+<td><code>Selection([(...)])</code></td>
+<td>Pick from a fixed list</td>
+<td><code>VARCHAR</code> with check</td>
+</tr>
+<tr>
+<td><code>Many2one('other.model')</code></td>
+<td>FK to one record of another model</td>
+<td><code>INTEGER</code> (the other table's id)</td>
+</tr>
+<tr>
+<td><code>One2many('other.model', 'inverse_field')</code></td>
+<td>Reverse side of a Many2one — virtual, no DB column</td>
+<td>(none)</td>
+</tr>
+<tr>
+<td><code>Many2many('other.model')</code></td>
+<td>Many-to-many via a join table</td>
+<td>Join table</td>
+</tr>
+<tr>
+<td><code>Binary(...)</code></td>
+<td>Files, images</td>
+<td><code>BYTEA</code></td>
+</tr>
+<tr>
+<td><code>Selection([('a', 'A')])</code></td>
+<td>Enum-like</td>
+<td><code>VARCHAR</code></td>
+</tr>
+<tr>
+<td><code>Compute=...</code> (any of the above)</td>
+<td>Computed in Python from other fields — can be stored or not</td>
+<td>depends on <code>store=True</code></td>
+</tr>
+</tbody>
+</table>
+<p>One2many fields <strong>don't have a column</strong> — they're computed by looking at the inverse Many2one on the other model. That's why declaring a One2many requires you to name the field on the other side that points back.</p>
+<h3 id="_inherit-extending-an-existing-model"><code>_inherit</code> — extending an existing model</h3>
+<p>A second class can extend an existing model:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># In ug_outlet/models/hcpi_outlet.py</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Outlet</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">_inherit</span> <span class="o">=</span> <span class="s1">&#39;hcpi.outlet&#39;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">parish_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s1">&#39;ug.parish&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">district_id</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Many2one</span><span class="p">(</span><span class="s1">&#39;ug.district&#39;</span><span class="p">,</span> <span class="n">related</span><span class="o">=</span><span class="s1">&#39;parish_id.district_id&#39;</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>This adds two new columns to the existing <code>hcpi_outlet</code> table. It does <strong>not</strong> create a new table — <code>ug_outlet</code> overlays <code>hcpi.outlet</code> rather than copying it. This is the country-customization pattern from the <a href="../module-reference/">Module Reference</a>.</p>
+<h2 id="views-what-the-user-sees">Views — what the user sees</h2>
+<p>A <strong>view</strong> is an XML definition of a piece of UI. Views are stored as records in a built-in Odoo table called <code>ir.ui.view</code>, and they reference the model they're for.</p>
+<p>Open <code>hcpi_outlet/views/hcpi_outlet_views.xml</code> and you'll see three views for outlets: a <strong>list view</strong> (used to show many outlets at once), a <strong>form view</strong> (used to show one outlet for editing), and a <strong>search view</strong> (used for the filter/group sidebar).</p>
+<h3 id="the-five-common-view-types">The five common view types</h3>
+<table>
+<thead>
+<tr>
+<th>View type</th>
+<th>XML tag</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>List</strong></td>
+<td><code>&lt;list&gt;</code></td>
+<td>A table — many records at once, one row each</td>
+</tr>
+<tr>
+<td><strong>Form</strong></td>
+<td><code>&lt;form&gt;</code></td>
+<td>A single record's fields laid out for viewing/editing</td>
+</tr>
+<tr>
+<td><strong>Search</strong></td>
+<td><code>&lt;search&gt;</code></td>
+<td>The search bar with filters and "Group By" options</td>
+</tr>
+<tr>
+<td><strong>Kanban</strong></td>
+<td><code>&lt;kanban&gt;</code></td>
+<td>Cards (think Trello), grouped by some field</td>
+</tr>
+<tr>
+<td><strong>Graph</strong></td>
+<td><code>&lt;graph&gt;</code></td>
+<td>Charts (bar, pie, line) over aggregated data</td>
+</tr>
+</tbody>
+</table>
+<p>There are a few more — Pivot, Calendar, Gantt — but the five above cover 95% of what HCPI uses.</p>
+<h3 id="a-view-is-just-a-record">A view is <em>just a record</em></h3>
+<p>This is the part newcomers miss: views are themselves data. They live in <code>ir.ui.view</code>. The XML file isn't <em>executed</em> by Odoo at runtime — when you install or update a module, Odoo reads the XML and writes records into <code>ir.ui.view</code>. From then on, Odoo renders views by <strong>reading them out of the database</strong>, not by reading the XML again.</p>
+<p>That's why changing a view file requires either:</p>
+<ul>
+<li><code>-u &lt;module&gt;</code> to re-run the install/upgrade and overwrite the DB records, or</li>
+<li><code>--dev=xml</code> mode, which makes Odoo reload XML from disk on each request (great for dev iteration).</li>
+</ul>
+<p>The same is true for actions, menus, security rules, email templates — they're all records in their respective tables.</p>
+<h3 id="tree-means-list">"Tree" means "list"</h3>
+<p>Odoo historically called list views <code>&lt;tree&gt;</code>. Odoo 17/18 prefer <code>&lt;list&gt;</code>, but you'll see both in older code and in stack traces. If a Python error mentions a "tree view", it means <strong>list view</strong> — not a hierarchical tree.</p>
+<h2 id="actions-what-happens-when-you-click">Actions — what happens when you click</h2>
+<p>An <strong>action</strong> describes what to do when a user clicks something. There are several kinds; the most common is <code>ir.actions.act_window</code>, which says "open a window showing records of model X using views Y".</p>
+<p>From <code>hcpi_outlet/views/hcpi_outlet_views.xml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;hcpi_outlet_action&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.actions.act_window&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Outlets<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res_model&quot;</span><span class="nt">&gt;</span>hcpi.outlet<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;view_mode&quot;</span><span class="nt">&gt;</span>list,form<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;domain&quot;</span><span class="nt">&gt;</span>[]<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;help&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nt">&lt;p</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;o_view_nocontent_smiling_face&quot;</span><span class="nt">&gt;</span>Create<span class="w"> </span>an<span class="w"> </span>Outlet!<span class="nt">&lt;/p&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nt">&lt;/record&gt;</span>
+</code></pre></div>
+<p>This action:</p>
+<ul>
+<li>Targets the <code>hcpi.outlet</code> model</li>
+<li>Opens <strong>list view first</strong>, with form view available when you click a record</li>
+<li>Applies no filter (<code>domain</code> is empty)</li>
+<li>Shows a friendly message when the list is empty</li>
+</ul>
+<p>Actions are records too — they're stored in <code>ir.actions.act_window</code> (with <code>model="ir.actions.act_window"</code> in the XML).</p>
+<h3 id="common-action-types">Common action types</h3>
+<table>
+<thead>
+<tr>
+<th>Action model</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ir.actions.act_window</code></td>
+<td>Opens a list/form view for a model</td>
+</tr>
+<tr>
+<td><code>ir.actions.server</code></td>
+<td>Runs Python code on the server (no UI)</td>
+</tr>
+<tr>
+<td><code>ir.actions.client</code></td>
+<td>Opens a JavaScript-defined client view (dashboards, settings)</td>
+</tr>
+<tr>
+<td><code>ir.actions.report</code></td>
+<td>Generates a PDF/HTML report</td>
+</tr>
+<tr>
+<td><code>ir.actions.act_url</code></td>
+<td>Redirects the browser to a URL</td>
+</tr>
+</tbody>
+</table>
+<h2 id="menus-the-navigation">Menus — the navigation</h2>
+<p>A <strong>menu</strong> is a clickable label in the navigation that triggers an action.</p>
+<p>From <code>hcpi_outlet/views/hcpi_outlet_menus.xml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;menuitem</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;menu_hcpi_outlet_root&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">          </span><span class="na">name=</span><span class="s">&quot;Outlets&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">          </span><span class="na">web_icon=</span><span class="s">&quot;hcpi_outlet,static/description/icon.png&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">          </span><span class="na">sequence=</span><span class="s">&quot;25&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">          </span><span class="na">groups=</span><span class="s">&quot;hcpi_outlet.group_outlet_manager&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nt">&lt;menuitem</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;menu_hcpi_outlet&quot;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">          </span><span class="na">name=</span><span class="s">&quot;Outlets&quot;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">          </span><span class="na">sequence=</span><span class="s">&quot;1&quot;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">          </span><span class="na">parent=</span><span class="s">&quot;menu_hcpi_outlet_root&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">          </span><span class="na">action=</span><span class="s">&quot;hcpi_outlet_action&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+<p>Reading these:</p>
+<ol>
+<li>The <strong>root menu</strong> — top-level, appears in HCPI's app launcher with an icon. It doesn't have an action; clicking it just opens its children.</li>
+<li>The first <strong>sub-menu</strong> — sits inside the root, has <code>action="hcpi_outlet_action"</code> (the action above). Clicking this is what opens the outlets list.</li>
+</ol>
+<p><code>groups="..."</code> restricts who can see the menu. Without that group, the menu doesn't appear in the user's sidebar.</p>
+<p>Menus are records in the <code>ir.ui.menu</code> table.</p>
+<h2 id="security-who-can-do-what">Security — who can do what</h2>
+<p>Two layers, both ultimately records in the database:</p>
+<h3 id="irmodelaccesscsv-model-level-crud"><code>ir.model.access.csv</code> — model-level CRUD</h3>
+<p>A CSV file in <code>security/</code> listing which group can perform create/read/update/delete on which model:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>access_hcpi_outlet_manager,hcpi.outlet.manager,model_hcpi_outlet,group_outlet_manager,1,1,1,1
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>access_hcpi_outlet_user,hcpi.outlet.user,model_hcpi_outlet,group_outlet_user,1,0,0,0
+</code></pre></div>
+<p>Two rows — one says managers can do everything to outlets, another says regular users can only read them.</p>
+<h3 id="irrule-record-level-filtering"><code>ir.rule</code> — record-level filtering</h3>
+<p>If you need "users can only see outlets in their own region" — that's a <strong>record rule</strong> (<code>ir.rule</code>), defined in XML. It's a domain expression Odoo automatically adds to every query against that model.</p>
+<p>Day 7 of the training covers security in depth.</p>
+<h2 id="whats-in-the-database-vs-whats-in-the-source">What's in the database vs. what's in the source</h2>
+<p>The two-side picture:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>SOURCE FILES                          DATABASE (PostgreSQL)
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>────────────────                      ─────────────────────
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Python model classes        ──install/upgrade──▶   hcpi_outlet table, hcpi_item table, ...
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>XML &lt;record&gt; for views      ──install/upgrade──▶   ir_ui_view rows
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>XML &lt;record&gt; for actions    ──install/upgrade──▶   ir_actions_act_window rows
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>XML &lt;menuitem&gt;              ──install/upgrade──▶   ir_ui_menu rows
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>security/ir.model.access.csv ──install/upgrade──▶  ir_model_access rows
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>XML &lt;record&gt; for security rules ──install/upgrade──▶ ir_rule rows
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>data XML (seed records)     ──install/upgrade──▶   their respective tables
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>USER DATA (live, not in source):
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>                                                   outlets created in the UI
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>                                                   observations recorded by enumerators
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>                                                   computed indices, reports, etc.
+</code></pre></div>
+<p>The takeaway: <strong>the source files describe the structure; the database holds the structure plus the data</strong>. When you change a source file, nothing happens until you run <code>-u &lt;module&gt;</code> to push the changes into the DB.</p>
+<h3 id="tables-youll-see-when-you-poke-at-the-db">Tables you'll see when you poke at the DB</h3>
+<p>Most of these are Odoo's metadata tables — the "system tables" that store the structure itself:</p>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>What's in it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ir_module_module</code></td>
+<td>All modules and their install state</td>
+</tr>
+<tr>
+<td><code>ir_model</code></td>
+<td>Every model in the system (<code>hcpi.outlet</code>, <code>res.users</code>, ...)</td>
+</tr>
+<tr>
+<td><code>ir_model_fields</code></td>
+<td>Every field on every model</td>
+</tr>
+<tr>
+<td><code>ir_ui_view</code></td>
+<td>Every view</td>
+</tr>
+<tr>
+<td><code>ir_ui_menu</code></td>
+<td>Every menu</td>
+</tr>
+<tr>
+<td><code>ir_actions_act_window</code></td>
+<td>Every "open this list" action</td>
+</tr>
+<tr>
+<td><code>ir_model_access</code></td>
+<td>The CRUD permissions</td>
+</tr>
+<tr>
+<td><code>ir_rule</code></td>
+<td>Record-level filtering rules</td>
+</tr>
+<tr>
+<td><code>res_users</code></td>
+<td>User accounts</td>
+</tr>
+<tr>
+<td><code>res_groups</code></td>
+<td>Permission groups (<code>group_outlet_manager</code>, etc.)</td>
+</tr>
+</tbody>
+</table>
+<p>Then HCPI's own tables: <code>hcpi_outlet</code>, <code>hcpi_item</code>, <code>hcpi_outlet_item</code>, <code>hcpi_outlet_item_observation</code>, <code>hcpi_national_index</code>, and so on.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Quick look at what&#39;s installed</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>psql<span class="w"> </span>-U<span class="w"> </span>hcpi<span class="w"> </span>-d<span class="w"> </span>hcpi<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT name, state FROM ir_module_module WHERE name LIKE &#39;hcpi%&#39; OR name LIKE &#39;ug_%&#39;;&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># How many views are defined for outlets?</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>psql<span class="w"> </span>-U<span class="w"> </span>hcpi<span class="w"> </span>-d<span class="w"> </span>hcpi<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT name, type FROM ir_ui_view WHERE model = &#39;hcpi.outlet&#39;;&quot;</span>
+</code></pre></div>
+<h2 id="the-orm-your-interface-to-the-database">The ORM — your interface to the database</h2>
+<p>You almost never write raw SQL in Odoo. Instead, models expose methods that translate to SQL behind the scenes. The core five:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+<th>SQL equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search(domain)</code></td>
+<td>Find records matching a filter</td>
+<td><code>SELECT id FROM ... WHERE ...</code></td>
+</tr>
+<tr>
+<td><code>browse(ids)</code></td>
+<td>Fetch known records by id</td>
+<td><code>SELECT * FROM ... WHERE id IN (...)</code></td>
+</tr>
+<tr>
+<td><code>read([fields])</code></td>
+<td>Read fields from records</td>
+<td><code>SELECT field, ... FROM ...</code></td>
+</tr>
+<tr>
+<td><code>create(values)</code></td>
+<td>Insert a new record</td>
+<td><code>INSERT INTO ...</code></td>
+</tr>
+<tr>
+<td><code>write(values)</code></td>
+<td>Update existing records</td>
+<td><code>UPDATE ... SET ...</code></td>
+</tr>
+<tr>
+<td><code>unlink()</code></td>
+<td>Delete records</td>
+<td><code>DELETE FROM ...</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>search</code> returns a <strong>recordset</strong> — a list-like object whose elements are records. Recordsets are chainable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># All active outlets in Kampala</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">outlets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;hcpi.outlet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">([</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="p">(</span><span class="s1">&#39;district_id.name&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;Kampala&#39;</span><span class="p">),</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">])</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Loop and modify</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">for</span> <span class="n">outlet</span> <span class="ow">in</span> <span class="n">outlets</span><span class="p">:</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="n">outlet</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s1">&#39;last_visited&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">()})</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># Or batch — one UPDATE for all</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="n">outlets</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s1">&#39;last_visited&#39;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">today</span><span class="p">()})</span>
+</code></pre></div>
+<p>The <code>domain</code> (the <code>[('field', '=', 'value'), ...]</code> syntax) is Odoo's polish on SQL <code>WHERE</code> clauses. Day 3 of the training covers domains and ORM methods properly.</p>
+<h2 id="the-python-xml-loop">The Python ↔ XML loop</h2>
+<p>Most HCPI features are built by writing <strong>both</strong>:</p>
+<ol>
+<li>A model in Python (<code>models/whatever.py</code>) — defines the table and the business logic</li>
+<li>Views in XML (<code>views/whatever_views.xml</code>) — defines how the model shows up in the UI</li>
+<li>An action and a menu in XML — to make it reachable</li>
+</ol>
+<p>That's why almost every module has parallel <code>models/</code> and <code>views/</code> folders. When you add a new field, you typically edit a file in both.</p>
+<h2 id="developer-mode-your-superpower">Developer mode — your superpower</h2>
+<p>Once you've turned on developer mode (covered on the <a href="../../training/day1/user-administration/">User Administration</a> page), the UI exposes the underlying records:</p>
+<ul>
+<li><strong>Hover any field</strong> with developer mode on → tooltip shows the model name and field name (the technical handles you'll search for in code).</li>
+<li><strong>The Developer menu</strong> (bug icon, top-right) → "Edit View", "Edit Action", "Manage Models". Each opens the underlying <code>ir.ui.view</code>/<code>ir.actions.act_window</code>/<code>ir.model</code> record directly in a form.</li>
+<li><strong>URL parameters</strong> become readable: <code>/odoo/action-hcpi_outlet.hcpi_outlet_action</code> tells you exactly which action you're looking at.</li>
+</ul>
+<p>This is how you go from "I see something on screen and want to change it" to "I know the model name, the view ID, and the file it's defined in." Combined with project-wide search in your IDE, that's the loop you'll spend most of your time in.</p>
+<h2 id="what-you-should-remember">What you should remember</h2>
+<ul>
+<li><strong>Models</strong> are Python classes → database tables; <strong>records</strong> are rows; <strong>fields</strong> are columns.</li>
+<li><strong>Views, actions, menus, security rules</strong> are all stored as records in built-in <code>ir_*</code> tables. The XML in your source files writes those records on install/upgrade.</li>
+<li><strong>"Tree" means "list"</strong> in old XML.</li>
+<li>Editing a view file does nothing until you <code>-u &lt;module&gt;</code> (or have <code>--dev=xml</code> on).</li>
+<li>The <strong>ORM</strong> is how you read and write data without raw SQL.</li>
+<li><strong>Developer mode</strong> is how you go from UI to code.</li>
+</ul>
+<h2 id="next">Next</h2>
+<p>➡️ <strong><a href="../">Understanding the Codebase</a></strong> — the folder map: which folder, which file, when.</p>
+<p>➡️ <strong><a href="../module-reference/">Module Reference</a></strong> — what each HCPI module does and which models it owns.</p>
+<p>➡️ <strong><a href="../../first-edits/">Making Your First Edits</a></strong> — apply this with a real change you can see.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../concepts/glossary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Glossary">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Glossary
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--next" aria-label="Next: Understanding the Codebase">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Understanding the Codebase
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

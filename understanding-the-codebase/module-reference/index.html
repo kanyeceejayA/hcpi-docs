@@ -1,0 +1,2915 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/module-reference/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../country-variants/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Module Reference - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/getting-the-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cpi-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odoo-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-so-many-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why so many modules?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-kinds-of-module-in-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four kinds of module in HCPI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-data-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference data modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference data modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_coicop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_coicop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_brand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_brand
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data flow modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data flow modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_outlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_outlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_data_collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_data_collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_data_collection_mobile_app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_data_collection_mobile_app
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computation-and-analysis-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computation and analysis modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computation and analysis modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_computation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#country-customization-the-ug_-overlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Country customization (the ug_* overlay)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Country customization (the ug_* overlay)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ug_location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ug_location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ug_outlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ug_outlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ug_base_import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ug_base_import
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-data-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import &amp; data validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import &amp; data validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base_import_inherit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        base_import_inherit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infrastructure-third-party-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure / third-party modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure / third-party modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queue_job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue_job
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        web_progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kola_web_enterprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kola_web_enterprise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progress_bar_customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        progress_bar_customization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-where-do-i-look-to-change-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick reference: "where do I look to change X?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../country-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Variants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1 – Setup & Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1 – Setup & Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/server-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environment & HCPI Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/user-administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-so-many-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why so many modules?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-kinds-of-module-in-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four kinds of module in HCPI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-data-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference data modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference data modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_coicop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_coicop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_brand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_brand
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data flow modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data flow modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_outlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_outlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_data_collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_data_collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_data_collection_mobile_app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_data_collection_mobile_app
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computation-and-analysis-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computation and analysis modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computation and analysis modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_computation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpi_dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#country-customization-the-ug_-overlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Country customization (the ug_* overlay)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Country customization (the ug_* overlay)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ug_location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ug_location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ug_outlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ug_outlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ug_base_import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ug_base_import
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-data-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import &amp; data validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import &amp; data validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base_import_inherit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        base_import_inherit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infrastructure-third-party-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure / third-party modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure / third-party modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queue_job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue_job
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        web_progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kola_web_enterprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kola_web_enterprise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progress_bar_customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        progress_bar_customization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-where-do-i-look-to-change-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick reference: "where do I look to change X?"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="module-reference">Module Reference</h1>
+<p>This page walks through every module in <code>custom/HCPI/</code> — what it owns, what depends on it, and when you'd touch it. It's the page to come back to when you see a model name in a stack trace and need to figure out which folder it lives in.</p>
+<p><a href="../">Understanding the Codebase</a> covers what an Odoo module <em>is</em> and what's inside one. This page covers what each specific module <em>does</em>.</p>
+<h2 id="why-so-many-modules">Why so many modules?</h2>
+<p>HCPI ships as 17 module folders. That feels like a lot for one product. The reason is Odoo's modular philosophy: each coherent piece of functionality lives in its own module, and modules declare their dependencies on others. Splitting things up gives you three things:</p>
+<ol>
+<li><strong>A country can swap one piece without touching the rest.</strong> Uganda's geography lives in <code>ug_location/</code>. Kenya would replace it with <code>ke_location/</code> and leave everything else alone.</li>
+<li><strong>Loading is incremental.</strong> When you install or update only one module, only its files are re-read — meaning faster dev iteration.</li>
+<li><strong>The dependency graph documents itself.</strong> <code>hcpi_dashboard</code> depends on <code>hcpi_index</code>, which depends on <code>hcpi_outlet</code>, which depends on <code>hcpi_item</code>, which depends on <code>hcpi_coicop</code>. Reading the <code>__manifest__.py</code> of any module tells you exactly what it needs to function.</li>
+</ol>
+<h2 id="the-four-kinds-of-module-in-hcpi">The four kinds of module in HCPI</h2>
+<p>Every HCPI module falls into one of four roles:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                                                                 │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  REFERENCE DATA               COMPUTATION                       │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  (the taxonomy)               (turns data into the CPI)         │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  ┌─────────────┐              ┌─────────────────┐               │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  │ hcpi_coicop │              │ hcpi_computation│               │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  │ hcpi_item   │              │ hcpi_index      │               │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  │ hcpi_brand  │              │ hcpi_dashboard  │               │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  └─────────────┘              └─────────────────┘               │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│         │                              ▲                        │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│         ▼                              │                        │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│  DATA FLOW                             │                        │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│  (collects observations)               │                        │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  ┌─────────────────────────────────────┴───┐                    │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  │ hcpi_outlet                             │                    │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│  │ hcpi_data_collection                    │                    │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│  │ hcpi_data_collection_mobile_app         │                    │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│  └─────────────────────────────────────────┘                    │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│                                                                 │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│  COUNTRY CUSTOMIZATION (Uganda&#39;s overlay)                       │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│  ug_location · ug_outlet · ug_base_import                       │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│                                                                 │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│  INFRASTRUCTURE / THIRD-PARTY                                   │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│  queue_job · web_progress · kola_web_enterprise · ...           │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>└─────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<p>The data flows top-to-bottom on the left side (taxonomy → outlets/items get assigned codes → collection records observations) and then up the right side (observations get aggregated into indices and shown on the dashboard).</p>
+<h2 id="dependency-graph">Dependency graph</h2>
+<p>The HCPI modules form a clean DAG. Reading bottom-up gives you the install order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>hcpi_dashboard ──┐
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>                 ├──▶ hcpi_index ──┐
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                 │                 │
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                 ├──▶ hcpi_data_collection ──┐
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>                 │                           │
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>                 │   ┌─ hcpi_data_collection_mobile_app
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                 │   │
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                 │   ├─ ug_outlet ────────▶ ug_location
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                 │   │
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                 │   └─ ug_base_import ──▶ base_import_inherit
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                 ▼
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>            hcpi_outlet
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                 │
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                 ├──▶ hcpi_item ──▶ hcpi_coicop
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                 │
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                 └──▶ hcpi_computation
+</code></pre></div>
+<p>Three things to notice:</p>
+<ul>
+<li><strong><code>hcpi_coicop</code> is the foundation.</strong> Everything that classifies a price (which item? which division?) traces back here.</li>
+<li><strong><code>hcpi_outlet</code> is the hub.</strong> Both data collection (writing observations) and index computation (reading observations) sit on top of it.</li>
+<li><strong><code>hcpi_computation</code> is a thin mixin.</strong> It exposes one abstract model used by collection lines, observations, and every index variant.</li>
+</ul>
+<hr />
+<h2 id="reference-data-modules">Reference data modules</h2>
+<p>These define the static taxonomy — the categories, codes, and labels that everything else hangs off.</p>
+<h3 id="hcpi_coicop"><code>hcpi_coicop</code></h3>
+<p><strong>Purpose:</strong> Defines the international <strong>COICOP</strong> (Classification of Individual Consumption by Purpose) hierarchy that HCPI uses to group items. Six levels deep, top to bottom.</p>
+<p><strong>Depends on:</strong> <code>mail</code></p>
+<p><strong>Key models</strong> — each is a level in the hierarchy:</p>
+<table>
+<thead>
+<tr>
+<th>Model (<code>_name</code>)</th>
+<th>Level</th>
+<th>What it represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hcpi.division</code></td>
+<td>1 (top)</td>
+<td>E.g. "01 Food and non-alcoholic beverages" — the 12-14 broad categories</td>
+</tr>
+<tr>
+<td><code>hcpi.group</code></td>
+<td>2</td>
+<td>Sub-division (e.g. "01.1 Food")</td>
+</tr>
+<tr>
+<td><code>hcpi.class</code></td>
+<td>3</td>
+<td>E.g. "01.1.1 Bread and cereals"</td>
+</tr>
+<tr>
+<td><code>hcpi.sub.class</code></td>
+<td>4</td>
+<td>Sub-class</td>
+</tr>
+<tr>
+<td><code>hcpi.micro.class</code></td>
+<td>5</td>
+<td>Micro-class</td>
+</tr>
+<tr>
+<td><code>hcpi.elementary.aggregate</code></td>
+<td>6 (bottom)</td>
+<td>The smallest aggregation unit — the parent of actual items</td>
+</tr>
+</tbody>
+</table>
+<p>Each level has a <code>code</code> and a <code>composite_weight</code>. The elementary aggregate computes a <code>full_code</code> like <code>01.01.01.01.01.01</code> by concatenating the chain. All models inherit <code>mail.thread</code> so changes show up in the chatter.</p>
+<p><strong>When you'd edit it:</strong> updating the COICOP structure (new revision), adding or renaming a division/class, changing how weights aggregate up the hierarchy.</p>
+<p><strong>Security:</strong> <code>coicop_user</code> (read-only) and <code>coicop_manager</code> (full CRUD) groups defined here.</p>
+<h3 id="hcpi_item"><code>hcpi_item</code></h3>
+<p><strong>Purpose:</strong> Defines the actual items whose prices are collected (e.g. "1 kg sugar", "500 ml cooking oil"). Each item hangs off an elementary aggregate.</p>
+<p><strong>Depends on:</strong> <code>hcpi_coicop</code></p>
+<p><strong>Key models:</strong></p>
+<ul>
+<li><strong><code>hcpi.item</code></strong> — the catalog entry. Fields: <code>name</code>, <code>code</code> (auto-incremented within its EA if not provided), <code>elementary_aggregate_id</code> (FK to the EA), <code>uoo_id</code> (unit of observation), <code>standard_quantity</code>, <code>is_standard</code> (if true, the item isn't re-weighed during collection). Computes <code>full_code</code> as <code>&lt;ea_code&gt;.&lt;code&gt;</code>. Inherits <code>mail.thread</code>. Validates against duplicate names per EA on both <code>create</code> and import.</li>
+<li><strong><code>hcpi.uoo</code></strong> — unit of observation (pieces, kg, litres, etc.).</li>
+</ul>
+<p><strong>When you'd edit it:</strong> maintaining the item master list, changing standard quantities, marking items as standard (already-portioned and so not re-weighed in the field).</p>
+<h3 id="hcpi_brand"><code>hcpi_brand</code></h3>
+<p><strong>Purpose:</strong> Branding and email-template layer — the cosmetic side of the system. No business logic; no models of its own.</p>
+<p><strong>Depends on:</strong> <code>auth_signup</code>, <code>mail</code></p>
+<p><strong>What's in it:</strong> custom menus (<code>menu.js</code>), CSS (<code>custom.css</code>), email templates for things like signup and password reset, and security rules tied to the templates.</p>
+<p><strong>When you'd edit it:</strong> customizing the look-and-feel for a new country, changing email wording, or restyling the navbar.</p>
+<hr />
+<h2 id="data-flow-modules">Data flow modules</h2>
+<p>These are where observations are recorded and validated. The path is <code>outlet → questionnaire → collection lines → observations</code>.</p>
+<h3 id="hcpi_outlet"><code>hcpi_outlet</code></h3>
+<p><strong>Purpose:</strong> Defines the physical or logical points where prices are collected (markets, shops), the consumption-segment baskets they belong to, and the items they sell. This is the <strong>hub</strong> of the system — everything observation-related goes through here.</p>
+<p><strong>Depends on:</strong> <code>hcpi_item</code>, <code>hcpi_computation</code></p>
+<p><strong>Key models:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>What it represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hcpi.outlet</code></td>
+<td>A single collection point. Fields include <code>outlet_code</code> (validated against a strict format like <code>255.53.21.03.003</code>), <code>outlet_type_id</code>, <code>consumption_segment_id</code>, <code>latitude</code>/<code>longitude</code>, <code>contact_ids</code>, <code>outlet_item_ids</code>. Inherits <code>mail.thread</code> and <code>image.mixin</code>.</td>
+</tr>
+<tr>
+<td><code>hcpi.outlet.type</code></td>
+<td>Categorizes outlets (retail, wholesale, market...).</td>
+</tr>
+<tr>
+<td><code>hcpi.consumption.segment</code></td>
+<td>The "basket" — groups outlets by consumer profile (urban/rural, income band, etc.). Has <code>outlet_ids</code> one2many.</td>
+</tr>
+<tr>
+<td><code>hcpi.outlet.contact</code></td>
+<td>Contact info attached to an outlet (name, phone, email).</td>
+</tr>
+<tr>
+<td><code>hcpi.outlet.item</code></td>
+<td>The junction: an item available at an outlet, with <code>base_price</code>, <code>observation_no</code>, computed <code>full_code</code>, and <code>observation_line</code> one2many. A DB index on <code>(elementary_aggregate_id, consumption_segment_id, id)</code> accelerates basket-level lookups.</td>
+</tr>
+<tr>
+<td><code>hcpi.outlet.item.observation</code></td>
+<td>One time-series price observation: <code>observation_date</code>, <code>observed_price</code>, <code>month</code> (computed), <code>consumption_segment_id</code>, plus short-term and long-term price relatives. Has its own DB index on <code>(outlet_item_id, observation_date DESC)</code>.</td>
+</tr>
+<tr>
+<td><code>hcpi.domestication</code></td>
+<td>Links outlets to demographic/geographic segments.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When you'd edit it:</strong> managing outlets, defining outlet types or consumption segments, changing how outlet codes are validated, indexing for performance.</p>
+<p><strong>Performance note:</strong> the explicit DB index on observations is what makes basket-level queries fast at scale — there can be millions of observation rows over time, so the index matters.</p>
+<h3 id="hcpi_data_collection"><code>hcpi_data_collection</code></h3>
+<p><strong>Purpose:</strong> Implements the <strong>survey workflow</strong>. Every visit by an enumerator to an outlet produces one <em>questionnaire</em> (<code>hcpi.data.collection</code>) with one <em>line</em> per item priced.</p>
+<p><strong>Depends on:</strong> <code>hcpi_outlet</code>, <code>hcpi_computation</code></p>
+<p><strong>Key models:</strong></p>
+<ul>
+<li><strong><code>hcpi.data.collection</code></strong> — a questionnaire. Fields: <code>outlet_id</code>, <code>collection_date</code>, <code>data_supervisor_id</code>/<code>data_collector_id</code> (FKs to <code>res.users</code>), <code>state</code> (state machine: <code>draft → survey → standardization → validation → done/cancel</code>), computed <code>progress</code> (%), <code>data_validation_id</code> (<code>ondelete='set null'</code> — detach on validation deletion), <code>draft_collection_line</code> / <code>collection_line</code> (one2many). The <code>update_product_lines()</code> method auto-creates collection lines from the outlet's active items.</li>
+<li><strong><code>hcpi.data.collection.line</code></strong> — one item's observations within a questionnaire. Fields: <code>outlet_item_id</code>, <code>standard_price</code> (computed from observations), <code>price_collection_code_ids</code> (many2many — codes like "out of stock"), <code>observation_line</code> (one2many), <code>is_outlier</code>/<code>is_inlier</code> (computed booleans), <code>is_rejected</code>, price-relative fields. Inherits <code>hcpi.computation</code> so zero-price warnings work here.</li>
+<li><strong><code>hcpi.data.observation.line</code></strong> — individual price entry (<code>observed_price</code>, <code>uoo_id</code>, <code>observed_quantity</code>).</li>
+<li><strong><code>hcpi.price.collection.code</code></strong> — codes that explain non-normal observations (e.g. "out of stock", "seasonal unavailable"). Maintained as data.</li>
+<li><strong><code>hcpi.data.validation</code></strong> — wraps a batch of collections for supervisor review.</li>
+</ul>
+<p><strong>Security groups defined here:</strong> <code>group_data_collection_supervisor</code>, <code>group_data_collection_collector</code>, <code>group_data_collection_statician</code>. Day 7 walks through these.</p>
+<p><strong>When you'd edit it:</strong> changing the survey workflow, the state machine, adding new "price collection codes", or tweaking validation rules.</p>
+<h3 id="hcpi_data_collection_mobile_app"><code>hcpi_data_collection_mobile_app</code></h3>
+<p><strong>Purpose:</strong> Mobile-specific extensions of the collection models — what the Flutter app talks to.</p>
+<p><strong>Depends on:</strong> <code>hcpi_data_collection</code></p>
+<p><strong>Key models:</strong> thin <code>_inherit</code> extensions of <code>hcpi.data.collection</code>, <code>hcpi.outlet</code>, <code>hcpi.outlet.contact</code>, <code>hcpi.item</code>, <code>res.config.settings</code>, and <code>res.users</code>. Most actual logic lives in the mobile client; the backend exposes endpoints and stores app config.</p>
+<p><strong>When you'd edit it:</strong> modifying mobile sync logic, offline data structures, mobile-app settings exposed through <code>res.config.settings</code>, or per-user mobile preferences.</p>
+<p><strong>Day 12</strong> covers the mobile API in detail.</p>
+<hr />
+<h2 id="computation-and-analysis-modules">Computation and analysis modules</h2>
+<p>These take the observations the data-collection modules wrote and turn them into the CPI.</p>
+<h3 id="hcpi_computation"><code>hcpi_computation</code></h3>
+<p><strong>Purpose:</strong> A thin <strong>abstract mixin</strong> — defines one model that other models inherit to get zero-price validation logic.</p>
+<p><strong>Depends on:</strong> <code>base</code></p>
+<p><strong>Key model:</strong></p>
+<ul>
+<li><strong><code>hcpi.computation</code></strong> (<code>AbstractModel</code>) — exposes four fields (<code>zero_price_has_issues</code>, <code>zero_price_has_safe_months</code>, <code>zero_price_warning</code> text, <code>zero_price_warning_html</code>) and a <code>get_zero_price_validation_status()</code> method. The method checks for zero-price observations and requires a buffer of at least <strong>6 safe months</strong> with <strong>at most 5 problematic items</strong> before allowing index computation.</li>
+</ul>
+<p>This mixin is inherited by <code>hcpi.data.collection.line</code>, <code>hcpi.outlet.item.observation</code>, and every concrete index model in <code>hcpi_index</code>. That's why it's not just a function — being a mixin lets each consumer carry its own validation state as fields.</p>
+<p><strong>When you'd edit it:</strong> adjusting the 6-month buffer, the 5-item limit, or the warning text.</p>
+<h3 id="hcpi_index"><code>hcpi_index</code></h3>
+<p><strong>Purpose:</strong> Where the CPI is actually computed. Defines indices at every level of the hierarchy — national, domestic, basket-level, classification-level, and special — and the wizards that trigger their computation.</p>
+<p><strong>Depends on:</strong> <code>hcpi_outlet</code>, <code>hcpi_coicop</code>, <code>web_progress</code>, <code>queue_job</code></p>
+<p>This is the biggest and most consequential module. Models break into four families:</p>
+<p><strong>National &amp; domestic indices</strong> (top-of-pyramid):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hcpi.national.index</code></td>
+<td>One index per (COICOP level, month) at the national level. Fields: <code>coicop</code> (char identifying COICOP code), <code>index</code> (float), <code>weight</code>, <code>date</code>, computed <code>month</code>/<code>readable_date</code>. Unique on <code>(coicop, month)</code>.</td>
+</tr>
+<tr>
+<td><code>hcpi.domestic.index</code></td>
+<td>Same shape as national but for domestic markets only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Basket-level indices</strong> (per consumption segment, at every COICOP level):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hcpi.basket.index</code></td>
+<td>Top-level basket index — one per <code>consumption_segment_id</code> per month.</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.division.index</code></td>
+<td>One per (basket, division, month).</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.group.index</code></td>
+<td>One per (basket, group, month).</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.class.index</code></td>
+<td>One per (basket, class, month).</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.sub.class.index</code></td>
+<td>One per (basket, subclass, month).</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.micro.class.index</code></td>
+<td>One per (basket, micro-class, month).</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.elementary.aggregate.index</code></td>
+<td>One per (basket, EA, month).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Special indices</strong> (custom categories like "food inflation", "core CPI"):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hcpi.special.index.category</code></td>
+<td>The category definition.</td>
+</tr>
+<tr>
+<td><code>hcpi.basket.special.index</code></td>
+<td>Per-basket roll-up of a special category.</td>
+</tr>
+<tr>
+<td><code>hcpi.national.special.index</code></td>
+<td>National roll-up of a special category.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Classification indices</strong> (additional custom groupings, parallel to "special"):</p>
+<p><code>hcpi.classification.index.category</code>, <code>hcpi.basket.classification.index</code>, <code>hcpi.national.classification.index</code> — same three-tier pattern.</p>
+<p><strong>Wizards</strong> (transient models — they open as forms, trigger work, then disappear):</p>
+<ul>
+<li><code>ea.index.update</code> — recompute EA-level indices</li>
+<li><code>basket.coicop.index.update</code></li>
+<li><code>basket.index.update</code></li>
+<li><code>national.index.update</code></li>
+<li><code>domestic.index.update</code></li>
+<li><code>special.index.update</code></li>
+<li><code>classification.index.update</code></li>
+<li><code>hcpi.index.export.wizard</code> — export indices to file</li>
+</ul>
+<p>Each wizard dispatches the actual computation as a <strong>background job via <code>queue_job</code></strong>, with progress reported through <code>web_progress</code>. This is why <code>hcpi_index</code> depends on both of those infrastructure modules.</p>
+<p><strong><code>hcpi.class</code> inheritance:</strong> this module extends <code>hcpi.class</code> (the COICOP class model) with a <code>dashboard_display</code> boolean. That flag is what the dashboard uses to pick which divisions to chart.</p>
+<p><strong>Security:</strong> <code>index_user</code> (read) and <code>index_manager</code> (CRUD).</p>
+<p><strong>When you'd edit it:</strong> the computation formulas, adding new index levels, defining new special or classification categories, changing how jobs are queued.</p>
+<h3 id="hcpi_dashboard"><code>hcpi_dashboard</code></h3>
+<p><strong>Purpose:</strong> The visual layer — charts of national, division-level, and basket trends rendered in the browser with <strong>ApexCharts</strong>.</p>
+<p><strong>Depends on:</strong> <code>hcpi_data_collection</code>, <code>hcpi_index</code></p>
+<p><strong>Key model:</strong></p>
+<ul>
+<li><strong><code>hcpi.dashboard</code></strong> — a thin pseudo-model exposing one method, <code>dashboard_hooks()</code>, that returns:<ul>
+<li>division-level indices for the last 12 months (filtered to <code>dashboard_display=true</code>),</li>
+<li>national EA-level indices for the last 24 months,</li>
+<li>list of baskets,</li>
+<li>list of items,</li>
+<li>the year range to render.</li>
+</ul>
+</li>
+</ul>
+<p>The method returns JSON; the front-end JS (<code>hcpi_dashboard.js</code>) consumes it and draws the charts.</p>
+<p><strong>Assets bundled:</strong> ApexCharts (CDN), <code>custom-13.css</code>, <code>hcpi_dashboard.js</code>, and the <code>hcpi_dashboard.xml</code> template.</p>
+<p><strong>When you'd edit it:</strong> rearranging the dashboard, changing which series are charted, adjusting time windows, tweaking colours or chart types, or adding new widgets.</p>
+<hr />
+<h2 id="country-customization-the-ug_-overlay">Country customization (the <code>ug_*</code> overlay)</h2>
+<p>A pattern worth understanding before you adapt HCPI for another country.</p>
+<p>The generic <code>hcpi_*</code> modules are country-agnostic — they don't know what a "district" is. The <code>ug_*</code> modules layer Uganda-specific structure on top. When Kenya adopts HCPI, the work is: write a parallel <code>ke_*</code> set of overlay modules.</p>
+<h3 id="ug_location"><code>ug_location</code></h3>
+<p><strong>Purpose:</strong> Uganda's geographic hierarchy.</p>
+<p><strong>Depends on:</strong> <code>mail</code>, <code>hcpi_data_collection</code></p>
+<p><strong>Key models</strong> (five-level hierarchy):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ug.region</code></td>
+<td>Top</td>
+</tr>
+<tr>
+<td><code>ug.district</code></td>
+<td>Within region</td>
+</tr>
+<tr>
+<td><code>ug.county</code></td>
+<td>Within district</td>
+</tr>
+<tr>
+<td><code>ug.sub.county</code></td>
+<td>Within county</td>
+</tr>
+<tr>
+<td><code>ug.parish</code></td>
+<td>Within sub-county (smallest unit)</td>
+</tr>
+</tbody>
+</table>
+<p>All inherit <code>mail.activity.mixin</code>. Codes are auto-formatted (zero-padded under 10).</p>
+<p><strong>When you'd edit it:</strong> updating Uganda's administrative geography (rare).</p>
+<h3 id="ug_outlet"><code>ug_outlet</code></h3>
+<p><strong>Purpose:</strong> Connects <code>hcpi.outlet</code> to <code>ug.parish</code> — so a Uganda outlet has a location, which other countries' overlays won't.</p>
+<p><strong>Depends on:</strong> <code>hcpi_outlet</code>, <code>ug_location</code></p>
+<p><strong>Key model:</strong></p>
+<ul>
+<li><strong><code>hcpi.outlet</code> (inherited)</strong> — adds <code>parish_id</code> (FK), plus <em>stored related</em> fields up the chain: <code>sub_county_id</code>, <code>county_id</code>, <code>district_id</code>, <code>region_id</code>. All cascade from <code>parish_id</code>. Storing them as related fields (rather than computing on read) makes filtered queries — "all outlets in Kampala" — efficient.</li>
+</ul>
+<p><strong>When you'd edit it:</strong> linking outlets to the location structure, modifying how location cascades.</p>
+<p><strong>The pattern to copy for another country:</strong> create a <code>ke_location/</code> with <code>ke.region/county/...</code>, then a <code>ke_outlet/</code> that adds the equivalent FKs to <code>hcpi.outlet</code>.</p>
+<h3 id="ug_base_import"><code>ug_base_import</code></h3>
+<p><strong>Purpose:</strong> Uganda-specific import validation (e.g., parsing Uganda location codes).</p>
+<p><strong>Depends on:</strong> <code>base_import_inherit</code>, <code>ug_location</code>, <code>hcpi_data_collection</code></p>
+<p><strong>Key model:</strong></p>
+<ul>
+<li><strong><code>base_import.import</code> (inherited)</strong> — same as the parent extension with Uganda-specific logic on top.</li>
+</ul>
+<p><strong>When you'd edit it:</strong> changing how Uganda CSV/Excel imports are validated.</p>
+<hr />
+<h2 id="import-data-validation">Import &amp; data validation</h2>
+<h3 id="base_import_inherit"><code>base_import_inherit</code></h3>
+<p><strong>Purpose:</strong> A generic extension of Odoo's <code>base_import</code> that adds validation and batch-optimization for HCPI data.</p>
+<p><strong>Depends on:</strong> <code>base_import</code></p>
+<p><strong>Key model:</strong></p>
+<ul>
+<li><strong><code>base_import.import</code></strong> (inherited transient) — adds a <code>use_optimized_import</code> boolean and pre-insertion validation that prevents duplicates.</li>
+</ul>
+<p><strong>When you'd edit it:</strong> tweaking CSV/Excel import validation, adding new bulk-import optimizations, or improving error messages.</p>
+<hr />
+<h2 id="infrastructure-third-party-modules">Infrastructure / third-party modules</h2>
+<p>These aren't HCPI's own code. They're vendored to keep installs reproducible (no hunting for the right OCA branch). Treat as read-only unless you have a specific reason to patch.</p>
+<h3 id="queue_job"><code>queue_job</code></h3>
+<p>OCA's job queue framework. Lets long-running operations (index computation, bulk import) run asynchronously in background workers. <code>hcpi.conf</code> declares it in <code>server_wide_modules</code> because it has to load before any database is opened.</p>
+<h3 id="web_progress"><code>web_progress</code></h3>
+<p>UI for long-running operations — adds a modal with progress percentage and a "run in background" button. Wired into the index-computation wizards.</p>
+<h3 id="kola_web_enterprise"><code>kola_web_enterprise</code></h3>
+<p>Branding/theming layer. Replaces parts of Odoo's web UI (navbar, layout, SCSS variables) with HCPI's look.</p>
+<h3 id="progress_bar_customization"><code>progress_bar_customization</code></h3>
+<p>CSS override changing the progress bar color from yellow to orange. Cosmetic only.</p>
+<hr />
+<h2 id="quick-reference-where-do-i-look-to-change-x">Quick reference: "where do I look to change X?"</h2>
+<table>
+<thead>
+<tr>
+<th>If you want to change...</th>
+<th>Edit module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a new COICOP division</td>
+<td><code>hcpi_coicop</code></td>
+</tr>
+<tr>
+<td>Add an item (programmatically)</td>
+<td><code>hcpi_item</code></td>
+</tr>
+<tr>
+<td>Add a new outlet field</td>
+<td><code>hcpi_outlet</code></td>
+</tr>
+<tr>
+<td>Restrict who can see outlets</td>
+<td><code>hcpi_outlet/security/</code></td>
+</tr>
+<tr>
+<td>Add a new survey state (e.g. "review")</td>
+<td><code>hcpi_data_collection</code></td>
+</tr>
+<tr>
+<td>Change the "out of stock" code list</td>
+<td><code>hcpi_data_collection</code> (data file)</td>
+</tr>
+<tr>
+<td>Add a new index level</td>
+<td><code>hcpi_index</code></td>
+</tr>
+<tr>
+<td>Add a new special-index category</td>
+<td><code>hcpi_index</code> (<code>hcpi.special.index.category</code>)</td>
+</tr>
+<tr>
+<td>Tweak the dashboard chart range</td>
+<td><code>hcpi_dashboard</code> (<code>dashboard_hooks()</code>)</td>
+</tr>
+<tr>
+<td>Add a new geographic level to Uganda</td>
+<td><code>ug_location</code> + <code>ug_outlet</code></td>
+</tr>
+<tr>
+<td>Adapt for a new country</td>
+<td>New <code>xx_location/</code>, <code>xx_outlet/</code>, <code>xx_base_import/</code></td>
+</tr>
+<tr>
+<td>Change branding / login screen</td>
+<td><code>hcpi_brand</code> + <code>kola_web_enterprise</code></td>
+</tr>
+<tr>
+<td>Tune zero-price validation threshold</td>
+<td><code>hcpi_computation</code></td>
+</tr>
+<tr>
+<td>Tune index-computation parallelism</td>
+<td><code>hcpi.conf</code> <code>[queue_job]</code> section</td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><strong><a href="../../first-edits/">Making Your First Edits</a></strong> — apply this map: pick a module and make a small, safe change to it.</li>
+<li><strong>Day 7 of training (coming soon)</strong> — covers the security groups touched by <code>hcpi_coicop</code>, <code>hcpi_outlet</code>, <code>hcpi_data_collection</code>, and <code>hcpi_index</code>.</li>
+<li><strong>Day 8–11 of training (coming soon)</strong> — deep dives into Coicop, Location, Outlet/Item, Data Collection, and Importation modules.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding the Codebase">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding the Codebase
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../country-variants/" class="md-footer__link md-footer__link--next" aria-label="Next: Country Variants">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Country Variants
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

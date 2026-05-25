@@ -12,31 +12,31 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/getting-started/prerequisites/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/training/day1/server-setup/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../getting-the-code/">
+        <link rel="next" href="../dependencies/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Prerequisites - HCPI Documentation</title>
+        <title>Server Setup - HCPI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prerequisites" class="md-skip">
+        <a href="#server-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Prerequisites
+              Server Setup
             
           </span>
         </div>
@@ -220,7 +220,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -238,7 +238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -262,8 +262,6 @@
       
   
   
-    
-  
   
   
     
@@ -276,11 +274,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -301,7 +301,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -316,37 +316,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prerequisites
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../getting-started/prerequisites/" class="md-nav__link">
         
   
   
@@ -362,148 +335,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Requirements
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-linux-and-windows-wsl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Linux and Windows WSL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-windows-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Windows Native
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Software Dependencies
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Dependencies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Tools
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Get the Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Knowledge Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -516,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-the-code/" class="md-nav__link">
+      <a href="../../../getting-started/getting-the-code/" class="md-nav__link">
         
   
   
@@ -605,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extraction/linux-export/" class="md-nav__link">
+      <a href="../../../extraction/linux-export/" class="md-nav__link">
         
   
   
@@ -694,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/windows-wsl/" class="md-nav__link">
+      <a href="../../../installation/windows-wsl/" class="md-nav__link">
         
   
   
@@ -722,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/windows-native/" class="md-nav__link">
+      <a href="../../../installation/windows-native/" class="md-nav__link">
         
   
   
@@ -750,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/linux/" class="md-nav__link">
+      <a href="../../../installation/linux/" class="md-nav__link">
         
   
   
@@ -839,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/cpi-explained/" class="md-nav__link">
+      <a href="../../../concepts/cpi-explained/" class="md-nav__link">
         
   
   
@@ -867,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
+      <a href="../../../concepts/cpi-concepts/" class="md-nav__link">
         
   
   
@@ -895,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/data-flow/" class="md-nav__link">
+      <a href="../../../concepts/data-flow/" class="md-nav__link">
         
   
   
@@ -923,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/glossary/" class="md-nav__link">
+      <a href="../../../concepts/glossary/" class="md-nav__link">
         
   
   
@@ -1012,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
         
   
   
@@ -1040,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/" class="md-nav__link">
         
   
   
@@ -1068,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/module-reference/" class="md-nav__link">
         
   
   
@@ -1096,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
   
   
@@ -1124,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-edits/" class="md-nav__link">
+      <a href="../../../first-edits/" class="md-nav__link">
         
   
   
@@ -1159,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/" class="md-nav__link">
+      <a href="../../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -1240,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/" class="md-nav__link">
+      <a href="../../../next-steps/" class="md-nav__link">
         
   
   
@@ -1268,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/https-apache/" class="md-nav__link">
+      <a href="../../../next-steps/https-apache/" class="md-nav__link">
         
   
   
@@ -1296,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+      <a href="../../../next-steps/https-nginx/" class="md-nav__link">
         
   
   
@@ -1328,8 +1159,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1340,13 +1173,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
@@ -1367,7 +1198,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1385,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1410,6 +1241,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1419,13 +1252,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
         
           
           <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
@@ -1446,7 +1277,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1464,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1489,10 +1320,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../training/day1/server-setup/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1508,6 +1366,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pick-a-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pick a host
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-directory-layout-youre-aiming-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The directory layout you're aiming for
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-account-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User account assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking-and-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking and ports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1520,7 +1453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/dependencies/" class="md-nav__link">
+      <a href="../dependencies/" class="md-nav__link">
         
   
   
@@ -1548,7 +1481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/postgresql/" class="md-nav__link">
+      <a href="../postgresql/" class="md-nav__link">
         
   
   
@@ -1576,7 +1509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+      <a href="../virtualenv-install/" class="md-nav__link">
         
   
   
@@ -1604,7 +1537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+      <a href="../dev-environment/" class="md-nav__link">
         
   
   
@@ -1632,7 +1565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -1660,7 +1593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/user-administration/" class="md-nav__link">
+      <a href="../user-administration/" class="md-nav__link">
         
   
   
@@ -1703,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         
   
   
@@ -1750,99 +1683,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#pick-a-host" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System Requirements
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-linux-and-windows-wsl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Linux and Windows WSL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-windows-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Windows Native
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Software Dependencies
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Dependencies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Tools
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Get the Code
+        Pick a host
       
     </span>
   </a>
@@ -1850,10 +1694,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
+  <a href="#the-directory-layout-youre-aiming-for" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Knowledge Prerequisites
+        The directory layout you're aiming for
       
     </span>
   </a>
@@ -1861,10 +1705,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#user-account-assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Steps
+        User account assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking-and-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking and ports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical steps
       
     </span>
   </a>
@@ -1888,92 +1754,88 @@
 
 
 
-<h1 id="prerequisites">Prerequisites</h1>
-<p>Before installing HCPI, ensure your system meets the following requirements.</p>
-<h2 id="system-requirements">System Requirements</h2>
-<h3 id="for-linux-and-windows-wsl">For Linux and Windows WSL</h3>
-<ul>
-<li><strong>Operating System</strong>: Ubuntu 20.04 LTS or later (or compatible Linux distribution)</li>
-<li><strong>RAM</strong>: Minimum 4GB (8GB recommended for production)</li>
-<li><strong>Disk Space</strong>: At least 10GB free space</li>
-<li><strong>User Privileges</strong>: Sudo access for package installation</li>
-</ul>
-<h3 id="for-windows-native">For Windows Native</h3>
-<ul>
-<li><strong>Operating System</strong>: Windows 10 or Windows Server 2016 or later</li>
-<li><strong>RAM</strong>: Minimum 4GB (8GB recommended)</li>
-<li><strong>Disk Space</strong>: At least 10GB free space</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Production Deployment</p>
-<p>Windows native installation is suitable for testing and development. For production deployments, use Linux or Windows WSL for better compatibility and performance.</p>
-</div>
-<h2 id="software-dependencies">Software Dependencies</h2>
-<h3 id="python">Python</h3>
-<ul>
-<li><strong>Version</strong>: Python 3.10 or later</li>
-<li>Used for running Odoo and HCPI modules</li>
-</ul>
-<h3 id="postgresql">PostgreSQL</h3>
-<ul>
-<li><strong>Version</strong>: PostgreSQL 12 or later</li>
-<li>The database backend for HCPI</li>
-</ul>
-<h3 id="additional-tools">Additional Tools</h3>
-<p>The following will be installed during the setup process:</p>
-<ul>
-<li>Git (for version control)</li>
-<li>pip (Python package manager)</li>
-<li>virtualenv (for Python virtual environment management)</li>
-<li>wkhtmltopdf (for PDF report generation)</li>
-</ul>
-<h2 id="get-the-code">Get the Code</h2>
-<p>Three sources, depending on your situation:</p>
+<h1 id="server-setup">Server Setup</h1>
+<p>Before we touch any HCPI code, every trainee needs a base operating environment. This page covers the <em>choice</em> of host, the directory layout you're aiming for, and the user account assumptions everything that follows will make.</p>
+<h2 id="pick-a-host">Pick a host</h2>
+<p>HCPI runs on Linux. For training, you have three options:</p>
 <table>
 <thead>
 <tr>
-<th>Source</th>
-<th>Best for</th>
-<th>Has data?</th>
+<th>Environment</th>
+<th>When to use it</th>
+<th>Trade-offs</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Clone the EAC upstream repo</strong> (request access from <a href="mailto:mkakinyi@eachq.org">mkakinyi@eachq.org</a>)</td>
-<td>New deployments, new country adoption</td>
-<td>❌ Empty instance</td>
+<td><strong>Ubuntu Linux server</strong></td>
+<td>Production, real deployments</td>
+<td>Production-grade, no surprises</td>
 </tr>
 <tr>
-<td><strong>Export from a country's HCPI server</strong> (<a href="../../extraction/linux-export/">extraction guide</a>)</td>
-<td>Migrating an existing instance</td>
-<td>✅ Full data</td>
+<td><strong>Windows + WSL2 (Ubuntu)</strong></td>
+<td>Development on a Windows laptop</td>
+<td>Closest to Linux on Windows; recommended for training</td>
 </tr>
 <tr>
-<td><strong>Uganda's test files</strong> (<a href="https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w">statistics.ubos.org</a>)</td>
-<td>Evaluation, training, reference</td>
-<td>✅ Sample data</td>
+<td><strong>Windows native</strong></td>
+<td>Testing, demos</td>
+<td>Works, but some Odoo features behave slightly differently — not for production</td>
 </tr>
 </tbody>
 </table>
-<p>See <strong><a href="../getting-the-code/">Getting the Code</a></strong> for the full walkthrough of all three options, including the minimal <code>hcpi.conf</code> template if you're cloning fresh from the upstream repo.</p>
+<p>For the training, <strong>Windows + WSL2</strong> is what most trainees will use. If you're following along on a real Linux server, the steps are nearly identical — paths and <code>apt</code> commands are the same.</p>
 <div class="admonition tip">
-<p class="admonition-title">Not sure which one?</p>
-<p>For most new users — including any country setting up HCPI from scratch — <strong>clone the EAC upstream repo</strong>. It's the canonical source code and you start with a clean instance.</p>
+<p class="admonition-title">Recommended for training</p>
+<p>Windows laptop → install WSL2 → install Ubuntu. You get a real Linux shell on your laptop without dual-booting. The <a href="../../../installation/windows-wsl/">Windows WSL Installation</a> guide is what you'll follow.</p>
 </div>
-<h2 id="knowledge-prerequisites">Knowledge Prerequisites</h2>
-<p>This documentation assumes you have:</p>
+<p>System requirements are documented in <a href="../../../getting-started/prerequisites/">Prerequisites</a> — minimum 4 GB RAM, 10 GB free disk.</p>
+<h2 id="the-directory-layout-youre-aiming-for">The directory layout you're aiming for</h2>
+<p>By the end of Day 1, your filesystem (inside Linux/WSL) should look like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/opt/hcpi/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── conf/          ← hcpi.conf and friends
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── custom/        ← Your country&#39;s HCPI modules
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── HCPI/
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── log/           ← Runtime logs
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── odoo/          ← Odoo 18 framework (cloned from GitHub)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── venv/          ← Python virtual environment
+</code></pre></div>
+<p>We use <code>/opt/hcpi</code> by convention. Nothing technically prevents you from putting it elsewhere — <code>/home/&lt;you&gt;/hcpi</code>, or any other directory you own — but every command in the docs assumes <code>/opt/hcpi</code>, and the configuration file (<code>addons_path</code>, <code>logfile</code>) will have to be updated if you deviate.</p>
+<div class="admonition info">
+<p class="admonition-title">Why /opt?</p>
+<p>On Linux, <code>/opt</code> is the conventional location for "optional add-on application software". It's a clean choice for apps that aren't managed by the system package manager. Putting HCPI here keeps it separate from your personal files (<code>/home</code>) and from system files (<code>/usr</code>).</p>
+</div>
+<h2 id="user-account-assumptions">User account assumptions</h2>
+<p>You don't run HCPI as <code>root</code>. Throughout the docs:</p>
 <ul>
-<li>Basic command-line familiarity</li>
-<li>Basic understanding of Python environments</li>
-<li>Basic Linux/Unix command knowledge (for Linux and WSL installations)</li>
+<li>
+<p><strong>Your Linux user</strong> (whatever you called yourself when you set up WSL/Ubuntu) is the user that owns <code>/opt/hcpi</code> and runs the <code>odoo-bin</code> process. After creating the directory, we chown it to you:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="nv">$USER</span>:<span class="nv">$USER</span><span class="w"> </span>/opt/hcpi
+</code></pre></div>
+</li>
+<li>
+<p><strong><code>hcpi</code> is a PostgreSQL user</strong> — entirely separate from your Linux user. It's the role used to connect to the database. Don't confuse the two.</p>
+</li>
+<li><strong><code>postgres</code> is also a PostgreSQL system user</strong>, created when you install PostgreSQL. You'll use it to bootstrap the <code>hcpi</code> role (via <code>sudo -u postgres ...</code>), then you won't touch it again.</li>
 </ul>
-<h2 id="next-steps">Next Steps</h2>
-<p>Once you've confirmed your system meets these requirements and obtained the code, proceed to the installation guide for your platform:</p>
+<p>This three-user separation matters for one specific reason that bites people on first run: PostgreSQL's default authentication mode (peer auth) tries to match your Linux username to a PostgreSQL role of the same name. Your Linux username is <em>not</em> <code>hcpi</code>, so peer auth fails and the connection is refused. The fix — forcing TCP+password auth in <code>hcpi.conf</code> — is covered on the <a href="../postgresql/">PostgreSQL Setup</a> and <a href="../configuration/">Configuration File</a> pages.</p>
+<h2 id="networking-and-ports">Networking and ports</h2>
+<p>HCPI listens on <strong>port 9201</strong> by default (not Odoo's stock 8069 — that's deliberate, to avoid collisions if you run multiple Odoo instances). You'll reach it at:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>http://localhost:9201
+</code></pre></div>
+<p>For training nothing else is involved — no firewall rules, no reverse proxy, no TLS. Production deployments add HTTPS via Apache or Nginx; see <a href="../../../next-steps/https-apache/">HTTPS with Apache</a> or <a href="../../../next-steps/https-nginx/">HTTPS with Nginx</a> when you're ready for that.</p>
+<p>If 9201 is already in use on your machine — common if you've run Odoo before — pick another port in <code>hcpi.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9202</span>
+</code></pre></div>
+<h2 id="practical-steps">Practical steps</h2>
+<p>Now actually do the setup. Follow the install guide that matches your machine:</p>
 <ul>
-<li><a href="../../installation/linux/">Linux Server Installation</a></li>
-<li><a href="../../installation/windows-wsl/">Windows WSL Installation</a></li>
-<li><a href="../../installation/windows-native/">Windows Native Installation</a></li>
+<li><strong><a href="../../../installation/windows-wsl/">Windows WSL Installation</a></strong> — Steps 1–6 cover everything on this page (WSL, Ubuntu, package updates, directory creation)</li>
+<li><strong><a href="../../../installation/linux/">Linux Server Installation</a></strong> — Steps 1, 4</li>
+<li><strong><a href="../../../installation/windows-native/">Windows Native Installation</a></strong> — if you're going that route</li>
 </ul>
+<p>Come back here when <code>/opt/hcpi</code> exists and you own it.</p>
+<p>➡️ Next: <a href="../dependencies/">Installing Dependencies</a></p>
 
 
 
@@ -2009,7 +1871,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+          <a href="../introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction to HCPI">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2019,20 +1881,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Home
+                Introduction to HCPI
               </div>
             </div>
           </a>
         
         
           
-          <a href="../getting-the-code/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting the Code">
+          <a href="../dependencies/" class="md-footer__link md-footer__link--next" aria-label="Next: Installing Dependencies">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Getting the Code
+                Installing Dependencies
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2069,10 +1931,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

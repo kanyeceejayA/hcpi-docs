@@ -1,0 +1,2944 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/troubleshooting/">
+      
+      
+        <link rel="prev" href="../first-edits/">
+      
+      
+        <link rel="next" href="../next-steps/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Troubleshooting - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/getting-the-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/cpi-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/cpi-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/module-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/country-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Variants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database-startup-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database / startup errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database / startup errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#psycopg2operationalerror-peer-authentication-failed-for-user-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psycopg2.OperationalError: ... Peer authentication failed for user "hcpi"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psycopg2operationalerror-fatal-password-authentication-failed-for-user-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#could-not-connect-to-server-no-such-file-or-directory-connection-refused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        could not connect to server: No such file or directory / Connection refused
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-hcpi-does-not-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        database "hcpi" does not exist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psycopg2errorsduplicateobject-role-hcpi-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psycopg2.errors.DuplicateObject: role "hcpi" already exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pg_restore-error-relation-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pg_restore: error: relation "..." already exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-loading-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module loading errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module loading errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importerror-no-module-named-modulenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImportError: No module named '...' / ModuleNotFoundError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filenotfounderror-hcpi-module-not-found-at-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FileNotFoundError: ... HCPI / module not found at startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue_job-not-found-at-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue_job not found at startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-already-installed-but-cannot-be-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Module already installed but cannot be found"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#port-and-process-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port and process errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Port and process errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-9201-already-in-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port 9201 already in use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odoo-hangs-on-startup-no-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Odoo hangs on startup, no error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-ui-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View / UI errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View / UI errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-a-view-file-no-change-visible-in-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed a view file, no change visible in browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-icons-in-the-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing icons in the UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-denied-record-invisible-to-a-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Access denied" / record invisible to a user
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-server-error-on-a-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Internal Server Error" on a page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-user-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication / user errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication / user errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cant-log-in-as-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can't log in as admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-db-manager-rejects-the-master-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web DB manager rejects the master password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgot-the-master-password-no-plaintext-in-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forgot the master password, no plaintext in config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index-computation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index computation errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Index computation errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zero-price-validation-failed-insufficient-safe-months" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-price validation failed — insufficient safe months
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-wizard-finishes-immediately-no-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index wizard finishes immediately, no data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-charts-blank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard charts blank
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-filestore-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File / filestore errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File / filestore errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attachments-and-images-broken-after-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attachments and images broken after restore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-on-opthcpiloghcpilog-or-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission denied on /opt/hcpi/log/hcpi.log or filestore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slow-page-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow page loads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-computation-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index computation slow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-all-else-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When all else fails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1 – Setup & Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1 – Setup & Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/server-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/virtualenv-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environment & HCPI Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/dev-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/user-administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database-startup-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database / startup errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database / startup errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#psycopg2operationalerror-peer-authentication-failed-for-user-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psycopg2.OperationalError: ... Peer authentication failed for user "hcpi"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psycopg2operationalerror-fatal-password-authentication-failed-for-user-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#could-not-connect-to-server-no-such-file-or-directory-connection-refused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        could not connect to server: No such file or directory / Connection refused
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-hcpi-does-not-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        database "hcpi" does not exist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psycopg2errorsduplicateobject-role-hcpi-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        psycopg2.errors.DuplicateObject: role "hcpi" already exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pg_restore-error-relation-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pg_restore: error: relation "..." already exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-loading-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module loading errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module loading errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importerror-no-module-named-modulenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImportError: No module named '...' / ModuleNotFoundError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filenotfounderror-hcpi-module-not-found-at-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FileNotFoundError: ... HCPI / module not found at startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue_job-not-found-at-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue_job not found at startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-already-installed-but-cannot-be-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Module already installed but cannot be found"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#port-and-process-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port and process errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Port and process errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-9201-already-in-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port 9201 already in use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odoo-hangs-on-startup-no-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Odoo hangs on startup, no error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-ui-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View / UI errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View / UI errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-a-view-file-no-change-visible-in-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed a view file, no change visible in browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-icons-in-the-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing icons in the UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-denied-record-invisible-to-a-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Access denied" / record invisible to a user
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-server-error-on-a-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Internal Server Error" on a page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-user-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication / user errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication / user errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cant-log-in-as-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can't log in as admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-db-manager-rejects-the-master-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web DB manager rejects the master password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgot-the-master-password-no-plaintext-in-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forgot the master password, no plaintext in config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index-computation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index computation errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Index computation errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zero-price-validation-failed-insufficient-safe-months" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-price validation failed — insufficient safe months
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-wizard-finishes-immediately-no-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index wizard finishes immediately, no data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-charts-blank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard charts blank
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-filestore-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File / filestore errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File / filestore errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attachments-and-images-broken-after-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attachments and images broken after restore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-on-opthcpiloghcpilog-or-filestore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission denied on /opt/hcpi/log/hcpi.log or filestore
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slow-page-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow page loads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-computation-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index computation slow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-all-else-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When all else fails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+<p>The errors you're most likely to hit running or maintaining HCPI, with the fix that actually works. Search this page when something goes wrong — most issues fall into one of the categories below.</p>
+<h2 id="database-startup-errors">Database / startup errors</h2>
+<h3 id="psycopg2operationalerror-peer-authentication-failed-for-user-hcpi"><code>psycopg2.OperationalError: ... Peer authentication failed for user "hcpi"</code></h3>
+<p>The config still has <code>db_host = False</code> (or is missing <code>db_host</code> entirely). Odoo is using the Unix socket and PostgreSQL is trying peer auth — matching your Linux user to a PostgreSQL role of the same name. Since you're running as yourself (not as a Linux user <code>hcpi</code>), peer auth fails.</p>
+<p><strong>Fix</strong> in <code>/opt/hcpi/conf/hcpi.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">db_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">db_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">db_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your_postgres_hcpi_password&gt;</span>
+</code></pre></div>
+<p>Background: <a href="../training/day1/postgresql/#authentication-peer-vs-password">PostgreSQL Setup</a>.</p>
+<hr />
+<h3 id="psycopg2operationalerror-fatal-password-authentication-failed-for-user-hcpi"><code>psycopg2.OperationalError: FATAL: password authentication failed for user "hcpi"</code></h3>
+<p><code>db_password</code> in <code>hcpi.conf</code> doesn't match what PostgreSQL has for the <code>hcpi</code> role.</p>
+<p><strong>Fix:</strong> reset the password to a known value:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;ALTER USER hcpi WITH PASSWORD &#39;your_secure_password&#39;;&quot;</span>
+</code></pre></div>
+<p>Then make sure the same value is in <code>hcpi.conf</code> as <code>db_password</code>.</p>
+<hr />
+<h3 id="could-not-connect-to-server-no-such-file-or-directory-connection-refused"><code>could not connect to server: No such file or directory</code> / <code>Connection refused</code></h3>
+<p>PostgreSQL isn't running.</p>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>postgresql<span class="w">       </span><span class="c1"># systemd-enabled systems</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>service<span class="w"> </span>postgresql<span class="w"> </span>start<span class="w">         </span><span class="c1"># WSL1 or older systems</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Confirm it&#39;s up</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>systemctl<span class="w"> </span>status<span class="w"> </span>postgresql
+</code></pre></div>
+<p>If it won't start: <code>sudo journalctl -u postgresql --no-pager -n 50</code> to see why.</p>
+<hr />
+<h3 id="database-hcpi-does-not-exist"><code>database "hcpi" does not exist</code></h3>
+<p>You haven't created the database yet, or you dropped it.</p>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createdb<span class="w"> </span>-O<span class="w"> </span>hcpi<span class="w"> </span>hcpi
+</code></pre></div>
+<p>If you want to populate it from a dump: see <a href="../training/day1/postgresql/#drop-and-recreate-the-database">PostgreSQL Setup</a> for the restore flow.</p>
+<hr />
+<h3 id="psycopg2errorsduplicateobject-role-hcpi-already-exists"><code>psycopg2.errors.DuplicateObject: role "hcpi" already exists</code></h3>
+<p>The PostgreSQL role exists from a previous install. Either reuse it (just make sure the password matches), or drop and recreate:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>dropuser<span class="w"> </span>hcpi<span class="w">                                </span><span class="c1"># only if no DBs depend on it</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createuser<span class="w"> </span>-s<span class="w"> </span>hcpi
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;ALTER USER hcpi WITH PASSWORD &#39;...&#39;;&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="pg_restore-error-relation-already-exists"><code>pg_restore: error: relation "..." already exists</code></h3>
+<p>You're re-running <code>pg_restore</code> against a database that already has tables in it. The dump expects an empty target.</p>
+<p><strong>Fix:</strong> drop and recreate the database, then re-run the restore.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Stop Odoo first — it holds a connection that blocks dropdb</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>dropdb<span class="w"> </span>hcpi
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createdb<span class="w"> </span>-O<span class="w"> </span>hcpi<span class="w"> </span>hcpi
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>pg_restore<span class="w"> </span>-U<span class="w"> </span>hcpi<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-d<span class="w"> </span>hcpi<span class="w"> </span>--no-owner<span class="w"> </span>--no-privileges<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span><span class="w"> </span>hcpi.dump
+</code></pre></div>
+<p>If <code>dropdb</code> fails with "database is being accessed by other users", force-close connections first:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname=&#39;hcpi&#39; AND pid &lt;&gt; pg_backend_pid();&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>dropdb<span class="w"> </span>hcpi
+</code></pre></div>
+<p>Also wipe the filestore if you're re-importing from scratch:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.local/share/Odoo/filestore/hcpi
+</code></pre></div>
+<hr />
+<h2 id="module-loading-errors">Module loading errors</h2>
+<h3 id="importerror-no-module-named-modulenotfounderror"><code>ImportError: No module named '...'</code> / <code>ModuleNotFoundError</code></h3>
+<p>Your venv isn't active, or a dependency didn't install.</p>
+<p><strong>Fix:</strong> activate the venv and reinstall:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># Your prompt should now show (venv)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>pip<span class="w"> </span>install<span class="w"> </span>wheel
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>odoo/requirements.txt
+</code></pre></div>
+<p>If you don't see <code>(venv)</code> in your prompt after <code>source</code>, the path is wrong. The venv was created where you ran <code>python3 -m venv venv</code> — usually <code>/opt/hcpi/venv/</code>.</p>
+<hr />
+<h3 id="filenotfounderror-hcpi-module-not-found-at-startup"><code>FileNotFoundError: ... HCPI</code> / module not found at startup</h3>
+<p>The <code>addons_path</code> in <code>hcpi.conf</code> is wrong. It must point at the <strong>parent</strong> folder of your modules, not at a module itself.</p>
+<p><strong>Correct:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/opt/hcpi/odoo/addons,/opt/hcpi/custom/HCPI</span>
+</code></pre></div>
+<p>This means "look in these two folders for module sub-folders".</p>
+<p><strong>Wrong</strong> (pointing at a single module):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="na">addons_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/opt/hcpi/custom/HCPI/hcpi_outlet</span>
+</code></pre></div>
+<p>Update the path, restart. See <a href="../training/day1/configuration/#addons_path-the-single-most-important-line">Configuration File</a>.</p>
+<hr />
+<h3 id="queue_job-not-found-at-startup"><code>queue_job</code> not found at startup</h3>
+<p>Two possibilities:</p>
+<ol>
+<li><strong>The module isn't on disk.</strong> Check <code>/opt/hcpi/custom/HCPI/queue_job/</code> exists. If not, the export was incomplete — re-extract from your source server.</li>
+<li>
+<p><strong>Temporary workaround:</strong> remove <code>queue_job</code> from <code>server_wide_modules</code> in <code>hcpi.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="na">server_wide_modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">base,web</span>
+</code></pre></div>
+<p>Index computation will work synchronously instead of via background jobs.</p>
+</li>
+</ol>
+<hr />
+<h3 id="module-already-installed-but-cannot-be-found">"Module already installed but cannot be found"</h3>
+<p>After deleting a module folder, the database still has metadata saying it's installed. Reset it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-d<span class="w"> </span>hcpi<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;DELETE FROM ir_module_module WHERE name = &#39;the_module_name&#39;;&quot;</span>
+</code></pre></div>
+<p>Then restart and let <code>-u all</code> rebuild.</p>
+<hr />
+<h2 id="port-and-process-errors">Port and process errors</h2>
+<h3 id="port-9201-already-in-use"><code>Port 9201 already in use</code></h3>
+<p>Another process is on that port — usually a previous Odoo run that didn't exit cleanly, or a separate Odoo instance.</p>
+<p><strong>Find it:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>ss<span class="w"> </span>-ltnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">9201</span>
+</code></pre></div>
+<p>You'll see the PID. Either kill it (<code>sudo kill &lt;pid&gt;</code>) or change the port in <code>hcpi.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">http_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9202</span>
+</code></pre></div>
+<hr />
+<h3 id="odoo-hangs-on-startup-no-error">Odoo hangs on startup, no error</h3>
+<p>Usually one of:</p>
+<ul>
+<li><strong>First start with large DB import.</strong> Odoo builds asset bundles (JS/CSS) on first run; can take 1-3 minutes. Wait for <code>HTTP service (werkzeug) running on ... port 9201</code>.</li>
+<li><strong><code>workers &gt; 0</code> on a memory-constrained machine.</strong> Workers each fork the full process; on a 4 GB laptop this can swap. Set <code>workers = 0</code> in <code>hcpi.conf</code> for development.</li>
+<li><strong>Stuck queue_job worker.</strong> If you're running <code>--workers</code> mode and <code>queue_job</code> is initialized but unresponsive, the master may hang waiting. Set <code>workers = 0</code> to bypass.</li>
+</ul>
+<hr />
+<h2 id="view-ui-errors">View / UI errors</h2>
+<h3 id="changed-a-view-file-no-change-visible-in-browser">Changed a view file, no change visible in browser</h3>
+<p>The file change hasn't been applied to the database yet. Choose one:</p>
+<p><strong>Option A: Restart with <code>-u</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>&lt;module_name&gt;
+</code></pre></div>
+<p><strong>Option B: Run with <code>--dev=xml</code> for live reload:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>--dev<span class="o">=</span>xml
+</code></pre></div>
+<p>Then refresh the browser (hard-refresh: <code>Ctrl+Shift+R</code>).</p>
+<p>If the change still isn't visible after <code>-u</code>:</p>
+<ul>
+<li><strong>Wrong file?</strong> Project-wide search for the exact string you changed.</li>
+<li><strong>Multiple matches?</strong> Several modules may have inherited the same view. The most-derived one wins.</li>
+<li><strong>Browser cache.</strong> Hard-refresh again, or open DevTools → Network → disable cache.</li>
+</ul>
+<p>See <a href="../first-edits/">Making Your First Edits</a> for the full edit → upgrade → refresh loop.</p>
+<hr />
+<h3 id="missing-icons-in-the-ui">Missing icons in the UI</h3>
+<p>The asset bundles got stale — common after a fresh install or a partial DB restore.</p>
+<p><strong>Fix (UI):</strong></p>
+<ol>
+<li>Top-right user menu → <strong>Settings</strong></li>
+<li>Activate developer mode if not already</li>
+<li><strong>Settings → Technical → User Interface → Regenerate Assets Bundles</strong></li>
+<li>Hard-refresh the browser</li>
+</ol>
+<p><strong>Fix (CLI):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>all<span class="w"> </span>--dev<span class="o">=</span>all
+</code></pre></div>
+<p><code>-u all</code> re-runs every module's install; <code>--dev=all</code> regenerates assets.</p>
+<p>See <a href="../installation/windows-wsl/#fix-missing-icons">Windows WSL Installation</a>.</p>
+<hr />
+<h3 id="access-denied-record-invisible-to-a-user">"Access denied" / record invisible to a user</h3>
+<p>The user's group doesn't have permission on the model.</p>
+<p><strong>Diagnose:</strong></p>
+<ol>
+<li>With developer mode on, log in as admin</li>
+<li>Go to <strong>Settings → Users &amp; Companies → Users</strong>, open the user</li>
+<li>Check the <strong>Access Rights</strong> tab — which groups are they in?</li>
+<li>Cross-reference <code>security/ir.model.access.csv</code> in the relevant module — does any of their groups have read on the target model?</li>
+</ol>
+<p>If not, either add them to a group that does, or add a new access line in the module's CSV. See Day 7 of the training for the full security model.</p>
+<hr />
+<h3 id="internal-server-error-on-a-page">"Internal Server Error" on a page</h3>
+<p>Read the Odoo log:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>tail<span class="w"> </span>-100<span class="w"> </span>/opt/hcpi/log/hcpi.log
+</code></pre></div>
+<p>The traceback at the bottom tells you the exception type and file. Common causes:</p>
+<ul>
+<li><strong><code>AttributeError: 'NoneType' object has no attribute '...'</code></strong> — code expects a record but got an empty recordset. Often a <code>search()</code> returning nothing.</li>
+<li><strong><code>KeyError</code></strong> — a field name doesn't exist on the model. Often a typo or a missing module.</li>
+<li><strong><code>ValueError: ... constraint violation</code></strong> — DB constraint failed (e.g. NOT NULL on a missing field).</li>
+<li><strong><code>AccessError</code></strong> — the user can't read or write the record (see "Access denied" above).</li>
+</ul>
+<hr />
+<h2 id="authentication-user-errors">Authentication / user errors</h2>
+<h3 id="cant-log-in-as-admin">Can't log in as admin</h3>
+<p>If you remember the password, just typing it should work. If you've forgotten it:</p>
+<p><strong>With Odoo stopped</strong>, set the password directly in the DB:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>-d<span class="w"> </span>hcpi<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;UPDATE res_users SET password = &#39;admin&#39; WHERE login = &#39;admin&#39;;&quot;</span>
+</code></pre></div>
+<p>Restart Odoo, log in as <code>admin</code>/<code>admin</code>, change the password from My Profile.</p>
+<p>Full details: <a href="../training/day1/user-administration/#resetting-the-admin-password-youre-locked-out">User Administration</a>.</p>
+<hr />
+<h3 id="web-db-manager-rejects-the-master-password">Web DB manager rejects the master password</h3>
+<p>You're using <code>admin_passwd</code> from the wrong copy of <code>hcpi.conf</code>, or the file was edited and not saved.</p>
+<p><strong>Diagnose:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>grep<span class="w"> </span>^admin_passwd<span class="w"> </span>/opt/hcpi/conf/hcpi.conf
+</code></pre></div>
+<p>If it shows what you're typing in, restart Odoo (the value is read at startup). If the file shows a different value, that's the actual master password.</p>
+<p>To change it: stop Odoo, edit <code>hcpi.conf</code>, restart.</p>
+<hr />
+<h3 id="forgot-the-master-password-no-plaintext-in-config">Forgot the master password, no plaintext in config</h3>
+<p>Modern Odoo stores <code>admin_passwd</code> as a hash after first use. If you've lost the original:</p>
+<ol>
+<li>Stop Odoo</li>
+<li>Edit <code>hcpi.conf</code>, replace the hash with a new plaintext value</li>
+<li>Start Odoo — it'll re-hash on next use</li>
+</ol>
+<hr />
+<h2 id="index-computation-errors">Index computation errors</h2>
+<h3 id="zero-price-validation-failed-insufficient-safe-months"><code>Zero-price validation failed — insufficient safe months</code></h3>
+<p>The <code>hcpi_computation</code> mixin requires at least 6 months of safe (non-zero) price history before allowing index computation. Less than that, and indices won't compute.</p>
+<p><strong>Fix:</strong> wait for more data, or — if this is a fresh deployment without history — temporarily relax the threshold in <code>hcpi_computation/models/hcpi_computation.py</code>. (Don't ship this change to production.)</p>
+<hr />
+<h3 id="index-wizard-finishes-immediately-no-data">Index wizard finishes immediately, no data</h3>
+<p>The wizard dispatched a queue_job that failed silently. Check:</p>
+<ol>
+<li><strong>Queue jobs view</strong> — in HCPI: <strong>Settings → Technical → Queue → Jobs</strong>. Find the recent failed jobs and read their error messages.</li>
+<li><strong>Log</strong> — <code>tail /opt/hcpi/log/hcpi.log</code> while triggering the wizard. Errors in workers also show here.</li>
+<li><strong><code>server_wide_modules</code></strong> — confirm <code>queue_job</code> is listed. Without it, jobs don't run.</li>
+</ol>
+<hr />
+<h3 id="dashboard-charts-blank">Dashboard charts blank</h3>
+<p>In order of likelihood:</p>
+<ol>
+<li><strong>No computed indices yet.</strong> Trigger the index wizards (Settings → HCPI → trigger relevant index update) and wait for them to complete.</li>
+<li><strong><code>dashboard_display = False</code> on divisions.</strong> The dashboard filters to divisions with <code>dashboard_display=True</code>. With developer mode on, open a <code>hcpi.class</code> record and toggle the flag.</li>
+<li><strong>JavaScript error.</strong> Open browser DevTools → Console. If <code>hcpi_dashboard.js</code> failed, you'll see the traceback. Often a stale asset bundle — regenerate (see "Missing icons" above).</li>
+<li><strong>ApexCharts CDN unreachable.</strong> The dashboard loads ApexCharts from a CDN. If the machine has no internet, charts won't render. Vendor ApexCharts locally as a fallback.</li>
+</ol>
+<hr />
+<h2 id="file-filestore-errors">File / filestore errors</h2>
+<h3 id="attachments-and-images-broken-after-restore">Attachments and images broken after restore</h3>
+<p>You restored the database but not the filestore. Odoo stores file content on disk, not in the DB.</p>
+<p><strong>Fix:</strong> unzip the filestore archive to the right location:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.local/share/Odoo/filestore
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">cd</span><span class="w"> </span>~/.local/share/Odoo/filestore
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>unzip<span class="w"> </span>/path/to/hcpi-filestore.zip
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>ls<span class="w">    </span><span class="c1"># should show: hcpi   (or your db_name)</span>
+</code></pre></div>
+<p>The folder name must match <code>db_name</code> in <code>hcpi.conf</code>. See <a href="../installation/windows-wsl/#a2-restore-the-filestore">WSL Installation Step 11</a>.</p>
+<hr />
+<h3 id="permission-denied-on-opthcpiloghcpilog-or-filestore"><code>Permission denied</code> on <code>/opt/hcpi/log/hcpi.log</code> or filestore</h3>
+<p>You ran something as <code>root</code> previously (or as another user), and that file is now owned by the wrong user.</p>
+<p><strong>Fix:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span>:<span class="nv">$USER</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span>:<span class="nv">$USER</span><span class="w"> </span>~/.local/share/Odoo
+</code></pre></div>
+<hr />
+<h2 id="performance-issues">Performance issues</h2>
+<h3 id="slow-startup">Slow startup</h3>
+<ul>
+<li><strong>Workers fork the master process</strong> — <code>workers &gt; 0</code> on low-RAM machines is slower than <code>workers = 0</code>. Try <code>workers = 0</code>.</li>
+<li><strong>First start is always slow</strong> (asset bundling). Subsequent restarts should be &lt; 30 seconds.</li>
+<li><strong>Big DB.</strong> Indexes on <code>hcpi.outlet.item.observation</code> and <code>hcpi.outlet.item</code> make this manageable; if you're seeing slow startup with a big DB, check those indexes still exist (<code>\d hcpi_outlet_item_observation</code> in psql).</li>
+</ul>
+<h3 id="slow-page-loads">Slow page loads</h3>
+<ul>
+<li><strong><code>workers = 0</code></strong> can't parallel-handle requests — fine for dev, painful with concurrent users.</li>
+<li><strong>Missing browser cache headers</strong> — confirm <code>proxy_mode = True</code> if behind a reverse proxy.</li>
+<li><strong>Asset bundles regenerating on every request</strong> — happens if <code>--dev=all</code> is on. Turn it off in production.</li>
+</ul>
+<h3 id="index-computation-slow">Index computation slow</h3>
+<ul>
+<li>
+<p>Configure more queue_job workers in <code>hcpi.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">[queue_job]</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="na">channels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">root:8,root.hcpi_ea:2</span>
+</code></pre></div>
+<p>More channels = more parallelism. Be mindful of total worker count vs. available RAM.</p>
+</li>
+<li>
+<p>Check <code>pg_stat_activity</code> while computation runs — locking on observation tables is a common bottleneck at scale.</p>
+</li>
+</ul>
+<hr />
+<h2 id="when-all-else-fails">When all else fails</h2>
+<ol>
+<li><strong>Re-read the bottom of the traceback.</strong> Odoo errors are often clear once you isolate the actual exception line.</li>
+<li><strong>Compare with a working install.</strong> If a colleague has HCPI running, diff <code>hcpi.conf</code> and the module list.</li>
+<li><strong>Wipe and reinstall.</strong> For dev environments only — <code>dropdb hcpi</code>, <code>createdb -O hcpi hcpi</code>, restart with <code>-i HCPI</code>. Sometimes faster than diagnosis.</li>
+<li><strong>Check the <a href="https://www.odoo.com/documentation/18.0/">Odoo 18 documentation</a></strong> for framework-level errors.</li>
+<li><strong>Ask in the Slack/team channel</strong> with: (a) the exact command you ran, (b) the last 30 lines of the log, (c) the value of any relevant config setting.</li>
+</ol>
+<h2 id="related-pages">Related pages</h2>
+<ul>
+<li><a href="../training/day1/configuration/">Configuration File</a> — what every setting does</li>
+<li><a href="../training/day1/postgresql/">PostgreSQL Setup</a> — common DB issues</li>
+<li><a href="../training/day1/user-administration/">User Administration</a> — password and access issues</li>
+<li><a href="../first-edits/">Making Your First Edits</a> — the edit → upgrade → refresh loop</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../first-edits/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Making Your First Edits">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Making Your First Edits
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../next-steps/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2536 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/concepts/cpi-explained/">
+      
+      
+        <link rel="prev" href="../../installation/linux/">
+      
+      
+        <link rel="next" href="../cpi-concepts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CPI Explained - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cpi-explained" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CPI Explained
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/getting-the-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-cpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a CPI?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpi-vs-inflation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPI vs. inflation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CPI vs. inflation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-they-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How they connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year-on-year-vs-month-on-month" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year-on-year vs. month-on-month
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-terms-in-the-same-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other terms in the same family
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four building blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The four building blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-outlets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Outlets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-weights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Weights
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-items-get-grouped-coicop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How items get grouped: COICOP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-households-get-grouped-baskets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How households get grouped: baskets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-everything-relates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How everything relates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-hcpi-computes-the-cpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How HCPI computes the CPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How HCPI computes the CPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-collect-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Collect observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-validate-the-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Validate the observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-compute-the-lowest-level-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Compute the lowest-level index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-roll-up-the-coicop-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Roll up the COICOP hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-combine-baskets-into-the-national-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Combine baskets into the national index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-hcpi-gives-you-that-a-spreadsheet-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What HCPI gives you that a spreadsheet doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go from here
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpi-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Variants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1 – Setup & Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1 – Setup & Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/server-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environment & HCPI Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/user-administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-cpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a CPI?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpi-vs-inflation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPI vs. inflation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CPI vs. inflation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-they-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How they connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year-on-year-vs-month-on-month" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year-on-year vs. month-on-month
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-terms-in-the-same-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other terms in the same family
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four building blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The four building blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-outlets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Outlets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-weights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Weights
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-items-get-grouped-coicop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How items get grouped: COICOP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-households-get-grouped-baskets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How households get grouped: baskets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-everything-relates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How everything relates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-hcpi-computes-the-cpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How HCPI computes the CPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How HCPI computes the CPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-collect-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Collect observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-validate-the-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Validate the observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-compute-the-lowest-level-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Compute the lowest-level index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-roll-up-the-coicop-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Roll up the COICOP hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-combine-baskets-into-the-national-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Combine baskets into the national index
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-hcpi-gives-you-that-a-spreadsheet-doesnt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What HCPI gives you that a spreadsheet doesn't
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go from here
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cpi-explained">CPI Explained</h1>
+<p>This page is for <strong>anyone who needs to understand what HCPI is for</strong> — project sponsors, new statisticians, technical leads joining the project, or developers who want the big picture before diving into code. No statistics background assumed. No code.</p>
+<p>By the end you'll know what a CPI is, how it's different from "inflation", the four building blocks every CPI is made of, and how the HCPI system turns the raw data into the headline number you see in the news.</p>
+<p>For the developer-facing version with model names and computation worked out, see <a href="../cpi-concepts/">CPI Concepts</a>.</p>
+<h2 id="what-is-a-cpi">What is a CPI?</h2>
+<p>A <strong>Consumer Price Index (CPI)</strong> is one number — like <strong>117.3</strong> — that says how expensive everyday life has become compared to some earlier point in time.</p>
+<p>The earlier point is called the <strong>base period</strong>, and by convention is set to <strong>100</strong>. So:</p>
+<ul>
+<li>A CPI of <strong>100</strong> means prices are the same as the base period.</li>
+<li>A CPI of <strong>117.3</strong> means prices are <strong>17.3% higher</strong> than the base period.</li>
+<li>A CPI of <strong>95</strong> means prices are <strong>5% lower</strong> than the base period (rare, but possible).</li>
+</ul>
+<p>The "consumer" in "Consumer Price Index" means it's about households, not businesses or government. The "index" means it's a <em>comparison</em> number, not an <em>amount</em> — it tells you how prices have <em>changed</em>, not what things actually cost.</p>
+<h2 id="cpi-vs-inflation">CPI vs. inflation</h2>
+<p>People often use these words interchangeably. They're related, but not the same thing.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CPI</th>
+<th>Inflation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>A <em>level</em> — how prices compare to the base period</td>
+<td>A <em>rate</em> — how fast prices are changing</td>
+</tr>
+<tr>
+<td><strong>Looks like</strong></td>
+<td>"CPI is 117.3"</td>
+<td>"Inflation is 5.2% this year"</td>
+</tr>
+<tr>
+<td><strong>Where it comes from</strong></td>
+<td>Direct computation from prices</td>
+<td>Calculated <em>from</em> the CPI</td>
+</tr>
+<tr>
+<td><strong>Time dimension</strong></td>
+<td>A snapshot of one period (usually one month)</td>
+<td>A change between two periods</td>
+</tr>
+</tbody>
+</table>
+<p>You can think of CPI as the <strong>odometer</strong> (where are we now?) and inflation as the <strong>speedometer</strong> (how fast are we moving?).</p>
+<h3 id="how-they-connect">How they connect</h3>
+<p>Inflation is computed from the CPI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                  CPI now  −  CPI a year ago
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Inflation rate  = ──────────────────────────  ×  100%
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                       CPI a year ago
+</code></pre></div>
+<p>If CPI was 110 last year and is 117.3 this year:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>              117.3 − 110
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Inflation  =  ───────────  ×  100%   ≈   6.6%
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                  110
+</code></pre></div>
+<p>The CPI is the <em>underlying measurement</em>; inflation is the <em>change in that measurement</em>.</p>
+<h3 id="year-on-year-vs-month-on-month">Year-on-year vs. month-on-month</h3>
+<p>Inflation can be measured over different time spans:</p>
+<ul>
+<li><strong>Year-on-year inflation</strong> — compares this month to the same month last year. The number you see in news headlines.</li>
+<li><strong>Month-on-month inflation</strong> — compares this month to last month. More sensitive to short-term blips.</li>
+<li><strong>Annual inflation (calendar)</strong> — January-to-December change.</li>
+</ul>
+<p>All of them come out of the same CPI series. HCPI stores the CPI; the inflation rates are derived in reports and dashboards.</p>
+<h3 id="other-terms-in-the-same-family">Other terms in the same family</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Deflation</strong></td>
+<td>Negative inflation — prices going down. CPI is falling.</td>
+</tr>
+<tr>
+<td><strong>Disinflation</strong></td>
+<td>Inflation slowing down (still positive). CPI still rising, but slower than before.</td>
+</tr>
+<tr>
+<td><strong>Core CPI</strong></td>
+<td>A version of the CPI that excludes volatile categories (food, fuel). Smooths out short-term jumps.</td>
+</tr>
+<tr>
+<td><strong>Headline CPI</strong></td>
+<td>The all-items CPI — the number most often reported.</td>
+</tr>
+<tr>
+<td><strong>Real vs. nominal</strong></td>
+<td>"Nominal" = unadjusted for inflation. "Real" = adjusted using the CPI. "Real wages" means wages after subtracting price increases.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-four-building-blocks">The four building blocks</h2>
+<p>Every CPI in the world — from Uganda's to the United States' — is built from the same four pieces. Once you understand these, the rest of the system makes sense.</p>
+<h3 id="1-items">1. Items</h3>
+<p><strong>What it is:</strong> a specific good or service that gets priced. Not "food", but "white rice, 1 kg, retail". Not "transport", but "bus fare, Kampala to Entebbe, one-way".</p>
+<p>The list is huge — typically 200-500 items per country — chosen so it represents what households actually buy.</p>
+<p>In HCPI: the <code>hcpi.item</code> model. See the <a href="../../understanding-the-codebase/module-reference/#hcpi_item">Module Reference</a>.</p>
+<h3 id="2-outlets">2. Outlets</h3>
+<p><strong>What it is:</strong> the places where prices get observed. A specific market stall, a supermarket, a roadside seller.</p>
+<p>You don't price an item just once — you price it at many outlets across the country, because the same item can cost different amounts in different places. The full picture comes from sampling many outlets.</p>
+<p>In HCPI: the <code>hcpi.outlet</code> model.</p>
+<h3 id="3-observations">3. Observations</h3>
+<p><strong>What it is:</strong> one actual recorded price. <em>On this date, at this outlet, this item cost this much.</em></p>
+<p>For example: <em>"On 16 September 2025, at Kikuubo Wholesale Market Stall 4, 1 kg of white rice cost UGX 4,200."</em></p>
+<p>Millions of observations accumulate over the life of a CPI system. Each one is a single data point feeding the index calculation.</p>
+<p>In HCPI: the <code>hcpi.outlet.item.observation</code> model.</p>
+<h3 id="4-weights">4. Weights</h3>
+<p><strong>What it is:</strong> a number attached to each item (and each category of items) representing how <em>important</em> it is to a typical household.</p>
+<p>Bread matters more than caviar — most households buy bread weekly and never buy caviar — so bread has a much bigger weight in the index.</p>
+<p>Weights typically come from a national household expenditure survey, which asks thousands of households what they actually spent money on. Without weights, a 10% jump in caviar prices would affect the index just as much as a 10% jump in bread prices, which would obviously be wrong.</p>
+<p>In HCPI: the <code>composite_weight</code> field on the COICOP hierarchy.</p>
+<h2 id="how-items-get-grouped-coicop">How items get grouped: COICOP</h2>
+<p>Five hundred items can't sit in a flat list — they need to be organized so you can ask questions like "did food get more expensive?" or "what's happening to transport costs?"</p>
+<p>The international standard for this grouping is <strong>COICOP</strong> (Classification of Individual Consumption by Purpose). It's a six-level tree that every country uses. The top level has 12-14 broad divisions; the bottom level groups items that are direct substitutes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Division           &quot;01 — Food and non-alcoholic beverages&quot;
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   │
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   ├─ Group           &quot;01.1 — Food&quot;
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   │     │
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>   │     ├─ Class           &quot;01.1.1 — Bread and cereals&quot;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   │     │     │
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   │     │     ├─ Sub-class      &quot;01.1.1.1 — Rice&quot;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   │     │     │     │
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>   │     │     │     ├─ Micro-class    &quot;01.1.1.1.1 — Rice (white)&quot;
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   │     │     │     │     │
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   │     │     │     │     └─ Elementary aggregate    &quot;Rice, white, 1 kg, retail&quot;
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   │     │     │     │              │
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>   │     │     │     │              └─ Items (specific brands/origins)
+</code></pre></div>
+<p>The bottom level — called the <strong>elementary aggregate</strong> (EA) — is fine-grained enough that all items inside it are interchangeable. Below that, simple averaging works. Above that, you need weights.</p>
+<p>This is why COICOP matters: it's the structure that tells the calculation <strong>when to weight and when to just average</strong>.</p>
+<h2 id="how-households-get-grouped-baskets">How households get grouped: baskets</h2>
+<p>Households don't all spend money the same way. A rural farmer's basket of typical purchases looks very different from an urban office worker's. A high-income household and a low-income household have different priorities.</p>
+<p>If you computed one CPI across everyone, you'd average their experiences and lose all the interesting information. So instead, you compute multiple CPIs — one for each meaningful group of consumers.</p>
+<p>In CPI terminology these groups are called <strong>baskets</strong>, and HCPI calls them <strong>consumption segments</strong>. Examples:</p>
+<ul>
+<li>Urban high-income</li>
+<li>Urban low-income</li>
+<li>Rural</li>
+<li>Kampala metropolitan</li>
+<li>Coastal Kenya</li>
+</ul>
+<p>Each outlet is tagged with the basket it serves. Observations from supermarket outlets feed the urban-high-income index; observations from rural markets feed the rural index. The same item might have one price in a supermarket and a different price in a rural market — that's how different baskets get different indices.</p>
+<p>In HCPI: the <code>hcpi.consumption.segment</code> model.</p>
+<h2 id="how-everything-relates">How everything relates</h2>
+<p>The pieces fit together like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>                    COICOP hierarchy                 BASKETS
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                  ─────────────────────       ─────────────────
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                  Division                    Urban high-income
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                     ↓                        Urban low-income
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                  Group                       Rural
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                     ↓                        Kampala metro
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                  Class                       ...
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                     ↓
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                  Sub-class
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                     ↓                                ▲
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                  Micro-class                         │ outlet is tagged
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                     ↓                                │ with its basket
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                  Elementary aggregate ──→ contains ITEMS
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>                                                      ▲
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>                                                      │ priced at
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>                                                      │
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>                                                   OUTLETS
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>                                                      ▲
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>                                                      │ produces
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>                                                      │
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>                                                   OBSERVATIONS
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>                                                   (one price at
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>                                                    one date)
+</code></pre></div>
+<p>Read it like this:</p>
+<ul>
+<li>An <strong>observation</strong> is <em>one price</em> for <em>one item</em> at <em>one outlet</em> on <em>one date</em>.</li>
+<li>An <strong>outlet</strong> has many observations over time (one per visit per item) and belongs to one <strong>basket</strong>.</li>
+<li>An <strong>item</strong> belongs to one <strong>elementary aggregate</strong> in COICOP.</li>
+<li>The <strong>elementary aggregate</strong> is the deepest COICOP level — below it, items are equivalent; above it, weighting kicks in.</li>
+</ul>
+<h2 id="how-hcpi-computes-the-cpi">How HCPI computes the CPI</h2>
+<p>Now the building blocks are in place, here's what the system actually does to produce the headline number.</p>
+<h3 id="step-1-collect-observations">Step 1: Collect observations</h3>
+<p>Enumerators visit outlets every month and record prices. Each price becomes one observation in the database. In HCPI this is done through a <strong>questionnaire</strong> — one questionnaire per (outlet × month), pre-populated with the items that outlet sells.</p>
+<p>The questionnaires can be filled in two ways: through the web interface, or through the Flutter mobile app (which syncs back when network is available).</p>
+<h3 id="step-2-validate-the-observations">Step 2: Validate the observations</h3>
+<p>Some observations are wrong — typos, mistaken units, misread prices. Without filtering, those errors would distort the index.</p>
+<p>HCPI uses the <strong>Tukey algorithm</strong>, a robust statistical method, to flag observations that are far outside the typical range for an item. For example: if white rice in Kampala-urban typically costs UGX 4,000-4,500 in September, an observation of UGX 42,000 (a likely typo) would be flagged.</p>
+<p>Flagged observations don't get automatically thrown out — a <strong>supervisor</strong> reviews each one. Sometimes anomalies are real (a supply shock, a unique outlet), so human judgment finishes the job.</p>
+<h3 id="step-3-compute-the-lowest-level-index">Step 3: Compute the lowest-level index</h3>
+<p>Once observations are validated, HCPI computes a <strong>price relative</strong> for each one:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>                       current price
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Price relative  =  ─────────────────────
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>                    base-period price
+</code></pre></div>
+<p>So if rice was UGX 4,000 in the base period and is UGX 4,200 now, the price relative is <strong>1.05</strong> (rice is 5% more expensive).</p>
+<p>For each elementary aggregate × basket × month, HCPI takes the <strong>geometric mean</strong> (a kind of average that handles ratios well) of all the price relatives from observations in that group. The result is the <strong>elementary aggregate index</strong> — one number per EA per basket per month.</p>
+<h3 id="step-4-roll-up-the-coicop-hierarchy">Step 4: Roll up the COICOP hierarchy</h3>
+<p>The elementary aggregate indices get combined upward through COICOP, weighted by the composite weights at each level:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>elementary aggregate indices
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   ↓  weighted aggregation
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>micro-class indices
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>   ↓
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>sub-class indices
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>   ↓
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>class indices
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>   ↓
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>group indices
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>   ↓
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>division indices
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>   ↓  weighted aggregation
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>basket index (one per basket per month)
+</code></pre></div>
+<p>The composite weights come from household expenditure surveys and represent each category's share of typical spending. Bread gets a bigger weight than caviar; food gets a bigger weight than entertainment.</p>
+<h3 id="step-5-combine-baskets-into-the-national-index">Step 5: Combine baskets into the national index</h3>
+<p>Each basket gives one number per month (the basket index). HCPI combines them, weighted by the <strong>population in each basket</strong>, to produce the <strong>national index</strong> — the headline CPI.</p>
+<p>That single number is what gets reported in the news and used to compute the inflation rate.</p>
+<h3 id="step-6-display">Step 6: Display</h3>
+<p>The dashboard shows the headline CPI plus breakdowns by division, by basket, and trends over time. Year-on-year and month-on-month inflation rates are computed on the fly from the stored CPI series.</p>
+<h2 id="what-hcpi-gives-you-that-a-spreadsheet-doesnt">What HCPI gives you that a spreadsheet doesn't</h2>
+<p>A statistics body could (and historically did) compute CPI in Excel. What HCPI adds:</p>
+<ul>
+<li><strong>Standardized data entry.</strong> Every observation goes through the same form, with the same validation rules.</li>
+<li><strong>Mobile data collection.</strong> Enumerators record observations in the field, offline if necessary, with the data syncing automatically.</li>
+<li><strong>Automated outlier detection.</strong> Tukey runs over all observations every month, flagging anomalies before they reach the index.</li>
+<li><strong>Audit trails.</strong> Every observation, every state transition, every supervisor decision is logged. You can answer "who validated this price?" or "when was this item added to this outlet's catalog?"</li>
+<li><strong>Multi-basket support.</strong> Computing CPI for 12 baskets in parallel would be a spreadsheet nightmare; HCPI handles it as a normal mode of operation.</li>
+<li><strong>Reproducible computation.</strong> Re-running an index gives the same answer, every time. No "Excel macro that only Joseph knows how to run".</li>
+<li><strong>Real-time validation.</strong> The system warns you about zero-price observations, missing items, broken hierarchies <em>before</em> they affect published numbers.</li>
+<li><strong>Mobile + web parity.</strong> Field workers and office statisticians work on the same data with the same rules.</li>
+<li><strong>Regional aggregation.</strong> The EAC Secretariat hub pulls indicators from member-state HCPI instances over a secure connection for regional comparison — without anyone exporting CSVs.</li>
+</ul>
+<p>The CPI methodology hasn't changed in 70 years. What HCPI changes is the <strong>operational machinery</strong> around it.</p>
+<h2 id="where-to-go-from-here">Where to go from here</h2>
+<table>
+<thead>
+<tr>
+<th>If you want...</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>To understand the CPI methodology in more depth</td>
+<td><a href="../cpi-concepts/">CPI Concepts</a></td>
+</tr>
+<tr>
+<td>To see a concrete end-to-end example</td>
+<td><a href="../data-flow/">Data Flow Walkthrough</a></td>
+</tr>
+<tr>
+<td>Quick definitions of any term</td>
+<td><a href="../glossary/">Glossary</a></td>
+</tr>
+<tr>
+<td>The technical architecture</td>
+<td><a href="../../understanding-the-codebase/module-reference/">Module Reference</a></td>
+</tr>
+<tr>
+<td>To see how different countries customize HCPI</td>
+<td><a href="../../understanding-the-codebase/country-variants/">Country Variants</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../installation/linux/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linux Server">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Linux Server
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cpi-concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: CPI Concepts">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                CPI Concepts
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

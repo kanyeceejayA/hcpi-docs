@@ -12,31 +12,31 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/getting-started/prerequisites/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/training/day1/dev-environment/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../virtualenv-install/">
       
       
-        <link rel="next" href="../getting-the-code/">
+        <link rel="next" href="../configuration/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Prerequisites - HCPI Documentation</title>
+        <title>Development Environment - HCPI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prerequisites" class="md-skip">
+        <a href="#development-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Prerequisites
+              Development Environment
             
           </span>
         </div>
@@ -220,7 +220,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -238,7 +238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -262,8 +262,6 @@
       
   
   
-    
-  
   
   
     
@@ -276,11 +274,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -301,7 +301,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -316,37 +316,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Prerequisites
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../getting-started/prerequisites/" class="md-nav__link">
         
   
   
@@ -362,148 +335,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Requirements
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Requirements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-linux-and-windows-wsl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Linux and Windows WSL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-windows-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Windows Native
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Software Dependencies
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Dependencies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Tools
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Get the Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Knowledge Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -516,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-the-code/" class="md-nav__link">
+      <a href="../../../getting-started/getting-the-code/" class="md-nav__link">
         
   
   
@@ -605,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extraction/linux-export/" class="md-nav__link">
+      <a href="../../../extraction/linux-export/" class="md-nav__link">
         
   
   
@@ -694,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/windows-wsl/" class="md-nav__link">
+      <a href="../../../installation/windows-wsl/" class="md-nav__link">
         
   
   
@@ -722,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/windows-native/" class="md-nav__link">
+      <a href="../../../installation/windows-native/" class="md-nav__link">
         
   
   
@@ -750,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/linux/" class="md-nav__link">
+      <a href="../../../installation/linux/" class="md-nav__link">
         
   
   
@@ -839,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/cpi-explained/" class="md-nav__link">
+      <a href="../../../concepts/cpi-explained/" class="md-nav__link">
         
   
   
@@ -867,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
+      <a href="../../../concepts/cpi-concepts/" class="md-nav__link">
         
   
   
@@ -895,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/data-flow/" class="md-nav__link">
+      <a href="../../../concepts/data-flow/" class="md-nav__link">
         
   
   
@@ -923,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/glossary/" class="md-nav__link">
+      <a href="../../../concepts/glossary/" class="md-nav__link">
         
   
   
@@ -1012,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
         
   
   
@@ -1040,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/" class="md-nav__link">
         
   
   
@@ -1068,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/module-reference/" class="md-nav__link">
         
   
   
@@ -1096,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
+      <a href="../../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
   
   
@@ -1124,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-edits/" class="md-nav__link">
+      <a href="../../../first-edits/" class="md-nav__link">
         
   
   
@@ -1159,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/" class="md-nav__link">
+      <a href="../../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -1240,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/" class="md-nav__link">
+      <a href="../../../next-steps/" class="md-nav__link">
         
   
   
@@ -1268,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/https-apache/" class="md-nav__link">
+      <a href="../../../next-steps/https-apache/" class="md-nav__link">
         
   
   
@@ -1296,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+      <a href="../../../next-steps/https-nginx/" class="md-nav__link">
         
   
   
@@ -1328,8 +1159,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1340,13 +1173,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
@@ -1367,7 +1198,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1385,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1410,6 +1241,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1419,13 +1252,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
         
           
           <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
@@ -1446,7 +1277,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1464,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1492,7 +1323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/server-setup/" class="md-nav__link">
+      <a href="../server-setup/" class="md-nav__link">
         
   
   
@@ -1520,7 +1351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/dependencies/" class="md-nav__link">
+      <a href="../dependencies/" class="md-nav__link">
         
   
   
@@ -1548,7 +1379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/postgresql/" class="md-nav__link">
+      <a href="../postgresql/" class="md-nav__link">
         
   
   
@@ -1576,7 +1407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+      <a href="../virtualenv-install/" class="md-nav__link">
         
   
   
@@ -1601,10 +1432,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1620,6 +1478,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-were-aiming-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What we're aiming for
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-an-ide-matters-for-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why an IDE matters for HCPI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-code-recommended-for-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code (recommended for WSL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VS Code (recommended for WSL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-wsl-integration-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the WSL integration works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-the-interpreter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting the interpreter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pycharm-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyCharm (alternative)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#im-working-on-a-real-linux-server-not-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "I'm working on a real Linux server, not WSL"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-short-list-of-habits-that-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A short list of habits that help
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1632,7 +1615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -1660,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../training/day1/user-administration/" class="md-nav__link">
+      <a href="../user-administration/" class="md-nav__link">
         
   
   
@@ -1703,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         
   
   
@@ -1750,22 +1733,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#what-were-aiming-for" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System Requirements
+        What we're aiming for
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="System Requirements">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-an-ide-matters-for-hcpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why an IDE matters for HCPI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-code-recommended-for-wsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code (recommended for WSL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VS Code (recommended for WSL)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#for-linux-and-windows-wsl" class="md-nav__link">
+  <a href="#how-the-wsl-integration-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        For Linux and Windows WSL
+        How the WSL integration works
       
     </span>
   </a>
@@ -1773,10 +1778,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#for-windows-native" class="md-nav__link">
+  <a href="#selecting-the-interpreter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        For Windows Native
+        Selecting the interpreter
       
     </span>
   </a>
@@ -1789,60 +1794,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#software-dependencies" class="md-nav__link">
+  <a href="#pycharm-alternative" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Software Dependencies
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Software Dependencies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Tools
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Get the Code
+        PyCharm (alternative)
       
     </span>
   </a>
@@ -1850,10 +1805,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
+  <a href="#im-working-on-a-real-linux-server-not-wsl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Knowledge Prerequisites
+        "I'm working on a real Linux server, not WSL"
       
     </span>
   </a>
@@ -1861,10 +1816,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#a-short-list-of-habits-that-help" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Steps
+        A short list of habits that help
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical steps
       
     </span>
   </a>
@@ -1888,92 +1854,86 @@
 
 
 
-<h1 id="prerequisites">Prerequisites</h1>
-<p>Before installing HCPI, ensure your system meets the following requirements.</p>
-<h2 id="system-requirements">System Requirements</h2>
-<h3 id="for-linux-and-windows-wsl">For Linux and Windows WSL</h3>
+<h1 id="development-environment">Development Environment</h1>
+<p>You can edit HCPI with <code>nano</code> if you want, but you won't enjoy it. This page sets up a proper IDE so the rest of the week is comfortable.</p>
+<h2 id="what-were-aiming-for">What we're aiming for</h2>
+<p>By the end of this step:</p>
 <ul>
-<li><strong>Operating System</strong>: Ubuntu 20.04 LTS or later (or compatible Linux distribution)</li>
-<li><strong>RAM</strong>: Minimum 4GB (8GB recommended for production)</li>
-<li><strong>Disk Space</strong>: At least 10GB free space</li>
-<li><strong>User Privileges</strong>: Sudo access for package installation</li>
+<li>A code editor open on <code>/opt/hcpi/</code> with project-wide search, file navigation, and Python autocomplete</li>
+<li>The editor pointing at the project venv (so imports resolve and type hints work)</li>
+<li>The official <strong>Odoo extension</strong> installed for navigation between models, fields, and views</li>
 </ul>
-<h3 id="for-windows-native">For Windows Native</h3>
+<h2 id="why-an-ide-matters-for-hcpi">Why an IDE matters for HCPI</h2>
+<p>Odoo's pattern is to spread one logical feature across several files. An outlet, for example, is:</p>
 <ul>
-<li><strong>Operating System</strong>: Windows 10 or Windows Server 2016 or later</li>
-<li><strong>RAM</strong>: Minimum 4GB (8GB recommended)</li>
-<li><strong>Disk Space</strong>: At least 10GB free space</li>
+<li>A model in <code>hcpi_outlet/models/outlet.py</code></li>
+<li>A form view in <code>hcpi_outlet/views/outlet_views.xml</code></li>
+<li>Access rules in <code>hcpi_outlet/security/ir.model.access.csv</code></li>
+<li>Possibly an icon in <code>hcpi_outlet/static/description/icon.png</code></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Production Deployment</p>
-<p>Windows native installation is suitable for testing and development. For production deployments, use Linux or Windows WSL for better compatibility and performance.</p>
-</div>
-<h2 id="software-dependencies">Software Dependencies</h2>
-<h3 id="python">Python</h3>
+<p>When you want to understand what happens on a click, you'll jump between these files dozens of times. A good IDE makes that:</p>
 <ul>
-<li><strong>Version</strong>: Python 3.10 or later</li>
-<li>Used for running Odoo and HCPI modules</li>
+<li><strong>Go-to-definition</strong> — click on <code>self.env['hcpi.outlet']</code> and jump to the model</li>
+<li><strong>Find references</strong> — see everywhere a field is read or written</li>
+<li><strong>Project-wide search</strong> — grep across all modules in milliseconds</li>
+<li><strong>Autocomplete</strong> — Odoo's ORM methods (<code>search</code>, <code>read</code>, <code>create</code>, <code>write</code>) are massive and well-typed</li>
 </ul>
-<h3 id="postgresql">PostgreSQL</h3>
+<h2 id="vs-code-recommended-for-wsl">VS Code (recommended for WSL)</h2>
+<p>VS Code is free, has first-class WSL integration, and has the most-maintained Odoo extension. It's the recommended option for training.</p>
+<p>What you'll install:</p>
+<ol>
+<li><strong>VS Code</strong> on Windows (<a href="https://code.visualstudio.com/">code.visualstudio.com</a>) — with "Add to PATH" ticked during installation</li>
+<li><strong>WSL extension</strong> (Microsoft) — lets VS Code connect into your WSL filesystem</li>
+<li><strong>Python extension</strong> (Microsoft) — autocomplete, debugger, interpreter selection</li>
+<li><strong>Odoo extension</strong> (Odoo S.A.) — navigation for models, fields, XML views</li>
+</ol>
+<p>The Odoo extension is what makes this setup specifically good for HCPI work — it knows what <code>@api.depends</code> means, can follow <code>_inherit</code>, jumps from a view's XML to the model it's bound to.</p>
+<h3 id="how-the-wsl-integration-works">How the WSL integration works</h3>
+<p>VS Code itself runs on Windows. When you "Open Folder" into a WSL path, VS Code spawns a small server <em>inside</em> WSL that does the file reading, language analysis, and terminal — the Windows-side VS Code is just the UI. This means:</p>
 <ul>
-<li><strong>Version</strong>: PostgreSQL 12 or later</li>
-<li>The database backend for HCPI</li>
+<li>File watching is fast (Linux filesystem, not the slow <code>/mnt/c</code> bridge)</li>
+<li>The integrated terminal opens inside WSL by default — no manual <code>wsl</code> command</li>
+<li>The Python interpreter you pick is the WSL one (<code>/opt/hcpi/venv/bin/python3</code>)</li>
 </ul>
-<h3 id="additional-tools">Additional Tools</h3>
-<p>The following will be installed during the setup process:</p>
+<p>You launch it from inside WSL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>code<span class="w"> </span>.
+</code></pre></div>
+<p>If you see "command not found", restart your WSL terminal — VS Code's <code>code</code> shim only appears in shells started after the WSL extension installs.</p>
+<h3 id="selecting-the-interpreter">Selecting the interpreter</h3>
+<p>Once VS Code is open on the project, the next critical step is telling it about the venv. Without this, you'll see red squiggles everywhere because VS Code is checking against the system Python, which doesn't have <code>werkzeug</code> or <code>odoo</code>.</p>
+<p><code>Ctrl+Shift+P</code> → <code>Python: Select Interpreter</code> → pick <code>./venv/bin/python3</code> (or browse to <code>/opt/hcpi/venv/bin/python3</code>).</p>
+<p>The status bar at the bottom-left should now show the venv path. Imports will resolve.</p>
+<h2 id="pycharm-alternative">PyCharm (alternative)</h2>
+<p>PyCharm is a fine choice if you already know it. Caveats specifically for WSL development:</p>
 <ul>
-<li>Git (for version control)</li>
-<li>pip (Python package manager)</li>
-<li>virtualenv (for Python virtual environment management)</li>
-<li>wkhtmltopdf (for PDF report generation)</li>
+<li><strong>WSL remote support is Professional-only</strong> (~$99/year). The free Community edition has to access WSL files via the <code>\\wsl$\Ubuntu\opt\hcpi</code> network path, which is slower than VS Code's approach.</li>
+<li><strong>Database tools</strong> (often handy for HCPI work — running ad-hoc queries against PostgreSQL) are also Professional-only.</li>
 </ul>
-<h2 id="get-the-code">Get the Code</h2>
-<p>Three sources, depending on your situation:</p>
-<table>
-<thead>
-<tr>
-<th>Source</th>
-<th>Best for</th>
-<th>Has data?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Clone the EAC upstream repo</strong> (request access from <a href="mailto:mkakinyi@eachq.org">mkakinyi@eachq.org</a>)</td>
-<td>New deployments, new country adoption</td>
-<td>❌ Empty instance</td>
-</tr>
-<tr>
-<td><strong>Export from a country's HCPI server</strong> (<a href="../../extraction/linux-export/">extraction guide</a>)</td>
-<td>Migrating an existing instance</td>
-<td>✅ Full data</td>
-</tr>
-<tr>
-<td><strong>Uganda's test files</strong> (<a href="https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w">statistics.ubos.org</a>)</td>
-<td>Evaluation, training, reference</td>
-<td>✅ Sample data</td>
-</tr>
-</tbody>
-</table>
-<p>See <strong><a href="../getting-the-code/">Getting the Code</a></strong> for the full walkthrough of all three options, including the minimal <code>hcpi.conf</code> template if you're cloning fresh from the upstream repo.</p>
-<div class="admonition tip">
-<p class="admonition-title">Not sure which one?</p>
-<p>For most new users — including any country setting up HCPI from scratch — <strong>clone the EAC upstream repo</strong>. It's the canonical source code and you start with a clean instance.</p>
-</div>
-<h2 id="knowledge-prerequisites">Knowledge Prerequisites</h2>
-<p>This documentation assumes you have:</p>
+<p>If you have a Professional licence, it's a great experience. Otherwise, VS Code is the better fit for WSL.</p>
+<p>Configuration is conceptually the same: open the project, set the interpreter to the venv's Python.</p>
+<h2 id="im-working-on-a-real-linux-server-not-wsl">"I'm working on a real Linux server, not WSL"</h2>
+<p>Same advice but simpler. Options:</p>
 <ul>
-<li>Basic command-line familiarity</li>
-<li>Basic understanding of Python environments</li>
-<li>Basic Linux/Unix command knowledge (for Linux and WSL installations)</li>
+<li><strong>VS Code Remote-SSH</strong> — VS Code on your laptop, files on the server. Same architecture as WSL Remote.</li>
+<li><strong>VS Code on the server, in a browser</strong> — install <code>code-server</code> if you want a browser-based editor on the server itself.</li>
+<li><strong>Vim/Emacs</strong> — if you already live there, you already know what you're doing.</li>
 </ul>
-<h2 id="next-steps">Next Steps</h2>
-<p>Once you've confirmed your system meets these requirements and obtained the code, proceed to the installation guide for your platform:</p>
+<p>The point either way is the same: editor with project-wide search, Python autocomplete, and (ideally) Odoo-aware navigation.</p>
+<h2 id="a-short-list-of-habits-that-help">A short list of habits that help</h2>
+<p>Once your IDE is set up:</p>
 <ul>
-<li><a href="../../installation/linux/">Linux Server Installation</a></li>
-<li><a href="../../installation/windows-wsl/">Windows WSL Installation</a></li>
-<li><a href="../../installation/windows-native/">Windows Native Installation</a></li>
+<li><strong>Use project search aggressively.</strong> When you see <code>hcpi.outlet</code> or <code>outlet_form_view</code>, grep for it across <code>custom/HCPI/</code>. This is how you learn the codebase.</li>
+<li><strong>Bookmark <code>models/</code> and <code>views/</code> folders.</strong> You'll be in them constantly.</li>
+<li><strong>Use Developer Mode in the browser</strong> alongside the IDE. With developer mode on, hovering a field shows its technical name; you grep that name in the IDE to find the file. (Covered on <a href="../user-administration/">User Administration</a> and <a href="../../../understanding-the-codebase/">Understanding the Codebase</a>.)</li>
+<li><strong>Keep a second terminal open</strong> running <code>tail -f /opt/hcpi/log/hcpi.log</code> — Odoo's log is where errors show up first.</li>
 </ul>
+<h2 id="practical-steps">Practical steps</h2>
+<p>The WSL guide has the most detailed walkthrough including screenshots:</p>
+<ul>
+<li><strong><a href="../../../installation/windows-wsl/">Windows WSL</a></strong> — Step 9 (VS Code + WSL + Python + Odoo extension, with the PyCharm alternative)</li>
+</ul>
+<p>➡️ Next: <a href="../configuration/">Configuration File</a></p>
 
 
 
@@ -2009,7 +1969,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+          <a href="../virtualenv-install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Virtual Environment &amp; HCPI Install">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2019,20 +1979,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Home
+                Virtual Environment & HCPI Install
               </div>
             </div>
           </a>
         
         
           
-          <a href="../getting-the-code/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting the Code">
+          <a href="../configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration File">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Getting the Code
+                Configuration File
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2069,10 +2029,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
