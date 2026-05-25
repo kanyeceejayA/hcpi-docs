@@ -40,7 +40,10 @@ nav:
     - Windows Native: installation/windows-native.md
     - Linux Server: installation/linux.md
   - Working with the Code:
+    - Odoo Basics: understanding-the-codebase/odoo-basics.md
     - Understanding the Codebase: understanding-the-codebase/index.md
+    - Module Reference: understanding-the-codebase/module-reference.md
+    - Country Variants: understanding-the-codebase/country-variants.md
     - Making Your First Edits: first-edits/index.md
   - Next Steps:
     - Overview: next-steps/index.md
