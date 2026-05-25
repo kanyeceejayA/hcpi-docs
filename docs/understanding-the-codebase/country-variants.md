@@ -2,7 +2,7 @@
 
 The HCPI source repo holds **one branch per country deployment**. The `c:/hcpi` checkout you've been working with is one country's worldview (Uganda); the same shared core lives in every other country's branch with a different overlay on top.
 
-This page maps the branch zoo, the two architectural eras (modern overlay vs. legacy single-folder), and the concrete differences between country overlays — what each country adds, where the location hierarchies differ, and why some countries need a `xx_data_collection` overlay while others don't.
+This page maps the branch zoo and the concrete differences between country overlays — what each country adds, where the location hierarchies differ, and why some countries need a `xx_data_collection` overlay while others don't.
 
 Source: [github.com/kola-tech/HCPI-full](https://github.com/kola-tech/HCPI-full) (the canonical multi-branch repo). All findings below come from `git ls-tree`/`git show` against that repo.
 
@@ -21,7 +21,7 @@ Sixteen branches in current use. Read the suffixes:
 | `secretariat` | EAC Secretariat regional aggregator (a completely different application) |
 | `main` | Historical default — superseded by `18.0` as the upstream |
 
-### Active country branches
+### Country branches in use
 
 | Country | Active branch | Last commit | Status |
 |---|---|---|---|
@@ -32,24 +32,15 @@ Sixteen branches in current use. Read the suffixes:
 | **Zanzibar** | `zar_18` | 2026-04-14 | Active |
 | **EAC Secretariat** | `secretariat` | 2026-04-20 | Active (separate aggregator app) |
 
-### Legacy branches (frozen 2024)
-
-| Country | Branch | Last commit | Notes |
-|---|---|---|---|
-| Rwanda | `rw` | 2024-03-13 | Old single-folder architecture |
-| South Sudan | `ss` | 2024-03-13 | Old single-folder architecture |
-| Burundi | `bi` | 2024-03-13 | Old single-folder architecture |
-
-All three legacy branches received the same trivial last commit on the same day ("hiding hcpi menu in settings"). They predate the consolidation onto a shared core.
-
 !!! warning "`zar` = Zanzibar, not South Africa"
     Despite "ZAR" being the ISO currency code for South African Rand, in this repo `zar`/`zar_18` is **Zanzibar** (semi-autonomous part of Tanzania). The `zar_data_collection` manifest is explicit: *"Customize and manage Zanzibar data collections"*. South Africa isn't part of the HCPI deployment family.
 
-## Two architectures
+!!! note "Legacy branches (`rw`, `ss`, `bi`)"
+    Rwanda, South Sudan, and Burundi each have a branch (`rw`, `ss`, `bi`) using an older single-folder architecture (`hcpi-xx/` containing country-prefixed modules with no shared core). All three have been frozen since March 2024 and aren't representative of current HCPI. If you're working on these countries, plan to migrate them to the modern overlay pattern below rather than extending the old structure.
 
-There's a clean break between branches written before and after the codebase was consolidated.
+## The modern overlay pattern
 
-### Modern overlay (UG, KE, TZ, ZAR, plus the shared `18.0`)
+Every active country (UG, KE, TZ, ZAR) layers on top of the shared `18.0` upstream by **adding** `xx_*` modules — never modifying the core.
 
 ```
 18.0 (upstream)                    Country branch (e.g. ug_18)
@@ -57,13 +48,10 @@ There's a clean break between branches written before and after the codebase was
 hcpi_coicop                        hcpi_coicop          ◀── inherited verbatim
 hcpi_item                          hcpi_item            ◀── inherited verbatim
 hcpi_outlet                        hcpi_outlet          ◀── inherited verbatim
-hcpi_computation                   hcpi_computation     ◀── inherited verbatim
-hcpi_data_collection               hcpi_data_collection ◀── inherited (mostly verbatim)
-hcpi_data_collection_mobile_app    hcpi_data_collection_mobile_app
+hcpi_data_collection               hcpi_data_collection ◀── inherited verbatim
 hcpi_index                         hcpi_index           ◀── inherited verbatim
 hcpi_dashboard                     hcpi_dashboard       ◀── inherited verbatim
-hcpi_brand                         hcpi_brand           ◀── inherited verbatim
-base_import_inherit                base_import_inherit  ◀── inherited verbatim
+... (all core modules)             ... (all core modules)
                                    ┌─────────────────────────┐
                                    │ ug_location  ◀── ADDED  │
                                    │ ug_outlet    ◀── ADDED  │
@@ -71,29 +59,7 @@ base_import_inherit                base_import_inherit  ◀── inherited verb
                                    └─────────────────────────┘
 ```
 
-Country overlays only *add* `xx_*` modules. The shared core modules are pulled in verbatim from `18.0` via regular git merges (visible as `Merge pull request #129 from kola-tech/18.0` in the branch history). When upstream changes — a bug fix in `hcpi_outlet`, say — every country branch can merge it without losing their overlay.
-
-This is the pattern the [Module Reference](module-reference.md) describes. It's how new countries should be added.
-
-### Legacy single-folder (RW, SS, BI — frozen)
-
-```
-hcpi-rw/
-├── rw_hcpi_coicop/        ← COICOP, but country-specific
-├── rw_locations/          ← geography
-├── rw_outlets/            ← outlets
-├── rw_products/           ← items (called "products" here)
-├── rw_data_collections/   ← collection
-├── rw_dashboard/          ← per-country dashboard
-├── rw_matrix/             ← Rwanda-only: pivot view of price relatives
-├── rw_price_sheets/       ← Rwanda-only: price sheet workflow
-├── rw_data_collection_mobile_app/
-└── base_import_inherit/
-```
-
-Everything is country-prefixed — there's no shared core to merge from. RW, SS, and BI all have nearly the same folder structure (Burundi and Rwanda also have `xx_matrix`; South Sudan doesn't). These predate the decision to split country-specific logic from the shared HCPI domain model.
-
-**If you're adopting HCPI for a new country, do not use this pattern.** Use the modern overlay (see [Module Reference](module-reference.md)).
+Core modules pull in verbatim via regular git merges (visible as `Merge pull request #129 from kola-tech/18.0` in branch history). When upstream changes — a bug fix in `hcpi_outlet`, say — every country branch can merge it without losing their overlay. This is the pattern the [Module Reference](module-reference.md) describes, and the one to use for new countries.
 
 ## Country overlays compared
 
@@ -222,9 +188,8 @@ The recipe, distilled from how UG/KE/TZ/ZAR are structured:
 
 Avoid:
 
-- ❌ Copying the **legacy single-folder** layout (`hcpi-xx/`). It's frozen for a reason.
 - ❌ Modifying core `hcpi_*` modules in your country branch — the drift will haunt you at merge time.
-- ❌ Naming a new branch `xx` (no number) — that pattern is associated with legacy branches and is confusing.
+- ❌ Naming a new branch `xx` (no number, no `_18` suffix) — that pattern is used for older retired branches and is confusing.
 
 ## Quick reference
 
@@ -233,6 +198,5 @@ Avoid:
 | See what's specific about Uganda's outlets | `ug_18:ug_outlet/models/hcpi_outlet.py` |
 | Compare Kenya's vs Tanzania's geography depth | `ke_location/models/` vs `tz_location/models/` |
 | Find Zanzibar's bulk-questionnaire wizard | `zar_18:zar_data_collection/wizards/` |
-| Inspect Rwanda's old architecture | `rw:hcpi-rw/` (read-only — frozen) |
 | See what the secretariat aggregates | `secretariat:hcpi_secretariat_hub/models/snapshot.py` |
 | See how country branches merge from upstream | `git log --merges 18.0..ug_18` (etc.) |

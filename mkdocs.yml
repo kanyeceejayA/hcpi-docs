@@ -39,12 +39,18 @@ nav:
     - Windows WSL: installation/windows-wsl.md
     - Windows Native: installation/windows-native.md
     - Linux Server: installation/linux.md
+  - Concepts:
+    - CPI Explained: concepts/cpi-explained.md
+    - CPI Concepts: concepts/cpi-concepts.md
+    - Data Flow Walkthrough: concepts/data-flow.md
+    - Glossary: concepts/glossary.md
   - Working with the Code:
     - Odoo Basics: understanding-the-codebase/odoo-basics.md
     - Understanding the Codebase: understanding-the-codebase/index.md
     - Module Reference: understanding-the-codebase/module-reference.md
     - Country Variants: understanding-the-codebase/country-variants.md
     - Making Your First Edits: first-edits/index.md
+  - Troubleshooting: troubleshooting.md
   - Next Steps:
     - Overview: next-steps/index.md
     - HTTPS with Apache: next-steps/https-apache.md
