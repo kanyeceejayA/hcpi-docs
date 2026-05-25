@@ -25,14 +25,20 @@ The end state inside `/opt/hcpi`:
 
 ## Where the files come from
 
-The HCPI export — `hcpi-files.zip` — is something your country produces from its production server using the [extraction guide](../../extraction/linux-export.md). If you don't have one yet, Uganda's reference set is available as a fallback ([statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w)) — useful for training but not for real deployment.
+Three possible sources for the HCPI code — see [Getting the Code](../../getting-started/getting-the-code.md) for the full breakdown:
 
-Inside the zip you get two folders:
+1. **Clone the EAC upstream repo** ([github.com/East-African-Community-HCPI/HCPI](https://github.com/East-African-Community-HCPI/HCPI), access from [mkakinyi@eachq.org](mailto:mkakinyi@eachq.org)) — canonical source, no data, starts empty. Right path for new deployments.
+2. **Export from your country's server** via the [extraction guide](../../extraction/linux-export.md) — produces `hcpi-files.zip`, a database dump, and a filestore archive. Right path for migrating an existing instance.
+3. **Uganda's published test files** ([statistics.ubos.org](https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w)) — sample for evaluation only.
+
+If you're going via option 2 or 3, the zip you end up with contains:
 
 - **`conf/`** — `hcpi.conf` plus any other config the source server uses
 - **`custom/HCPI/`** — every HCPI module (folders like `hcpi_outlet`, `hcpi_item`, etc.)
 
-Odoo itself is **not** in the zip. That's deliberate — Odoo is a 100+ MB framework that doesn't need to be packaged with HCPI. We pull it fresh from GitHub on each install:
+If you're cloning from the EAC repo, you only get the module folders — there's no `conf/`, so you'll create `hcpi.conf` yourself from the template on the [Getting the Code](../../getting-started/getting-the-code.md#create-the-config-file) page.
+
+Odoo itself is **not** in any of the above. That's deliberate — Odoo is a 100+ MB framework that doesn't need to be packaged with HCPI. We pull it fresh from GitHub on each install:
 
 ```bash
 git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git

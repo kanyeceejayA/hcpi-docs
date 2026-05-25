@@ -166,33 +166,39 @@ cd /opt/hcpi
 
 ## Step 7: Transfer and Set Up Files
 
-This step assumes your exported files are at `C:\hcpi-export\` on Windows — the default location used by the [extraction guide](../extraction/linux-export.md). WSL can read your Windows drives through `/mnt/c/...`, so the Windows path `C:\hcpi-export\` is `/mnt/c/hcpi-export/` when viewed from WSL.
+How you get the HCPI code on disk depends on which of the three sources you're using. See [Getting the Code](../getting-started/getting-the-code.md) for the full picture; the three paths in short are below — pick one.
 
-!!! tip "Files in a different folder?"
-    Replace `/mnt/c/hcpi-export` in the commands below with the WSL path to wherever you put them. For example, `C:\Users\YourName\Downloads\` becomes `/mnt/c/Users/YourName/Downloads/`.
+=== "Option A: Clone the EAC upstream repo (recommended for new deployments)"
 
-Copying to `/opt/hcpi` (on WSL's Linux filesystem) is a one-time cost that gives you much faster performance than running HCPI off `/mnt/c/` would.
+    For new instances. You'll have empty data and create a `hcpi.conf` from a template.
 
-```bash
-cd /opt/hcpi
+    Request access to the repo from [mkakinyi@eachq.org](mailto:mkakinyi@eachq.org), then:
 
-# Copy and extract HCPI files (contains conf and custom folders)
-cp /mnt/c/hcpi-export/hcpi-files.zip .
-unzip hcpi-files.zip
+    ```bash
+    mkdir -p /opt/hcpi/custom /opt/hcpi/log /opt/hcpi/conf
+    cd /opt/hcpi/custom
+    git clone --branch 18.0 https://github.com/East-African-Community-HCPI/HCPI.git
+    ```
 
-# Create log directory
-mkdir -p log
-```
+    Create `/opt/hcpi/conf/hcpi.conf` using the minimal template on [Getting the Code](../getting-started/getting-the-code.md#create-the-config-file). Skip Step 11 below (no DB restore needed) — start with **Option B** in that step.
 
-Then clone Odoo 18. It's a separate command so you can re-run it on its own if the download fails partway (this can take a few minutes depending on your connection):
+=== "Option B: Export from a country's HCPI server"
 
-```bash
-cd /opt/hcpi
-git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-```
+    For migrating an existing instance. Assumes your exported files are at `C:\hcpi-export\` on Windows — the default location used by the [extraction guide](../extraction/linux-export.md).
 
-??? note "No export files? Download Uganda's test files instead"
-    If you don't have your own country's export, you can pull the Uganda test set directly in WSL:
+    !!! tip "Files in a different folder?"
+        Replace `/mnt/c/hcpi-export` below with the WSL path to wherever you put them.
+
+    ```bash
+    cd /opt/hcpi
+    cp /mnt/c/hcpi-export/hcpi-files.zip .
+    unzip hcpi-files.zip
+    mkdir -p log
+    ```
+
+=== "Option C: Uganda's test files"
+
+    For evaluation only. Pulls a snapshot from Uganda's instance directly:
 
     ```bash
     cd /opt/hcpi
@@ -201,15 +207,20 @@ git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
     mkdir -p log
     ```
 
-    Then run the separate `git clone` command above.
+Then **for all options**, clone Odoo 18 (it's a separate command so you can re-run it on its own if the download fails partway):
 
-Check the layout with `ls`. You should see:
+```bash
+cd /opt/hcpi
+git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
+```
+
+Check the layout with `ls /opt/hcpi`. You should see:
 
 ```
 /opt/hcpi/
-├── conf/          # Configuration files (from hcpi-files.zip)
-├── custom/        # Contains HCPI module (from hcpi-files.zip)
-│   └── HCPI/      # Main HCPI module
+├── conf/          # Configuration files (from zip, or created from template)
+├── custom/        # Contains HCPI modules
+│   └── HCPI/      # Main HCPI modules
 ├── log/           # Log files (created)
 ├── odoo/          # Odoo 18 codebase (cloned)
 └── venv/          # Python virtual environment (will create next)

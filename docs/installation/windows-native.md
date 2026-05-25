@@ -162,22 +162,43 @@ cd C:\hcpi
 
 ## Step 8: Set Up HCPI Files
 
-By now you should already have `hcpi-files.zip` — produced from your country's server using the [extraction guide](../extraction/linux-export.md). See [Prerequisites → Get the Required Files](../getting-started/prerequisites.md#get-the-required-files) if you don't.
+Pick one of the three options below. See [Getting the Code](../getting-started/getting-the-code.md) for the full picture if you're unsure.
 
-Extract `hcpi-files.zip` into `C:\hcpi`. You can right-click the zip → **Extract All...** → browse to `C:\hcpi` as the destination. After extracting, confirm you see `conf\` and `custom\` folders directly under `C:\hcpi`.
+=== "Option A: Clone the EAC upstream repo (recommended for new deployments)"
 
-!!! tip "If you see a nested `opt\hcpi\` folder"
-    Older exports (before the extraction guide was updated) preserved the full server path, so you'd end up with `C:\hcpi\opt\hcpi\conf\` instead. If that happened, move `conf\` and `custom\` up so they sit directly under `C:\hcpi`, then delete the empty `opt\` folder. Re-exports from the current guide won't have this problem.
+    For new instances on a fresh machine. You'll start with an empty database and create a `hcpi.conf` from a template.
 
-Create the log directory:
+    Request access from [mkakinyi@eachq.org](mailto:mkakinyi@eachq.org), then in PowerShell:
 
-**PowerShell:**
-```powershell
-Set-Location C:\hcpi
-New-Item -ItemType Directory -Path log
-```
+    ```powershell
+    New-Item -ItemType Directory -Path C:\hcpi\custom, C:\hcpi\log, C:\hcpi\conf -Force
+    Set-Location C:\hcpi\custom
+    git clone --branch 18.0 https://github.com/East-African-Community-HCPI/HCPI.git
+    ```
 
-Then clone Odoo 18. It's a separate command so you can re-run it on its own if the download fails partway (this can take a few minutes depending on your connection):
+    Create `C:\hcpi\conf\hcpi.conf` using the minimal template on [Getting the Code](../getting-started/getting-the-code.md#create-the-config-file) — remember to swap `/opt/hcpi` for `C:\hcpi` throughout. Skip the DB restore step (Step 11) — start with **Option B** in that step.
+
+=== "Option B: Export from a running country server"
+
+    For migrating an existing instance.
+
+    Extract `hcpi-files.zip` into `C:\hcpi`. You can right-click the zip → **Extract All...** → browse to `C:\hcpi` as the destination. After extracting, confirm you see `conf\` and `custom\` folders directly under `C:\hcpi`.
+
+    !!! tip "If you see a nested `opt\hcpi\` folder"
+        Older exports (before the extraction guide was updated) preserved the full server path, so you'd end up with `C:\hcpi\opt\hcpi\conf\` instead. If that happened, move `conf\` and `custom\` up so they sit directly under `C:\hcpi`, then delete the empty `opt\` folder. Re-exports from the current guide won't have this problem.
+
+    Then in PowerShell create the log directory:
+
+    ```powershell
+    Set-Location C:\hcpi
+    New-Item -ItemType Directory -Path log
+    ```
+
+=== "Option C: Uganda's test files"
+
+    For evaluation only. Download [hcpi-files.zip](https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w/hcpi-files.zip), then follow the **Option B** instructions above to extract it into `C:\hcpi`.
+
+Then **for all options**, clone Odoo 18 (a separate command so you can re-run it on its own if the download fails partway):
 
 **PowerShell:**
 ```powershell
@@ -189,9 +210,9 @@ You should now have:
 
 ```
 C:\hcpi\
-├── conf\          # Configuration files (from hcpi-files.zip)
-├── custom\        # Contains HCPI module (from hcpi-files.zip)
-│   └── HCPI\      # Main HCPI module
+├── conf\          # Configuration files (from zip, or created from template)
+├── custom\        # Contains HCPI modules
+│   └── HCPI\      # Main HCPI modules
 ├── log\           # Log files (created)
 ├── odoo\          # Odoo 18 codebase (cloned)
 └── venv\          # Python virtual environment (will create next)

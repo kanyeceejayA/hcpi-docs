@@ -49,27 +49,35 @@ cd /opt/hcpi
 
 ## Step 5: Set Up HCPI Files
 
-By now you should already have `hcpi-files.zip` — produced from your country's server using the [extraction guide](../extraction/linux-export.md). See [Prerequisites → Get the Required Files](../getting-started/prerequisites.md#get-the-required-files) if you don't. Copy it into `/opt/hcpi` (e.g. via `scp` from your Windows machine, or `wget` from wherever you've staged it), then:
+Pick one of the three options below. See [Getting the Code](../getting-started/getting-the-code.md) for the full picture if you're unsure.
 
-```bash
-cd /opt/hcpi
+=== "Option A: Clone the EAC upstream repo (recommended for new deployments)"
 
-# Extract HCPI files (contains conf and custom folders)
-unzip hcpi-files.zip
+    For new instances on a fresh server. You'll start with an empty database and create a `hcpi.conf` from a template.
 
-# Create log directory
-mkdir -p log
-```
+    Request access from [mkakinyi@eachq.org](mailto:mkakinyi@eachq.org), then:
 
-Then clone Odoo 18. It's a separate command so you can re-run it on its own if the download fails partway (this can take a few minutes depending on your connection):
+    ```bash
+    mkdir -p /opt/hcpi/custom /opt/hcpi/log /opt/hcpi/conf
+    cd /opt/hcpi/custom
+    git clone --branch 18.0 https://github.com/East-African-Community-HCPI/HCPI.git
+    ```
 
-```bash
-cd /opt/hcpi
-git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
-```
+    Create `/opt/hcpi/conf/hcpi.conf` using the minimal template on [Getting the Code](../getting-started/getting-the-code.md#create-the-config-file). Skip the DB restore step (Step 8) — start with **Option B** in that step.
 
-??? note "No export files? Download Uganda's test files instead"
-    For testing or reference only, you can pull the Uganda test set:
+=== "Option B: Export from a running country server"
+
+    For migrating an existing instance. Assumes you've already produced `hcpi-files.zip` via the [extraction guide](../extraction/linux-export.md). Copy it into `/opt/hcpi` (e.g. via `scp` from your Windows machine, or `wget` from wherever you've staged it), then:
+
+    ```bash
+    cd /opt/hcpi
+    unzip hcpi-files.zip
+    mkdir -p log
+    ```
+
+=== "Option C: Uganda's test files"
+
+    For evaluation only:
 
     ```bash
     cd /opt/hcpi
@@ -78,15 +86,20 @@ git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
     mkdir -p log
     ```
 
-    Then run the separate `git clone` command above.
+Then **for all options**, clone Odoo 18 (a separate command so you can re-run it on its own if the download fails partway):
+
+```bash
+cd /opt/hcpi
+git clone --depth 1 --branch 18.0 https://github.com/odoo/odoo.git
+```
 
 After this, you should have:
 
 ```
 /opt/hcpi/
-├── conf/          # Configuration files (from hcpi-files.zip)
-├── custom/        # Contains HCPI module (from hcpi-files.zip)
-│   └── HCPI/      # Main HCPI module
+├── conf/          # Configuration files (from zip, or created from template)
+├── custom/        # Contains HCPI modules
+│   └── HCPI/      # Main HCPI modules
 ├── log/           # Log files (created)
 ├── odoo/          # Odoo 18 codebase (cloned)
 └── venv/          # Python virtual environment (will create next)

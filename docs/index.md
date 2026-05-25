@@ -34,19 +34,15 @@ HCPI is built on Odoo 18 and consists of:
 - **PostgreSQL Database**: For data storage
 - **Python Virtual Environment**: For dependency management
 
-## Getting the Installation Files
+## Getting the Code
 
-For a real deployment, you produce the installation files from your own country's HCPI server. The [Exporting HCPI from a Linux Server](extraction/linux-export.md) guide walks you through it, and you'll end up with:
+Three sources to choose from depending on your situation:
 
-- **`hcpi-files.zip`** — the `conf` and `custom` folders (application code and configuration)
-- **`hcpi.dump`** — PostgreSQL database dump in custom format (optional — skip for an empty instance)
-- **`hcpi-filestore.zip`** — uploaded attachments and images (optional — skip for an empty instance)
+1. **Clone the EAC upstream repo** — canonical source code, empty instance. Right starting point for new deployments. Repo: <https://github.com/East-African-Community-HCPI/HCPI> — request access from [mkakinyi@eachq.org](mailto:mkakinyi@eachq.org).
+2. **Export from a running country server** — code plus database dump plus filestore. For migrating an existing instance to a new machine.
+3. **Uganda's published test files** — sample code + data for evaluation and training only.
 
-!!! info "Empty Instance"
-    You don't need the database dump or filestore if you want to start with an empty HCPI instance. Odoo will initialize a fresh database for you on first run.
-
-??? note "No access to a source server? Use Uganda's test files as a fallback"
-    [https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w](https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w) hosts a zipped set from Uganda's instance. Intended for evaluation and reference only — use them if you want to try HCPI before setting it up for your own country. For a real deployment, prefer files exported from your country's own server.
+See **[Getting the Code](getting-started/getting-the-code.md)** for the full walkthrough of all three options, including the minimal `hcpi.conf` template you'll need if you're cloning the upstream repo.
 
 ## Need Help?
 
