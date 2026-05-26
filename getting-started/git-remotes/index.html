@@ -12,31 +12,31 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/training/day1/virtualenv-install/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/getting-started/git-remotes/">
       
       
-        <link rel="prev" href="../postgresql/">
+        <link rel="prev" href="../getting-the-code/">
       
       
-        <link rel="next" href="../dev-environment/">
+        <link rel="next" href="../../extraction/linux-export/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Virtual Environment & HCPI Install - HCPI Documentation</title>
+        <title>Git Remotes (EAC) - HCPI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#virtual-environment-hcpi-install" class="md-skip">
+        <a href="#adding-the-eac-repository-as-a-remote" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Virtual Environment & HCPI Install
+              Git Remotes (EAC)
             
           </span>
         </div>
@@ -220,7 +220,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -238,7 +238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -262,8 +262,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -274,13 +276,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -301,7 +301,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -319,7 +319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/prerequisites/" class="md-nav__link">
+      <a href="../prerequisites/" class="md-nav__link">
         
   
   
@@ -347,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/getting-the-code/" class="md-nav__link">
+      <a href="../getting-the-code/" class="md-nav__link">
         
   
   
@@ -372,10 +372,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../getting-started/git-remotes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Remotes (EAC)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -391,6 +418,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-check-what-you-currently-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Check what you currently have
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-add-the-eac-repo-as-a-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Add the EAC repo as a remote
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-and-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Verify and fetch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-push-your-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Push your changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-replace-origin-instead-of-adding-a-second-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional: replace origin instead of adding a second remote
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-key-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH key setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -464,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../extraction/linux-export/" class="md-nav__link">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
         
   
   
@@ -553,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/windows-wsl/" class="md-nav__link">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
         
   
   
@@ -581,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/windows-native/" class="md-nav__link">
+      <a href="../../installation/windows-native/" class="md-nav__link">
         
   
   
@@ -609,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/linux/" class="md-nav__link">
+      <a href="../../installation/linux/" class="md-nav__link">
         
   
   
@@ -698,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/cpi-explained/" class="md-nav__link">
+      <a href="../../concepts/cpi-explained/" class="md-nav__link">
         
   
   
@@ -726,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/cpi-concepts/" class="md-nav__link">
+      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
         
   
   
@@ -754,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/data-flow/" class="md-nav__link">
+      <a href="../../concepts/data-flow/" class="md-nav__link">
         
   
   
@@ -782,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/glossary/" class="md-nav__link">
+      <a href="../../concepts/glossary/" class="md-nav__link">
         
   
   
@@ -871,7 +995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
         
   
   
@@ -899,7 +1023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../understanding-the-codebase/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/" class="md-nav__link">
         
   
   
@@ -927,7 +1051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../understanding-the-codebase/module-reference/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
         
   
   
@@ -955,7 +1079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../understanding-the-codebase/country-variants/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
   
   
@@ -983,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../first-edits/" class="md-nav__link">
+      <a href="../../first-edits/" class="md-nav__link">
         
   
   
@@ -1011,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../first-edits/your-first-module/" class="md-nav__link">
+      <a href="../../first-edits/your-first-module/" class="md-nav__link">
         
   
   
@@ -1046,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../troubleshooting/" class="md-nav__link">
+      <a href="../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -1127,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../next-steps/" class="md-nav__link">
+      <a href="../../next-steps/" class="md-nav__link">
         
   
   
@@ -1155,7 +1279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../next-steps/https-apache/" class="md-nav__link">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
         
   
   
@@ -1183,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../next-steps/https-nginx/" class="md-nav__link">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
         
   
   
@@ -1215,8 +1339,6 @@
       
   
   
-    
-  
   
   
     
@@ -1229,11 +1351,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
@@ -1254,7 +1378,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1272,7 +1396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../training/" class="md-nav__link">
         
   
   
@@ -1297,8 +1421,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1308,11 +1430,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_2" >
         
           
           <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
@@ -1333,7 +1457,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1351,7 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../training/day1/introduction/" class="md-nav__link">
         
   
   
@@ -1379,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../server-setup/" class="md-nav__link">
+      <a href="../../training/day1/server-setup/" class="md-nav__link">
         
   
   
@@ -1407,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dependencies/" class="md-nav__link">
+      <a href="../../training/day1/dependencies/" class="md-nav__link">
         
   
   
@@ -1435,7 +1559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../postgresql/" class="md-nav__link">
+      <a href="../../training/day1/postgresql/" class="md-nav__link">
         
   
   
@@ -1460,37 +1584,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Virtual Environment & HCPI Install
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
         
   
   
@@ -1506,103 +1603,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-goes-where" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What goes where
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#where-the-files-come-from" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Where the files come from
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-a-python-virtual-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why a Python virtual environment?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installing-the-python-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installing the Python dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-we-install-odoo-as-files-not-via-pip" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why we install Odoo "as files" not via pip
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sanity-check" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sanity check
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practical-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Practical steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1615,7 +1615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dev-environment/" class="md-nav__link">
+      <a href="../../training/day1/dev-environment/" class="md-nav__link">
         
   
   
@@ -1643,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../training/day1/configuration/" class="md-nav__link">
         
   
   
@@ -1671,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../user-administration/" class="md-nav__link">
+      <a href="../../training/day1/user-administration/" class="md-nav__link">
         
   
   
@@ -1714,7 +1714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -1761,10 +1761,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-goes-where" class="md-nav__link">
+  <a href="#step-1-check-what-you-currently-have" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What goes where
+        Step 1: Check what you currently have
       
     </span>
   </a>
@@ -1772,10 +1772,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#where-the-files-come-from" class="md-nav__link">
+  <a href="#step-2-add-the-eac-repo-as-a-remote" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where the files come from
+        Step 2: Add the EAC repo as a remote
       
     </span>
   </a>
@@ -1783,10 +1783,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-a-python-virtual-environment" class="md-nav__link">
+  <a href="#step-3-verify-and-fetch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why a Python virtual environment?
+        Step 3: Verify and fetch
       
     </span>
   </a>
@@ -1794,10 +1794,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-the-python-dependencies" class="md-nav__link">
+  <a href="#step-4-push-your-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing the Python dependencies
+        Step 4: Push your changes
       
     </span>
   </a>
@@ -1805,10 +1805,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-we-install-odoo-as-files-not-via-pip" class="md-nav__link">
+  <a href="#optional-replace-origin-instead-of-adding-a-second-remote" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why we install Odoo "as files" not via pip
+        Optional: replace origin instead of adding a second remote
       
     </span>
   </a>
@@ -1816,10 +1816,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sanity-check" class="md-nav__link">
+  <a href="#ssh-key-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sanity check
+        SSH key setup
       
     </span>
   </a>
@@ -1827,10 +1827,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-steps" class="md-nav__link">
+  <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Practical steps
+        Troubleshooting
       
     </span>
   </a>
@@ -1854,120 +1854,96 @@
 
 
 
-<h1 id="virtual-environment-hcpi-install">Virtual Environment &amp; HCPI Install</h1>
-<p>Now the database is ready and the system has its libraries. Time to put Odoo and the HCPI code on disk, and to set up the Python environment they'll run in.</p>
-<h2 id="what-goes-where">What goes where</h2>
-<p>There are <strong>three</strong> pieces of code we're putting in place:</p>
-<table>
-<thead>
-<tr>
-<th>Piece</th>
-<th>Source</th>
-<th>Lands at</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Odoo 18</td>
-<td><code>git clone</code> from GitHub</td>
-<td><code>/opt/hcpi/odoo/</code></td>
-</tr>
-<tr>
-<td>HCPI modules + config</td>
-<td><code>hcpi-files.zip</code> from your country's export</td>
-<td><code>/opt/hcpi/conf/</code> and <code>/opt/hcpi/custom/</code></td>
-</tr>
-<tr>
-<td>Python dependencies</td>
-<td><code>pip install -r odoo/requirements.txt</code></td>
-<td><code>/opt/hcpi/venv/</code></td>
-</tr>
-</tbody>
-</table>
-<p>The end state inside <code>/opt/hcpi</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/opt/hcpi/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── conf/      ← from hcpi-files.zip
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── custom/    ← from hcpi-files.zip
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── log/       ← created with mkdir
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── odoo/      ← cloned from GitHub
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── venv/      ← created with python3 -m venv
-</code></pre></div>
-<h2 id="where-the-files-come-from">Where the files come from</h2>
-<p>Three possible sources for the HCPI code — see <a href="../../../getting-started/getting-the-code/">Getting the Code</a> for the full breakdown:</p>
-<ol>
-<li><strong>Clone the EAC upstream repo</strong> (<a href="https://github.com/East-African-Community-HCPI/HCPI">github.com/East-African-Community-HCPI/HCPI</a>, access from <a href="mailto:mkakinyi@eachq.org">mkakinyi@eachq.org</a>) — canonical source, no data, starts empty. Right path for new deployments.</li>
-<li><strong>Export from your country's server</strong> via the <a href="../../../extraction/linux-export/">extraction guide</a> — produces <code>hcpi-files.zip</code>, a database dump, and a filestore archive. Right path for migrating an existing instance.</li>
-<li><strong>Uganda's published test files</strong> (<a href="https://statistics.ubos.org/shares/d/z_M6k4Jya_lxN6lWX5Wz_w">statistics.ubos.org</a>) — sample for evaluation only.</li>
-</ol>
-<p>If you're going via option 2 or 3, the zip you end up with contains:</p>
-<ul>
-<li><strong><code>conf/</code></strong> — <code>hcpi.conf</code> plus any other config the source server uses</li>
-<li><strong><code>custom/HCPI/</code></strong> — every HCPI module (folders like <code>hcpi_outlet</code>, <code>hcpi_item</code>, etc.)</li>
-</ul>
-<p>If you're cloning from the EAC repo, you only get the module folders — there's no <code>conf/</code>, so you'll create <code>hcpi.conf</code> yourself from the template on the <a href="../../../getting-started/getting-the-code/#create-the-config-file">Getting the Code</a> page.</p>
-<p>Odoo itself is <strong>not</strong> in any of the above. That's deliberate — Odoo is a 100+ MB framework that doesn't need to be packaged with HCPI. We pull it fresh from GitHub on each install:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>--branch<span class="w"> </span><span class="m">18</span>.0<span class="w"> </span>https://github.com/odoo/odoo.git
-</code></pre></div>
-<p><code>--depth 1</code> skips history (we don't need it). <code>--branch 18.0</code> pins to Odoo 18, which is what HCPI is built against.</p>
-<div class="admonition warning">
-<p class="admonition-title">Use Odoo 18 specifically</p>
-<p>HCPI modules use APIs and patterns specific to Odoo 18. If you accidentally clone <code>main</code> or another branch, things will break — sometimes loudly, sometimes subtly.</p>
+<h1 id="adding-the-eac-repository-as-a-remote">Adding the EAC Repository as a Remote</h1>
+<p>If you got the HCPI code from a country server export, a colleague's archive, or any source other than a direct clone of the EAC repo, the git history inside <code>custom/HCPI/</code> may point at a remote you <strong>don't have push rights to</strong> — or have no usable remote at all.</p>
+<p>To contribute changes back, you'll need to add the canonical <strong>East African Community HCPI repo</strong> as a remote. That's where you have permission to push.</p>
+<p>Upstream URL: <strong><a href="https://github.com/East-African-Community-HCPI/HCPI">https://github.com/East-African-Community-HCPI/HCPI</a></strong></p>
+<div class="admonition info">
+<p class="admonition-title">When you don't need this page</p>
+<p>If you used <a href="../getting-the-code/#option-1-clone-the-eac-upstream-repo">Option 1 (clone the EAC upstream repo)</a> on the "Getting the Code" page, <code>origin</code> already points at the EAC repo. You can skip this page entirely.</p>
 </div>
-<h2 id="why-a-python-virtual-environment">Why a Python virtual environment?</h2>
-<p>A virtual environment ("venv") is an isolated Python installation that lives inside your project. When you install packages into it, they don't touch the system Python.</p>
-<p>Why bother:</p>
+<h2 id="step-1-check-what-you-currently-have">Step 1: Check what you currently have</h2>
+<p>Move into the HCPI module folder and look at the current remotes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>remote<span class="w"> </span>-v
+</code></pre></div>
+<p>You'll see one of three things:</p>
 <ul>
-<li><strong>Versions can't conflict.</strong> Odoo pins specific versions of <code>werkzeug</code>, <code>lxml</code>, <code>psycopg2</code>, etc. If you <code>pip install</code> those at the system level, you might overwrite versions some other program on your machine depends on (or some other Python app you install later might overwrite yours).</li>
-<li><strong>No <code>sudo</code> required.</strong> Everything goes inside <code>/opt/hcpi/venv/</code>, which you own. No system-wide changes.</li>
-<li><strong>Easy reset.</strong> If the venv gets into a weird state, delete it and recreate — your system Python is untouched.</li>
+<li><strong>Nothing</strong> — the folder isn't a git repo, or has no remotes configured.</li>
+<li><strong>An <code>origin</code> you can't push to</strong> — typically a country server's bare repo, or a repo where you weren't granted write access.</li>
+<li><strong><code>origin</code> already points at <code>East-African-Community-HCPI/HCPI</code></strong> — you're done; nothing to add.</li>
 </ul>
-<p>Creating it is a one-liner:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<h2 id="step-2-add-the-eac-repo-as-a-remote">Step 2: Add the EAC repo as a remote</h2>
+<p>Pick <strong>one</strong> of the two URL styles. SSH is recommended for day-to-day work; HTTPS is fine if you haven't set up SSH keys yet.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SSH (recommended)</label><label for="__tabbed_1_2">HTTPS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Requires an SSH key registered with your GitHub account. See <a href="#ssh-key-setup">SSH key setup</a> below if you don't have one yet.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
 </code></pre></div>
-<p>Activating it points <code>python</code> and <code>pip</code> at the venv's versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</code></pre></div>
-<p>Your shell prompt will gain a <code>(venv)</code> prefix when it's active. From then on, <code>python</code> and <code>pip</code> refer to the venv's copies, and packages install into <code>/opt/hcpi/venv/lib/python3.x/site-packages/</code> rather than system-wide.</p>
-<div class="admonition tip">
-<p class="admonition-title">You need to re-activate every shell</p>
-<p>Opening a new terminal? You're back outside the venv. Re-run <code>source /opt/hcpi/venv/bin/activate</code>. If you ever see a <code>ModuleNotFoundError</code> for something like <code>werkzeug</code> or <code>odoo</code>, the first thing to check is whether the venv is active.</p>
 </div>
-<p>To leave the venv: <code>deactivate</code>.</p>
-<h2 id="installing-the-python-dependencies">Installing the Python dependencies</h2>
-<p>With the venv active:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pip<span class="w"> </span>install<span class="w"> </span>wheel
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>odoo/requirements.txt
+<div class="tabbed-block">
+<p>Works without SSH setup. Git will prompt for your GitHub username and a <strong>Personal Access Token</strong> (not your password) the first time you push. Generate one at <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a> with the <code>repo</code> scope.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>https://github.com/East-African-Community-HCPI/HCPI.git
 </code></pre></div>
-<p>Line by line:</p>
-<ol>
-<li><strong>Upgrade pip</strong> — older pip versions occasionally fail on modern wheels. Quick safety move.</li>
-<li><strong>Install <code>wheel</code></strong> — lets pip prefer pre-built wheels over source builds, which is much faster.</li>
-<li><strong>Install <code>numpy</code> separately</strong> — HCPI uses NumPy (for the validation algorithms and computation), but Odoo's <code>requirements.txt</code> doesn't include it. Installing it first avoids a surprise mid-deployment when an <code>import numpy</code> fails.</li>
-<li><strong>Install Odoo's requirements</strong> — the big one. This pulls in ~30 packages: <code>werkzeug</code>, <code>lxml</code>, <code>psycopg2-binary</code>, <code>passlib</code>, <code>Pillow</code>, <code>qrcode</code>, etc.</li>
-</ol>
-<p>Expect 2–5 minutes the first time. On WSL, occasionally <code>pip</code> will fall back to compiling something from C (this is what <code>python3-dev</code> and the various <code>lib*-dev</code> packages from <a href="../dependencies/">Dependencies</a> are for). If you get a compile error, the missing system package will be named in the trace — apt-install it and re-run.</p>
-<h2 id="why-we-install-odoo-as-files-not-via-pip">Why we install Odoo "as files" not via pip</h2>
-<p>You might notice we don't run <code>pip install odoo</code>. Odoo <em>is</em> a Python package, but for HCPI we use it as a source tree, not an installed package. Reasons:</p>
-<ul>
-<li>HCPI's <code>addons_path</code> points into <code>/opt/hcpi/odoo/addons</code> directly — easier than locating the installed package.</li>
-<li>It makes patching and reading Odoo's source trivial — open the folder in your IDE.</li>
-<li>The <code>odoo-bin</code> script lives at the root of the clone and is how we launch the server.</li>
-</ul>
-<p>The <code>requirements.txt</code> we install gives the Odoo <em>source tree</em> everything <em>it</em> needs to run.</p>
-<h2 id="sanity-check">Sanity check</h2>
-<p>After <code>pip install</code> finishes, with the venv active:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import odoo; print(odoo.__file__)&quot;</span>
+</div>
+</div>
+</div>
+<p>The name <code>eac</code> is just a label — you can call it anything (<code>upstream</code>, <code>eachq</code>, etc.). <code>eac</code> is short and clear, so the rest of this page uses it.</p>
+<h2 id="step-3-verify-and-fetch">Step 3: Verify and fetch</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>remote<span class="w"> </span>-v
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># origin  &lt;whatever it was&gt;            (fetch)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># origin  &lt;whatever it was&gt;            (push)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># eac     git@github.com:East-African-Community-HCPI/HCPI.git (fetch)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># eac     git@github.com:East-African-Community-HCPI/HCPI.git (push)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
 </code></pre></div>
-<p>You should see a path under <code>/opt/hcpi/odoo/odoo/__init__.py</code>. If it errors, the venv is wrong or the clone failed — check both.</p>
-<h2 id="practical-steps">Practical steps</h2>
-<ul>
-<li><strong><a href="../../../installation/windows-wsl/">Windows WSL</a></strong> — Steps 6, 7, 8 (directory creation, file transfer, venv &amp; pip install)</li>
-<li><strong><a href="../../../installation/linux/">Linux Server</a></strong> — Steps 4, 5, 6</li>
-</ul>
-<p>➡️ Next: <a href="../dev-environment/">Development Environment</a></p>
+<p>The fetch downloads all branches from the EAC repo into <code>eac/*</code> refs. You should see the country branches listed in <a href="../../understanding-the-codebase/country-variants/">Country Variants</a> — <code>eac/18.0</code>, <code>eac/ug_18</code>, <code>eac/ke_18_mtnce</code>, etc.</p>
+<h2 id="step-4-push-your-changes">Step 4: Push your changes</h2>
+<p>Create a branch for your work and push it to <code>eac</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-feature-branch
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># ... make your edits, commit ...</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>eac<span class="w"> </span>my-feature-branch
+</code></pre></div>
+<p>The <code>-u</code> flag sets <code>eac/my-feature-branch</code> as the upstream for this branch, so future <code>git push</code> and <code>git pull</code> calls don't need the remote name.</p>
+<p>Then open a pull request on GitHub against the appropriate base branch (usually <code>18.0</code> or your country branch).</p>
+<h2 id="optional-replace-origin-instead-of-adding-a-second-remote">Optional: replace origin instead of adding a second remote</h2>
+<p>If your existing <code>origin</code> is useless to you (e.g. a country server path you'll never push back to), it's cleaner to replace it outright:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>fetch<span class="w"> </span>origin
+</code></pre></div>
+<p>Or, if you want to keep the old one around for reference, rename it first:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>remote<span class="w"> </span>rename<span class="w"> </span>origin<span class="w"> </span>country-server
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>fetch<span class="w"> </span>origin
+</code></pre></div>
+<p>Either way, <code>origin</code> is now the EAC repo and you don't need the separate <code>eac</code> name.</p>
+<h2 id="ssh-key-setup">SSH key setup</h2>
+<p>If you chose the SSH URL but haven't set up a key on this machine yet:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 1. Generate a key (press Enter through all prompts for defaults)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your-email@example.com&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 2. Print the public key</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+</code></pre></div>
+<p>Copy the output (starts with <code>ssh-ed25519 ...</code>) and paste it at <a href="https://github.com/settings/keys">https://github.com/settings/keys</a> → <strong>New SSH key</strong>.</p>
+<p>Test the connection:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Hi &lt;your-username&gt;! You&#39;ve successfully authenticated...</span>
+</code></pre></div>
+<p>On Windows native (no WSL), run the same commands inside Git Bash. On WSL, run them inside the WSL shell — the key lives in the WSL filesystem, separate from any Windows-side key.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong><code>Permission denied (publickey)</code> on SSH push</strong> — your SSH key isn't registered with GitHub, or you're using a different key than the one you added. Run <code>ssh -T git@github.com</code> to confirm which account GitHub sees.</p>
+<p><strong><code>remote: Permission to East-African-Community-HCPI/HCPI.git denied</code></strong> — you're authenticated, but your GitHub account hasn't been granted write access to the EAC organisation. Request access from <a href="mailto:mkakinyi@eachq.org">mkakinyi@eachq.org</a>.</p>
+<p><strong>HTTPS keeps asking for credentials</strong> — install a credential helper:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Linux</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>store
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Windows / WSL</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>manager
+</code></pre></div>
+<p>Then push once more and your token will be cached.</p>
 
 
 
@@ -2003,7 +1979,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../postgresql/" class="md-footer__link md-footer__link--prev" aria-label="Previous: PostgreSQL Setup">
+          <a href="../getting-the-code/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting the Code">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2013,20 +1989,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                PostgreSQL Setup
+                Getting the Code
               </div>
             </div>
           </a>
         
         
           
-          <a href="../dev-environment/" class="md-footer__link md-footer__link--next" aria-label="Next: Development Environment">
+          <a href="../../extraction/linux-export/" class="md-footer__link md-footer__link--next" aria-label="Next: From a Linux Server">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Development Environment
+                From a Linux Server
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2063,10 +2039,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
