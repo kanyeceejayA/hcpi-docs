@@ -15,10 +15,6 @@
         <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/first-edits/your-first-module/">
       
       
-        <link rel="prev" href="../">
-      
-      
-        <link rel="next" href="../../troubleshooting/">
       
       
         
@@ -814,8 +810,6 @@
       
   
   
-    
-  
   
   
     
@@ -828,11 +822,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -853,7 +849,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -999,335 +995,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Your First Module
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Your First Module
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-were-building" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What we're building
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-folder-skeleton" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The folder skeleton
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-__manifest__py-the-modules-identity-card" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. __manifest__.py — the module's identity card
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-the-two-__init__py-files-telling-python-what-to-load" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. The two __init__.py files — telling Python what to load
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-the-model-modelshcpi_notepy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. The model — models/hcpi_note.py
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-security-securityirmodelaccesscsv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Security — security/ir.model.access.csv
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-the-views-viewshcpi_note_viewsxml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. The views — views/hcpi_note_views.xml
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-install-the-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Install the module
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6. Install the module">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#start-odoo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Start Odoo
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-the-apps-list" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update the apps list
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Install
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-in-the-database-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verify in the database (optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-just-happened-end-to-end" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What just happened, end to end
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iterating-after-install" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Iterating after install
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#removing-the-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Removing the module
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Removing the module">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step-1-uninstall-via-the-ui-drops-the-db-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Uninstall via the UI (drops the DB tables)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2-remove-the-folder" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Remove the folder
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-its-really-gone" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verify it's really gone
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#now-do-it-faster-with-scaffold" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Now do it faster with scaffold
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-you-learned" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What you learned
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What's next
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1623,7 +1290,7 @@
   <span class="md-ellipsis">
     
   
-    Day 1 – Setup & Foundations
+    Setup & Foundations
   
 
     
@@ -1639,7 +1306,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Day 1 – Setup & Foundations
+    Setup & Foundations
   
 
           </label>
@@ -1883,57 +1550,6 @@
   
   
   
-    
-    
-    
-    
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Day 2 – Python & First Module
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Day 2 – Python & First Module
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../training/day2/python-intro/" class="md-nav__link">
         
@@ -1951,14 +1567,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1993,7 +1601,7 @@
   <span class="md-ellipsis">
     
   
-    Days 3-5 – Building a Real Module
+    Building an HCPI Module
   
 
     
@@ -2009,7 +1617,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Days 3-5 – Building a Real Module
+    Building an HCPI Module
   
 
           </label>
@@ -2804,15 +2412,10 @@
 </ul>
 <p>Real HCPI modules (<code>hcpi_outlet</code>, <code>hcpi_item</code>, <code>hcpi_index</code>) are this same skeleton with <strong>more</strong> models, <strong>more</strong> views, controllers, reports, computed fields, related modules — but the bones are identical. When you open one of them next, you'll recognise every file.</p>
 <h2 id="whats-next">What's next</h2>
-<p>The hand-rolled <code>hcpi_notes</code> exercise is the <strong>warm-up</strong>. The proper guided tutorial that builds a realistic, multi-model module covering Days 3–7 of the training programme is:</p>
-<p>➡️ <strong><a href="../../training/module/part1-models/">Building HCPI Field Reports — Part 1</a></strong> — models, fields, relationships, ORM
-➡️ <strong><a href="../../training/module/part2-views/">Part 2</a></strong> — all view types, search, reports
-➡️ <strong><a href="../../training/module/part3-security/">Part 3</a></strong> — groups, record rules, workflow, chatter</p>
-<p>Other directions to go from here:</p>
 <ul>
+<li><strong><a href="../../training/module/part1-models/">Building an HCPI Module — Part 1</a></strong> — the proper guided tutorial. Builds a realistic, multi-model module (outlet onboarding) and walks through every concept you'll meet in HCPI: relationships, computed fields, all view types, security, workflow, chatter.</li>
 <li><strong><a href="../../understanding-the-codebase/module-reference/">Module Reference</a></strong> — what each real HCPI module actually does.</li>
 <li><strong><a href="../../understanding-the-codebase/country-variants/">Country Variants</a></strong> — how country-specific modules extend the base HCPI modules using <code>_inherit</code>.</li>
-<li>Walk through <code>hcpi_outlet</code> end-to-end and identify each file you just wrote, but bigger.</li>
 </ul>
 
 
@@ -2844,44 +2447,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Making Your First Edits">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Making Your First Edits
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="Next: Troubleshooting">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Troubleshooting
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
