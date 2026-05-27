@@ -322,3 +322,5 @@ This is how you go from "I see something on screen and want to change it" to "I 
 ➡️ **[Module Reference](module-reference.md)** — what each HCPI module does and which models it owns.
 
 ➡️ **[Making Your First Edits](../first-edits/index.md)** — apply this with a real change you can see.
+
+➡️ **[Your First Module](../first-edits/your-first-module.md)** — build a tiny end-to-end module from scratch and see every file from this page in context.

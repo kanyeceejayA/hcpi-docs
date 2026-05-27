@@ -12,17 +12,19 @@ This section follows the official **HCPI Back-end Training** programme. It exist
 | Day | Theme |
 |---|---|
 | [Day 1](day1/introduction.md) | Setup & Foundations — system overview, server, dependencies, PostgreSQL, virtualenv, IDE, config, user admin |
-| Day 2 | Python for HCPI & building a custom module (Models, Views, Controllers, Access Rights) — *coming soon* |
-| Day 3 | Models, fields, relationships, ORM CRUD — *coming soon* |
-| Day 4 | XML views (Form, Tree, Kanban, Graph) — *coming soon* |
-| Day 5 | Advanced views, QWeb, OWL — *coming soon* |
-| Day 6 | Search views, one2many rendering, tree actions — *coming soon* |
-| Day 7 | Security & access control — *coming soon* |
-| Day 8 | HCPI project structure: Coicop & Location modules — *coming soon* |
-| Day 9 | Outlets, Items, UoMs, Price Relatives — *coming soon* |
-| Day 10 | Data collection, validation (Tukey), processing — *coming soon* |
-| Day 11 | Data importation, cleaning, templates — *coming soon* |
-| Day 12 | Mobile app source, HCPI–Flutter API, custom APIs, Q&A — *coming soon* |
+| Day 2 | [Python for HCPI](day2/python-intro.md) — language essentials for devs from other languages (~1h) + the warm-up [Your First Module](../first-edits/your-first-module.md) hand-roll |
+| Day 3 | [Field Reports — Part 1](module/part1-models.md): models, field types, relationships (M2O, O2M, M2M, hierarchical), inheritance, computed fields, ORM CRUD |
+| Day 4 | [Field Reports — Part 2 (morning)](module/part2-views.md): all view types (List, Form, Kanban, Graph, Pivot, Calendar), search filters & group bys |
+| Day 4½ | Part 2 (afternoon): inline One2many, list decorations, server actions, QWeb PDF reports, brief OWL look |
+| Day 5 | [Field Reports — Part 3](module/part3-security.md): groups, ACLs, record rules, sequences, `mail.thread` chatter, workflow validation, view inheritance |
+| Day 6 | HCPI project structure: Coicop & Location modules — *coming soon* |
+| Day 7 | Outlets, Items, UoMs, Price Relatives — *coming soon* |
+| Day 8 | Data collection, validation (Tukey), processing — *coming soon* |
+| Day 9 | Data importation, cleaning, templates — *coming soon* |
+| Day 10 | Mobile app source, HCPI–Flutter API, custom APIs, Q&A — *coming soon* |
+
+!!! info "Compressed schedule"
+    The original draft programme spread the language/module/views/security content across Days 2–7 (six days). This documentation tracks a **2½-day condensed version**: one hour of Python, then three guided parts of an iterating module that covers Days 3–7 of the original programme.
 
 ## Day 1 contents
 

@@ -237,6 +237,8 @@ The exercises above were view-only — XML on disk, no Python. The next levels i
 
 These will be written up in upcoming sections.
 
+For now, the natural next step is **[Your First Module](your-first-module.md)** — build a complete, minimal Odoo module from scratch (model, views, action, menu, security) and uninstall it cleanly when you're done.
+
 ## Reverting your changes
 
 When you've finished playing, revert if you don't want to keep the edits:

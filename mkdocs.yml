@@ -34,6 +34,7 @@ nav:
   - Getting Started:
     - Prerequisites: getting-started/prerequisites.md
     - Getting the Code: getting-started/getting-the-code.md
+    - Git Remotes (EAC): getting-started/git-remotes.md
   - Exporting:
     - From a Linux Server: extraction/linux-export.md
   - Installation:
@@ -51,6 +52,7 @@ nav:
     - Module Reference: understanding-the-codebase/module-reference.md
     - Country Variants: understanding-the-codebase/country-variants.md
     - Making Your First Edits: first-edits/index.md
+    - Your First Module: first-edits/your-first-module.md
   - Troubleshooting: troubleshooting.md
   - Next Steps:
     - Overview: next-steps/index.md
@@ -67,6 +69,12 @@ nav:
       - Development Environment: training/day1/dev-environment.md
       - Configuration File: training/day1/configuration.md
       - User Administration: training/day1/user-administration.md
+    - "Day 2 – Python & First Module":
+      - Python for HCPI: training/day2/python-intro.md
+    - "Days 3-5 – Building a Real Module":
+      - "Part 1: Models, Fields, Relationships": training/module/part1-models.md
+      - "Part 2: Views & UX": training/module/part2-views.md
+      - "Part 3: Security & Polish": training/module/part3-security.md
   - About: about.md
 
 markdown_extensions:

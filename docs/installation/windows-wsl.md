@@ -168,7 +168,21 @@ cd /opt/hcpi
 
 How you get the HCPI code on disk depends on which of the three sources you're using. See [Getting the Code](../getting-started/getting-the-code.md) for the full picture; the three paths in short are below — pick one.
 
-=== "Option A: Clone the EAC upstream repo (recommended for new deployments)"
+=== "Option A: Export from a country's HCPI server"
+
+    For migrating an existing instance. Assumes your exported files are at `C:\hcpi-export\` on Windows — the default location used by the [extraction guide](../extraction/linux-export.md).
+
+    !!! tip "Files in a different folder?"
+        Replace `/mnt/c/hcpi-export` below with the WSL path to wherever you put them.
+
+    ```bash
+    cd /opt/hcpi
+    cp /mnt/c/hcpi-export/hcpi-files.zip .
+    unzip hcpi-files.zip
+    mkdir -p log
+    ```
+
+=== "Option B: Clone the EAC upstream repo"
 
     For new instances. You'll have empty data and create a `hcpi.conf` from a template.
 
@@ -182,19 +196,6 @@ How you get the HCPI code on disk depends on which of the three sources you're u
 
     Create `/opt/hcpi/conf/hcpi.conf` using the minimal template on [Getting the Code](../getting-started/getting-the-code.md#create-the-config-file). Skip Step 11 below (no DB restore needed) — start with **Option B** in that step.
 
-=== "Option B: Export from a country's HCPI server"
-
-    For migrating an existing instance. Assumes your exported files are at `C:\hcpi-export\` on Windows — the default location used by the [extraction guide](../extraction/linux-export.md).
-
-    !!! tip "Files in a different folder?"
-        Replace `/mnt/c/hcpi-export` below with the WSL path to wherever you put them.
-
-    ```bash
-    cd /opt/hcpi
-    cp /mnt/c/hcpi-export/hcpi-files.zip .
-    unzip hcpi-files.zip
-    mkdir -p log
-    ```
 
 === "Option C: Uganda's test files"
 
