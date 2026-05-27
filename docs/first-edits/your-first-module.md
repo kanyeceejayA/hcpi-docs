@@ -420,14 +420,6 @@ Real HCPI modules (`hcpi_outlet`, `hcpi_item`, `hcpi_index`) are this same skele
 
 ## What's next
 
-The hand-rolled `hcpi_notes` exercise is the **warm-up**. The proper guided tutorial that builds a realistic, multi-model module covering Days 3–7 of the training programme is:
-
-➡️ **[Building HCPI Field Reports — Part 1](../training/module/part1-models.md)** — models, fields, relationships, ORM
-➡️ **[Part 2](../training/module/part2-views.md)** — all view types, search, reports
-➡️ **[Part 3](../training/module/part3-security.md)** — groups, record rules, workflow, chatter
-
-Other directions to go from here:
-
+- **[Building an HCPI Module — Part 1](../training/module/part1-models.md)** — the proper guided tutorial. Builds a realistic, multi-model module (outlet onboarding) and walks through every concept you'll meet in HCPI: relationships, computed fields, all view types, security, workflow, chatter.
 - **[Module Reference](../understanding-the-codebase/module-reference.md)** — what each real HCPI module actually does.
 - **[Country Variants](../understanding-the-codebase/country-variants.md)** — how country-specific modules extend the base HCPI modules using `_inherit`.
-- Walk through `hcpi_outlet` end-to-end and identify each file you just wrote, but bigger.

@@ -1,79 +1,105 @@
-# Building HCPI Field Reports — Part 1: Models, Fields, Relationships
+# Building an HCPI Module — Part 1: Models, Fields, Relationships
 
-**Duration:** half a day (about 4 hours including breaks).
-**Covers:** models, fields and field types, relationships (Many2one, One2many, Many2many, hierarchical), computed fields, model inheritance, the ORM, minimal views to display the data.
+<!--
+Duration: half a day (about 4 hours including breaks).
+Covers: module structure (manifest, package layout), models, field types,
+relationships (Many2one, One2many, Many2many, hierarchical), computed fields,
+model inheritance, the ORM, minimal views to display the data.
+Prereq: you've finished the Setup pages and can reach http://localhost:9201.
+       Python intro recommended but not required.
+-->
 
-This is the start of a three-part hands-on tutorial. You'll build **`hcpi_field_reports`** — a small but realistic HCPI module where enumerators submit daily reports after going out to collect prices, and supervisors review them. By the end of all three parts you'll have touched every basic concept in the Day 3–7 programme.
+This is the start of a three-part tutorial. You'll build **`hcpi_outlet_onboarding`** — a small but realistic HCPI module the statistical office uses **back at the desk** to propose, inspect, and approve new outlets before they go onto the price-collection list.
 
-!!! info "Before you start"
-    - You've worked through [Your First Module](../../first-edits/your-first-module.md). You don't need to remember every detail — you just need to know what a manifest, model, view, and security file are.
-    - You've read [Python for the HCPI Platform](../day2/python-intro.md) (or you're comfortable enough with Python that comprehensions, classes, and decorators don't slow you down).
-    - HCPI is installed and running on `http://localhost:9201`.
+We choose this scenario because the real price-capture work happens on **tablets, in the field**, through the HCPI Flutter app — not in the web UI. The web is where supervisors, coordinators, and data analysts do their back-office work, and outlet onboarding is exactly that kind of work: someone hears about a new market, proposes it, a junior staffer inspects it, a manager approves it, and only *then* does the outlet appear in the collection rotation.
 
-## What we're building (across all three parts)
+By the end of all three parts you'll have touched every basic concept in the HCPI back-end programme: models, every common field type and relationship, the ORM, all view types, search, security, workflow, and chatter.
 
-A field-activity reporting module. The story:
+## What we're building, across all three parts
 
-1. An enumerator finishes a day in the field and opens HCPI.
-2. They create a **Field Report** with the date, region, hours worked, outlets visited, prices collected.
-3. They list any **observations** — broken refrigerators, missing items, market closures.
-4. They tag the report (`weekend`, `rainy-day`, `mobile-app`, etc.) and submit it.
-5. A **supervisor** reviews submitted reports, approves or rejects, comments on issues.
-6. Managers see **graphs and pivots** across regions and time periods.
+The story:
+
+1. A supervisor hears about a new shop or market — call it a candidate outlet.
+2. They create an **Outlet Proposal** in HCPI with the name, address, contact details, GPS coordinates, and proposed type (supermarket / open market / pharmacy / etc.).
+3. A field officer is sent out to **inspect** the location. They log the visit: did they find it, is it operating, are prices visible? They can attach a photo.
+4. After enough inspections, the proposal goes **under review**. A manager either **approves** (the outlet will be added to the collection list) or **rejects**.
 
 What each part builds:
 
 | Part | Focus | What you end up with |
 |---|---|---|
-| **1 (this page)** | Models, fields, relationships, ORM | A working module with three models, list and form views, data you can create and query. |
-| **[2: Views & UX](part2-views.md)** | All view types, search, reports | Kanban with stages, graphs, pivot, calendar, filters, a printable PDF. |
+| **1 (this page)** | Module scaffolding, models, fields, relationships, ORM | A working module with four models, list and form views, data you can create and query. |
+| **[2: Views & UX](part2-views.md)** | All view types, search, reports | Kanban with stages, graphs, pivot, calendar, filters, a printable dossier PDF. |
 | **[3: Security & Polish](part3-security.md)** | Groups, access rules, workflow, chatter | Production-ready: roles, record visibility rules, a stage workflow with buttons, audit trail. |
 
 ## The data model we're about to write
 
 ```
-┌─────────────────┐         ┌────────────────────┐         ┌────────────────────┐
-│   hcpi.region   │◄────────│ hcpi.field.report  │────────►│ hcpi.field.tag     │
-│  (hierarchical) │  1:N    │   (the main one)   │   N:M   │  (lookup labels)   │
-└─────────────────┘         └────────────────────┘         └────────────────────┘
-                                     │
-                                     │ 1:N
-                                     ▼
-                            ┌────────────────────────┐
-                            │ hcpi.field.observation │
-                            │  (children of report)  │
-                            └────────────────────────┘
+┌─────────────────┐         ┌──────────────────────┐         ┌────────────────────┐
+│   hcpi.region   │◄────────│ hcpi.outlet.proposal │────────►│ hcpi.outlet.tag    │
+│  (hierarchical) │  N:1    │     (the main one)   │   N:M   │  (lookup labels)   │
+└─────────────────┘         └──────────────────────┘         └────────────────────┘
+                                       │  ▲
+                                       │  │
+                                  ┌────▼──┴─────────┐         ┌────────────────────┐
+                                  │ hcpi.outlet.    │         │ hcpi.outlet.type   │
+                                  │ inspection      │         │ (lookup)           │
+                                  │ (child rows)    │◄────────│                    │
+                                  └─────────────────┘   N:1   └────────────────────┘
+                                                ▲
+                                                │ N:1
+                                                │
+                                          (also linked to type on the proposal)
 ```
 
-- **`hcpi.field.report`** — the main entity. One row per day per enumerator.
-- **`hcpi.field.observation`** — child rows attached to a report (the issues seen during the day).
+- **`hcpi.outlet.proposal`** — the main entity. One row per candidate outlet.
+- **`hcpi.outlet.inspection`** — child rows attached to a proposal (one or more inspection visits).
 - **`hcpi.region`** — a geographical area. Hierarchical (Country → Province → District).
-- **`hcpi.field.tag`** — short labels you can pin to a report (Many2many).
+- **`hcpi.outlet.type`** — pre-defined outlet categories (Supermarket, Open Market, Pharmacy, …).
+- **`hcpi.outlet.tag`** — short freeform labels you can pin to a proposal (Many2many).
 
-Plus we'll extend `res.users` (Odoo's built-in user model) to add a "field reports" smart button.
+We'll also extend `res.users` (Odoo's built-in user model) to add a smart button counting how many proposals each user has filed.
+
+## What's in a module — a quick refresher
+
+An Odoo module is just a folder under `addons_path` (configured in [`hcpi.conf`](../day1/configuration.md)) containing a few specific files. The skeleton:
+
+```
+hcpi_outlet_onboarding/
+├── __init__.py            ← Python package marker; loads sub-packages
+├── __manifest__.py        ← Odoo's metadata: name, dependencies, data files
+├── models/                ← Python: classes that become database tables
+├── security/              ← Who can do what
+├── views/                 ← XML: how data is displayed in the browser
+└── data/                  ← XML: seed data, sequences, etc. (used in Part 3)
+```
+
+The build path for any feature is the same: **add a model in `models/`, add views to display it in `views/`, declare access in `security/`, list the new XML files in `__manifest__.py`, restart Odoo with `-u hcpi_outlet_onboarding`.**
 
 ## Step 1: scaffold the module
 
-We'll use `scaffold` this time (you did the hand-roll exercise in [Your First Module](../../first-edits/your-first-module.md)). Stop Odoo if it's running, then:
+Odoo ships a generator that creates the folder skeleton for you. Stop Odoo if it's running, then in a terminal with the venv activated:
 
 ```bash
 cd /opt/hcpi
 source venv/bin/activate
-python odoo/odoo-bin scaffold hcpi_field_reports /opt/hcpi/custom/HCPI/
+python odoo/odoo-bin scaffold hcpi_outlet_onboarding /opt/hcpi/custom/HCPI/
 ```
 
-You now have `custom/HCPI/hcpi_field_reports/` with the generated skeleton. Open the folder in your editor and **delete what we don't need**:
+You now have `custom/HCPI/hcpi_outlet_onboarding/` with a generated skeleton. Open the folder in VS Code (`code .` from inside it on WSL).
+
+The generator creates a bunch of things you don't need yet. Delete them so the layout's clean:
 
 ```bash
-cd custom/HCPI/hcpi_field_reports
+cd /opt/hcpi/custom/HCPI/hcpi_outlet_onboarding
 rm -rf controllers demo
 rm views/templates.xml
 ```
 
-What's left:
+What you're left with:
 
 ```
-hcpi_field_reports/
+hcpi_outlet_onboarding/
 ├── __init__.py
 ├── __manifest__.py
 ├── models/
@@ -85,35 +111,42 @@ hcpi_field_reports/
     └── views.xml
 ```
 
-Rename `models/models.py` to something meaningful, and add files for the other models:
+We'll fill out one file per model. Rename and add:
 
 ```bash
-mv models/models.py models/hcpi_field_report.py
-touch models/hcpi_field_observation.py
+rm models/models.py
 touch models/hcpi_region.py
-touch models/hcpi_field_tag.py
+touch models/hcpi_outlet_type.py
+touch models/hcpi_outlet_tag.py
+touch models/hcpi_outlet_inspection.py
+touch models/hcpi_outlet_proposal.py
 touch models/res_users.py
 ```
 
-Update `models/__init__.py` to import all of them:
+## Step 2: wire up `__init__.py` and the manifest
+
+Open `models/__init__.py` and list every model file:
 
 ```python
 from . import hcpi_region
-from . import hcpi_field_tag
-from . import hcpi_field_observation
-from . import hcpi_field_report
+from . import hcpi_outlet_type
+from . import hcpi_outlet_tag
+from . import hcpi_outlet_inspection
+from . import hcpi_outlet_proposal
 from . import res_users
 ```
 
-**The order matters slightly:** Odoo loads them in this order, and a model that references another (like `hcpi_field_report` referring to `hcpi.region`) can be loaded after the one it references without complaint — but it's cleaner to list "leaf" models first.
+This file is plain Python. Each line tells Python "also import this sub-module when the package loads." If you forget a line, the corresponding model **silently won't load** — no error, just a missing model. This is the most common newcomer bug, so check this file first when something "doesn't exist."
 
-Update `__manifest__.py`:
+The outer `__init__.py` (at the module root) already has `from . import models` from the scaffold — leave it.
+
+Now `__manifest__.py`:
 
 ```python
 {
-    'name': 'HCPI Field Reports',
+    'name': 'HCPI Outlet Onboarding',
     'version': '18.0.1.0.0',
-    'summary': 'Daily field-activity reports for enumerators and supervisors.',
+    'summary': 'Propose, inspect, and approve candidate outlets before they join the price-collection list.',
     'category': 'HCPI',
     'depends': ['base', 'mail'],
     'data': [
@@ -126,9 +159,23 @@ Update `__manifest__.py`:
 }
 ```
 
-The new bit: `'mail'` in `depends`. We'll use it in Part 3 for the chatter (comments + audit trail). Add it now so we don't have to migrate the manifest later.
+What each key means:
 
-## Step 2: the Region model
+| Key | What it does |
+|---|---|
+| `name` | Human label shown in the Apps screen. |
+| `version` | Convention: `<odoo-major>.<your-major>.<minor>.<patch>` — here `18.0.1.0.0`. |
+| `summary` | One-line description on the Apps tile. |
+| `category` | Group in the Apps screen. Free-form. |
+| `depends` | Other modules required before this one can install. `base` is Odoo's foundation; `mail` gives us the chatter/audit trail we'll wire up in Part 3. |
+| `data` | XML/CSV files Odoo loads on install. **Order matters** — security first, then views. |
+| `installable` | `False` makes Odoo silently skip the module. |
+| `application` | `True` makes it appear as a top-level app in the launcher. |
+| `license` | Required in modern Odoo. `LGPL-3` is the safe default. |
+
+Notice **models aren't listed in `data`**. Models are Python — they load automatically through the `__init__.py` chain. Only XML/CSV files need to be enumerated.
+
+## Step 3: the Region model
 
 Open `models/hcpi_region.py`:
 
@@ -166,37 +213,74 @@ class HcpiRegion(models.Model):
                 region.complete_name = region.name
 ```
 
-Walking through the new parts:
+Walking through line by line:
 
 | Element | What it does |
 |---|---|
-| `_parent_name = 'parent_id'` + `_parent_store = True` | Tells Odoo: this model is hierarchical. The `parent_path` field will be auto-maintained to enable fast `child_of` / `parent_of` queries. |
+| `_name = 'hcpi.region'` | The technical name of the model. The PostgreSQL table will be `hcpi_region` (dots become underscores). |
+| `_description` | Human label. Required in modern Odoo; you get a startup warning if it's missing. |
+| `_parent_name = 'parent_id'` + `_parent_store = True` | Tells Odoo: this model is hierarchical. The `parent_path` field will be auto-maintained to enable fast `child_of` queries. |
 | `parent_path` field | Internal Odoo column. You declare it; Odoo populates it. Don't write to it. |
-| `child_ids = One2many('hcpi.region', 'parent_id', ...)` | The inverse of `parent_id`. Lets you write `region.child_ids` to get sub-regions. The string `'parent_id'` is the **field on the other side that points back here**. |
-| `_rec_name = 'complete_name'` | The field Odoo uses as the "display name" everywhere (dropdowns, breadcrumbs). Default is `name`; here we want `"Uganda / Central / Kampala"` to show up. |
-| `recursive=True` on compute | Tells Odoo this compute depends on values from the same model up the chain. Without it Odoo refuses to compute. |
-| `active = Boolean(default=True)` | Magic field name — Odoo treats `active=False` as "archived" and hides such records from default searches. |
+| `_rec_name = 'complete_name'` | The field Odoo uses as the "display name" everywhere (dropdowns, breadcrumbs). Default is `name`; here we want the full breadcrumb like `"Uganda / Central / Kampala"`. |
+| `_order = 'complete_name'` | Default sort order in lists. |
+| `Char` (name, code) | Short text — VARCHAR. `size=8` caps it; without `size` it's unlimited. |
+| `Boolean` (active) | True/false. `active` is a special name — Odoo treats records with `active=False` as archived and hides them from default searches. |
+| `Many2one('hcpi.region', ...)` | A foreign key to another model (here, itself, because it's hierarchical). |
+| `ondelete='restrict'` | What happens if the parent gets deleted. `restrict` blocks the delete; `cascade` deletes children too; `set null` orphans them. |
+| `One2many('hcpi.region', 'parent_id', ...)` | The reverse side of the M2O. Has no DB column — it's computed by looking at the other side. The `'parent_id'` is the field on the *other* model that points back here. |
+| `compute='_compute_complete_name', store=True, recursive=True` | A *computed field*. `store=True` writes the result to the database (so you can search by it). `recursive=True` is needed because the compute depends on its own parent's value. |
+| `@api.depends('name', 'parent_id.complete_name')` | Tells Odoo "re-run this compute whenever these fields change." |
 
-### Field-type recap with Region
+### About the compute method
 
-Region uses:
+```python
+@api.depends('name', 'parent_id.complete_name')
+def _compute_complete_name(self):
+    for region in self:
+        ...
+```
 
-- `Char` (name, code) — short text.
-- `Boolean` (active) — true/false.
-- `Many2one('hcpi.region', ...)` — foreign key to itself.
-- `One2many(..., 'parent_id', ...)` — virtual reverse side of the M2O. No DB column.
+**Always loop over `self`.** A compute is called on a *recordset* — could be one record, could be a thousand. You don't get to assume length-1.
 
-## Step 3: the Tag model (Many2many target)
+## Step 4: the OutletType model
 
-Open `models/hcpi_field_tag.py`:
+Open `models/hcpi_outlet_type.py`:
 
 ```python
 from odoo import fields, models
 
 
-class HcpiFieldTag(models.Model):
-    _name = 'hcpi.field.tag'
-    _description = "Field Report Tag"
+class HcpiOutletType(models.Model):
+    _name = 'hcpi.outlet.type'
+    _description = "Outlet Type"
+    _order = 'name'
+
+    name = fields.Char(required=True)
+    code = fields.Char(size=8)
+    description = fields.Text()
+    active = fields.Boolean(default=True)
+
+    _sql_constraints = [
+        ('code_unique', 'unique(code)', "An outlet type with this code already exists."),
+    ]
+```
+
+Two new things:
+
+- **`Text`** (description) — multi-line string. Renders as a textarea. Use `Char` for short, `Text` for long.
+- **`_sql_constraints`** — database-level constraints, enforced by PostgreSQL itself. Faster and more reliable than checking in Python because the database can't be bypassed. Format is `(name, sql_fragment, error_message)`.
+
+## Step 5: the Tag model (Many2many target)
+
+Open `models/hcpi_outlet_tag.py`:
+
+```python
+from odoo import fields, models
+
+
+class HcpiOutletTag(models.Model):
+    _name = 'hcpi.outlet.tag'
+    _description = "Outlet Tag"
     _order = 'name'
 
     name = fields.Char(required=True)
@@ -207,84 +291,82 @@ class HcpiFieldTag(models.Model):
     ]
 ```
 
-Two new things:
+- **`Integer`** (color) — Odoo Kanban views use this as an index into a colour palette. We'll light it up in Part 2.
 
-- **`color = Integer(...)`** — Odoo Kanban views use this to colour-code tag chips. The integer is an index into a palette; we'll see it light up in Part 2.
-- **`_sql_constraints`** — database-level uniqueness. Tries to enforce at the PostgreSQL level. Format is `(name, sql_fragment, error_message)`.
+## Step 6: the Inspection model (a child)
 
-## Step 4: the Observation model
-
-Open `models/hcpi_field_observation.py`:
+Open `models/hcpi_outlet_inspection.py`:
 
 ```python
 from odoo import fields, models
 
 
-class HcpiFieldObservation(models.Model):
-    _name = 'hcpi.field.observation'
-    _description = "Field Observation"
-    _order = 'severity desc, id'
+class HcpiOutletInspection(models.Model):
+    _name = 'hcpi.outlet.inspection'
+    _description = "Outlet Inspection"
+    _order = 'date desc, id desc'
 
-    name = fields.Char(string="Description", required=True)
-    report_id = fields.Many2one(
-        'hcpi.field.report',
-        string="Report",
+    name = fields.Char(string="Summary", required=True)
+    proposal_id = fields.Many2one(
+        'hcpi.outlet.proposal',
+        string="Proposal",
         required=True,
         ondelete='cascade',
         index=True,
     )
-    outlet_name = fields.Char(string="Outlet")
-    severity = fields.Selection(
-        [
-            ('low', "Low"),
-            ('medium', "Medium"),
-            ('high', "High"),
-        ],
-        default='low',
+    date = fields.Date(default=fields.Date.context_today, required=True)
+    inspector_id = fields.Many2one(
+        'res.users',
+        string="Inspector",
+        default=lambda self: self.env.user,
         required=True,
     )
-    needs_action = fields.Boolean(default=False)
-    notes = fields.Text()
+    result = fields.Selection(
+        [
+            ('pass', "Pass"),
+            ('partial', "Partial"),
+            ('fail', "Fail"),
+        ],
+        default='partial',
+        required=True,
+    )
+    photo = fields.Binary(attachment=True)
+    observations = fields.Text()
 ```
 
-Walk through the new field types:
+New things to notice:
 
-| Field | What it stores |
+| Field/feature | What it does |
 |---|---|
-| `Selection([...])` | A value picked from a fixed list. The CSV is `(database_value, label)`. Renders as a dropdown in the UI. |
-| `Text` | Multi-line string. Renders as a `<textarea>`. Use `Char` for short, `Text` for long. |
+| `Date` | Date without time. `fields.Date.context_today` is "today in the user's timezone." |
+| `Selection([...])` | A value picked from a fixed list. The tuples are `(database_value, label)`. Renders as a dropdown. |
+| `Binary(attachment=True)` | A file (photo, PDF, anything). `attachment=True` stores it outside the table to keep queries fast. |
+| `ondelete='cascade'` on the M2O to the proposal | "When the parent proposal is deleted, delete me too." Without this, deleting a proposal that has inspections fails with a database integrity error. |
+| `default=lambda self: self.env.user` | A function that runs at create-time and returns the current user. `self.env.user` is how you reach the current user from inside any model. |
 
-**`ondelete='cascade'` on the M2O** is critical. It means "when the parent report is deleted, delete me too." Without it, deleting a report with observations would fail with a database integrity error. Alternatives: `'restrict'` (default — blocks the parent delete) and `'set null'` (orphans the child).
+## Step 7: the main Outlet Proposal model
 
-## Step 5: the main Field Report model
-
-Open `models/hcpi_field_report.py`:
+Open `models/hcpi_outlet_proposal.py`:
 
 ```python
 from odoo import api, fields, models
 
 
-class HcpiFieldReport(models.Model):
-    _name = 'hcpi.field.report'
-    _description = "Field Report"
-    _order = 'date desc, id desc'
+class HcpiOutletProposal(models.Model):
+    _name = 'hcpi.outlet.proposal'
+    _description = "Outlet Proposal"
+    _order = 'create_date desc'
 
+    # Identity
     name = fields.Char(string="Reference", default="New", copy=False, readonly=True)
+    outlet_name = fields.Char(string="Outlet Name", required=True)
 
-    date = fields.Date(default=fields.Date.context_today, required=True, index=True)
-    enumerator_id = fields.Many2one(
-        'res.users',
-        string="Enumerator",
-        default=lambda self: self.env.user,
-        required=True,
-        index=True,
-    )
-    region_id = fields.Many2one('hcpi.region', string="Region", required=True, index=True)
-
+    # Workflow
     state = fields.Selection(
         [
             ('draft', "Draft"),
-            ('submitted', "Submitted"),
+            ('inspecting', "Inspecting"),
+            ('review', "Under Review"),
             ('approved', "Approved"),
             ('rejected', "Rejected"),
         ],
@@ -293,72 +375,87 @@ class HcpiFieldReport(models.Model):
         tracking=True,
     )
 
-    duration_hours = fields.Float(string="Hours in Field", default=0.0)
-    outlets_visited = fields.Integer(default=0)
-    prices_collected = fields.Integer(default=0)
+    # Classification
+    region_id = fields.Many2one('hcpi.region', string="Region", required=True, index=True)
+    outlet_type_id = fields.Many2one('hcpi.outlet.type', string="Outlet Type", required=True)
+    tag_ids = fields.Many2many('hcpi.outlet.tag', string="Tags")
+
+    # Location / contact
+    address = fields.Text()
+    latitude = fields.Float(digits=(10, 6))
+    longitude = fields.Float(digits=(10, 6))
+    contact_name = fields.Char()
+    contact_phone = fields.Char()
+    operating_hours = fields.Char(help="e.g. Mon–Sat, 7am–7pm")
+
+    # People
+    proposed_by = fields.Many2one(
+        'res.users',
+        string="Proposed By",
+        default=lambda self: self.env.user,
+        required=True,
+        index=True,
+    )
+    reviewed_by = fields.Many2one('res.users', string="Reviewed By", readonly=True)
+    approval_date = fields.Date(readonly=True)
+
+    # Notes
     notes = fields.Text()
 
-    tag_ids = fields.Many2many('hcpi.field.tag', string="Tags")
-
-    observation_ids = fields.One2many(
-        'hcpi.field.observation',
-        'report_id',
-        string="Observations",
+    # Inspections (children)
+    inspection_ids = fields.One2many(
+        'hcpi.outlet.inspection',
+        'proposal_id',
+        string="Inspections",
     )
 
-    observation_count = fields.Integer(
-        compute='_compute_observation_count',
+    # Computed
+    inspection_count = fields.Integer(
+        compute='_compute_inspection_stats',
         store=True,
     )
-    has_high_severity = fields.Boolean(
-        compute='_compute_has_high_severity',
+    last_inspection_date = fields.Date(
+        compute='_compute_inspection_stats',
+        store=True,
+    )
+    has_failed_inspection = fields.Boolean(
+        compute='_compute_has_failed_inspection',
         store=True,
     )
 
-    @api.depends('observation_ids')
-    def _compute_observation_count(self):
-        for report in self:
-            report.observation_count = len(report.observation_ids)
+    @api.depends('inspection_ids', 'inspection_ids.date')
+    def _compute_inspection_stats(self):
+        for proposal in self:
+            proposal.inspection_count = len(proposal.inspection_ids)
+            dates = proposal.inspection_ids.mapped('date')
+            proposal.last_inspection_date = max(dates) if dates else False
 
-    @api.depends('observation_ids.severity')
-    def _compute_has_high_severity(self):
-        for report in self:
-            report.has_high_severity = any(o.severity == 'high' for o in report.observation_ids)
+    @api.depends('inspection_ids.result')
+    def _compute_has_failed_inspection(self):
+        for proposal in self:
+            proposal.has_failed_inspection = any(
+                i.result == 'fail' for i in proposal.inspection_ids
+            )
 ```
 
-This is the largest file so far. Reading it as a tour of field types and concepts:
+This is the largest file so far. The new patterns:
 
 | Pattern | What's new |
 |---|---|
-| `default="New"` with `readonly=True`, `copy=False` | We'll generate a proper reference (`FR/2026/0001`) in Part 3 with a sequence. For now `"New"` is a placeholder. `copy=False` means it doesn't carry through when a user uses "Duplicate". |
-| `default=fields.Date.context_today` | Built-in default for "today, in the user's timezone". |
-| `default=lambda self: self.env.user` | The lambda runs at create time and returns the current user. `self.env.user` is how you reach the user inside any model. |
-| `index=True` on FKs | Adds a Postgres index on the column. Always do this on M2O fields you'll filter or group by — it's free and makes searches fast. |
-| `Float(string="Hours...", default=0.0)` | Decimal number. |
-| `Integer(default=0)` | Whole number. |
-| `Many2many('hcpi.field.tag')` | Many-to-many through an auto-generated join table. The table name is auto-derived; you can override with `relation=`, `column1=`, `column2=` arguments if you ever need to. |
-| `One2many('hcpi.field.observation', 'report_id', ...)` | The reverse side of the M2O in the observation model. `'report_id'` is the M2O field on `hcpi.field.observation` that points here. |
-| `compute=...` + `store=True` + `@api.depends(...)` | A stored computed field. Odoo runs the method whenever any field in `@api.depends(...)` changes and writes the result. Stored computes are queryable like normal fields. |
-| `tracking=True` on `state` | Tells `mail.thread` to log every change to this field in the chatter. We'll wire up `mail.thread` in Part 3 — adding `tracking=True` now is harmless. |
+| `default="New"` + `readonly=True` + `copy=False` | `name` is a reference like `OP/2026/0001` — we'll generate it from a sequence in Part 3. For now `"New"` is a placeholder. `copy=False` means the value is *not* carried through when a user duplicates a record. |
+| `tracking=True` on `state` | Tells `mail.thread` to log every change in the chatter. We'll wire up `mail.thread` in Part 3 — `tracking=True` here is harmless until then. |
+| `Float(digits=(10, 6))` | Decimal number. `digits=(precision, scale)` means up to 10 digits with 6 after the decimal point — perfect for GPS coordinates. |
+| `Many2many('hcpi.outlet.tag')` | Many-to-many via an auto-generated PostgreSQL join table. You can override the relation name and column names with `relation=`, `column1=`, `column2=` arguments, but defaults are fine 99% of the time. |
+| `One2many(..., 'proposal_id', ...)` | The reverse side of the M2O on the inspection model. `'proposal_id'` is the field on `hcpi.outlet.inspection` that points back here. |
+| `compute=...` + `store=True` + `@api.depends(...)` | Stored computed fields. Odoo runs the method whenever any field listed in `@api.depends(...)` changes, and writes the result to the table. Because they're stored, you can search and group by them. |
+| `inspection_ids.mapped('date')` | `mapped('field')` is a recordset method that returns a list of that field's values across all records — like a list comprehension `[i.date for i in inspection_ids]` but more concise. |
+| `max(dates) if dates else False` | A *ternary expression*. Equivalent to `if dates: ... else: ...`. Odoo uses `False` instead of `None` for empty Date fields. |
 
-### Compute methods — the loop pattern
+### Two computes, one method
 
-```python
-@api.depends('observation_ids.severity')
-def _compute_has_high_severity(self):
-    for report in self:
-        report.has_high_severity = any(o.severity == 'high' for o in report.observation_ids)
-```
+Notice `inspection_count` and `last_inspection_date` both reference the same compute method `_compute_inspection_stats`. That's allowed and idiomatic when two fields are calculated together — saves looping twice over `self`. As long as both `@api.depends` triggers are listed once, Odoo handles re-computing.
 
-**Always loop over `self`.** Compute methods are called on a **recordset** (could be 1 record, could be 1000). You don't get to assume length-1.
-
-`@api.depends('observation_ids.severity')` reads "depends on the `severity` field of every record in `observation_ids`". When any observation's severity changes, Odoo re-runs this compute on every report that owns that observation.
-
-### Recursive vs non-recursive computes
-
-`hcpi.region.complete_name` had `recursive=True` because the field depends on its own parent's value (`parent_id.complete_name`). The two computes in `hcpi.field.report` don't depend on themselves, so we don't need that flag.
-
-## Step 6: extending `res.users` with inheritance
+## Step 8: extending `res.users` with inheritance
 
 Open `models/res_users.py`:
 
@@ -369,39 +466,39 @@ from odoo import api, fields, models
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    field_report_ids = fields.One2many(
-        'hcpi.field.report',
-        'enumerator_id',
-        string="Field Reports",
+    proposal_ids = fields.One2many(
+        'hcpi.outlet.proposal',
+        'proposed_by',
+        string="Outlet Proposals",
     )
-    field_report_count = fields.Integer(
-        compute='_compute_field_report_count',
+    proposal_count = fields.Integer(
+        compute='_compute_proposal_count',
     )
 
-    @api.depends('field_report_ids')
-    def _compute_field_report_count(self):
+    @api.depends('proposal_ids')
+    def _compute_proposal_count(self):
         for user in self:
-            user.field_report_count = len(user.field_report_ids)
+            user.proposal_count = len(user.proposal_ids)
 ```
 
 This is **`_inherit` with no `_name`** — also called **classical inheritance** in Odoo. It says: "I'm not a new model; I'm modifying `res.users` in place. Add my fields and methods to the existing model."
 
 - The `res_users` PostgreSQL table gets no new columns from the `One2many` (it has no DB column anyway) and no new column from the `Integer` (it's an in-memory compute — `store=False` is the default).
-- After install, every `res.users` record has the `field_report_ids` and `field_report_count` attributes available.
+- After install, every `res.users` record has `proposal_ids` and `proposal_count` available — so you can read `env.user.proposal_count` from anywhere.
 
-There are two other inheritance modes you'll meet in HCPI:
+There are three inheritance modes in Odoo overall:
 
 | Mode | Syntax | Effect |
 |---|---|---|
 | **Classical (extension)** | `_inherit = 'res.users'` (no `_name`) | Adds fields/methods to the existing model. Same table. |
-| **Delegation** | `_inherit = 'res.partner'` + `_name = 'my.thing'` | Creates a new model with a hidden FK to the parent. Rare. |
-| **Prototype** | `_inherit = ['mail.thread', 'image.mixin']` (no `_name`) on a fresh model | Mixes in features from abstract models. Common — `mail.thread` everywhere. |
+| **Delegation** | `_inherits = {'res.partner': 'partner_id'}` (note the `s`) | Creates a new model with a hidden FK to the parent. Rare. |
+| **Prototype** | `_inherit = ['mail.thread']` on a fresh model that has its own `_name` | Mixes in features from abstract models. Used everywhere — `mail.thread` for chatter, etc. |
 
-We use **classical** in `res_users.py` and we'll use **prototype** in Part 3 when we add `mail.thread` to the report model.
+We use **classical** in `res_users.py`, and we'll use **prototype** in Part 3 when we add `mail.thread` to the proposal model.
 
-## Step 7: minimal views to see the data
+## Step 9: minimal views to see the data
 
-We'll do proper views in Part 2. For now we just need enough UI to create records and confirm the database is wired correctly.
+Real views come in Part 2 — for now we just need enough UI to create records and confirm the database is wired correctly.
 
 Open `views/views.xml` and replace its content:
 
@@ -409,7 +506,7 @@ Open `views/views.xml` and replace its content:
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Region: list + form -->
+    <!-- ============ Region ============ -->
     <record id="view_hcpi_region_list" model="ir.ui.view">
         <field name="name">hcpi.region.list</field>
         <field name="model">hcpi.region</field>
@@ -443,10 +540,29 @@ Open `views/views.xml` and replace its content:
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Tag: list + form -->
-    <record id="view_hcpi_field_tag_list" model="ir.ui.view">
-        <field name="name">hcpi.field.tag.list</field>
-        <field name="model">hcpi.field.tag</field>
+    <!-- ============ Outlet Type ============ -->
+    <record id="view_hcpi_outlet_type_list" model="ir.ui.view">
+        <field name="name">hcpi.outlet.type.list</field>
+        <field name="model">hcpi.outlet.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_hcpi_outlet_type" model="ir.actions.act_window">
+        <field name="name">Outlet Types</field>
+        <field name="res_model">hcpi.outlet.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ============ Tag ============ -->
+    <record id="view_hcpi_outlet_tag_list" model="ir.ui.view">
+        <field name="name">hcpi.outlet.tag.list</field>
+        <field name="model">hcpi.outlet.tag</field>
         <field name="arch" type="xml">
             <list editable="bottom">
                 <field name="name"/>
@@ -455,59 +571,68 @@ Open `views/views.xml` and replace its content:
         </field>
     </record>
 
-    <record id="action_hcpi_field_tag" model="ir.actions.act_window">
+    <record id="action_hcpi_outlet_tag" model="ir.actions.act_window">
         <field name="name">Tags</field>
-        <field name="res_model">hcpi.field.tag</field>
+        <field name="res_model">hcpi.outlet.tag</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Field Report: list + form -->
-    <record id="view_hcpi_field_report_list" model="ir.ui.view">
-        <field name="name">hcpi.field.report.list</field>
-        <field name="model">hcpi.field.report</field>
+    <!-- ============ Outlet Proposal ============ -->
+    <record id="view_hcpi_outlet_proposal_list" model="ir.ui.view">
+        <field name="name">hcpi.outlet.proposal.list</field>
+        <field name="model">hcpi.outlet.proposal</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="date"/>
-                <field name="enumerator_id"/>
+                <field name="outlet_name"/>
                 <field name="region_id"/>
-                <field name="outlets_visited"/>
-                <field name="prices_collected"/>
-                <field name="observation_count"/>
+                <field name="outlet_type_id"/>
+                <field name="proposed_by"/>
+                <field name="inspection_count"/>
                 <field name="state"/>
             </list>
         </field>
     </record>
 
-    <record id="view_hcpi_field_report_form" model="ir.ui.view">
-        <field name="name">hcpi.field.report.form</field>
-        <field name="model">hcpi.field.report</field>
+    <record id="view_hcpi_outlet_proposal_form" model="ir.ui.view">
+        <field name="name">hcpi.outlet.proposal.form</field>
+        <field name="model">hcpi.outlet.proposal</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_title">
+                        <label for="outlet_name"/>
+                        <h1><field name="outlet_name" placeholder="e.g. Kikuubo Wholesale Market"/></h1>
+                    </div>
                     <group>
                         <group>
-                            <field name="date"/>
-                            <field name="enumerator_id"/>
-                            <field name="region_id"/>
+                            <field name="name"/>
                             <field name="state"/>
+                            <field name="region_id"/>
+                            <field name="outlet_type_id"/>
+                            <field name="proposed_by"/>
                         </group>
                         <group>
-                            <field name="duration_hours"/>
-                            <field name="outlets_visited"/>
-                            <field name="prices_collected"/>
-                            <field name="observation_count"/>
+                            <field name="contact_name"/>
+                            <field name="contact_phone"/>
+                            <field name="operating_hours"/>
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="inspection_count"/>
                         </group>
                     </group>
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     <notebook>
-                        <page string="Observations">
-                            <field name="observation_ids">
+                        <page string="Address">
+                            <field name="address" placeholder="Street, landmark, neighbourhood..."/>
+                        </page>
+                        <page string="Inspections">
+                            <field name="inspection_ids">
                                 <list editable="bottom">
+                                    <field name="date"/>
                                     <field name="name"/>
-                                    <field name="outlet_name"/>
-                                    <field name="severity"/>
-                                    <field name="needs_action"/>
+                                    <field name="inspector_id"/>
+                                    <field name="result"/>
                                 </list>
                             </field>
                         </page>
@@ -520,66 +645,82 @@ Open `views/views.xml` and replace its content:
         </field>
     </record>
 
-    <record id="action_hcpi_field_report" model="ir.actions.act_window">
-        <field name="name">Field Reports</field>
-        <field name="res_model">hcpi.field.report</field>
+    <record id="action_hcpi_outlet_proposal" model="ir.actions.act_window">
+        <field name="name">Outlet Proposals</field>
+        <field name="res_model">hcpi.outlet.proposal</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Menus -->
-    <menuitem id="menu_hcpi_field_reports_root"
-              name="Field Reports"
-              sequence="50"/>
+    <!-- ============ Menus ============ -->
+    <menuitem id="menu_hcpi_outlet_onboarding_root"
+              name="Outlet Onboarding"
+              sequence="40"/>
 
-    <menuitem id="menu_hcpi_field_reports_reports"
-              name="Reports"
-              parent="menu_hcpi_field_reports_root"
-              action="action_hcpi_field_report"
+    <menuitem id="menu_hcpi_outlet_proposals"
+              name="Proposals"
+              parent="menu_hcpi_outlet_onboarding_root"
+              action="action_hcpi_outlet_proposal"
               sequence="10"/>
 
-    <menuitem id="menu_hcpi_field_reports_config"
+    <menuitem id="menu_hcpi_outlet_onboarding_config"
               name="Configuration"
-              parent="menu_hcpi_field_reports_root"
+              parent="menu_hcpi_outlet_onboarding_root"
               sequence="100"/>
 
     <menuitem id="menu_hcpi_regions"
               name="Regions"
-              parent="menu_hcpi_field_reports_config"
+              parent="menu_hcpi_outlet_onboarding_config"
               action="action_hcpi_region"
               sequence="10"/>
 
-    <menuitem id="menu_hcpi_field_tags"
-              name="Tags"
-              parent="menu_hcpi_field_reports_config"
-              action="action_hcpi_field_tag"
+    <menuitem id="menu_hcpi_outlet_types"
+              name="Outlet Types"
+              parent="menu_hcpi_outlet_onboarding_config"
+              action="action_hcpi_outlet_type"
               sequence="20"/>
+
+    <menuitem id="menu_hcpi_outlet_tags"
+              name="Tags"
+              parent="menu_hcpi_outlet_onboarding_config"
+              action="action_hcpi_outlet_tag"
+              sequence="30"/>
 
 </odoo>
 ```
 
-A few things to note:
+A few details worth flagging:
 
-- **`<list editable="bottom">`** in the tag list — lets you add rows directly in the list view, like a spreadsheet.
-- **`widget="color_picker"`** on the color field — Odoo replaces the integer input with a colour palette UI.
+- **`<list editable="bottom">`** in the tag and outlet-type lists — lets you add rows directly in the list view, like a spreadsheet. Saves opening a form for each one.
+- **`widget="color_picker"`** on the colour field — Odoo replaces the integer input with a colour palette UI.
 - **`<notebook>` and `<page>`** — tabs inside a form. Common pattern for "lots of related data on one form."
-- **The embedded `<list>` inside the One2many** — when rendering a One2many, Odoo needs to know which columns to show. The inline `<list>` defines that.
+- **The inline `<list>` inside the One2many** — when rendering a One2many, Odoo needs to know which columns to show. The inline `<list>` defines that.
 - **`widget="many2many_tags" options="{'color_field': 'color'}"`** — renders the M2M as coloured chips instead of a dropdown.
+- **Menus are records** — Odoo stores them in `ir.ui.menu`. `<menuitem>` is shorthand for creating that record.
 
-## Step 8: open up security temporarily
+## Step 10: open up security temporarily
 
 Replace `security/ir.model.access.csv`:
 
 ```csv
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hcpi_region,hcpi.region,model_hcpi_region,base.group_user,1,1,1,1
-access_hcpi_field_tag,hcpi.field.tag,model_hcpi_field_tag,base.group_user,1,1,1,1
-access_hcpi_field_observation,hcpi.field.observation,model_hcpi_field_observation,base.group_user,1,1,1,1
-access_hcpi_field_report,hcpi.field.report,model_hcpi_field_report,base.group_user,1,1,1,1
+access_hcpi_outlet_type,hcpi.outlet.type,model_hcpi_outlet_type,base.group_user,1,1,1,1
+access_hcpi_outlet_tag,hcpi.outlet.tag,model_hcpi_outlet_tag,base.group_user,1,1,1,1
+access_hcpi_outlet_inspection,hcpi.outlet.inspection,model_hcpi_outlet_inspection,base.group_user,1,1,1,1
+access_hcpi_outlet_proposal,hcpi.outlet.proposal,model_hcpi_outlet_proposal,base.group_user,1,1,1,1
 ```
 
-Every internal user gets full CRUD on every model. **We'll lock this down properly in Part 3.** For now we want the lowest-friction setup so we can test the data layer.
+What's going on here:
 
-## Step 9: install and click around
+- The file is a **CSV** because Odoo's `ir.model.access` records are simple enough that a CSV is easier to read than equivalent XML.
+- One row per (model, group) pair.
+- **`model_<model_table>`** is the auto-generated XML ID for each model's `ir.model` record. Pattern: take the model's table name (`hcpi.region` → `hcpi_region`) and prepend `model_`.
+- **`base.group_user`** is the built-in group "every internal user."
+- **`1,1,1,1`** = read, write, create, unlink (i.e. delete).
+
+Every internal user gets full CRUD on every model. **We'll lock this down properly in Part 3** with multi-group rules and record-level restrictions. For now we want the lowest-friction setup so we can test the data layer.
+
+## Step 11: install and click around
 
 Start Odoo:
 
@@ -587,25 +728,34 @@ Start Odoo:
 python odoo/odoo-bin -c conf/hcpi.conf
 ```
 
-In the browser (Developer Mode on):
+In the browser (developer mode on — see [User Administration](../day1/user-administration.md#activating-developer-mode)):
 
 1. **Apps** → **Update Apps List** → confirm.
-2. Search for **HCPI Field Reports**, click **Activate**.
-3. The **Field Reports** tile appears in the app launcher.
+2. Search for **HCPI Outlet Onboarding** (remove the default "Apps" filter to see uninstalled modules).
+3. Click **Activate** on the tile.
+4. The **Outlet Onboarding** main menu appears.
 
 Open it and:
 
-1. Go to **Configuration → Regions**. Create a tree:
-   - Add **Uganda** (no parent).
-   - Add **Central** under Uganda.
-   - Add **Kampala** under Central.
-   - Confirm the **Sub-regions** appear when you open Uganda, and `complete_name` shows **Uganda / Central / Kampala** for the leaf.
-2. **Configuration → Tags**. Add `weekend`, `rainy-day`, `mobile-app`. Click colour squares.
-3. **Reports → New**. Fill in date, enumerator (yours), region (Kampala), some outlet/price numbers. Add a couple of tags. Switch to the **Observations** tab and add two observations with different severities. Save.
+1. **Configuration → Regions**. Build a small tree:
+    - Add **Uganda** (no parent).
+    - Add **Central** under Uganda.
+    - Add **Kampala** under Central.
+    - When you open Kampala you should see `complete_name = "Uganda / Central / Kampala"` — that's the recursive compute at work.
+2. **Configuration → Outlet Types**. Add a few rows directly in the list: Supermarket (`SUP`), Open Market (`OM`), Pharmacy (`PH`), Convenience Store (`CS`).
+3. **Configuration → Tags**. Add `weekend-only`, `large-volume`, `revisit-needed`. Click each colour square to set a colour.
+4. **Proposals → New**. Fill in:
+    - Outlet name: *Kikuubo Wholesale Market*
+    - Region: *Uganda / Central / Kampala*
+    - Outlet type: *Open Market*
+    - Contact + GPS + operating hours
+    - Add a tag or two
+    - Switch to the **Inspections** tab and add two inspection rows with different results
+    - Save.
 
-You should see the **Observations count** column populate on the list view (that's `observation_count`, the stored compute).
+You should see the **Inspections** count column populate on the list view (that's `inspection_count`, the stored compute). Edit one of the inspection rows to change its `result` to `fail` and save — `has_failed_inspection` flips on the proposal.
 
-## Step 10: meet the ORM via the Odoo shell
+## Step 12: meet the ORM via the Odoo shell
 
 Open a **second terminal** with the venv activated (leave Odoo running in the first), then:
 
@@ -615,67 +765,68 @@ source venv/bin/activate
 python odoo/odoo-bin shell -c conf/hcpi.conf
 ```
 
-This drops you into a Python REPL with a fully loaded HCPI environment. The variable `self` is bound to `res.users` for the admin user, and `self.env` is the gateway to everything. Try:
+This drops you into a Python REPL with a fully loaded HCPI environment. The variable `env` is your gateway to everything.
+
+The ORM is the layer that lets you read and write database records without writing SQL. You use it constantly — in compute methods, in `create()` overrides, in button handlers, everywhere.
+
+Try:
 
 ```python
-# Get a reference to the model (the "manager" — not a record)
-Report = env['hcpi.field.report']
+# Get a reference to a model (the "manager" — not a record)
+Proposal = env['hcpi.outlet.proposal']
 
-# Count all reports
-Report.search_count([])
+# Count all proposals
+Proposal.search_count([])
 
-# Find all
-all_reports = Report.search([])
-len(all_reports)
+# Find all (empty domain matches everything)
+all_proposals = Proposal.search([])
+len(all_proposals)
 
-# Find with a domain
-recent = Report.search([('date', '>=', '2026-01-01')])
-recent.mapped('name')               # list of references
+# Find with a filter (domain)
+recent = Proposal.search([('create_date', '>=', '2026-01-01')])
+recent.mapped('outlet_name')        # list of names
 
-# Filter by relation
-in_kampala = Report.search([('region_id.name', '=', 'Kampala')])
+# Filter by relation (cross-table)
+kampala_proposals = Proposal.search([('region_id.name', '=', 'Kampala')])
 
-# Read raw values (returns list of dicts)
-recent.read(['name', 'date', 'outlets_visited'])
+# Read raw values
+recent.read(['name', 'outlet_name', 'state'])
 
-# Browse by id (no SQL query if you just want the recordset)
-r = Report.browse(1)
-r.name
-r.observation_ids                   # the One2many — a recordset
-r.observation_ids.mapped('name')
+# Browse by id (no SQL query yet — Odoo just gives you the recordset)
+p = Proposal.browse(1)
+p.outlet_name
+p.inspection_ids                    # the One2many — a recordset
+p.inspection_ids.mapped('name')
 
 # Create
-new = Report.create({
-    'date': '2026-05-25',
-    'enumerator_id': env.user.id,
+new = Proposal.create({
+    'outlet_name': 'Owino Market Stall 14',
     'region_id': env['hcpi.region'].search([('name', '=', 'Kampala')]).id,
-    'outlets_visited': 5,
-    'prices_collected': 42,
+    'outlet_type_id': env['hcpi.outlet.type'].search([('code', '=', 'OM')]).id,
 })
-new.name        # "New" (until Part 3 wires up the sequence)
-new.id
+new.name        # "New" — until Part 3 wires up the sequence
 
-# Create with related records
-Report.create({
-    'date': '2026-05-25',
-    'enumerator_id': env.user.id,
+# Create with related children — using a "command tuple"
+Proposal.create({
+    'outlet_name': 'Nakasero Pharmacy',
     'region_id': env['hcpi.region'].search([('name', '=', 'Kampala')]).id,
-    'observation_ids': [
-        (0, 0, {'name': 'Outlet closed', 'severity': 'high'}),
-        (0, 0, {'name': 'Price tag missing', 'severity': 'low'}),
+    'outlet_type_id': env['hcpi.outlet.type'].search([('code', '=', 'PH')]).id,
+    'inspection_ids': [
+        (0, 0, {'name': 'First visit', 'result': 'partial'}),
+        (0, 0, {'name': 'Follow-up', 'result': 'pass'}),
     ],
 })
 
 # Update one record
-new.write({'outlets_visited': 7})
+new.write({'state': 'inspecting'})
 
-# Update many at once (single UPDATE statement)
-recent.write({'state': 'submitted'})
+# Update many at once — one UPDATE statement under the hood
+recent.write({'state': 'inspecting'})
 
 # Delete
 new.unlink()
 
-# Persist changes
+# Persist changes from the shell
 env.cr.commit()
 ```
 
@@ -692,104 +843,97 @@ What you've just used:
 | `write(values)` | Update — works on any recordset size | `True` |
 | `unlink()` | Delete | `True` |
 
-### The "command tuples" for relational writes
+### Command tuples for relational writes
 
-That `[(0, 0, {...})]` syntax for `observation_ids` is Odoo's way of saying "create a new observation linked to this report." There are seven such commands:
+That `[(0, 0, {...})]` syntax is Odoo's way of saying "create a new linked record." There are seven such commands:
 
 | Tuple | Meaning |
 |---|---|
 | `(0, 0, values)` | Create a new linked record |
 | `(1, id, values)` | Update existing linked record |
 | `(2, id, 0)` | Unlink AND delete |
-| `(3, id, 0)` | Unlink (no delete) |
-| `(4, id, 0)` | Link existing record |
+| `(3, id, 0)` | Unlink (don't delete) |
+| `(4, id, 0)` | Link an existing record |
 | `(5, 0, 0)` | Unlink all |
 | `(6, 0, ids)` | Replace links with this list |
 
 You'll see all of them in real HCPI code. `(0, 0, ...)` (create) and `(6, 0, ids)` (replace) are the two most common.
 
-## Step 11: domains — the search filter language
+## Step 13: domains — the search filter language
 
-Domains are lists of triples (`('field', 'op', 'value')`) combined with logical operators:
+Domains are lists of triples (`('field', 'op', 'value')`) combined with logical operators. They're how you say "give me records matching this pattern":
 
 ```python
 # Implicit AND between triples
-Report.search([
-    ('state', '=', 'approved'),
-    ('outlets_visited', '>', 0),
+Proposal.search([
+    ('state', '=', 'inspecting'),
+    ('outlet_type_id.code', '=', 'OM'),
 ])
 
 # Explicit OR (prefix operators, Polish notation)
-Report.search(['|',
+Proposal.search(['|',
     ('state', '=', 'approved'),
-    ('state', '=', 'submitted'),
+    ('state', '=', 'review'),
 ])
 
 # NOT
-Report.search(['!', ('state', '=', 'draft')])
+Proposal.search(['!', ('state', '=', 'draft')])
 
 # IN
-Report.search([('state', 'in', ['approved', 'submitted'])])
+Proposal.search([('state', 'in', ['approved', 'review'])])
 
-# Crossing a relation
-Report.search([('region_id.name', '=', 'Kampala')])
-Report.search([('observation_ids.severity', '=', 'high')])
+# Crossing a relation (dot notation)
+Proposal.search([('region_id.name', '=', 'Kampala')])
+Proposal.search([('inspection_ids.result', '=', 'fail')])
 
-# LIKE / ILIKE (case-insensitive)
-Report.search([('notes', 'ilike', 'closure')])
+# LIKE / ILIKE (case-insensitive partial match)
+Proposal.search([('outlet_name', 'ilike', 'market')])
 
 # Date comparison
-Report.search([('date', '>=', '2026-01-01'), ('date', '<', '2026-04-01')])
+Proposal.search([('create_date', '>=', '2026-01-01')])
 ```
 
 **Operators you'll use most:** `=`, `!=`, `>`, `>=`, `<`, `<=`, `in`, `not in`, `ilike`, `child_of`, `parent_of`.
 
-Try this last one — it's why we set up `_parent_store`:
+Try `child_of` — it's why we set up `_parent_store` on the Region model:
 
 ```python
-# All reports filed in Uganda or any sub-region
+# All proposals in Uganda or any of its sub-regions
 Region = env['hcpi.region']
 uganda = Region.search([('name', '=', 'Uganda')])
-Report.search([('region_id', 'child_of', uganda.id)])
+Proposal.search([('region_id', 'child_of', uganda.id)])
 ```
 
-`child_of` walks the `parent_path` index — fast even with deep hierarchies.
+`child_of` walks the `parent_path` index — fast even with deep hierarchies. Useful when the user picks "Uganda" and you want all proposals in *any* Ugandan region.
 
 ## Exercises
 
-1. **Compute the average outlets per report per region.** In the shell:
+1. **Average inspections per outlet type.** In the shell, loop over all outlet types and print the average number of inspections per proposal of that type. Hint: `sum([...]) / len([...])` with a list comprehension.
 
-    ```python
-    Report = env['hcpi.field.report']
-    Region = env['hcpi.region']
-    for region in Region.search([]):
-        reports = Report.search([('region_id', '=', region.id)])
-        if reports:
-            avg = sum(r.outlets_visited for r in reports) / len(reports)
-            print(f"{region.complete_name}: {avg:.1f}")
-    ```
+2. **Add a `weekday` computed field** to `hcpi.outlet.inspection` — a `Char` that shows `"Monday"`, `"Tuesday"`, etc. derived from `date`. Hint: `fields.Date` values are Python `date` objects; they have `.strftime('%A')`. The compute will need `@api.depends('date')` and doesn't need to be stored.
 
-2. **Add a `weekday` computed field** to `hcpi.field.report` — a `Char` that shows `"Monday"`, `"Tuesday"`, etc. derived from `date`. Hint: `fields.Date` returns Python `date` objects; they have `.strftime('%A')`. The compute will need `@api.depends('date')` and shouldn't be stored (cheap, not searched).
+3. **`_sql_constraints` for uniqueness.** Add a constraint on `hcpi.outlet.proposal` saying "one proposal per outlet name per region" (unique on `(outlet_name, region_id)`). Hint: same shape as the constraints in `hcpi.outlet.type` and `hcpi.outlet.tag`, but with a comma-separated column list.
 
-3. **Add an `_sql_constraints`** on the report saying "one report per enumerator per date" (unique on `(enumerator_id, date)`). Hint: same pattern as the tag constraint, multi-column tuple in SQL.
+4. **Find all proposals tagged "large-volume".** Write a domain. Hint: cross the M2M with `('tag_ids.name', '=', 'large-volume')`.
 
-4. **Find all reports tagged "weekend".** Write a domain. Hint: cross the M2M with `('tag_ids.name', '=', 'weekend')`.
-
-5. **Bulk update.** Set `state = 'submitted'` for every draft report dated before today. One ORM call.
+5. **Bulk update.** Set `state = 'inspecting'` for every draft proposal that already has at least one inspection. One ORM call.
 
 ## What you learned
 
-After Part 1 you understand:
+After Part 1 you've covered the entire data layer of an HCPI module:
 
-- **Field types**: `Char`, `Text`, `Integer`, `Float`, `Boolean`, `Date`, `Selection`.
+- **Module scaffolding**: manifest, `__init__.py` package chain, `data` files, `depends`.
+- **Field types**: `Char`, `Text`, `Integer`, `Float` (with `digits=`), `Boolean`, `Date`, `Selection`, `Binary`.
 - **Relationships**: `Many2one` (with `ondelete=`), `One2many` (with the inverse field name), `Many2many` (with auto join tables).
 - **Hierarchical models**: `_parent_name`, `_parent_store`, `parent_path`, and `child_of` queries.
-- **Computed fields**: stored vs unstored, `@api.depends`, the for-loop-over-self pattern.
+- **Computed fields**: stored vs unstored, `@api.depends`, the for-loop-over-self pattern, two fields sharing one compute method.
 - **Inheritance** (classical): adding fields to `res.users` without making a new model.
 - **`_sql_constraints`** for database-level uniqueness.
-- **The ORM**: `search`, `browse`, `read`, `create`, `write`, `unlink`, `mapped`, and command tuples for relational writes.
-- **Domains**: AND/OR/NOT, cross-relation lookups, `child_of`.
+- **Minimal views**: list, form, notebook + page, inline One2many, menus.
+- **CSV-format access control** — open today, locked down in Part 3.
+- **The ORM**: `search`, `browse`, `read`, `create`, `write`, `unlink`, `mapped`, and command tuples.
+- **Domains**: AND/OR/NOT, cross-relation lookups via dot notation, `child_of`.
 
 ## What's next
 
-➡️ **[Part 2: Views & UX](part2-views.md)** — turn this raw module into something pleasant to use. Statusbar workflow, Kanban with stages, Graph and Pivot reports, Calendar, advanced search, inline editing, list decorations, and a printable PDF.
+➡️ **[Part 2: Views & UX](part2-views.md)** — turn this raw module into something pleasant to use. Statusbar workflow, Kanban with stages, Graph and Pivot reports, Calendar, advanced search, list decorations, and a printable PDF dossier.
