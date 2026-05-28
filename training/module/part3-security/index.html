@@ -1761,10 +1761,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-define-the-security-groups" class="md-nav__link">
+  <a href="#step-1-define-the-manager-group" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: define the security groups
+        Step 1: define the Manager group
       
     </span>
   </a>
@@ -1772,10 +1772,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-replace-the-open-acl-with-a-proper-matrix" class="md-nav__link">
+  <a href="#step-2-refine-the-acl-matrix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: replace the open ACL with a proper matrix
+        Step 2: refine the ACL matrix
       
     </span>
   </a>
@@ -2015,10 +2015,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-define-the-security-groups" class="md-nav__link">
+  <a href="#step-1-define-the-manager-group" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: define the security groups
+        Step 1: define the Manager group
       
     </span>
   </a>
@@ -2026,10 +2026,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-replace-the-open-acl-with-a-proper-matrix" class="md-nav__link">
+  <a href="#step-2-refine-the-acl-matrix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: replace the open ACL with a proper matrix
+        Step 2: refine the ACL matrix
       
     </span>
   </a>
@@ -2198,7 +2198,7 @@
 
 
 <h1 id="building-an-hcpi-module-part-3-security-polish">Building an HCPI Module — Part 3: Security &amp; Polish</h1>
-<p>You have a working module with data and good UX. Part 3 makes it production-ready: only the right people can see and change the right things, every change is auditable, records get proper reference numbers, and the workflow refuses to let you skip steps.</p>
+<p>You have a working module with data and good UX. Part 3 makes it production-ready: a manager role gates the approval action, every change is auditable, records get proper reference numbers, and the workflow refuses to let you skip steps.</p>
 <h2 id="what-security-means-in-odoo">What "security" means in Odoo</h2>
 <p>Two distinct layers, each ultimately stored as rows in built-in tables (just like views, actions, and menus — recall the picture from <a href="../../../understanding-the-codebase/odoo-basics/">Odoo Basics</a>):</p>
 <table>
@@ -2228,7 +2228,8 @@
 </tbody>
 </table>
 <p>The mental model: <strong>ACL is the door, record rules are the floor plan.</strong> ACL says "you may enter the room." Record rules say "and within that room you can only see your own desk."</p>
-<h2 id="step-1-define-the-security-groups">Step 1: define the security groups</h2>
+<p>We'll add <strong>one</strong> custom group — <code>Manager</code> — and contrast it with regular internal users (<code>base.group_user</code>). That's enough to demonstrate every security primitive.</p>
+<h2 id="step-1-define-the-manager-group">Step 1: define the Manager group</h2>
 <p>Create <code>security/hcpi_outlet_onboarding_security.xml</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">&lt;odoo&gt;</span>
@@ -2239,27 +2240,19 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sequence&quot;</span><span class="nt">&gt;</span>25<span class="nt">&lt;/field&gt;</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">&lt;/record&gt;</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="cm">&lt;!-- Groups, ordered from least to most privileged --&gt;</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;group_outlet_onboarding_officer&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;res.groups&quot;</span><span class="nt">&gt;</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Field<span class="w"> </span>Officer<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="cm">&lt;!-- One custom group: Manager. Every other internal user is a regular user. --&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;group_outlet_onboarding_manager&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;res.groups&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Manager<span class="nt">&lt;/field&gt;</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;category_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;module_category_hcpi_outlet_onboarding&quot;</span><span class="nt">/&gt;</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;comment&quot;</span><span class="nt">&gt;</span>File<span class="w"> </span>proposals<span class="w"> </span>and<span class="w"> </span>perform<span class="w"> </span>inspections.<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;comment&quot;</span><span class="nt">&gt;</span>Approve<span class="w"> </span>proposals<span class="w"> </span>and<span class="w"> </span>see<span class="w"> </span>everyone&#39;s<span class="w"> </span>work.<span class="nt">&lt;/field&gt;</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">&lt;/record&gt;</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;group_outlet_onboarding_manager&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;res.groups&quot;</span><span class="nt">&gt;</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Manager<span class="nt">&lt;/field&gt;</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;category_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;module_category_hcpi_outlet_onboarding&quot;</span><span class="nt">/&gt;</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;implied_ids&quot;</span><span class="w"> </span><span class="na">eval=</span><span class="s">&quot;[(4, ref(&#39;group_outlet_onboarding_officer&#39;))]&quot;</span><span class="nt">/&gt;</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;comment&quot;</span><span class="nt">&gt;</span>Approve<span class="w"> </span>or<span class="w"> </span>reject<span class="w"> </span>proposals;<span class="w"> </span>manage<span class="w"> </span>tags.<span class="nt">&lt;/field&gt;</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">&lt;/record&gt;</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nt">&lt;/odoo&gt;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nt">&lt;/odoo&gt;</span>
 </code></pre></div>
 <p>Walk through:</p>
 <ul>
-<li><strong><code>ir.module.category</code></strong> — a UI grouping in <strong>Settings → Users → User → Access Rights</strong>. Without it, your groups show up as a flat dropdown rather than radio buttons grouped under "HCPI Outlet Onboarding."</li>
-<li><strong><code>res.groups</code></strong> — the actual group records.</li>
-<li><strong><code>implied_ids = [(4, ref('group_outlet_onboarding_officer'))]</code></strong> — "anyone in Manager is automatically also in Field Officer." <code>(4, ref('...'))</code> is the link-an-existing-record command tuple from <a href="../part1-models/">Part 1</a>.</li>
+<li><strong><code>ir.module.category</code></strong> — a UI grouping in <strong>Settings → Users → User → Access Rights</strong>. Without it, your group shows up as a flat checkbox rather than under "HCPI Outlet Onboarding."</li>
+<li><strong><code>res.groups</code></strong> — the actual group record.</li>
 </ul>
 <p>Add the file to <code>__manifest__.py</code> <code>data</code> (security files load <strong>before</strong> views — security records must exist before views reference them):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
@@ -2268,14 +2261,12 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s1">&#39;views/views.xml&#39;</span><span class="p">,</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">],</span>
 </code></pre></div>
-<h2 id="step-2-replace-the-open-acl-with-a-proper-matrix">Step 2: replace the open ACL with a proper matrix</h2>
+<h2 id="step-2-refine-the-acl-matrix">Step 2: refine the ACL matrix</h2>
 <p>Open <code>security/ir.model.access.csv</code> and replace its content:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>access_hcpi_outlet_tag_officer,hcpi.outlet.tag officer read,model_hcpi_outlet_tag,hcpi_outlet_onboarding.group_outlet_onboarding_officer,1,0,0,0
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>access_hcpi_outlet_tag_manager,hcpi.outlet.tag manager all,model_hcpi_outlet_tag,hcpi_outlet_onboarding.group_outlet_onboarding_manager,1,1,1,1
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>access_hcpi_outlet_inspection_officer,hcpi.outlet.inspection officer all,model_hcpi_outlet_inspection,hcpi_outlet_onboarding.group_outlet_onboarding_officer,1,1,1,1
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>access_hcpi_outlet_proposal_officer,hcpi.outlet.proposal officer,model_hcpi_outlet_proposal,hcpi_outlet_onboarding.group_outlet_onboarding_officer,1,1,1,0
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>access_hcpi_outlet_proposal_manager,hcpi.outlet.proposal manager,model_hcpi_outlet_proposal,hcpi_outlet_onboarding.group_outlet_onboarding_manager,1,1,1,1
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>access_hcpi_outlet_visit_user,hcpi.outlet.visit user,model_hcpi_outlet_visit,base.group_user,1,1,1,1
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>access_hcpi_outlet_proposal_user,hcpi.outlet.proposal user,model_hcpi_outlet_proposal,base.group_user,1,1,1,0
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>access_hcpi_outlet_proposal_manager,hcpi.outlet.proposal manager,model_hcpi_outlet_proposal,hcpi_outlet_onboarding.group_outlet_onboarding_manager,1,1,1,1
 </code></pre></div>
 <p>Reading row by row:</p>
 <table>
@@ -2292,35 +2283,17 @@
 </thead>
 <tbody>
 <tr>
-<td><code>hcpi.outlet.tag</code></td>
-<td>Field Officer</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>Pick existing tags but don't mint new ones.</td>
-</tr>
-<tr>
-<td><code>hcpi.outlet.tag</code></td>
-<td>Manager</td>
+<td><code>hcpi.outlet.visit</code></td>
+<td>Every user</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
-<td>Curate the tag catalogue.</td>
-</tr>
-<tr>
-<td><code>hcpi.outlet.inspection</code></td>
-<td>Field Officer</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>They author inspections on proposals they can see.</td>
+<td>Anyone can log a visit.</td>
 </tr>
 <tr>
 <td><code>hcpi.outlet.proposal</code></td>
-<td>Field Officer</td>
+<td>Every user</td>
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -2334,23 +2307,24 @@
 <td>1</td>
 <td>1</td>
 <td>1</td>
-<td>Manager can delete (e.g., garbage cleanup).</td>
+<td>Manager can also delete (garbage cleanup).</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Key principle:</strong> ACL is binary at the model level. Use it for the rough "can this role even touch this model?" question. For nuance (this row but not that row) use <strong>record rules</strong> in the next step.</p>
+<p><strong>How ACLs combine across groups:</strong> they're OR'd. A user in both <code>base.group_user</code> AND <code>Manager</code> has the union of their permissions — so a Manager can delete proposals because <em>that</em> group has unlink, even though the regular-user row doesn't.</p>
 <h2 id="step-3-a-record-rule-you-only-see-your-own-proposals">Step 3: a record rule — "you only see your own proposals"</h2>
-<p>A field officer should see only proposals they filed; a manager sees everyone's. We codify that with <code>ir.rule</code>.</p>
-<p>Add to <code>security/hcpi_outlet_onboarding_security.xml</code>, after the groups:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cm">&lt;!-- Field officer: only their OWN proposals --&gt;</span>
+<p>A regular user should see only proposals they filed; a Manager sees everyone's. We codify that with <code>ir.rule</code>.</p>
+<p>Add to <code>security/hcpi_outlet_onboarding_security.xml</code>, after the group:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cm">&lt;!-- Regular users: only their OWN proposals --&gt;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;rule_proposal_own&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.rule&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Outlet<span class="w"> </span>Proposal:<span class="w"> </span>own<span class="w"> </span>only<span class="nt">&lt;/field&gt;</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;model_hcpi_outlet_proposal&quot;</span><span class="nt">/&gt;</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;domain_force&quot;</span><span class="nt">&gt;</span>[(&#39;proposed_by&#39;,<span class="w"> </span>&#39;=&#39;,<span class="w"> </span>user.id)]<span class="nt">&lt;/field&gt;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;groups&quot;</span><span class="w"> </span><span class="na">eval=</span><span class="s">&quot;[(4, ref(&#39;group_outlet_onboarding_officer&#39;))]&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;groups&quot;</span><span class="w"> </span><span class="na">eval=</span><span class="s">&quot;[(4, ref(&#39;base.group_user&#39;))]&quot;</span><span class="nt">/&gt;</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">&lt;/record&gt;</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="cm">&lt;!-- Manager: sees ALL proposals --&gt;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="cm">&lt;!-- Managers: see ALL proposals --&gt;</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;rule_proposal_manager_all&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.rule&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>Outlet<span class="w"> </span>Proposal:<span class="w"> </span>manager<span class="w"> </span>sees<span class="w"> </span>all<span class="nt">&lt;/field&gt;</span>
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model_id&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;model_hcpi_outlet_proposal&quot;</span><span class="nt">/&gt;</span>
@@ -2362,10 +2336,11 @@
 <ul>
 <li><strong><code>domain_force</code></strong> — a domain auto-appended to every search. The user never sees rows that don't match.</li>
 <li><strong><code>user.id</code></strong> — magic variable in record rules: the currently logged-in user's id.</li>
-<li><strong><code>(1, '=', 1)</code></strong> — the "match everything" domain. Used to give a higher-privilege group full visibility.</li>
+<li><strong><code>(1, '=', 1)</code></strong> — the "match everything" domain.</li>
+<li><strong><code>(4, ref('base.group_user'))</code></strong> — the link-an-existing-record command tuple from <a href="../part1-models/">Part 1</a>. Same shape as <code>assigned_user_ids</code> updates.</li>
 </ul>
 <h3 id="how-rules-combine">How rules combine</h3>
-<p><strong>Across groups: rules are OR'd.</strong> If a user is in both Field Officer and Manager (via <code>implied_ids</code>), they see the union of what each rule allows. That's why the Manager rule with <code>(1, '=', 1)</code> effectively grants full visibility — <code>True OR (proposed_by = user.id)</code> simplifies to <code>True</code>.</p>
+<p><strong>Across groups: rules are OR'd.</strong> A Manager is also in <code>base.group_user</code>, so they have two applicable rules. <code>True OR (proposed_by = user.id)</code> simplifies to <code>True</code> — they see everything.</p>
 <p><strong>Within one group, rules are AND'd.</strong> If a single group has two rules, both must match.</p>
 <h2 id="step-4-a-sequence-for-auto-numbering">Step 4: a sequence for auto-numbering</h2>
 <p>Replace <code>name="New"</code> with proper references like <code>OP/2026/0001</code>.</p>
@@ -2432,7 +2407,7 @@
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">        </span><span class="nt">&lt;chatter/&gt;</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">&lt;/form&gt;</span>
 </code></pre></div>
-<p>The <code>&lt;chatter/&gt;</code> tag is Odoo 17/18 shorthand. Upgrade, open a proposal — a chatter panel now appears at the bottom with <strong>Send message</strong>, <strong>Log note</strong>, <strong>Followers</strong>, and the log feed where every <code>state</code> change is recorded as <strong>State: Draft → Inspecting</strong>.</p>
+<p>The <code>&lt;chatter/&gt;</code> tag is Odoo 17/18 shorthand. Upgrade, open a proposal — a chatter panel now appears at the bottom with <strong>Send message</strong>, <strong>Log note</strong>, <strong>Followers</strong>, and the log feed where every <code>state</code> change is recorded as <strong>State: Draft → Active</strong>.</p>
 <h3 id="tracking-more-fields">Tracking more fields</h3>
 <p>Pick any field where you want history. Add <code>tracking=True</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">outlet_name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="s2">&quot;Outlet Name&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2441,7 +2416,7 @@
 </code></pre></div>
 <p>Every change to these fields shows up in the chatter as <code>Field: old → new</code>.</p>
 <h2 id="step-6-validation-with-apiconstrains">Step 6: validation with <code>@api.constrains</code></h2>
-<p>Right now nothing prevents an officer from submitting a proposal with garbage GPS coordinates. Add a Python constraint.</p>
+<p>Right now nothing prevents an officer from saving a proposal with garbage GPS coordinates. Add a Python constraint.</p>
 <p>In <code>models/hcpi_outlet_proposal.py</code>, add the import at the top:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserError</span><span class="p">,</span> <span class="n">ValidationError</span>
 </code></pre></div>
@@ -2457,74 +2432,58 @@
 <p><code>@api.constrains</code> runs on every save. Different from <code>@api.onchange</code> (which runs in the UI as the user types but doesn't block save — it's for hints) and from <code>_sql_constraints</code> (database-level, faster but limited to what SQL can express).</p>
 <p>Try saving a proposal with <code>latitude = 999</code> → red error toast appears, save blocked.</p>
 <h2 id="step-7-harden-the-workflow-buttons">Step 7: harden the workflow buttons</h2>
-<p>Right now <code>action_start_inspection</code> lets anyone advance any draft. Add some sanity checks plus role-based gating. Replace the action methods in <code>models/hcpi_outlet_proposal.py</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_start_inspection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;draft&#39;</span><span class="p">:</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only draft proposals can move to Inspecting.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">proposal</span><span class="o">.</span><span class="n">outlet_type</span><span class="p">:</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Set the outlet type before starting inspection.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;inspecting&#39;</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Moved to inspection.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_submit_for_review</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;inspecting&#39;</span><span class="p">:</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only proposals under inspection can be submitted for review.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">proposal</span><span class="o">.</span><span class="n">inspection_ids</span><span class="p">:</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Record at least one inspection before submitting for review.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;review&#39;</span>
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Submitted for management review.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
-<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_approve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_require_manager</span><span class="p">()</span>
-<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;review&#39;</span><span class="p">:</span>
-<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only proposals under review can be approved.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;approved&#39;</span>
-<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Proposal approved.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>
-<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_reject</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_require_manager</span><span class="p">()</span>
-<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;review&#39;</span><span class="p">,</span> <span class="s1">&#39;inspecting&#39;</span><span class="p">):</span>
-<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only proposals under inspection or review can be rejected.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;rejected&#39;</span>
-<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Proposal rejected.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>
-<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_reset_to_draft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_require_manager</span><span class="p">()</span>
-<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;draft&#39;</span>
-<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Reset to draft.&quot;</span><span class="p">)</span>
-<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>
-<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a><span class="k">def</span><span class="w"> </span><span class="nf">_require_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">has_group</span><span class="p">(</span><span class="s1">&#39;hcpi_outlet_onboarding.group_outlet_onboarding_manager&#39;</span><span class="p">):</span>
-<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>        <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only managers can perform this action.&quot;</span><span class="p">)</span>
+<p>Right now <code>action_approve</code> lets anyone advance any draft. Add a state check, a sanity check, and a manager gate. Replace the action methods in <code>models/hcpi_outlet_proposal.py</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_approve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_require_manager</span><span class="p">()</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;draft&#39;</span><span class="p">:</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only draft proposals can be approved.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">proposal</span><span class="o">.</span><span class="n">visit_ids</span><span class="p">:</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Record at least one visit before approving.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Proposal approved.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_retire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;active&#39;</span><span class="p">:</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only active outlets can be retired.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;retired&#39;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Outlet retired.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_reset_to_draft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;draft&#39;</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Reset to draft.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="k">def</span><span class="w"> </span><span class="nf">_require_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">has_group</span><span class="p">(</span><span class="s1">&#39;hcpi_outlet_onboarding.group_outlet_onboarding_manager&#39;</span><span class="p">):</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>        <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only managers can approve proposals.&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Reading the changes:</p>
 <ul>
 <li><strong><code>raise UserError(...)</code></strong> — friendly dialog to the user. Different from <code>ValidationError</code> mainly by convention; both stop the operation and surface their message.</li>
-<li><strong><code>has_group('&lt;xml-id&gt;')</code></strong> — checks group membership. Returns True if the user is <em>in or implies</em> that group, so a Manager passes any check.</li>
+<li><strong><code>has_group('&lt;xml-id&gt;')</code></strong> — checks group membership. Returns True if the user is <em>in</em> that group.</li>
 <li><strong><code>message_post(body=...)</code></strong> — adds a chatter entry. Audit-trail bonus on top of the automatic <code>tracking=True</code> logs.</li>
 </ul>
-<p>Try as a Field Officer: click <strong>Submit for Review</strong> on a proposal with no inspections → "Record at least one inspection..." dialog blocks it. As a Field Officer, try <strong>Approve</strong> → "Only managers..." blocks it. As a Manager → approval works.</p>
+<p>Try as a regular user: click <strong>Approve</strong> → "Only managers..." blocks it. Try <strong>Approve</strong> with no visits → "Record at least one visit..." blocks it. As a Manager with at least one visit → approval works.</p>
 <h2 id="step-8-a-final-check">Step 8: a final check</h2>
 <p>Stop Odoo, run a full upgrade:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_outlet_onboarding
 </code></pre></div>
 <p>Tour:</p>
 <ol>
-<li><strong>Settings → Users</strong>: confirm the <strong>HCPI Outlet Onboarding</strong> category appears with <strong>Field Officer</strong> / <strong>Manager</strong> radio options.</li>
-<li>Create / log in as <code>officer1</code> with Field Officer only (Settings → Users &amp; Companies → Users → Create; set password via ⋮ → Change Password).</li>
-<li>As <code>officer1</code>:<ul>
+<li><strong>Settings → Users</strong>: confirm the <strong>HCPI Outlet Onboarding</strong> category appears with a <strong>Manager</strong> checkbox.</li>
+<li>Create a second user (Settings → Users &amp; Companies → Users → Create), set a password, and <em>do not</em> tick Manager. They're a regular user.</li>
+<li>Open a private/incognito browser and log in as that user.</li>
+<li>As the regular user:<ul>
 <li>Create a proposal. Note the auto-name (<code>OP/2026/0001</code>).</li>
 <li>Try to delete it — no delete option in the Actions menu (ACL forbids).</li>
+<li>Try <strong>Approve</strong> — blocked by <code>_require_manager</code>.</li>
 <li>The list shows only the proposal you just created (record rule).</li>
 </ul>
 </li>
-<li>As admin/manager:<ul>
-<li>View the officer's proposal. Click <strong>Approve</strong> — <code>action_approve</code> fires, state moves, chatter logs "Proposal approved."</li>
+<li>As admin (a Manager by default):<ul>
+<li>View the regular user's proposal. Click <strong>Approve</strong> with a visit recorded — state moves, chatter logs "Proposal approved."</li>
 <li>Change <code>contact_phone</code>. The chatter records the change (because the field is <code>tracking=True</code>).</li>
 </ul>
 </li>
@@ -2532,26 +2491,22 @@
 <h2 id="exercises">Exercises</h2>
 <ol>
 <li>
-<p><strong>Read-only auditor group.</strong> Define <code>group_outlet_onboarding_auditor</code> that doesn't imply Field Officer. Grant read on all models, no write. Confirm a user in only that group can browse but cannot create.</p>
+<p><strong>Restrict editing on active proposals.</strong> Add a write-only record rule for <code>base.group_user</code> that allows writes only when <code>state in ('draft',)</code> — once approved, regular users can't edit. Managers should still be able to edit at any state (their existing "see all" rule allows it).</p>
 </li>
 <li>
-<p><strong>A second record rule.</strong> Prevent field officers from editing their own proposal once it's in <code>review</code> or <code>approved</code> — they can still read it, but writes are blocked. Hint: a write-only rule with <code>perm_write=True</code> and a domain restricting to <code>state in ('draft', 'inspecting')</code>.</p>
+<p><strong>Smart button on <code>res.users</code>.</strong> Add a <code>proposal_count</code> computed field on <code>res.users</code> (<code>_inherit = 'res.users'</code>, no new <code>_name</code>) and display it as a smart button on the user form via an <code>&lt;xpath expr="//div[@name='button_box']" position="inside"&gt;</code> view inheriting <code>base.view_users_form</code>. This is the pattern country-specific modules use to extend HCPI base models — see <a href="../../../understanding-the-codebase/country-variants/">Country Variants</a>.</p>
 </li>
 <li>
-<p><strong>Smart button via view inheritance.</strong> Add a <code>proposal_count</code> computed field on <code>res.users</code> (<code>_inherit = 'res.users'</code>, no new <code>_name</code>) and display it as a smart button on the user form. You'll need an <code>&lt;xpath expr="//div[@name='button_box']" position="inside"&gt;</code> view inheriting <code>base.view_users_form</code>. This is the pattern country-specific modules use to extend HCPI base models — see <a href="../../../understanding-the-codebase/country-variants/">Country Variants</a>.</p>
+<p><strong>Cross-record constraint.</strong> Use <code>@api.constrains</code> to enforce "no duplicate outlet name per region with a friendly message" — search for another record with the same <code>outlet_name + region</code> and raise if found. (Bonus: compare with the <code>_sql_constraints</code> already on the model — when does each fire?)</p>
 </li>
 <li>
-<p><strong>Cross-record constraint.</strong> Use <code>@api.constrains</code> to enforce "one proposal per outlet name per region" — search for another record with the same <code>outlet_name + region</code> and raise if found.</p>
-</li>
-<li>
-<p><strong>Scheduled cron.</strong> Create an <code>ir.cron</code> record that runs every Monday at 09:00 and posts a chatter message on every proposal that's been in <code>review</code> for more than 7 days, nudging the manager.</p>
+<p><strong>Scheduled cron.</strong> Create an <code>ir.cron</code> record that runs every Monday at 09:00 and posts a chatter message on every proposal that's been in <code>draft</code> for more than 7 days, nudging the manager. Hint: <code>ir.cron</code> records live in data XML; their <code>model_id</code> references the model whose method runs.</p>
 </li>
 </ol>
 <h2 id="what-you-learned">What you learned</h2>
 <p>After Part 3 you understand the entire surface area of an HCPI module:</p>
 <ul>
 <li><strong>Groups, ACLs, record rules</strong>, and how they combine.</li>
-<li><strong><code>implied_ids</code></strong> for role hierarchies.</li>
 <li><strong><code>ir.module.category</code></strong> for clean user-permissions UI.</li>
 <li><strong><code>ir.rule.domain_force</code></strong> with <code>user.id</code> for "own records only" rules.</li>
 <li><strong>Sequences</strong> with <code>next_by_code</code> and a <code>create()</code> override.</li>
@@ -2563,7 +2518,7 @@
 <li><strong><code>has_group</code></strong> for in-method permission checks.</li>
 </ul>
 <h2 id="what-now">What now?</h2>
-<p>The module you built is a real module — clone it, rename it, swap the domain, and you have a working starter for almost any "an officer proposes, a reviewer inspects, a manager approves" workflow.</p>
+<p>The module you built is a real module — clone it, rename it, swap the domain, and you have a working starter for almost any "an officer files, a manager approves" workflow.</p>
 <p>From here:</p>
 <ul>
 <li><strong><a href="../../../understanding-the-codebase/module-reference/">Module Reference</a></strong> — open the real HCPI modules. You'll recognise every piece: the model files, the security files, the inheritance, the chatter, the kanbans.</li>
