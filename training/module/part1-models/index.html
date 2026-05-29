@@ -1832,6 +1832,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quick-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1915,7 +1926,7 @@
   <span class="md-ellipsis">
     
   
-    Part 3: Security & Polish
+    Part 3: Rights & Controllers
   
 
     
@@ -2129,6 +2140,17 @@
     <span class="md-ellipsis">
       
         Step 8: meet the ORM via the Odoo shell
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick check
       
     </span>
   </a>
@@ -2838,6 +2860,48 @@
 </tbody>
 </table>
 <p><code>(0, 0, ...)</code> (create) and <code>(6, 0, ids)</code> (replace) are the two most common.</p>
+<h2 id="quick-check">Quick check</h2>
+<p>Try to answer without scrolling up.</p>
+<p><strong>1.</strong> Inside the <code>models/</code> folder, which file tells Python which sub-modules to load?</p>
+<details class="success">
+<summary>Answer</summary>
+<p><code>__init__.py</code>. One <code>from . import &lt;filename&gt;</code> line per model file. Forget a line and the model silently won't load.</p>
+</details>
+<p><strong>2.</strong> The model <code>_name = 'hcpi.outlet.visit'</code> produces which PostgreSQL table name?</p>
+<details class="success">
+<summary>Answer</summary>
+<p><code>hcpi_outlet_visit</code>. Dots in the <code>_name</code> become underscores in the table.</p>
+</details>
+<p><strong>3.</strong> Which field type would you use for a long, multi-line address?</p>
+<details class="success">
+<summary>Answer</summary>
+<p><code>fields.Text</code>. Use <code>fields.Char</code> for short single-line text, <code>fields.Text</code> for multi-line.</p>
+</details>
+<p><strong>4.</strong> Which field type would you use for GPS latitude — a decimal number?</p>
+<details class="success">
+<summary>Answer</summary>
+<p><code>fields.Float</code>, typically with <code>digits=(10, 6)</code> so you get six decimal places.</p>
+</details>
+<p><strong>5.</strong> What does <code>ondelete='cascade'</code> on a Many2one mean?</p>
+<details class="success">
+<summary>Answer</summary>
+<p>When the record on the <em>other</em> side (the parent) is deleted, this record is deleted too. Other options: <code>restrict</code> (block the parent delete) and <code>set null</code> (orphan this record).</p>
+</details>
+<p><strong>6.</strong> In <code>One2many('hcpi.outlet.visit', 'proposal_id', ...)</code>, what is the <code>'proposal_id'</code> string?</p>
+<details class="success">
+<summary>Answer</summary>
+<p>The name of the Many2one field on the <em>other</em> model (<code>hcpi.outlet.visit</code>) that points back here. One2many has no database column — it's calculated by walking the inverse Many2one.</p>
+</details>
+<p><strong>7.</strong> In a <code>@api.depends</code> compute method, why do you always write <code>for record in self</code>?</p>
+<details class="success">
+<summary>Answer</summary>
+<p>Because <code>self</code> is a <em>recordset</em> of any size — could be one record, could be a thousand. You can't assume length-1.</p>
+</details>
+<p><strong>8.</strong> Which ORM method deletes records — <code>delete()</code>, <code>remove()</code>, or <code>unlink()</code>?</p>
+<details class="success">
+<summary>Answer</summary>
+<p><code>unlink()</code>. (Historical reason: it mirrors the Unix <code>unlink()</code> system call.)</p>
+</details>
 <h2 id="exercises">Exercises</h2>
 <ol>
 <li>
