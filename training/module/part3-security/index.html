@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#building-an-hcpi-module-part-3-rights-controllers" class="md-skip">
+        <a href="#building-an-hcpi-module-part-3-rights-polish-controllers" class="md-skip">
           Skip to content
         </a>
       
@@ -954,6 +954,261 @@
   
   
   
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Deep Dives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module Deep Dives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/reference-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Data (COICOP, Items, Brands)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/outlets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Outlets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/data-collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/indices-dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indices & Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/country-overlay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Overlays (UG, KE, TZ, ZAR)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modules/infrastructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure & Third-party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
@@ -1761,6 +2016,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-real-hcpi-modules-set-this-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How real HCPI modules set this up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-define-the-manager-group" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1805,16 +2071,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-try-it" class="md-nav__link">
+  <a href="#step-4-gps-validation-with-apiconstrains" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: try it
+        Step 4: GPS validation with @api.constrains
       
     </span>
   </a>
@@ -1822,15 +2099,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controllers-and-why-this-module-doesnt-have-one" class="md-nav__link">
+  <a href="#step-5-a-sequence-for-auto-numbering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controllers — and why this module doesn't have one
+        Step 5: a sequence for auto-numbering
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Controllers — and why this module doesn&#39;t have one">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-mailthread-chatter-and-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: mail.thread chatter and audit trail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: mail.thread chatter and audit trail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tracking-more-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking more fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-harden-the-workflow-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: harden the workflow buttons
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-a-final-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: a final tour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controllers-and-the-rpc-endpoint-that-replaces-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controllers — and the RPC endpoint that replaces them
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controllers — and the RPC endpoint that replaces them">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1845,10 +2183,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-this-module-and-most-hcpi-back-office-modules-dont-have-one" class="md-nav__link">
+  <a href="#why-this-module-doesnt-have-one-and-what-replaces-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why this module — and most HCPI back-office modules — don't have one
+        Why this module doesn't have one — and what replaces it
       
     </span>
   </a>
@@ -2004,6 +2342,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-real-hcpi-modules-set-this-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How real HCPI modules set this up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-define-the-manager-group" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2048,16 +2397,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-try-it" class="md-nav__link">
+  <a href="#step-4-gps-validation-with-apiconstrains" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: try it
+        Step 4: GPS validation with @api.constrains
       
     </span>
   </a>
@@ -2065,15 +2425,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#controllers-and-why-this-module-doesnt-have-one" class="md-nav__link">
+  <a href="#step-5-a-sequence-for-auto-numbering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Controllers — and why this module doesn't have one
+        Step 5: a sequence for auto-numbering
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Controllers — and why this module doesn&#39;t have one">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-mailthread-chatter-and-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: mail.thread chatter and audit trail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: mail.thread chatter and audit trail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tracking-more-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking more fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-harden-the-workflow-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: harden the workflow buttons
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-a-final-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: a final tour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controllers-and-the-rpc-endpoint-that-replaces-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controllers — and the RPC endpoint that replaces them
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controllers — and the RPC endpoint that replaces them">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2088,10 +2509,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-this-module-and-most-hcpi-back-office-modules-dont-have-one" class="md-nav__link">
+  <a href="#why-this-module-doesnt-have-one-and-what-replaces-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why this module — and most HCPI back-office modules — don't have one
+        Why this module doesn't have one — and what replaces it
       
     </span>
   </a>
@@ -2175,16 +2596,17 @@
 
 
 
-<h1 id="building-an-hcpi-module-part-3-rights-controllers">Building an HCPI Module — Part 3: Rights &amp; Controllers</h1>
+<h1 id="building-an-hcpi-module-part-3-rights-polish-controllers">Building an HCPI Module — Part 3: Rights, Polish &amp; Controllers</h1>
 <!--
-Duration: roughly 30 minutes.
-Covers: groups, ACL matrix, record rules, plus a short note on HTTP
-controllers and why this module doesn't have a controllers/ folder.
-Everything else (sequences, mail.thread, @api.constrains, workflow
-validation) lives in the exercises so trainees can explore on their own.
+Duration: about 1 hour.
+Covers: HCPI's security conventions, groups, ACL matrix, record rules,
+GPS validation with @api.constrains, sequence-based auto-numbering,
+mail.thread chatter, hardened workflow buttons, and a closing section
+on HTTP controllers — what they are, why this module has no
+controllers/ folder, and what RPC endpoint replaces them.
 -->
 
-<p>You have a working module with data and good UX. Part 3 closes it out with the one piece every real module needs — <strong>rights</strong> — and a short note on the one piece this module deliberately doesn't have: <strong>controllers</strong>.</p>
+<p>You have a working module with data and good UX. Part 3 closes it out: who can do what, a handful of polish features every real HCPI module has, and a short note on the one piece this module deliberately doesn't have — controllers.</p>
 <h2 id="two-security-layers">Two security layers</h2>
 <p>Two distinct layers, each ultimately stored as rows in built-in tables (just like views, actions, and menus — recall the picture from <a href="../../../understanding-the-codebase/odoo-basics/">Odoo Basics</a>):</p>
 <table>
@@ -2214,7 +2636,45 @@ validation) lives in the exercises so trainees can explore on their own.
 </tbody>
 </table>
 <p>The mental model: <strong>ACL is the door, record rules are the floor plan.</strong> ACL says "you may enter the room." Record rules say "and within that room you can only see your own desk."</p>
-<p>We'll add <strong>one</strong> custom group — <code>Manager</code> — and contrast it with regular internal users (<code>base.group_user</code>). That's enough to demonstrate every primitive.</p>
+<h2 id="how-real-hcpi-modules-set-this-up">How real HCPI modules set this up</h2>
+<p>Before we wire up our own groups, look at how the production modules do it. The pattern is consistent across HCPI and worth recognising:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Groups defined</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>hcpi_coicop</code></strong></td>
+<td><code>coicop_user</code> (read-only), <code>coicop_manager</code> (full CRUD)</td>
+<td>The simplest pattern — one read group, one admin group. Used by all the reference-data modules (<code>hcpi_item</code>, <code>hcpi_brand</code>, locations).</td>
+</tr>
+<tr>
+<td><strong><code>hcpi_outlet</code></strong></td>
+<td><code>group_outlet_user</code>, <code>group_outlet_manager</code></td>
+<td>Same <code>_user</code> / <code>_manager</code> shape. Outlets are master data; reading is broad, editing is restricted.</td>
+</tr>
+<tr>
+<td><strong><code>hcpi_data_collection</code></strong></td>
+<td><code>group_data_collection_collector</code>, <code>group_data_collection_supervisor</code>, <code>group_data_collection_statician</code></td>
+<td>Three roles for an actual workflow. Each role implies the one below: a statistician implies supervisor implies collector.</td>
+</tr>
+<tr>
+<td><strong><code>hcpi_index</code></strong></td>
+<td><code>group_index_viewer</code>, <code>group_index_manager</code></td>
+<td>Reading the published indices is broad; computing/republishing is restricted.</td>
+</tr>
+</tbody>
+</table>
+<p>Two takeaways:</p>
+<ol>
+<li><strong>The default pattern is a <code>_user</code> / <code>_manager</code> pair.</strong> If a module's only job is "show this reference data; let admins edit it," that's the whole security model.</li>
+<li><strong>Workflow modules use a role triangle</strong> with <code>implied_ids</code> so the higher roles inherit everything below them. <code>hcpi_data_collection</code> is the canonical example — a collector can submit collections, a supervisor can also approve them, a statistician can also re-run validation algorithms.</li>
+</ol>
+<p>Our module fits between the two. We'll add <strong>one</strong> custom group — <code>Manager</code> — and contrast it with regular internal users (<code>base.group_user</code>). That's enough to demonstrate every primitive without the triangle complexity. Real HCPI modules that need roles add the triangle.</p>
 <h2 id="step-1-define-the-manager-group">Step 1: define the Manager group</h2>
 <p>Create <code>security/hcpi_outlet_onboarding_security.xml</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -2327,101 +2787,275 @@ validation) lives in the exercises so trainees can explore on their own.
 <h3 id="how-rules-combine">How rules combine</h3>
 <p><strong>Across groups: rules are OR'd.</strong> A Manager is also in <code>base.group_user</code>, so they have two applicable rules. <code>True OR (proposed_by = user.id)</code> simplifies to <code>True</code> — they see everything.</p>
 <p><strong>Within one group, rules are AND'd.</strong> If a single group has two rules, both must match.</p>
-<h2 id="step-4-try-it">Step 4: try it</h2>
+<h3 id="verify">Verify</h3>
 <p>Restart Odoo with the upgrade flag:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_outlet_onboarding
 </code></pre></div>
-<p>In the browser:</p>
-<ol>
-<li><strong>Settings → Users</strong>: confirm the <strong>HCPI Outlet Onboarding</strong> category appears with a <strong>Manager</strong> checkbox. Admin gets it by default; a fresh user does not.</li>
-<li>Create a second user (Settings → Users &amp; Companies → Users → Create), set a password, and <em>do not</em> tick Manager. They're a regular user.</li>
-<li>Open a private/incognito browser and log in as that user. Create one proposal.</li>
-<li>Back as admin, open the proposal list. You see admin's proposals <strong>and</strong> the new user's. Open the new user's session — they see only their own. The record rule is working.</li>
-<li>Try to delete a proposal as the regular user. The Actions menu has no Delete option. As admin (a Manager) the option is there. The ACL matrix is working.</li>
-</ol>
-<p>That's rights covered.</p>
-<h2 id="controllers-and-why-this-module-doesnt-have-one">Controllers — and why this module doesn't have one</h2>
-<p>Scroll back to <a href="../part1-models/#step-1-scaffold-the-module">Part 1, Step 1</a>. When we scaffolded the module, the generator created a <code>controllers/</code> folder. We deleted it before doing anything else. Here's what it would have held, and why HCPI back-office modules almost never need it.</p>
-<h3 id="what-a-controller-is">What a controller is</h3>
-<p>An Odoo <strong>controller</strong> is a Python class that registers <strong>HTTP routes</strong> — URLs that Odoo answers when a browser, mobile app, or any HTTP client hits them. Conceptually identical to a Flask, Django, or Express route handler:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odoo</span><span class="w"> </span><span class="kn">import</span> <span class="n">http</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">request</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutletPortal</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">Controller</span><span class="p">):</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/outlets/public&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="n">website</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">public_outlet_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="n">outlets</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;hcpi.outlet.proposal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)])</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;hcpi_outlet_onboarding.public_outlet_template&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;outlets&#39;</span><span class="p">:</span> <span class="n">outlets</span><span class="p">})</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/outlet_count&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outlet_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;hcpi.outlet.proposal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search_count</span><span class="p">([])</span>
+<p>In <strong>Settings → Users</strong>, the <strong>HCPI Outlet Onboarding</strong> category appears with a <strong>Manager</strong> checkbox. Admin has it by default. Create a second user with no Manager tick, log in as them in a private window, and confirm they only see their own proposals. Try deleting a proposal as them — no Delete option in the Actions menu (ACL forbids).</p>
+<h2 id="step-4-gps-validation-with-apiconstrains">Step 4: GPS validation with <code>@api.constrains</code></h2>
+<p>Right now nothing prevents an officer from saving a proposal with garbage coordinates like <code>latitude = 999</code>. Add a Python constraint.</p>
+<p>Open <code>models/hcpi_outlet_proposal.py</code>. Add the import at the top of the file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserError</span><span class="p">,</span> <span class="n">ValidationError</span>
 </code></pre></div>
-<p>Common reasons to write a controller:</p>
+<p>Inside the class:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@api</span><span class="o">.</span><span class="n">constrains</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">_check_gps_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">latitude</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="o">-</span><span class="mi">90</span> <span class="o">&lt;=</span> <span class="n">proposal</span><span class="o">.</span><span class="n">latitude</span> <span class="o">&lt;=</span> <span class="mi">90</span><span class="p">):</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Latitude must be between -90 and 90.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">longitude</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span> <span class="o">&lt;=</span> <span class="n">proposal</span><span class="o">.</span><span class="n">longitude</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">):</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Longitude must be between -180 and 180.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nd">@api</span><span class="o">.</span><span class="n">constrains</span><span class="p">(</span><span class="s1">&#39;contact_phone&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">_check_phone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">contact_phone</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">proposal</span><span class="o">.</span><span class="n">contact_phone</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">:</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Contact phone looks too short to be valid.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><code>@api.constrains</code> runs on every save. The differences from the alternatives:</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Where it runs</th>
+<th>When it fires</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_sql_constraints</code></td>
+<td>PostgreSQL</td>
+<td>INSERT/UPDATE</td>
+<td>Uniqueness, simple <code>CHECK</code> clauses</td>
+</tr>
+<tr>
+<td><code>@api.constrains</code></td>
+<td>Python, on save</td>
+<td>After write</td>
+<td>Anything more complex; cross-record checks</td>
+</tr>
+<tr>
+<td><code>@api.onchange</code></td>
+<td>Python, in the UI</td>
+<td>As the user types</td>
+<td>Soft hints — <em>doesn't</em> block save</td>
+</tr>
+</tbody>
+</table>
+<p>Try saving a proposal with <code>latitude = 999</code> → red error toast appears, save blocked.</p>
+<h2 id="step-5-a-sequence-for-auto-numbering">Step 5: a sequence for auto-numbering</h2>
+<p>Replace the placeholder <code>name="New"</code> from Part 1 with proper references like <code>OP/2026/0001</code>.</p>
+<p>Create <code>data/hcpi_outlet_proposal_data.xml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/hcpi/custom/HCPI/hcpi_outlet_onboarding/data
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">&lt;odoo&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">&lt;record</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;seq_hcpi_outlet_proposal&quot;</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;ir.sequence&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">&gt;</span>HCPI<span class="w"> </span>Outlet<span class="w"> </span>Proposal<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>hcpi.outlet.proposal<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;prefix&quot;</span><span class="nt">&gt;</span>OP/%(year)s/<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;padding&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/field&gt;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">        </span><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;company_id&quot;</span><span class="w"> </span><span class="na">eval=</span><span class="s">&quot;False&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="nt">&lt;/record&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nt">&lt;/odoo&gt;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>code</code></strong> — the handle used in Python (<code>env['ir.sequence'].next_by_code('hcpi.outlet.proposal')</code>).</li>
+<li><strong><code>prefix</code></strong> — <code>%(year)s</code> is auto-replaced with the current year. Other tokens: <code>%(month)s</code>, <code>%(day)s</code>.</li>
+<li><strong><code>padding=4</code></strong> — pad the counter to 4 digits: <code>0001</code>, <code>0002</code>, …</li>
+</ul>
+<p>Add to <code>__manifest__.py</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="s1">&#39;security/hcpi_outlet_onboarding_security.xml&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="s1">&#39;security/ir.model.access.csv&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="s1">&#39;data/hcpi_outlet_proposal_data.xml&#39;</span><span class="p">,</span>          <span class="c1"># ← new</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="s1">&#39;views/views.xml&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">],</span>
+</code></pre></div>
+<p>Now override <code>create()</code> on the proposal model so newly-created proposals pull from the sequence. In <code>models/hcpi_outlet_proposal.py</code>, add at the bottom of the class:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nd">@api</span><span class="o">.</span><span class="n">model_create_multi</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vals_list</span><span class="p">):</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">vals_list</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="k">if</span> <span class="n">vals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;New&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;New&quot;</span><span class="p">:</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>            <span class="n">vals</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;ir.sequence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">next_by_code</span><span class="p">(</span><span class="s1">&#39;hcpi.outlet.proposal&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;New&quot;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">vals_list</span><span class="p">)</span>
+</code></pre></div>
+<p>Reading the override:</p>
+<ul>
+<li><strong><code>@api.model_create_multi</code></strong> — the modern batch-create decorator. <code>vals_list</code> is a list of dicts (one per new record). This signature replaces the older single-dict <code>create()</code>.</li>
+<li><strong>The <code>"New"</code> guard</strong> — only generate a sequence number if the caller didn't already pass a name (so duplication / import flows keep their names).</li>
+<li><strong><code>super().create(vals_list)</code></strong> — chain to the parent so the records actually get created.</li>
+</ul>
+<p>After upgrade (<code>-u hcpi_outlet_onboarding</code>) and creating a new proposal, the reference reads <code>OP/2026/0001</code>.</p>
+<h2 id="step-6-mailthread-chatter-and-audit-trail">Step 6: <code>mail.thread</code> chatter and audit trail</h2>
+<p>The chatter is that comments/log section at the bottom of forms in Odoo. It's not just chat — it's where field changes are logged when fields are marked <code>tracking=True</code>. You already added <code>tracking=True</code> to <code>state</code> in Part 1; now we wire up the mixin to make it visible.</p>
+<p>In <code>models/hcpi_outlet_proposal.py</code>, change the class header:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">HcpiOutletProposal</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;hcpi.outlet.proposal&#39;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">_description</span> <span class="o">=</span> <span class="s2">&quot;Outlet Proposal&quot;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">_inherit</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mail.thread&#39;</span><span class="p">,</span> <span class="s1">&#39;mail.activity.mixin&#39;</span><span class="p">]</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">_order</span> <span class="o">=</span> <span class="s1">&#39;create_date desc&#39;</span>
+</code></pre></div>
+<p><code>_inherit</code> on a model with its own <code>_name</code> is called <strong>prototype inheritance</strong> — you're mixing in features from abstract models. <code>mail.thread</code> adds:</p>
+<ul>
+<li>A <code>message_ids</code> One2many to all chatter messages.</li>
+<li>A <code>message_follower_ids</code> for follower management.</li>
+<li>Auto-tracking of fields with <code>tracking=True</code>.</li>
+</ul>
+<p><code>mail.activity.mixin</code> adds <code>activity_ids</code> for scheduled activities ("call this contact next Tuesday").</p>
+<p>Then add the chatter to the form view. At the bottom of the proposal form, after closing <code>&lt;/sheet&gt;</code> but inside <code>&lt;/form&gt;</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">        </span><span class="nt">&lt;/sheet&gt;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">        </span><span class="nt">&lt;chatter/&gt;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">&lt;/form&gt;</span>
+</code></pre></div>
+<p>The <code>&lt;chatter/&gt;</code> tag is Odoo 17/18 shorthand. Upgrade, open a proposal — a chatter panel now appears at the bottom with <strong>Send message</strong>, <strong>Log note</strong>, <strong>Followers</strong>, and the log feed where every <code>state</code> change is recorded as <strong>State: Draft → Active</strong>.</p>
+<h3 id="tracking-more-fields">Tracking more fields</h3>
+<p>Pick any field where you want history. Add <code>tracking=True</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">outlet_name</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="s2">&quot;Outlet Name&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">outlet_type</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Selection</span><span class="p">([</span><span class="o">...</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;open_market&#39;</span><span class="p">,</span> <span class="n">tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">contact_phone</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">Char</span><span class="p">(</span><span class="n">tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>Every change shows up in the chatter as <code>Field: old → new</code>.</p>
+<h2 id="step-7-harden-the-workflow-buttons">Step 7: harden the workflow buttons</h2>
+<p>Right now <code>action_approve</code> from Part 2 lets anyone advance any draft. Add a state check, a sanity check, and a manager gate. Replace the methods in <code>models/hcpi_outlet_proposal.py</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_approve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_require_manager</span><span class="p">()</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;draft&#39;</span><span class="p">:</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only draft proposals can be approved.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">proposal</span><span class="o">.</span><span class="n">visit_ids</span><span class="p">:</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Record at least one visit before approving.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Proposal approved.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_retire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        <span class="k">if</span> <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="s1">&#39;active&#39;</span><span class="p">:</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>            <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only active outlets can be retired.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;retired&#39;</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Outlet retired.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">action_reset_to_draft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>    <span class="k">for</span> <span class="n">proposal</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;draft&#39;</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>        <span class="n">proposal</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s2">&quot;Reset to draft.&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="k">def</span><span class="w"> </span><span class="nf">_require_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">has_group</span><span class="p">(</span><span class="s1">&#39;hcpi_outlet_onboarding.group_outlet_onboarding_manager&#39;</span><span class="p">):</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>        <span class="k">raise</span> <span class="n">UserError</span><span class="p">(</span><span class="s2">&quot;Only managers can approve proposals.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Reading the changes:</p>
+<ul>
+<li><strong><code>raise UserError(...)</code></strong> — friendly dialog to the user. Different from <code>ValidationError</code> mainly by convention; both stop the operation and surface their message.</li>
+<li><strong><code>has_group('&lt;xml-id&gt;')</code></strong> — checks group membership. Returns True if the user is <em>in</em> that group.</li>
+<li><strong><code>message_post(body=...)</code></strong> — adds a chatter entry. Audit-trail bonus on top of the automatic <code>tracking=True</code> logs.</li>
+</ul>
+<p>Try as a regular user: click <strong>Approve</strong> → "Only managers..." blocks it. Try <strong>Approve</strong> with no visits → "Record at least one visit..." blocks it. As a Manager with at least one visit → approval works, and the chatter logs "Proposal approved."</p>
+<h2 id="step-8-a-final-tour">Step 8: a final tour</h2>
+<p>Restart with <code>-u hcpi_outlet_onboarding</code> one last time, then walk through everything:</p>
+<ol>
+<li><strong>Settings → Users</strong>: confirm the <strong>HCPI Outlet Onboarding</strong> category appears with a <strong>Manager</strong> checkbox. Admin has it by default; the regular user you created does not.</li>
+<li>As the regular user:<ul>
+<li>Create a proposal. Note the auto-name (<code>OP/2026/0001</code> from the sequence).</li>
+<li>Set garbage GPS (<code>latitude = 999</code>) and try to save → blocked by <code>@api.constrains</code>.</li>
+<li>Try <strong>Approve</strong> → blocked by <code>_require_manager</code>.</li>
+<li>The list shows only proposals you created — record rule working.</li>
+<li>Try to delete a proposal → no Delete option in the Actions menu — ACL working.</li>
+</ul>
+</li>
+<li>As admin (a Manager by default):<ul>
+<li>View the regular user's proposal. Click <strong>Approve</strong> with a visit recorded — state moves to Active, chatter logs "Proposal approved."</li>
+<li>Change <code>contact_phone</code>. The chatter records the change because the field is <code>tracking=True</code>.</li>
+<li>Delete a proposal you no longer want — manager has unlink.</li>
+</ul>
+</li>
+</ol>
+<p>That's a production-feeling module. Onto the one thing it deliberately <em>doesn't</em> have.</p>
+<h2 id="controllers-and-the-rpc-endpoint-that-replaces-them">Controllers — and the RPC endpoint that replaces them</h2>
+<p>Scroll back to <a href="../part1-models/#step-1-scaffold-the-module">Part 1, Step 1</a>. When we scaffolded the module, the generator created a <code>controllers/</code> folder. We deleted it before doing anything else. Here's what it would have held, why we don't need it, and what HCPI uses instead.</p>
+<h3 id="what-a-controller-is">What a controller is</h3>
+<p>An Odoo <strong>controller</strong> is a Python class that registers <strong>HTTP routes</strong> — URLs that Odoo answers when a browser, a mobile app, or any HTTP client hits them. Conceptually identical to a Flask, Django, or Express route handler:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odoo</span><span class="w"> </span><span class="kn">import</span> <span class="n">http</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">odoo.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">request</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutletPortal</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">Controller</span><span class="p">):</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/outlets/public&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="n">website</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">public_outlet_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        <span class="n">outlets</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;hcpi.outlet.proposal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sudo</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">([(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">)])</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;hcpi_outlet_onboarding.public_outlet_template&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;outlets&#39;</span><span class="p">:</span> <span class="n">outlets</span><span class="p">})</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="nd">@http</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/outlet_count&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outlet_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;hcpi.outlet.proposal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search_count</span><span class="p">([])</span>
+</code></pre></div>
+<p>Common reasons to add a controller:</p>
 <ul>
 <li><strong>Public-facing website pages</strong> — built with the Odoo Website module.</li>
-<li><strong>Custom JSON / REST endpoints</strong> — when XML-RPC isn't convenient for an integration.</li>
+<li><strong>Custom JSON / REST endpoints</strong> — when XML-RPC isn't a convenient shape for an external integration.</li>
 <li><strong>Portal pages for non-internal users</strong> — customer self-service.</li>
 <li><strong>Custom file downloads</strong> — generated CSV/Excel with bespoke auth logic.</li>
-<li><strong>Webhooks</strong> — external systems POST'ing in to trigger something.</li>
+<li><strong>Webhooks</strong> — external systems POSTing in to trigger something.</li>
 </ul>
-<h3 id="why-this-module-and-most-hcpi-back-office-modules-dont-have-one">Why this module — and most HCPI back-office modules — don't have one</h3>
-<p>Two reasons.</p>
-<p><strong>1. The web UI is generated by Odoo, not by us.</strong> Every page you've clicked through in Parts 1–2 — proposal list, form, kanban, statusbar — is rendered by Odoo's built-in <code>/web</code> controller from the XML view definitions we wrote. We don't write our own HTTP routes; we declare what fields and views the model has, and Odoo renders the UI. That's the whole point of being on Odoo — you get the CRUD UI for free.</p>
-<p><strong>2. The Flutter mobile app uses XML-RPC, not custom endpoints.</strong> Enumerators in the field don't hit our URLs. The Flutter app talks to Odoo over <code>/xmlrpc/2/object</code> (and <code>/jsonrpc</code>), which are part of Odoo core. Those endpoints automatically expose every public method on every model — so the mobile app calls <code>read</code>, <code>search</code>, <code>create</code>, <code>write</code> on <code>hcpi.outlet</code> directly. Same ORM you used in the Part 1 shell exercise, just hit from across the network. No custom controller needed on the HCPI side.</p>
+<h3 id="why-this-module-doesnt-have-one-and-what-replaces-it">Why this module doesn't have one — and what replaces it</h3>
+<p>Two reasons HCPI back-office modules almost never define their own controllers, and two replacements that cover the same ground.</p>
+<p><strong>1. The web UI is generated by Odoo, not by us.</strong> Every page you've clicked through in Parts 1–2 — proposal list, form, kanban, statusbar — is rendered by Odoo's built-in <code>/web</code> controller from the XML view definitions we wrote. We don't write our own HTTP routes for the web client; we declare what fields, views, and actions the model has, and Odoo takes care of the URLs, the rendering, the navigation. That's the whole point of being on Odoo: you get the CRUD UI for free.</p>
+<p><strong>The replacement: Odoo's own <code>/web</code> controller plus the XML view system.</strong> What you'd build with <code>@http.route</code> for a hand-rolled admin UI is replaced by <code>&lt;list&gt;</code>, <code>&lt;form&gt;</code>, <code>&lt;kanban&gt;</code> records plus <code>ir.actions.act_window</code> and menus. Same outcome, less code, consistent UX.</p>
+<p><strong>2. The Flutter mobile app talks XML-RPC, not custom endpoints.</strong> Enumerators in the field don't hit our URLs. The Flutter app calls Odoo over <strong>XML-RPC</strong> at <code>/xmlrpc/2/object</code> (and <strong>JSON-RPC</strong> at <code>/jsonrpc</code>). Those endpoints are part of Odoo core and they automatically expose every public method on every model. The mobile app authenticates with <code>/xmlrpc/2/common</code> (login), gets a user id, and then calls things like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>POST /xmlrpc/2/object
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  model: &#39;hcpi.outlet&#39;
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  method: &#39;search_read&#39;
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  args: [[[&#39;active&#39;, &#39;=&#39;, true]], [&#39;name&#39;, &#39;code&#39;, &#39;latitude&#39;]]
+</code></pre></div>
+<p>That call hits the <strong>exact same <code>search_read</code> you used in the Part 1 shell exercise</strong> — Odoo's ORM is the API. No custom HTTP route on our side; Odoo's RPC layer takes care of routing, authentication, serialisation, and access-control checks (your ACL and record rules from Steps 1–3 apply to RPC calls too).</p>
+<p><strong>The replacement: the built-in XML-RPC / JSON-RPC endpoint.</strong> Any field, any model method, any computed field — the mobile app can read or call it via RPC, restricted by the same security rules that govern the web UI.</p>
 <h3 id="when-you-would-add-a-controller-to-hcpi">When you <em>would</em> add a controller to HCPI</h3>
 <p>If the requirement showed up, you'd add a <code>controllers/</code> folder back. Plausible cases:</p>
 <ul>
 <li>A <strong>public CPI dashboard</strong> at a custom URL (<code>/cpi/dashboard</code>) that shows the latest index without logging in.</li>
 <li>A <strong>webhook receiver</strong> for external price feeds — <code>/hooks/prices/import</code>.</li>
-<li>A <strong>download endpoint</strong> for a custom report format the QWeb PDF doesn't cover (e.g., a binary file for upstream statistical software).</li>
+<li>A <strong>download endpoint</strong> for a custom binary format the QWeb PDF doesn't cover (e.g., a file for upstream statistical software).</li>
 <li>An <strong>OAuth callback</strong> for integrating a third-party identity provider.</li>
 </ul>
-<p>For the day-to-day "internal users do work in the web UI, the mobile app talks RPC" pattern that covers 95% of HCPI, controllers add complexity without value. That's why the folder was deleted in Step 1 and never came back.</p>
+<p>For everything else — internal users doing work in the web UI, the mobile app talking RPC — controllers add complexity without value. That's why the folder was deleted in Step 1 and never came back.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Everything below is optional and unguided. Each one teaches a Part-3-level concept you'll meet in real HCPI code.</p>
 <ol>
 <li>
-<p><strong>Auto-numbered references.</strong> Add an <code>ir.sequence</code> record in <code>data/hcpi_outlet_proposal_data.xml</code> with <code>code="hcpi.outlet.proposal"</code>, <code>prefix="OP/%(year)s/"</code>, <code>padding=4</code>. Override <code>create()</code> on the proposal model with <code>@api.model_create_multi</code> so new records get <code>OP/2026/0001</code>, <code>OP/2026/0002</code>, … instead of the literal string <code>"New"</code>.</p>
-</li>
-<li>
-<p><strong><code>mail.thread</code> chatter.</strong> Add <code>_inherit = ['mail.thread', 'mail.activity.mixin']</code> on the proposal model and <code>&lt;chatter/&gt;</code> at the bottom of the form. Add <code>tracking=True</code> to <code>state</code>, <code>outlet_name</code>, <code>outlet_type</code>, <code>contact_phone</code>. Every change to those fields will be logged in the chatter automatically. This is <strong>prototype inheritance</strong> — mixing features from abstract models into your own.</p>
-</li>
-<li>
-<p><strong>Python validation.</strong> Add an <code>@api.constrains('latitude', 'longitude')</code> method that raises <code>ValidationError</code> if GPS coordinates are outside <code>±90</code> and <code>±180</code>. Compare with <code>_sql_constraints</code> — <code>@api.constrains</code> runs in Python (slower, but expressive), <code>_sql_constraints</code> runs in PostgreSQL (fast, but limited to what SQL can express).</p>
-</li>
-<li>
-<p><strong>Hardened workflow.</strong> Replace the bare <code>action_approve</code> from Part 2 with a method that (a) checks <code>self.env.user.has_group('hcpi_outlet_onboarding.group_outlet_onboarding_manager')</code> and raises <code>UserError</code> if not, (b) raises if <code>state != 'draft'</code>, (c) raises if <code>not proposal.visit_ids</code>, and (d) calls <code>message_post(body="Proposal approved.")</code> for the audit trail. Repeat for <code>action_retire</code> and <code>action_reset_to_draft</code>.</p>
-</li>
-<li>
-<p><strong>Restrict editing on active proposals.</strong> Add a write-only <code>ir.rule</code> for <code>base.group_user</code> with <code>perm_write=True</code> and a domain restricting to <code>state == 'draft'</code>. Once a proposal is active, regular users can still read it but can't edit. Managers (via their own rule) keep full access.</p>
+<p><strong>Restrict editing on active proposals.</strong> Add a write-only <code>ir.rule</code> for <code>base.group_user</code> with <code>perm_write=True</code> and a domain restricting to <code>state == 'draft'</code>. Once a proposal is active, regular users can still read it but can't edit. Managers (via their own "see all" rule) keep full access.</p>
 </li>
 <li>
 <p><strong>Smart button on <code>res.users</code>.</strong> Add a <code>proposal_count</code> computed field on <code>res.users</code> (using <strong>classical inheritance</strong> — <code>_inherit = 'res.users'</code> with no new <code>_name</code>) and display it as a smart button on the user form via an <code>&lt;xpath expr="//div[@name='button_box']" position="inside"&gt;</code> view inheriting <code>base.view_users_form</code>. This is the pattern country-specific modules use to extend HCPI base models — see <a href="../../../understanding-the-codebase/country-variants/">Country Variants</a>.</p>
 </li>
 <li>
-<p><strong>Cross-record constraint.</strong> Use <code>@api.constrains</code> on <code>(outlet_name, region)</code> to enforce "no duplicate outlet name per region" with a friendly message. Bonus: also add the <code>_sql_constraints</code> equivalent. When does each fire?</p>
+<p><strong>Cross-record constraint.</strong> Use <code>@api.constrains</code> on <code>(outlet_name, region)</code> to enforce "no duplicate outlet name per region" with a friendly message. Bonus: also add a <code>_sql_constraints</code> equivalent. When does each fire?</p>
 </li>
 <li>
 <p><strong>Scheduled cron.</strong> Create an <code>ir.cron</code> record that runs every Monday at 09:00 and posts a chatter message on every proposal that's been in <code>draft</code> for more than 7 days. Hint: <code>ir.cron</code> records live in data XML; their <code>model_id</code> references the model whose method runs.</p>
 </li>
+<li>
+<p><strong>One controller, for real.</strong> Add a <code>controllers/public_count.py</code> with a single <code>@http.route('/onboarding/active_count', type='http', auth='public')</code> that returns the count of active outlets as plain text. Remember to add <code>controllers/__init__.py</code> and <code>from . import controllers</code> in the module's outer <code>__init__.py</code>. Visit the URL in a browser. This is the <em>one</em> time you'll write a controller in this tutorial.</p>
+</li>
 </ol>
 <h2 id="what-you-learned">What you learned</h2>
-<p>After Part 3 you understand:</p>
+<p>After Part 3 you understand the entire surface area of an HCPI module:</p>
 <ul>
 <li><strong>Groups, ACLs, record rules</strong>, and how they combine.</li>
+<li><strong>HCPI's security conventions</strong> — the <code>_user</code> / <code>_manager</code> default pair and the collector/supervisor/statistician triangle that real workflow modules use.</li>
 <li><strong><code>ir.module.category</code></strong> for clean user-permissions UI.</li>
 <li><strong><code>ir.rule.domain_force</code></strong> with <code>user.id</code> for "own records only" rules.</li>
-<li>The difference between <strong>ACL</strong> (yes/no per model) and <strong>record rules</strong> (which rows).</li>
-<li><strong>What an Odoo controller is</strong> — HTTP routes for custom URLs and APIs — and why most HCPI back-office modules don't need one.</li>
-<li>Where you'd reach for a controller if you ever did (public pages, webhooks, custom REST endpoints).</li>
+<li><strong><code>@api.constrains</code></strong> vs <code>_sql_constraints</code> vs <code>@api.onchange</code> — when each fires.</li>
+<li><strong>Sequences</strong> with <code>next_by_code</code> and a <code>create()</code> override using <code>@api.model_create_multi</code>.</li>
+<li><strong><code>mail.thread</code></strong> mixin (prototype inheritance) for chatter + tracking; <code>mail.activity.mixin</code> for activities.</li>
+<li><strong><code>message_post</code></strong> to write to the chatter from Python.</li>
+<li><strong><code>UserError</code> vs <code>ValidationError</code></strong> and <strong><code>has_group</code></strong> for in-method permission checks.</li>
+<li><strong>What an Odoo controller is</strong>, why most HCPI back-office modules don't need one, and the two things that replace it: Odoo's own <code>/web</code> controller (for the UI) and the built-in <strong>XML-RPC / JSON-RPC endpoints</strong> (for the mobile app).</li>
 </ul>
 <h2 id="what-now">What now?</h2>
 <p>The module you built is a real module — clone it, rename it, swap the domain, and you have a working starter for almost any "an officer files, a manager approves" workflow.</p>
 <p>From here:</p>
 <ul>
-<li><strong>Tackle the exercises above</strong> if you want to round out sequences, chatter, validation, hardened workflow, view inheritance, and cron — each is a real-world Part-3 topic in its own right.</li>
 <li><strong><a href="../../../understanding-the-codebase/module-reference/">Module Reference</a></strong> — open the real HCPI modules. You'll recognise every piece: the model files, the security files, the inheritance, the chatter, the kanbans.</li>
 <li><strong><a href="../../../understanding-the-codebase/country-variants/">Country Variants</a></strong> — see how Uganda, Kenya, Tanzania extend the same base modules with <code>_inherit</code> and <code>xpath</code> view inheritance.</li>
 <li>The remaining training topics (Coicop, Location, Outlets, Items, Data Collection, Validation, Mobile API) walk through the actual HCPI modules — everything that runs HCPI is the patterns from these three pages, applied to the price-index domain.</li>

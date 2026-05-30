@@ -2,146 +2,174 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/about/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/troubleshooting/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/concepts/cpi-concepts/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/concepts/cpi-explained/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/concepts/data-flow/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/concepts/glossary/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/extraction/linux-export/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/first-edits/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/first-edits/your-first-module/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/getting-started/getting-the-code/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/getting-started/git-remotes/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/getting-started/prerequisites/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/installation/linux/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/installation/windows-native/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/installation/windows-wsl/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/</loc>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/country-overlay/</loc>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/data-collection/</loc>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/indices-dashboard/</loc>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/infrastructure/</loc>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/outlets/</loc>
+         <lastmod>2026-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://kanyeceejaya.github.io/hcpi-docs/modules/reference-data/</loc>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/next-steps/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/next-steps/https-apache/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/next-steps/https-nginx/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/configuration/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/dependencies/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/dev-environment/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/introduction/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/postgresql/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/server-setup/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/user-administration/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day1/virtualenv-install/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/day2/python-intro/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/module/part1-models/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/module/part2-views/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/training/module/part3-security/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/country-variants/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/module-reference/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
     <url>
          <loc>https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/odoo-basics/</loc>
-         <lastmod>2026-05-29</lastmod>
+         <lastmod>2026-05-30</lastmod>
     </url>
 </urlset>

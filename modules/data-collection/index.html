@@ -12,13 +12,13 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/country-variants/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/modules/data-collection/">
       
       
-        <link rel="prev" href="../../modules/infrastructure/">
+        <link rel="prev" href="../outlets/">
       
       
-        <link rel="next" href="../../first-edits/">
+        <link rel="next" href="../indices-dashboard/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Country Variants - HCPI Documentation</title>
+        <title>Data Collection - HCPI Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#country-variants" class="md-skip">
+        <a href="#data-collection" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Country Variants
+              Data Collection
             
           </span>
         </div>
@@ -871,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../odoo-basics/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
         
   
   
@@ -899,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../understanding-the-codebase/" class="md-nav__link">
         
   
   
@@ -927,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../module-reference/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
         
   
   
@@ -952,6 +952,8 @@
                 
   
   
+    
+  
   
   
     
@@ -961,13 +963,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
         
           
           <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
@@ -988,7 +988,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1006,7 +1006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1034,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules/reference-data/" class="md-nav__link">
+      <a href="../reference-data/" class="md-nav__link">
         
   
   
@@ -1062,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules/outlets/" class="md-nav__link">
+      <a href="../outlets/" class="md-nav__link">
         
   
   
@@ -1087,10 +1087,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../modules/data-collection/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Collection
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1106,6 +1133,286 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hcpi_data_collection-the-survey-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_data_collection — the survey workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hcpi_data_collection — the survey workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-hierarchy-of-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The hierarchy of models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidatacollection-the-questionnaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.collection — the questionnaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The state machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-creating-lines-from-the-outlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-creating lines from the outlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidatacollectionline-one-priced-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.collection.line — one priced item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidataobservationline-the-actual-price-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.observation.line — the actual price entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpipricecollectioncode-the-exception-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.price.collection.code — the exception codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidatavalidation-batch-supervisor-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.validation — batch supervisor review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-look-to-change-something" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to look to change something
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hcpi_data_collection_mobile_app-the-flutter-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_data_collection_mobile_app — the Flutter surface
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hcpi_data_collection_mobile_app — the Flutter surface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-inside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's inside
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-flutter-app-talks-to-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Flutter app talks to this
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-look-to-change-something_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to look to change something
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hcpi_computation-the-zero-price-mixin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi_computation — the zero-price mixin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="hcpi_computation — the zero-price mixin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-provides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it provides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hard-coded-thresholds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The hard-coded thresholds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-inherits-this-mixin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who inherits this mixin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-look-to-change-something_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to look to change something
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-three-modules-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the three modules connect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1118,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules/indices-dashboard/" class="md-nav__link">
+      <a href="../indices-dashboard/" class="md-nav__link">
         
   
   
@@ -1146,7 +1453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules/country-overlay/" class="md-nav__link">
+      <a href="../country-overlay/" class="md-nav__link">
         
   
   
@@ -1174,7 +1481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../modules/infrastructure/" class="md-nav__link">
+      <a href="../infrastructure/" class="md-nav__link">
         
   
   
@@ -1207,37 +1514,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Country Variants
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
   
   
@@ -1253,198 +1533,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-branch-zoo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The branch zoo
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The branch zoo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#country-branches-in-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Country branches in use
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-modern-overlay-pattern" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The modern overlay pattern
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#country-overlays-compared" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Country overlays compared
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Country overlays compared">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#geographic-hierarchies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geographic hierarchies
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#outlet-anchor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Outlet anchor
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#which-extra-modules-each-country-needs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Which extra modules each country needs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#has-the-core-drifted-across-branches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Has the core drifted across branches?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-eac-secretariat-separate-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The EAC Secretariat — separate application
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The EAC Secretariat — separate application">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key models
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-xml-rpc-and-not-direct-db-access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why XML-RPC and not direct DB access?
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adopting-hcpi-for-a-new-country" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adopting HCPI for a new country
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick reference
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2254,22 +2342,121 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-branch-zoo" class="md-nav__link">
+  <a href="#hcpi_data_collection-the-survey-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The branch zoo
+        hcpi_data_collection — the survey workflow
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The branch zoo">
+    <nav class="md-nav" aria-label="hcpi_data_collection — the survey workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#country-branches-in-use" class="md-nav__link">
+  <a href="#the-hierarchy-of-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Country branches in use
+        The hierarchy of models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidatacollection-the-questionnaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.collection — the questionnaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The state machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-creating-lines-from-the-outlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-creating lines from the outlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidatacollectionline-one-priced-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.collection.line — one priced item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidataobservationline-the-actual-price-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.observation.line — the actual price entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpipricecollectioncode-the-exception-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.price.collection.code — the exception codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hcpidatavalidation-batch-supervisor-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hcpi.data.validation — batch supervisor review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-look-to-change-something" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to look to change something
       
     </span>
   </a>
@@ -2282,33 +2469,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-modern-overlay-pattern" class="md-nav__link">
+  <a href="#hcpi_data_collection_mobile_app-the-flutter-surface" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The modern overlay pattern
+        hcpi_data_collection_mobile_app — the Flutter surface
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#country-overlays-compared" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Country overlays compared
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Country overlays compared">
+    <nav class="md-nav" aria-label="hcpi_data_collection_mobile_app — the Flutter surface">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#geographic-hierarchies" class="md-nav__link">
+  <a href="#whats-inside" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Geographic hierarchies
+        What's inside
       
     </span>
   </a>
@@ -2316,10 +2492,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#outlet-anchor" class="md-nav__link">
+  <a href="#how-the-flutter-app-talks-to-this" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Outlet anchor
+        How the Flutter app talks to this
       
     </span>
   </a>
@@ -2327,10 +2503,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#which-extra-modules-each-country-needs" class="md-nav__link">
+  <a href="#where-to-look-to-change-something_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Which extra modules each country needs
+        Where to look to change something
       
     </span>
   </a>
@@ -2343,33 +2519,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#has-the-core-drifted-across-branches" class="md-nav__link">
+  <a href="#hcpi_computation-the-zero-price-mixin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Has the core drifted across branches?
+        hcpi_computation — the zero-price mixin
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-eac-secretariat-separate-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The EAC Secretariat — separate application
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The EAC Secretariat — separate application">
+    <nav class="md-nav" aria-label="hcpi_computation — the zero-price mixin">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#key-models" class="md-nav__link">
+  <a href="#what-it-provides" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key models
+        What it provides
       
     </span>
   </a>
@@ -2377,10 +2542,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#the-hard-coded-thresholds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works
+        The hard-coded thresholds
       
     </span>
   </a>
@@ -2388,10 +2553,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-xml-rpc-and-not-direct-db-access" class="md-nav__link">
+  <a href="#who-inherits-this-mixin" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why XML-RPC and not direct DB access?
+        Who inherits this mixin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-look-to-change-something_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to look to change something
       
     </span>
   </a>
@@ -2404,10 +2580,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adopting-hcpi-for-a-new-country" class="md-nav__link">
+  <a href="#how-the-three-modules-connect" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adopting HCPI for a new country
+        How the three modules connect
       
     </span>
   </a>
@@ -2415,10 +2591,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
+  <a href="#next" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick reference
+        Next
       
     </span>
   </a>
@@ -2442,390 +2618,364 @@
 
 
 
-<h1 id="country-variants">Country Variants</h1>
-<p>The HCPI source repo holds <strong>one branch per country deployment</strong>. The <code>c:/hcpi</code> checkout you've been working with is one country's worldview (Uganda); the same shared core lives in every other country's branch with a different overlay on top.</p>
-<p>This page maps the branch zoo and the concrete differences between country overlays — what each country adds, where the location hierarchies differ, and why some countries need a <code>xx_data_collection</code> overlay while others don't.</p>
-<p>Source: <a href="https://github.com/kola-tech/HCPI-full">github.com/kola-tech/HCPI-full</a> (the canonical multi-branch repo). All findings below come from <code>git ls-tree</code>/<code>git show</code> against that repo.</p>
-<h2 id="the-branch-zoo">The branch zoo</h2>
-<p>Sixteen branches in current use. Read the suffixes:</p>
-<table>
-<thead>
-<tr>
-<th>Suffix pattern</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>18.0</code></td>
-<td>The shared upstream — Odoo 18 base, no country overlay</td>
-</tr>
-<tr>
-<td><code>xx_18</code></td>
-<td>Country <code>xx</code> deployment, currently on Odoo 18</td>
-</tr>
-<tr>
-<td><code>xx_18_mtnce</code></td>
-<td>Maintenance branch for <code>xx_18</code> (release candidates / hotfixes that merge back into <code>xx_18</code>)</td>
-</tr>
-<tr>
-<td><code>xx</code> (no number)</td>
-<td><strong>Legacy</strong> — pre-Odoo 18 deployment, single-folder architecture, frozen since March 2024</td>
-</tr>
-<tr>
-<td><code>xx-18</code></td>
-<td>Old intermediate naming — superseded by <code>xx_18</code></td>
-</tr>
-<tr>
-<td><code>ft-...</code></td>
-<td>Feature branches (e.g. <code>ft-imputations_ug</code>, <code>ft-ug-outliers</code>)</td>
-</tr>
-<tr>
-<td><code>secretariat</code></td>
-<td>EAC Secretariat regional aggregator (a completely different application)</td>
-</tr>
-<tr>
-<td><code>main</code></td>
-<td>Historical default — superseded by <code>18.0</code> as the upstream</td>
-</tr>
-</tbody>
-</table>
-<h3 id="country-branches-in-use">Country branches in use</h3>
-<table>
-<thead>
-<tr>
-<th>Country</th>
-<th>Active branch</th>
-<th>Last commit</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Upstream</strong></td>
-<td><code>18.0</code></td>
-<td>2026-04-14</td>
-<td>Shared base</td>
-</tr>
-<tr>
-<td><strong>Uganda</strong></td>
-<td><code>ug_18</code></td>
-<td>2026-04-21</td>
-<td>Active</td>
-</tr>
-<tr>
-<td><strong>Kenya</strong></td>
-<td><code>ke_18_mtnce</code></td>
-<td>2025-07-07</td>
-<td>Maintenance — last release rolled up here</td>
-</tr>
-<tr>
-<td><strong>Tanzania</strong></td>
-<td><code>tz_18_mtnce</code></td>
-<td>2025-07-09</td>
-<td>Maintenance</td>
-</tr>
-<tr>
-<td><strong>Zanzibar</strong></td>
-<td><code>zar_18</code></td>
-<td>2026-04-14</td>
-<td>Active</td>
-</tr>
-<tr>
-<td><strong>EAC Secretariat</strong></td>
-<td><code>secretariat</code></td>
-<td>2026-04-20</td>
-<td>Active (separate aggregator app)</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title"><code>zar</code> = Zanzibar, not South Africa</p>
-<p>Despite "ZAR" being the ISO currency code for South African Rand, in this repo <code>zar</code>/<code>zar_18</code> is <strong>Zanzibar</strong> (semi-autonomous part of Tanzania). The <code>zar_data_collection</code> manifest is explicit: <em>"Customize and manage Zanzibar data collections"</em>. South Africa isn't part of the HCPI deployment family.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Legacy branches (<code>rw</code>, <code>ss</code>, <code>bi</code>)</p>
-<p>Rwanda, South Sudan, and Burundi each have a branch (<code>rw</code>, <code>ss</code>, <code>bi</code>) using an older single-folder architecture (<code>hcpi-xx/</code> containing country-prefixed modules with no shared core). All three have been frozen since March 2024 and aren't representative of current HCPI. If you're working on these countries, plan to migrate them to the modern overlay pattern below rather than extending the old structure.</p>
-</div>
-<h2 id="the-modern-overlay-pattern">The modern overlay pattern</h2>
-<p>Every active country (UG, KE, TZ, ZAR) layers on top of the shared <code>18.0</code> upstream by <strong>adding</strong> <code>xx_*</code> modules — never modifying the core.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>18.0 (upstream)                    Country branch (e.g. ug_18)
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>─────────────────                  ────────────────────────────
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>hcpi_coicop                        hcpi_coicop          ◀── inherited verbatim
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>hcpi_item                          hcpi_item            ◀── inherited verbatim
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>hcpi_outlet                        hcpi_outlet          ◀── inherited verbatim
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>hcpi_data_collection               hcpi_data_collection ◀── inherited verbatim
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>hcpi_index                         hcpi_index           ◀── inherited verbatim
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>hcpi_dashboard                     hcpi_dashboard       ◀── inherited verbatim
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>... (all core modules)             ... (all core modules)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                   ┌─────────────────────────┐
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                                   │ ug_location  ◀── ADDED  │
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                                   │ ug_outlet    ◀── ADDED  │
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                                   │ ug_base_import ◀── ADDED│
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                                   └─────────────────────────┘
+<h1 id="data-collection">Data Collection</h1>
+<p>Three modules together: the <strong>survey workflow</strong>, the <strong>mobile-app surface</strong>, and the <strong>zero-price validation mixin</strong>. Together they cover everything between an enumerator visiting an outlet and an observation being stored.</p>
+<h2 id="hcpi_data_collection-the-survey-workflow"><code>hcpi_data_collection</code> — the survey workflow</h2>
+<p><strong>Depends on:</strong> <code>hcpi_outlet</code>, <code>hcpi_computation</code></p>
+<p><strong>Purpose:</strong> Implements the questionnaire-and-line workflow that turns "an enumerator visited an outlet" into structured price observations the index can read.</p>
+<h3 id="the-hierarchy-of-models">The hierarchy of models</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>hcpi.data.collection           ← the questionnaire (one visit, one outlet)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>       │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>       ├── hcpi.data.collection.line          ← one priced item within the questionnaire
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>       │         │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>       │         └── hcpi.data.observation.line  ← individual price entries
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>       │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>       └── hcpi.data.validation              ← a batch wrapper for supervisor review
 </code></pre></div>
-<p>Core modules pull in verbatim via regular git merges (visible as <code>Merge pull request #129 from kola-tech/18.0</code> in branch history). When upstream changes — a bug fix in <code>hcpi_outlet</code>, say — every country branch can merge it without losing their overlay. This is the pattern the <a href="../module-reference/">Module Reference</a> describes, and the one to use for new countries.</p>
-<h2 id="country-overlays-compared">Country overlays compared</h2>
-<p>Every active country (modern branches) ships the same template: a <code>xx_location</code> module defining the geographic hierarchy, a <code>xx_outlet</code> module linking outlets to that geography, and optionally <code>xx_data_collection</code> and <code>xx_base_import</code> modules.</p>
-<p>But the <strong>hierarchies are different</strong>, and <strong>not every country needs every overlay</strong>.</p>
-<h3 id="geographic-hierarchies">Geographic hierarchies</h3>
+<h3 id="hcpidatacollection-the-questionnaire"><code>hcpi.data.collection</code> — the questionnaire</h3>
+<p>One row per visit. Key fields:</p>
 <table>
 <thead>
 <tr>
-<th>Country</th>
-<th>Levels</th>
-<th>Models</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Uganda</strong></td>
-<td>5</td>
-<td><code>ug.region</code> → <code>ug.district</code> → <code>ug.county</code> → <code>ug.sub.county</code> → <code>ug.parish</code></td>
-</tr>
-<tr>
-<td><strong>Kenya</strong></td>
-<td>3</td>
-<td><code>ke.region</code> → <code>ke.county</code> → <code>ke.zone</code></td>
-</tr>
-<tr>
-<td><strong>Tanzania</strong></td>
-<td>2</td>
-<td><code>tz.region</code> → <code>tz.district</code></td>
-</tr>
-<tr>
-<td><strong>Zanzibar</strong></td>
-<td>3</td>
-<td><code>zar.region</code> → <code>zar.district</code> → <code>zar.collection.center</code></td>
-</tr>
-</tbody>
-</table>
-<p>Hierarchy depth follows each country's administrative structure. Uganda is the deepest (parish-level data collection); Tanzania is the flattest (district-level).</p>
-<h3 id="outlet-anchor">Outlet anchor</h3>
-<p>Each <code>xx_outlet</code> module extends <code>hcpi.outlet</code> with the <strong>deepest</strong> geographic FK; the higher levels are stored-related fields that cascade up the chain for fast filtering.</p>
-<table>
-<thead>
-<tr>
-<th>Country</th>
-<th><code>_inherit</code> anchor field</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Uganda</td>
-<td><code>parish_id</code> (the leaf); <code>sub_county_id</code>/<code>county_id</code>/<code>district_id</code>/<code>region_id</code> are related-stored</td>
-</tr>
-<tr>
-<td>Kenya</td>
-<td><code>zone_id</code> (the leaf); <code>county_id</code>/<code>region_id</code> are related-stored</td>
-</tr>
-<tr>
-<td>Tanzania</td>
-<td><code>district_id</code> (the leaf); <code>region_id</code> is related-stored</td>
-</tr>
-<tr>
-<td>Zanzibar</td>
-<td><code>collection_center_id</code> (the leaf); <code>district_id</code>/<code>region_id</code> are related-stored</td>
-</tr>
-</tbody>
-</table>
-<p>So filtering "all outlets in Kampala" works the same way in every country — just substitute the right field name.</p>
-<h3 id="which-extra-modules-each-country-needs">Which extra modules each country needs</h3>
-<p>Not every country has every overlay. Some countries needed extra workflow customization (bulk questionnaire wizards, specific validation flows); others use the core HCPI behaviour as-is.</p>
-<table>
-<thead>
-<tr>
-<th>Module pattern</th>
-<th>Uganda</th>
-<th>Kenya</th>
-<th>Tanzania</th>
-<th>Zanzibar</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>xx_location</code></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>xx_outlet</code></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>xx_data_collection</code></td>
-<td>❌</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>xx_base_import</code></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Why Uganda has no <code>ug_data_collection</code>:</strong> the core <code>hcpi_data_collection</code> module was largely written against Uganda's workflow, so Uganda's needs are covered by the base behaviour. Other countries added their own variants where their workflow diverges.</p>
-<p><strong>What <code>xx_data_collection</code> typically adds:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Country</th>
-<th>Models added</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ke_data_collection</code></td>
-<td><code>bulk_questionnaire_wizard</code>, extends <code>hcpi.data.collection</code>, extends <code>hcpi.data.validation</code></td>
-</tr>
-<tr>
-<td><code>tz_data_collection</code></td>
-<td><code>bulk_questionnaire_wizard</code>, <code>assign_questionnaire_wizard</code>, extends <code>hcpi.data.collection</code>, extends <code>hcpi.data.validation</code></td>
-</tr>
-<tr>
-<td><code>zar_data_collection</code></td>
-<td>bulk + assign questionnaire wizards (in <code>wizards/</code>), extends <code>hcpi.data.collection</code></td>
-</tr>
-</tbody>
-</table>
-<p>Common themes: <strong>bulk-creation wizards</strong> for spinning up many questionnaires at once, and <strong>assignment wizards</strong> for batching surveys to enumerators.</p>
-<h2 id="has-the-core-drifted-across-branches">Has the core drifted across branches?</h2>
-<p>In a perfect world, the core HCPI modules (<code>hcpi_outlet</code>, <code>hcpi_data_collection</code>, <code>hcpi_index</code>, etc.) would be <strong>identical</strong> between <code>18.0</code> and every country branch — country deltas would live entirely in the <code>xx_*</code> overlay modules.</p>
-<p>In practice, some drift has accumulated:</p>
-<table>
-<thead>
-<tr>
-<th>Branch</th>
-<th>Diff in <code>hcpi_data_collection</code> vs. <code>18.0</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ug_18</code></td>
-<td>None — fully in sync</td>
-</tr>
-<tr>
-<td><code>zar_18</code></td>
-<td>None — fully in sync</td>
-</tr>
-<tr>
-<td><code>ke_18_mtnce</code></td>
-<td>28 files changed, mostly file moves and renames</td>
-</tr>
-<tr>
-<td><code>tz_18_mtnce</code></td>
-<td>9 files changed, includes small Python tweaks</td>
-</tr>
-</tbody>
-</table>
-<p>Kenya and Tanzania are on <code>_mtnce</code> branches that haven't merged the latest <code>18.0</code> yet — once they do, the drift should close. If you're inheriting maintenance of one of these branches, expect to do a <code>git merge 18.0</code> and resolve a handful of conflicts before adding new features.</p>
-<h2 id="the-eac-secretariat-separate-application">The EAC Secretariat — separate application</h2>
-<p>The <code>secretariat</code> branch is <strong>not</strong> a country deployment. It's a regional aggregator: one Odoo instance that pulls CPI snapshots from each country's HCPI database over XML-RPC and presents a consolidated dashboard.</p>
-<p>Folder layout:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>secretariat/
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>└── hcpi_secretariat_hub/
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    ├── __manifest__.py
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    ├── models/
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    │   ├── remote_instance.py
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    │   ├── snapshot.py
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    │   ├── dashboard.py
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    │   └── res_users.py
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    ├── data/
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    │   └── ir_cron.xml          ← scheduled syncs
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    ├── views/
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    ├── security/
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    └── static/                  ← OWL dashboard
-</code></pre></div>
-<p>Only one HCPI-aware module: <code>hcpi_secretariat_hub</code>. It depends only on Odoo's <code>base</code> and <code>web</code> — none of the country modules — because it doesn't share data tables with them; it talks to them as remote clients.</p>
-<h3 id="key-models">Key models</h3>
-<table>
-<thead>
-<tr>
-<th>Model</th>
+<th>Field</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>hcpi.secretariat.instance</code></td>
-<td>One per country deployment. Fields: <code>name</code>, <code>code</code> (KE/TZ/UG/ZAR), <code>base_url</code>, <code>database_name</code>, <code>username</code>, <code>api_key</code>, <code>sync_month_window</code> (default 12), <code>state</code> (draft/connected/error), <code>last_sync_at</code>, <code>last_sync_status</code>. Unique on <code>code</code>.</td>
+<td><code>outlet_id</code></td>
+<td>Which outlet was visited.</td>
 </tr>
 <tr>
-<td><code>hcpi.secretariat.sync.log</code></td>
-<td>One row per sync attempt. Fields: <code>instance_id</code>, <code>status</code> (running/success/failed), <code>started_at</code>, <code>finished_at</code>, <code>records_synced</code>, <code>message</code>.</td>
+<td><code>collection_date</code></td>
+<td>When.</td>
 </tr>
 <tr>
-<td><code>hcpi.secretariat.country.snapshot</code></td>
-<td>The actual aggregated data. One row per (country, month). Fields: <code>instance_id</code>, <code>country_code</code> (stored-related), <code>snapshot_month</code>, <code>current_cpi</code>, <code>min_cpi</code>, <code>max_cpi</code>, <code>total_outlets</code>, <code>total_items</code>, <code>total_outlet_items</code>, <code>total_observations</code>, <code>last_sync_at</code>.</td>
+<td><code>data_collector_id</code></td>
+<td>Enumerator (<code>res.users</code>).</td>
+</tr>
+<tr>
+<td><code>data_supervisor_id</code></td>
+<td>Supervisor (<code>res.users</code>).</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>State machine — <code>draft → survey → standardization → validation → done</code> (or <code>cancel</code>).</td>
+</tr>
+<tr>
+<td><code>progress</code></td>
+<td>Computed % — how much of the expected work is done.</td>
+</tr>
+<tr>
+<td><code>data_validation_id</code></td>
+<td>FK to a batch validation wrapper. <code>ondelete='set null'</code> — detaching the batch doesn't delete the questionnaire.</td>
+</tr>
+<tr>
+<td><code>draft_collection_line</code></td>
+<td>One2many while in draft.</td>
+</tr>
+<tr>
+<td><code>collection_line</code></td>
+<td>One2many for finalised lines.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="how-it-works">How it works</h3>
-<ol>
-<li>An admin creates <code>hcpi.secretariat.instance</code> records — one per country, with that country's Odoo URL and an API key for an integration user.</li>
-<li>An <code>ir.cron</code> job runs periodically (defined in <code>data/ir_cron.xml</code>), iterates instances, opens an XML-RPC connection to each, and pulls the latest N months of indicators.</li>
-<li>Each pull writes a <code>sync.log</code> and (on success) one or more <code>country.snapshot</code> rows.</li>
-<li>The OWL dashboard (<code>static/src/js/secretariat_dashboard.js</code>) reads from <code>country.snapshot</code> to render the regional view.</li>
-</ol>
-<h3 id="why-xml-rpc-and-not-direct-db-access">Why XML-RPC and not direct DB access?</h3>
-<p>Two reasons. Each country runs its HCPI in its own data centre under its own authority — the secretariat has no business connecting to their PostgreSQL directly. And the indicators are derived from queries that already exist in <code>hcpi_index</code>; calling them via RPC reuses that logic, rather than re-implementing index computation in the aggregator.</p>
-<p>The integration user on each country instance is granted read access to the relevant index models only. If you're standing up a new country and integrating it with the secretariat, you'll need to create that user and share the API key.</p>
-<h2 id="adopting-hcpi-for-a-new-country">Adopting HCPI for a new country</h2>
-<p>The recipe, distilled from how UG/KE/TZ/ZAR are structured:</p>
-<ol>
-<li><strong>Create a branch off <code>18.0</code></strong> named <code>xx_18</code> (e.g. <code>gh_18</code> for Ghana).</li>
-<li><strong>Create <code>xx_location/</code></strong> — define your country's administrative hierarchy as a chain of models. Match the existing pattern: one model per level, <code>code</code> and <code>name</code> fields, <code>mail.activity.mixin</code> for tracking.</li>
-<li><strong>Create <code>xx_outlet/</code></strong> — <code>_inherit = 'hcpi.outlet'</code>, add a Many2one to the leaf level of your geography, and stored-related fields up the chain.</li>
-<li><strong>(Optional) Create <code>xx_data_collection/</code></strong> — only if your country's workflow diverges from the core. Typical adds: bulk-creation wizards, country-specific validation rules.</li>
-<li><strong>(Optional) Create <code>xx_base_import/</code></strong> — only if your country has unusual import formats or validation rules.</li>
-<li><strong>Update <code>hcpi.conf</code></strong> on the deployment server: add the new module folders to <code>addons_path</code>.</li>
-<li><strong>For secretariat integration:</strong> create an integration user on the new instance with read access to indices; share base URL + database name + API key with the secretariat team.</li>
-</ol>
-<p>Avoid:</p>
+<h3 id="the-state-machine">The state machine</h3>
+<p>This is the heart of the module — five states in order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  draft  ──►  survey  ──►  standardization  ──►  validation  ──►  done
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    │                                                              ▲
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    └───────────────────────────────────────────────────►  cancel  │
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                                                                   │
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>                                  (re-opening a &quot;done&quot; → back to validation)
+</code></pre></div>
+<p>Each transition lives as a Python method on <code>hcpi.data.collection</code>:</p>
 <ul>
-<li>❌ Modifying core <code>hcpi_*</code> modules in your country branch — the drift will haunt you at merge time.</li>
-<li>❌ Naming a new branch <code>xx</code> (no number, no <code>_18</code> suffix) — that pattern is used for older retired branches and is confusing.</li>
+<li><code>action_start_survey()</code> — <code>draft → survey</code></li>
+<li><code>action_start_standardization()</code> — <code>survey → standardization</code></li>
+<li><code>action_submit_for_validation()</code> — <code>standardization → validation</code></li>
+<li><code>action_approve()</code> — <code>validation → done</code></li>
+<li><code>action_cancel()</code> — anywhere → <code>cancel</code></li>
+<li><code>action_reset_to_draft()</code> — <code>cancel → draft</code></li>
 </ul>
-<h2 id="quick-reference">Quick reference</h2>
+<p>When you need to <strong>change the workflow</strong>, these methods are where you start.</p>
+<h3 id="auto-creating-lines-from-the-outlet">Auto-creating lines from the outlet</h3>
+<p><code>hcpi.data.collection</code> has an <strong><code>update_product_lines()</code></strong> method that auto-creates one <code>hcpi.data.collection.line</code> per active item at the outlet. Called when a questionnaire transitions out of draft. If you add a new way to pick items (e.g., "only items priced last month"), this is the method to edit.</p>
+<h3 id="hcpidatacollectionline-one-priced-item"><code>hcpi.data.collection.line</code> — one priced item</h3>
+<p>One row per item within the questionnaire.</p>
 <table>
 <thead>
 <tr>
-<th>If you want to...</th>
-<th>Look in...</th>
+<th>Field</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>See what's specific about Uganda's outlets</td>
-<td><code>ug_18:ug_outlet/models/hcpi_outlet.py</code></td>
+<td><code>outlet_item_id</code></td>
+<td>FK to the (outlet, item) junction.</td>
 </tr>
 <tr>
-<td>Compare Kenya's vs Tanzania's geography depth</td>
-<td><code>ke_location/models/</code> vs <code>tz_location/models/</code></td>
+<td><code>standard_price</code></td>
+<td>Computed from observations once collected.</td>
 </tr>
 <tr>
-<td>Find Zanzibar's bulk-questionnaire wizard</td>
-<td><code>zar_18:zar_data_collection/wizards/</code></td>
+<td><code>price_collection_code_ids</code></td>
+<td>Many2many — codes like "out of stock", "seasonal unavailable" that explain the missing/odd values.</td>
 </tr>
 <tr>
-<td>See what the secretariat aggregates</td>
-<td><code>secretariat:hcpi_secretariat_hub/models/snapshot.py</code></td>
+<td><code>observation_line</code></td>
+<td>One2many to <code>hcpi.data.observation.line</code>.</td>
 </tr>
 <tr>
-<td>See how country branches merge from upstream</td>
-<td><code>git log --merges 18.0..ug_18</code> (etc.)</td>
+<td><code>is_outlier</code> / <code>is_inlier</code></td>
+<td>Computed booleans flagged by validation algorithms.</td>
+</tr>
+<tr>
+<td><code>is_rejected</code></td>
+<td>Manual override.</td>
+</tr>
+<tr>
+<td>Price-relative fields</td>
+<td>Computed via the <code>hcpi_computation</code> mixin (see below).</td>
 </tr>
 </tbody>
 </table>
+<p>Inherits <code>hcpi.computation</code> for zero-price warnings.</p>
+<h3 id="hcpidataobservationline-the-actual-price-entry"><code>hcpi.data.observation.line</code> — the actual price entry</h3>
+<p>One row per <strong>price actually written</strong> — multiple per line are common (an enumerator records 3 spot prices for the same item).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observed_price</code></td>
+<td>The number.</td>
+</tr>
+<tr>
+<td><code>uoo_id</code></td>
+<td>Unit of observation (matches the item's UoO).</td>
+</tr>
+<tr>
+<td><code>observed_quantity</code></td>
+<td>How much was priced.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hcpipricecollectioncode-the-exception-codes"><code>hcpi.price.collection.code</code> — the exception codes</h3>
+<p>The list of "why is this missing/odd" labels — <code>OUT_OF_STOCK</code>, <code>SEASONAL</code>, <code>NEW_PRODUCT</code>, etc. Maintained as data records.</p>
+<p>To add a new code (e.g. <code>STRIKE</code>):</p>
+<ol>
+<li>Add a <code>&lt;record model="hcpi.price.collection.code"&gt;</code> in <code>hcpi_data_collection/data/</code>.</li>
+<li>Restart Odoo with <code>-u hcpi_data_collection</code>.</li>
+<li>Users see it in the dropdown immediately.</li>
+</ol>
+<h3 id="hcpidatavalidation-batch-supervisor-review"><code>hcpi.data.validation</code> — batch supervisor review</h3>
+<p>Wraps a group of questionnaires for cross-cutting review (e.g. "all of Kampala's collections from this month"). Lighter than a Collection — mostly a state and a list of children.</p>
+<h3 id="security">Security</h3>
+<p>Three groups defined here, with <code>implied_ids</code> building a triangle:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>group_data_collection_collector       (file own questionnaires)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>       implied by
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>group_data_collection_supervisor      (review any collector&#39;s work)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>       implied by
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>group_data_collection_statician       (run validation algorithms, edit codes)
+</code></pre></div>
+<p>A user in <code>statician</code> has all three roles' permissions; a user in <code>supervisor</code> has supervisor + collector. Same pattern you built in <a href="../../training/module/part3-security/#how-real-hcpi-modules-set-this-up">Module Part 3</a>.</p>
+<h3 id="where-to-look-to-change-something">Where to look to change something</h3>
+<table>
+<thead>
+<tr>
+<th>You want to…</th>
+<th>Open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a state to the workflow</td>
+<td><code>hcpi.data.collection</code> — the <code>state</code> Selection + add an <code>action_*</code> method + button on the form view</td>
+</tr>
+<tr>
+<td>Change which items get auto-loaded as lines</td>
+<td><code>update_product_lines()</code> on <code>hcpi.data.collection</code></td>
+</tr>
+<tr>
+<td>Add a new "price collection code"</td>
+<td><code>hcpi_data_collection/data/</code> — add a <code>&lt;record model="hcpi.price.collection.code"&gt;</code></td>
+</tr>
+<tr>
+<td>Add a field to the questionnaire form</td>
+<td><code>hcpi.data.collection</code> model + <code>hcpi_data_collection/views/</code></td>
+</tr>
+<tr>
+<td>Change how outliers are flagged</td>
+<td>The <code>is_outlier</code> / <code>is_inlier</code> computes on <code>hcpi.data.collection.line</code></td>
+</tr>
+<tr>
+<td>Restrict who can advance state</td>
+<td><code>_require_supervisor()</code>-style methods in the model + <code>has_group</code> checks</td>
+</tr>
+<tr>
+<td>Change the supervisor review batch</td>
+<td><code>hcpi.data.validation</code> model and its views</td>
+</tr>
+<tr>
+<td>Tweak <code>tracking=True</code> for audit</td>
+<td>Add <code>tracking=True</code> to fields on <code>hcpi.data.collection</code> (it already inherits <code>mail.thread</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hcpi_data_collection_mobile_app-the-flutter-surface"><code>hcpi_data_collection_mobile_app</code> — the Flutter surface</h2>
+<p><strong>Depends on:</strong> <code>hcpi_data_collection</code></p>
+<p><strong>Purpose:</strong> The thin server-side companion to the Flutter mobile app — where most of the actual collection work happens.</p>
+<h3 id="whats-inside">What's inside</h3>
+<p>Mostly <code>_inherit</code> extensions of existing models:</p>
+<ul>
+<li><code>hcpi.data.collection</code> — adds mobile-specific fields (sync state, offline markers).</li>
+<li><code>hcpi.outlet</code> — exposes app-specific lookups.</li>
+<li><code>hcpi.outlet.contact</code> — same.</li>
+<li><code>hcpi.item</code> — adds mobile-display tweaks.</li>
+<li><code>res.config.settings</code> — global app settings exposed in the HCPI settings page.</li>
+<li><code>res.users</code> — per-user mobile preferences.</li>
+</ul>
+<h3 id="how-the-flutter-app-talks-to-this">How the Flutter app talks to this</h3>
+<p>Not via custom controllers. The mobile app calls the standard <strong>XML-RPC endpoint</strong> at <code>/xmlrpc/2/object</code>, exactly as covered in <a href="../../training/module/part3-security/#controllers-and-the-rpc-endpoint-that-replaces-them">Part 3 of the module tutorial</a>. The mobile app reads, creates, and writes records on the same models the web UI uses — <code>hcpi.data.collection</code>, <code>hcpi.data.observation.line</code>, etc.</p>
+<p>What this module adds is the <strong>fields and methods</strong> the mobile app expects to find. If the Flutter app calls <code>env['hcpi.data.collection'].submit_offline_batch(...)</code>, the method definition is here.</p>
+<h3 id="where-to-look-to-change-something_1">Where to look to change something</h3>
+<table>
+<thead>
+<tr>
+<th>You want to…</th>
+<th>Open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a field synced from the mobile app</td>
+<td><code>hcpi_data_collection_mobile_app/models/hcpi_data_collection.py</code> (the <code>_inherit</code> block)</td>
+</tr>
+<tr>
+<td>Change what happens when mobile submits a batch</td>
+<td>Look for <code>submit_*</code> methods on <code>hcpi.data.collection</code> here</td>
+</tr>
+<tr>
+<td>Expose a new mobile config option</td>
+<td><code>res.config.settings</code> <code>_inherit</code> here, plus its view inheritance under <code>views/</code></td>
+</tr>
+<tr>
+<td>Override per-user mobile prefs</td>
+<td><code>res.users</code> <code>_inherit</code> here</td>
+</tr>
+<tr>
+<td>Debug an API call from the app</td>
+<td>Server logs — <code>tail -f log/hcpi.log</code> and look for <code>/xmlrpc/2/object</code> entries showing the method name and args</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hcpi_computation-the-zero-price-mixin"><code>hcpi_computation</code> — the zero-price mixin</h2>
+<p><strong>Depends on:</strong> <code>base</code></p>
+<p><strong>Purpose:</strong> A tiny abstract model — one mixin everything else inherits to get <strong>zero-price validation</strong>.</p>
+<h3 id="what-it-provides">What it provides</h3>
+<p><code>hcpi.computation</code> is an <code>AbstractModel</code>. It exposes:</p>
+<table>
+<thead>
+<tr>
+<th>Field / method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zero_price_has_issues</code></td>
+<td>Boolean — are there problematic zero-price observations?</td>
+</tr>
+<tr>
+<td><code>zero_price_has_safe_months</code></td>
+<td>Boolean — has enough time passed to safely ignore?</td>
+</tr>
+<tr>
+<td><code>zero_price_warning</code></td>
+<td>Text — human-readable summary.</td>
+</tr>
+<tr>
+<td><code>zero_price_warning_html</code></td>
+<td>Same, HTML formatted for forms.</td>
+</tr>
+<tr>
+<td><code>get_zero_price_validation_status()</code></td>
+<td>The method that computes the four above.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-hard-coded-thresholds">The hard-coded thresholds</h3>
+<p>The method checks two things:</p>
+<ul>
+<li><strong>At least 6 safe months</strong> of buffer.</li>
+<li><strong>At most 5 problematic items</strong> within that buffer.</li>
+</ul>
+<p>If both pass, computation can proceed. If not, the warning surfaces in the UI and the wizard refuses to compute.</p>
+<p>These two numbers are <strong>the most-asked-to-tune values</strong> in the whole codebase. They live in <code>hcpi_computation/models/hcpi_computation.py</code> — search for <code>6</code> and <code>5</code>, the comments tell you which is which.</p>
+<h3 id="who-inherits-this-mixin">Who inherits this mixin</h3>
+<ul>
+<li><code>hcpi.data.collection.line</code> — every line carries its own zero-price status.</li>
+<li><code>hcpi.outlet.item.observation</code> — every observation can be checked.</li>
+<li>Every concrete index model in <a href="../indices-dashboard/"><code>hcpi_index</code></a>.</li>
+</ul>
+<p>That's why it's a mixin and not a function: each consumer carries its own state as actual fields. Compute methods on those consumers all delegate to <code>get_zero_price_validation_status()</code>.</p>
+<h3 id="where-to-look-to-change-something_2">Where to look to change something</h3>
+<table>
+<thead>
+<tr>
+<th>You want to…</th>
+<th>Open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Change the 6-month buffer</td>
+<td><code>hcpi_computation/models/hcpi_computation.py</code> — <code>get_zero_price_validation_status()</code></td>
+</tr>
+<tr>
+<td>Change the 5-item limit</td>
+<td>Same method</td>
+</tr>
+<tr>
+<td>Change the warning wording</td>
+<td>Same method — <code>zero_price_warning</code> and <code>zero_price_warning_html</code></td>
+</tr>
+<tr>
+<td>Add a new validation criterion</td>
+<td>Add a field to the mixin, recompute it in the same method, and surface it on the inheriting models' forms</td>
+</tr>
+<tr>
+<td>Remove zero-price validation entirely</td>
+<td>Don't — it gates index computation for a reason. If you must, override <code>get_zero_price_validation_status()</code> on a specific subclass and return safe values.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-the-three-modules-connect">How the three modules connect</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>                  ┌───────────────────────────────────────┐
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                  │           hcpi_computation            │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                  │     (abstract zero-price mixin)       │
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                  └───────────────────────────────────────┘
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                                  ▲    ▲     ▲
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                                  │    │     │
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                            inherits  inherits  inherits
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                                  │    │     │
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>┌────────────────────┐   ┌────────────────────────────┐   ┌──────────────────────────┐
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│ hcpi_data_         │   │ hcpi_data_collection       │   │ hcpi_index               │
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│ collection_mobile_ │◄──┤ (survey workflow + lines + │──►│ (indices that read       │
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│ app                │   │  validation batches)       │   │  collection lines)       │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>└────────────────────┘   └────────────────────────────┘   └──────────────────────────┘
+</code></pre></div>
+<p>When you add a new validation rule, you almost always touch <code>hcpi_computation</code> (the rule itself) and one or more of <code>hcpi_data_collection</code>, the mobile app inherit, and <code>hcpi_index</code> (the consumers).</p>
+<h2 id="next">Next</h2>
+<ul>
+<li><strong><a href="../indices-dashboard/">Indices &amp; Dashboard</a></strong> — what happens to the validated observations.</li>
+<li><strong><a href="../outlets/">Outlets</a></strong> — the master data the questionnaires reference.</li>
+</ul>
 
 
 
@@ -2861,7 +3011,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../modules/infrastructure/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Infrastructure &amp; Third-party">
+          <a href="../outlets/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Outlets">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2871,20 +3021,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Infrastructure & Third-party
+                Outlets
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../first-edits/" class="md-footer__link md-footer__link--next" aria-label="Next: Making Your First Edits">
+          <a href="../indices-dashboard/" class="md-footer__link md-footer__link--next" aria-label="Next: Indices &amp; Dashboard">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Making Your First Edits
+                Indices & Dashboard
               </div>
             </div>
             <div class="md-footer__button md-icon">
