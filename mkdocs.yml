@@ -72,7 +72,7 @@ nav:
     - "Building an HCPI Module":
       - "Part 1: Models, Fields, Relationships": training/module/part1-models.md
       - "Part 2: Views & UX": training/module/part2-views.md
-      - "Part 3: Security & Polish": training/module/part3-security.md
+      - "Part 3: Rights & Controllers": training/module/part3-security.md
   - About: about.md
 
 markdown_extensions:
