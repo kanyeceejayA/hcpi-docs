@@ -15,7 +15,7 @@ This section follows the official **HCPI Back-end Training** programme. It exist
 | [Python for HCPI](day2/python-intro.md) | Language essentials — types, collections, control flow, functions, modules, classes, comprehensions, exceptions, decorators |
 | [Building an HCPI Module — Part 1](module/part1-models.md) | Module structure, models, field types, relationships (M2O, O2M, M2M), computed fields, ORM CRUD |
 | [Part 2](module/part2-views.md) | View types (List, Form, Kanban, Graph, Pivot, Calendar), search filters & group bys, inline One2many, list decorations |
-| [Part 3](module/part3-security.md) | Groups, ACLs, record rules, sequence + auto-numbering, `mail.thread` chatter, workflow validation |
+| [Part 3](module/part3-security.md) | HCPI security conventions, groups, ACLs, record rules, GPS validation, auto-numbered references, `mail.thread` chatter, hardened workflow buttons, plus a closing note on controllers and the XML-RPC endpoint that replaces them |
 | Coicop & Location modules | *coming soon* |
 | Outlets, Items, UoMs, Price Relatives | *coming soon* |
 | Data collection, validation (Tukey), processing | *coming soon* |

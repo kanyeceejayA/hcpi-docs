@@ -454,4 +454,4 @@ After Part 2 you understand:
 
 ## What's next
 
-➡️ **[Part 3: Security & Polish](part3-security.md)** — close the module. Add a Manager role, auto-numbered references, mail.thread chatter and audit trail, Python validation, and harden the workflow buttons.
+➡️ **[Part 3: Rights & Controllers](part3-security.md)** — close the module. Add a Manager role, model and record-level access rules, plus a short note on HTTP controllers and why this module doesn't have a `controllers/` folder.

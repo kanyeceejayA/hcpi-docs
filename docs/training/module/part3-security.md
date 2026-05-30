@@ -1,8 +1,17 @@
-# Building an HCPI Module — Part 3: Security & Polish
+# Building an HCPI Module — Part 3: Rights, Polish & Controllers
 
-You have a working module with data and good UX. Part 3 makes it production-ready: a manager role gates the approval action, every change is auditable, records get proper reference numbers, and the workflow refuses to let you skip steps.
+<!--
+Duration: about 1 hour.
+Covers: HCPI's security conventions, groups, ACL matrix, record rules,
+GPS validation with @api.constrains, sequence-based auto-numbering,
+mail.thread chatter, hardened workflow buttons, and a closing section
+on HTTP controllers — what they are, why this module has no
+controllers/ folder, and what RPC endpoint replaces them.
+-->
 
-## What "security" means in Odoo
+You have a working module with data and good UX. Part 3 closes it out: who can do what, a handful of polish features every real HCPI module has, and a short note on the one piece this module deliberately doesn't have — controllers.
+
+## Two security layers
 
 Two distinct layers, each ultimately stored as rows in built-in tables (just like views, actions, and menus — recall the picture from [Odoo Basics](../../understanding-the-codebase/odoo-basics.md)):
 
@@ -14,7 +23,23 @@ Two distinct layers, each ultimately stored as rows in built-in tables (just lik
 
 The mental model: **ACL is the door, record rules are the floor plan.** ACL says "you may enter the room." Record rules say "and within that room you can only see your own desk."
 
-We'll add **one** custom group — `Manager` — and contrast it with regular internal users (`base.group_user`). That's enough to demonstrate every security primitive.
+## How real HCPI modules set this up
+
+Before we wire up our own groups, look at how the production modules do it. The pattern is consistent across HCPI and worth recognising:
+
+| Module | Groups defined | Pattern |
+|---|---|---|
+| **`hcpi_coicop`** | `coicop_user` (read-only), `coicop_manager` (full CRUD) | The simplest pattern — one read group, one admin group. Used by all the reference-data modules (`hcpi_item`, `hcpi_brand`, locations). |
+| **`hcpi_outlet`** | `group_outlet_user`, `group_outlet_manager` | Same `_user` / `_manager` shape. Outlets are master data; reading is broad, editing is restricted. |
+| **`hcpi_data_collection`** | `group_data_collection_collector`, `group_data_collection_supervisor`, `group_data_collection_statician` | Three roles for an actual workflow. Each role implies the one below: a statistician implies supervisor implies collector. |
+| **`hcpi_index`** | `group_index_viewer`, `group_index_manager` | Reading the published indices is broad; computing/republishing is restricted. |
+
+Two takeaways:
+
+1. **The default pattern is a `_user` / `_manager` pair.** If a module's only job is "show this reference data; let admins edit it," that's the whole security model.
+2. **Workflow modules use a role triangle** with `implied_ids` so the higher roles inherit everything below them. `hcpi_data_collection` is the canonical example — a collector can submit collections, a supervisor can also approve them, a statistician can also re-run validation algorithms.
+
+Our module fits between the two. We'll add **one** custom group — `Manager` — and contrast it with regular internal users (`base.group_user`). That's enough to demonstrate every primitive without the triangle complexity. Real HCPI modules that need roles add the triangle.
 
 ## Step 1: define the Manager group
 
@@ -39,8 +64,6 @@ Create `security/hcpi_outlet_onboarding_security.xml`:
 
 </odoo>
 ```
-
-Walk through:
 
 - **`ir.module.category`** — a UI grouping in **Settings → Users → User → Access Rights**. Without it, your group shows up as a flat checkbox rather than under "HCPI Outlet Onboarding."
 - **`res.groups`** — the actual group record.
@@ -115,9 +138,57 @@ Reading this:
 
 **Within one group, rules are AND'd.** If a single group has two rules, both must match.
 
-## Step 4: a sequence for auto-numbering
+### Verify
 
-Replace `name="New"` with proper references like `OP/2026/0001`.
+Restart Odoo with the upgrade flag:
+
+```bash
+python odoo/odoo-bin -c conf/hcpi.conf -u hcpi_outlet_onboarding
+```
+
+In **Settings → Users**, the **HCPI Outlet Onboarding** category appears with a **Manager** checkbox. Admin has it by default. Create a second user with no Manager tick, log in as them in a private window, and confirm they only see their own proposals. Try deleting a proposal as them — no Delete option in the Actions menu (ACL forbids).
+
+## Step 4: GPS validation with `@api.constrains`
+
+Right now nothing prevents an officer from saving a proposal with garbage coordinates like `latitude = 999`. Add a Python constraint.
+
+Open `models/hcpi_outlet_proposal.py`. Add the import at the top of the file:
+
+```python
+from odoo.exceptions import UserError, ValidationError
+```
+
+Inside the class:
+
+```python
+@api.constrains('latitude', 'longitude')
+def _check_gps_range(self):
+    for proposal in self:
+        if proposal.latitude and not (-90 <= proposal.latitude <= 90):
+            raise ValidationError("Latitude must be between -90 and 90.")
+        if proposal.longitude and not (-180 <= proposal.longitude <= 180):
+            raise ValidationError("Longitude must be between -180 and 180.")
+
+@api.constrains('contact_phone')
+def _check_phone(self):
+    for proposal in self:
+        if proposal.contact_phone and len(proposal.contact_phone.strip()) < 7:
+            raise ValidationError("Contact phone looks too short to be valid.")
+```
+
+`@api.constrains` runs on every save. The differences from the alternatives:
+
+| Approach | Where it runs | When it fires | Use for |
+|---|---|---|---|
+| `_sql_constraints` | PostgreSQL | INSERT/UPDATE | Uniqueness, simple `CHECK` clauses |
+| `@api.constrains` | Python, on save | After write | Anything more complex; cross-record checks |
+| `@api.onchange` | Python, in the UI | As the user types | Soft hints — *doesn't* block save |
+
+Try saving a proposal with `latitude = 999` → red error toast appears, save blocked.
+
+## Step 5: a sequence for auto-numbering
+
+Replace the placeholder `name="New"` from Part 1 with proper references like `OP/2026/0001`.
 
 Create `data/hcpi_outlet_proposal_data.xml`:
 
@@ -139,7 +210,7 @@ mkdir -p /opt/hcpi/custom/HCPI/hcpi_outlet_onboarding/data
 ```
 
 - **`code`** — the handle used in Python (`env['ir.sequence'].next_by_code('hcpi.outlet.proposal')`).
-- **`prefix`** — `%(year)s` is auto-replaced with the current year.
+- **`prefix`** — `%(year)s` is auto-replaced with the current year. Other tokens: `%(month)s`, `%(day)s`.
 - **`padding=4`** — pad the counter to 4 digits: `0001`, `0002`, …
 
 Add to `__manifest__.py`:
@@ -172,7 +243,7 @@ Reading the override:
 
 After upgrade (`-u hcpi_outlet_onboarding`) and creating a new proposal, the reference reads `OP/2026/0001`.
 
-## Step 5: mail.thread — chatter and audit trail
+## Step 6: `mail.thread` chatter and audit trail
 
 The chatter is that comments/log section at the bottom of forms in Odoo. It's not just chat — it's where field changes are logged when fields are marked `tracking=True`. You already added `tracking=True` to `state` in Part 1; now we wire up the mixin to make it visible.
 
@@ -194,7 +265,7 @@ class HcpiOutletProposal(models.Model):
 
 `mail.activity.mixin` adds `activity_ids` for scheduled activities ("call this contact next Tuesday").
 
-Then add the chatter to the form view. At the bottom of the form, after closing `</sheet>` but inside `</form>`:
+Then add the chatter to the form view. At the bottom of the proposal form, after closing `</sheet>` but inside `</form>`:
 
 ```xml
         </sheet>
@@ -214,37 +285,11 @@ outlet_type = fields.Selection([...], required=True, default='open_market', trac
 contact_phone = fields.Char(tracking=True)
 ```
 
-Every change to these fields shows up in the chatter as `Field: old → new`.
-
-## Step 6: validation with `@api.constrains`
-
-Right now nothing prevents an officer from saving a proposal with garbage GPS coordinates. Add a Python constraint.
-
-In `models/hcpi_outlet_proposal.py`, add the import at the top:
-
-```python
-from odoo.exceptions import UserError, ValidationError
-```
-
-Then inside the class:
-
-```python
-@api.constrains('latitude', 'longitude')
-def _check_gps_range(self):
-    for proposal in self:
-        if proposal.latitude and not (-90 <= proposal.latitude <= 90):
-            raise ValidationError("Latitude must be between -90 and 90.")
-        if proposal.longitude and not (-180 <= proposal.longitude <= 180):
-            raise ValidationError("Longitude must be between -180 and 180.")
-```
-
-`@api.constrains` runs on every save. Different from `@api.onchange` (which runs in the UI as the user types but doesn't block save — it's for hints) and from `_sql_constraints` (database-level, faster but limited to what SQL can express).
-
-Try saving a proposal with `latitude = 999` → red error toast appears, save blocked.
+Every change shows up in the chatter as `Field: old → new`.
 
 ## Step 7: harden the workflow buttons
 
-Right now `action_approve` lets anyone advance any draft. Add a state check, a sanity check, and a manager gate. Replace the action methods in `models/hcpi_outlet_proposal.py`:
+Right now `action_approve` from Part 2 lets anyone advance any draft. Add a state check, a sanity check, and a manager gate. Replace the methods in `models/hcpi_outlet_proposal.py`:
 
 ```python
 def action_approve(self):
@@ -280,54 +325,117 @@ Reading the changes:
 - **`has_group('<xml-id>')`** — checks group membership. Returns True if the user is *in* that group.
 - **`message_post(body=...)`** — adds a chatter entry. Audit-trail bonus on top of the automatic `tracking=True` logs.
 
-Try as a regular user: click **Approve** → "Only managers..." blocks it. Try **Approve** with no visits → "Record at least one visit..." blocks it. As a Manager with at least one visit → approval works.
+Try as a regular user: click **Approve** → "Only managers..." blocks it. Try **Approve** with no visits → "Record at least one visit..." blocks it. As a Manager with at least one visit → approval works, and the chatter logs "Proposal approved."
 
-## Step 8: a final check
+## Step 8: a final tour
 
-Stop Odoo, run a full upgrade:
+Restart with `-u hcpi_outlet_onboarding` one last time, then walk through everything:
 
-```bash
-python odoo/odoo-bin -c conf/hcpi.conf -u hcpi_outlet_onboarding
+1. **Settings → Users**: confirm the **HCPI Outlet Onboarding** category appears with a **Manager** checkbox. Admin has it by default; the regular user you created does not.
+2. As the regular user:
+    - Create a proposal. Note the auto-name (`OP/2026/0001` from the sequence).
+    - Set garbage GPS (`latitude = 999`) and try to save → blocked by `@api.constrains`.
+    - Try **Approve** → blocked by `_require_manager`.
+    - The list shows only proposals you created — record rule working.
+    - Try to delete a proposal → no Delete option in the Actions menu — ACL working.
+3. As admin (a Manager by default):
+    - View the regular user's proposal. Click **Approve** with a visit recorded — state moves to Active, chatter logs "Proposal approved."
+    - Change `contact_phone`. The chatter records the change because the field is `tracking=True`.
+    - Delete a proposal you no longer want — manager has unlink.
+
+That's a production-feeling module. Onto the one thing it deliberately *doesn't* have.
+
+## Controllers — and the RPC endpoint that replaces them
+
+Scroll back to [Part 1, Step 1](part1-models.md#step-1-scaffold-the-module). When we scaffolded the module, the generator created a `controllers/` folder. We deleted it before doing anything else. Here's what it would have held, why we don't need it, and what HCPI uses instead.
+
+### What a controller is
+
+An Odoo **controller** is a Python class that registers **HTTP routes** — URLs that Odoo answers when a browser, a mobile app, or any HTTP client hits them. Conceptually identical to a Flask, Django, or Express route handler:
+
+```python
+from odoo import http
+from odoo.http import request
+
+
+class OutletPortal(http.Controller):
+
+    @http.route('/outlets/public', type='http', auth='public', website=True)
+    def public_outlet_list(self, **kwargs):
+        outlets = request.env['hcpi.outlet.proposal'].sudo().search([('state', '=', 'active')])
+        return request.render('hcpi_outlet_onboarding.public_outlet_template', {'outlets': outlets})
+
+    @http.route('/api/v1/outlet_count', type='json', auth='user')
+    def outlet_count(self):
+        return request.env['hcpi.outlet.proposal'].search_count([])
 ```
 
-Tour:
+Common reasons to add a controller:
 
-1. **Settings → Users**: confirm the **HCPI Outlet Onboarding** category appears with a **Manager** checkbox.
-2. Create a second user (Settings → Users & Companies → Users → Create), set a password, and *do not* tick Manager. They're a regular user.
-3. Open a private/incognito browser and log in as that user.
-4. As the regular user:
-    - Create a proposal. Note the auto-name (`OP/2026/0001`).
-    - Try to delete it — no delete option in the Actions menu (ACL forbids).
-    - Try **Approve** — blocked by `_require_manager`.
-    - The list shows only the proposal you just created (record rule).
-5. As admin (a Manager by default):
-    - View the regular user's proposal. Click **Approve** with a visit recorded — state moves, chatter logs "Proposal approved."
-    - Change `contact_phone`. The chatter records the change (because the field is `tracking=True`).
+- **Public-facing website pages** — built with the Odoo Website module.
+- **Custom JSON / REST endpoints** — when XML-RPC isn't a convenient shape for an external integration.
+- **Portal pages for non-internal users** — customer self-service.
+- **Custom file downloads** — generated CSV/Excel with bespoke auth logic.
+- **Webhooks** — external systems POSTing in to trigger something.
+
+### Why this module doesn't have one — and what replaces it
+
+Two reasons HCPI back-office modules almost never define their own controllers, and two replacements that cover the same ground.
+
+**1. The web UI is generated by Odoo, not by us.** Every page you've clicked through in Parts 1–2 — proposal list, form, kanban, statusbar — is rendered by Odoo's built-in `/web` controller from the XML view definitions we wrote. We don't write our own HTTP routes for the web client; we declare what fields, views, and actions the model has, and Odoo takes care of the URLs, the rendering, the navigation. That's the whole point of being on Odoo: you get the CRUD UI for free.
+
+**The replacement: Odoo's own `/web` controller plus the XML view system.** What you'd build with `@http.route` for a hand-rolled admin UI is replaced by `<list>`, `<form>`, `<kanban>` records plus `ir.actions.act_window` and menus. Same outcome, less code, consistent UX.
+
+**2. The Flutter mobile app talks XML-RPC, not custom endpoints.** Enumerators in the field don't hit our URLs. The Flutter app calls Odoo over **XML-RPC** at `/xmlrpc/2/object` (and **JSON-RPC** at `/jsonrpc`). Those endpoints are part of Odoo core and they automatically expose every public method on every model. The mobile app authenticates with `/xmlrpc/2/common` (login), gets a user id, and then calls things like:
+
+```
+POST /xmlrpc/2/object
+  model: 'hcpi.outlet'
+  method: 'search_read'
+  args: [[['active', '=', true]], ['name', 'code', 'latitude']]
+```
+
+That call hits the **exact same `search_read` you used in the Part 1 shell exercise** — Odoo's ORM is the API. No custom HTTP route on our side; Odoo's RPC layer takes care of routing, authentication, serialisation, and access-control checks (your ACL and record rules from Steps 1–3 apply to RPC calls too).
+
+**The replacement: the built-in XML-RPC / JSON-RPC endpoint.** Any field, any model method, any computed field — the mobile app can read or call it via RPC, restricted by the same security rules that govern the web UI.
+
+### When you *would* add a controller to HCPI
+
+If the requirement showed up, you'd add a `controllers/` folder back. Plausible cases:
+
+- A **public CPI dashboard** at a custom URL (`/cpi/dashboard`) that shows the latest index without logging in.
+- A **webhook receiver** for external price feeds — `/hooks/prices/import`.
+- A **download endpoint** for a custom binary format the QWeb PDF doesn't cover (e.g., a file for upstream statistical software).
+- An **OAuth callback** for integrating a third-party identity provider.
+
+For everything else — internal users doing work in the web UI, the mobile app talking RPC — controllers add complexity without value. That's why the folder was deleted in Step 1 and never came back.
 
 ## Exercises
 
-1. **Restrict editing on active proposals.** Add a write-only record rule for `base.group_user` that allows writes only when `state in ('draft',)` — once approved, regular users can't edit. Managers should still be able to edit at any state (their existing "see all" rule allows it).
+1. **Restrict editing on active proposals.** Add a write-only `ir.rule` for `base.group_user` with `perm_write=True` and a domain restricting to `state == 'draft'`. Once a proposal is active, regular users can still read it but can't edit. Managers (via their own "see all" rule) keep full access.
 
-2. **Smart button on `res.users`.** Add a `proposal_count` computed field on `res.users` (`_inherit = 'res.users'`, no new `_name`) and display it as a smart button on the user form via an `<xpath expr="//div[@name='button_box']" position="inside">` view inheriting `base.view_users_form`. This is the pattern country-specific modules use to extend HCPI base models — see [Country Variants](../../understanding-the-codebase/country-variants.md).
+2. **Smart button on `res.users`.** Add a `proposal_count` computed field on `res.users` (using **classical inheritance** — `_inherit = 'res.users'` with no new `_name`) and display it as a smart button on the user form via an `<xpath expr="//div[@name='button_box']" position="inside">` view inheriting `base.view_users_form`. This is the pattern country-specific modules use to extend HCPI base models — see [Country Variants](../../understanding-the-codebase/country-variants.md).
 
-3. **Cross-record constraint.** Use `@api.constrains` to enforce "no duplicate outlet name per region with a friendly message" — search for another record with the same `outlet_name + region` and raise if found. (Bonus: compare with the `_sql_constraints` already on the model — when does each fire?)
+3. **Cross-record constraint.** Use `@api.constrains` on `(outlet_name, region)` to enforce "no duplicate outlet name per region" with a friendly message. Bonus: also add a `_sql_constraints` equivalent. When does each fire?
 
-4. **Scheduled cron.** Create an `ir.cron` record that runs every Monday at 09:00 and posts a chatter message on every proposal that's been in `draft` for more than 7 days, nudging the manager. Hint: `ir.cron` records live in data XML; their `model_id` references the model whose method runs.
+4. **Scheduled cron.** Create an `ir.cron` record that runs every Monday at 09:00 and posts a chatter message on every proposal that's been in `draft` for more than 7 days. Hint: `ir.cron` records live in data XML; their `model_id` references the model whose method runs.
+
+5. **One controller, for real.** Add a `controllers/public_count.py` with a single `@http.route('/onboarding/active_count', type='http', auth='public')` that returns the count of active outlets as plain text. Remember to add `controllers/__init__.py` and `from . import controllers` in the module's outer `__init__.py`. Visit the URL in a browser. This is the *one* time you'll write a controller in this tutorial.
 
 ## What you learned
 
 After Part 3 you understand the entire surface area of an HCPI module:
 
 - **Groups, ACLs, record rules**, and how they combine.
+- **HCPI's security conventions** — the `_user` / `_manager` default pair and the collector/supervisor/statistician triangle that real workflow modules use.
 - **`ir.module.category`** for clean user-permissions UI.
 - **`ir.rule.domain_force`** with `user.id` for "own records only" rules.
-- **Sequences** with `next_by_code` and a `create()` override.
-- **`@api.model_create_multi`** — the modern batch-create signature.
-- **`@api.constrains`** vs `_sql_constraints` vs `@api.onchange`.
-- **`UserError` vs `ValidationError`** and when to raise each.
+- **`@api.constrains`** vs `_sql_constraints` vs `@api.onchange` — when each fires.
+- **Sequences** with `next_by_code` and a `create()` override using `@api.model_create_multi`.
 - **`mail.thread`** mixin (prototype inheritance) for chatter + tracking; `mail.activity.mixin` for activities.
 - **`message_post`** to write to the chatter from Python.
-- **`has_group`** for in-method permission checks.
+- **`UserError` vs `ValidationError`** and **`has_group`** for in-method permission checks.
+- **What an Odoo controller is**, why most HCPI back-office modules don't need one, and the two things that replace it: Odoo's own `/web` controller (for the UI) and the built-in **XML-RPC / JSON-RPC endpoints** (for the mobile app).
 
 ## What now?
 
