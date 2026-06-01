@@ -50,6 +50,14 @@ nav:
     - Odoo Basics: understanding-the-codebase/odoo-basics.md
     - Understanding the Codebase: understanding-the-codebase/index.md
     - Module Reference: understanding-the-codebase/module-reference.md
+    - Module Deep Dives:
+      - Overview: modules/index.md
+      - Reference Data (COICOP, Items, Brands): modules/reference-data.md
+      - Outlets: modules/outlets.md
+      - Data Collection: modules/data-collection.md
+      - Indices & Dashboard: modules/indices-dashboard.md
+      - Country Overlays (UG, KE, TZ, ZAR): modules/country-overlay.md
+      - Infrastructure & Third-party: modules/infrastructure.md
     - Country Variants: understanding-the-codebase/country-variants.md
     - Making Your First Edits: first-edits/index.md
   - Troubleshooting: troubleshooting.md

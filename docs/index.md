@@ -47,3 +47,7 @@ See **[Getting the Code](getting-started/getting-the-code.md)** for the full wal
 ## Need Help?
 
 If you encounter issues during installation or usage, please refer to the specific installation guide for your platform or consult the [Odoo 18 documentation](https://www.odoo.com/documentation/18.0/).
+
+## User Manual
+
+Download the user manual here: [User Manual](https://kanyeceejaya.github.io/hcpi-docs/User_Manual_EAC CPI_Software_PS_March 2023.pdf)

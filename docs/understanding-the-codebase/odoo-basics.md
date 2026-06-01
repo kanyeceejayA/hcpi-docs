@@ -306,6 +306,96 @@ Once you've turned on developer mode (covered on the [User Administration](../tr
 
 This is how you go from "I see something on screen and want to change it" to "I know the model name, the view ID, and the file it's defined in." Combined with project-wide search in your IDE, that's the loop you'll spend most of your time in.
 
+## Advanced: QWeb and OWL — the two frameworks you'll see
+
+Two pieces of Odoo's stack are worth naming so you recognise them when they appear. You don't need to *write* either to do most HCPI work — but you'll *read* them, and you'll occasionally need to know which one you're looking at.
+
+### QWeb — Odoo's templating language
+
+QWeb is **HTML with control-flow attributes** prefixed `t-*`. It looks like this:
+
+```xml
+<table>
+    <tr t-foreach="docs" t-as="proposal">
+        <td><span t-field="proposal.outlet_name"/></td>
+        <td t-if="proposal.has_failed_visit" class="text-danger">⚠</td>
+    </tr>
+</table>
+```
+
+The common attributes you'll meet:
+
+| Attribute | What it does |
+|---|---|
+| `t-foreach` + `t-as` | Loop over a collection, binding each item to a name. |
+| `t-if` / `t-elif` / `t-else` | Conditionals. |
+| `t-field="record.fieldname"` | Render a field's value with its built-in formatting (dates, monetary, etc.). |
+| `t-out="expression"` | Render a Python expression. |
+| `t-call="template.id"` | Include another template (like a partial). |
+| `t-att-class="..."` / `t-attf-class="..."` | Compute an attribute. `t-att-` takes an expression; `t-attf-` takes a string with `#{...}` substitutions. |
+
+**Two runtimes, same syntax.** QWeb is evaluated in two places:
+
+- **Server-side** for **PDF reports** (`ir.actions.report` + `report_type="qweb-pdf"`), **website pages**, and any place Python pre-renders HTML.
+- **Client-side** by **OWL** (below) for **kanban cards**, **dashboards**, and dynamic view fragments.
+
+You write the same template; Odoo picks the runtime based on context.
+
+**Where HCPI uses it:**
+
+- **Kanban card layouts** — every `<templates><t t-name="card">` block in a `<kanban>` view is QWeb.
+- **PDF outputs** — country-specific report templates (basket reports, index print-outs).
+- **Email templates** in `hcpi_data_collection` and `kola_web_enterprise`.
+
+When you see a `.xml` file under `views/` or `reports/` with lots of `t-foreach` and `t-field`, that's QWeb. Reference: <https://www.odoo.com/documentation/18.0/developer/reference/frontend/qweb.html>.
+
+### OWL — Odoo's frontend framework
+
+**OWL** (Odoo Web Library) is Odoo's reactive component framework. Conceptually similar to Vue or React but tuned for Odoo's needs. It's what renders every form, list, kanban, statusbar, and dialog in the web client.
+
+A component looks like this:
+
+```javascript
+/** @odoo-module */
+import { Component } from "@odoo/owl";
+import { registry } from "@web/core/registry";
+
+class MyBadge extends Component {
+    static template = "my_module.MyBadge";
+    get cssClass() {
+        return this.props.record.data.state === "active"
+            ? "text-bg-success"
+            : "text-bg-secondary";
+    }
+}
+
+registry.category("fields").add("my_badge", { component: MyBadge });
+```
+
+The template (`my_module.MyBadge`) is — yes — a QWeb template, registered in an XML file under the module.
+
+**Where it lives:** OWL code goes in `static/src/` inside a module. JavaScript files end in `.js`; their companion templates are `.xml`. Both are bundled into Odoo's asset pipeline via the manifest's `assets` key.
+
+**When you'd write OWL yourself:**
+
+- A **custom field widget** — e.g. an interactive map for the `latitude`/`longitude` fields on an outlet.
+- A **custom view type** or override of an existing renderer.
+- A **client action** — a fully bespoke UI screen, often a dashboard, declared as `ir.actions.client`.
+
+**Where HCPI uses it:** mostly invisibly — every UI element you've used so far is an OWL component shipped by Odoo core. HCPI's own JS surface area is small: a few menu / branding tweaks under `kola_web_enterprise/static/src/`, the dashboard widgets in `hcpi_dashboard`, and the occasional small field widget. The other 95% of HCPI's UI comes from declaring `<list>`, `<form>`, `<kanban>` records and letting Odoo's built-in OWL components do the rendering.
+
+When you find yourself looking at a `.js` file under `static/src/` with `import { Component }`, that's OWL. Reference: <https://github.com/odoo/owl#readme>.
+
+### How to tell them apart at a glance
+
+| File location | Likely framework |
+|---|---|
+| `views/*.xml` with `<list>`, `<form>`, `<kanban>` records | View definitions — rendered by Odoo's built-in OWL components |
+| `views/*.xml` with `<templates>` + `t-foreach` | **QWeb** (kanban card layout, mostly) |
+| `reports/*.xml` with `<template>` + `t-call="web.external_layout"` | **QWeb** (PDF report) |
+| `static/src/**/*.js` | **OWL** (component code) |
+| `static/src/**/*.xml` paired with a `.js` of the same name | **QWeb** (template for an OWL component) |
+
 ## What you should remember
 
 - **Models** are Python classes → database tables; **records** are rows; **fields** are columns.
