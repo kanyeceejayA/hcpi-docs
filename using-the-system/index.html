@@ -1,0 +1,3286 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/using-the-system/">
+      
+      
+        <link rel="prev" href="../first-edits/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Using the System (UI Walkthrough) - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-the-system-a-ui-walkthrough" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using the System (UI Walkthrough)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/getting-the-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/git-remotes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Remotes (EAC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/cpi-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/cpi-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/how-calculations-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the Calculations Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/odoo-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/module-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Deep Dives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module Deep Dives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/reference-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Data (COICOP, Items, Brands)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/outlets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Outlets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/data-collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/indices-dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indices & Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/country-overlay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Overlays (UG, KE, TZ, ZAR)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/infrastructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure & Third-party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-the-codebase/country-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Variants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the System (UI Walkthrough)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the System (UI Walkthrough)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-hcpi-navbar-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The HCPI navbar at a glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-0-one-time-setup-a-fresh-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — One-time setup (a fresh instance)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 0 — One-time setup (a fresh instance)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-build-the-coicop-classification-ladder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Build the COICOP classification ladder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-define-units-of-measure-and-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Define units of measure and items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-define-consumption-segments-the-baskets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Define consumption segments (the "baskets")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-define-outlets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 Define outlets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-enter-ea-weights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Enter EA weights
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-designing-the-monthly-questionnaire-optional-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Designing the monthly questionnaire (optional helpers)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-collecting-prices-monthly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Collecting prices (monthly)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2 — Collecting prices (monthly)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-or-open-a-questionnaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Create or open a questionnaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-state-machine-the-buttons-in-the-form-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 The state machine — the buttons in the form header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-add-the-price-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Add the price lines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-move-it-through-the-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Move it through the workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-validating-prices-the-tukey-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Validating prices (the Tukey check)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3 — Validating prices (the Tukey check)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-the-state-machine-the-buttons-in-the-form-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 The state machine — the buttons in the form header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-reviewing-what-the-algorithm-flagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Reviewing what the algorithm flagged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-computing-the-indices-monthly-strictly-in-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Computing the indices (monthly, strictly in order)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 4 — Computing the indices (monthly, strictly in order)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-four-mandatory-wizards-run-in-this-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 The four mandatory wizards (run in this order)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-the-three-optional-side-cut-wizards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 The three optional / side-cut wizards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-what-happens-if-you-click-a-wizard-out-of-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 What happens if you click a wizard out of order?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-the-zero-price-safety-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 The zero-price safety gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-viewing-the-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5 — Viewing the results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-monthly-cycle-in-one-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The monthly cycle, in one screen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When something goes wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_10_2" id="__nav_10_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/server-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/virtualenv-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environment & HCPI Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/dev-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day1/user-administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/day2/python-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python for HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_10_4" id="__nav_10_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building an HCPI Module
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Building an HCPI Module
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/module/part1-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1: Models, Fields, Relationships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/module/part2-views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2: Views & UX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../training/module/part3-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3: Rights & Controllers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-hcpi-navbar-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The HCPI navbar at a glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-0-one-time-setup-a-fresh-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — One-time setup (a fresh instance)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 0 — One-time setup (a fresh instance)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-build-the-coicop-classification-ladder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Build the COICOP classification ladder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-define-units-of-measure-and-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Define units of measure and items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-define-consumption-segments-the-baskets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Define consumption segments (the "baskets")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-define-outlets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 Define outlets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-enter-ea-weights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Enter EA weights
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-designing-the-monthly-questionnaire-optional-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Designing the monthly questionnaire (optional helpers)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-collecting-prices-monthly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Collecting prices (monthly)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2 — Collecting prices (monthly)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-or-open-a-questionnaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Create or open a questionnaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-state-machine-the-buttons-in-the-form-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 The state machine — the buttons in the form header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-add-the-price-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Add the price lines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-move-it-through-the-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Move it through the workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-validating-prices-the-tukey-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Validating prices (the Tukey check)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3 — Validating prices (the Tukey check)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-the-state-machine-the-buttons-in-the-form-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 The state machine — the buttons in the form header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-reviewing-what-the-algorithm-flagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Reviewing what the algorithm flagged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-computing-the-indices-monthly-strictly-in-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Computing the indices (monthly, strictly in order)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 4 — Computing the indices (monthly, strictly in order)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-four-mandatory-wizards-run-in-this-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 The four mandatory wizards (run in this order)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-the-three-optional-side-cut-wizards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 The three optional / side-cut wizards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-what-happens-if-you-click-a-wizard-out-of-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 What happens if you click a wizard out of order?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-the-zero-price-safety-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 The zero-price safety gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-viewing-the-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5 — Viewing the results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-monthly-cycle-in-one-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The monthly cycle, in one screen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When something goes wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="using-the-system-a-ui-walkthrough">Using the System — A UI Walkthrough</h1>
+<p>This page is the <strong>literal click-by-click guide</strong> to running HCPI in the Odoo web interface: which menu, which form, which button label, in what order. If <a href="../concepts/how-calculations-work/">How the Calculations Work</a> tells you <em>what</em> the system computes, this page tells you <em>how to make it compute</em>.</p>
+<p>It assumes a fresh, empty HCPI instance. If you already have a running country instance, skip Phase 0 (setup) and jump to <a href="#phase-2-collecting-prices-monthly">Phase 2 — Collecting prices (monthly)</a>.</p>
+<h2 id="the-hcpi-navbar-at-a-glance">The HCPI navbar at a glance</h2>
+<p>When you log into Odoo and open HCPI, the top navbar shows these root menus, left to right (in sequence order):</p>
+<table>
+<thead>
+<tr>
+<th>Menu</th>
+<th>What it's for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dashboard</strong></td>
+<td>Landing page with key index summaries</td>
+</tr>
+<tr>
+<td><strong>Data Collection</strong></td>
+<td>Field questionnaires (<code>hcpi.data.collection</code>) and validation batches (<code>hcpi.data.validation</code>)</td>
+</tr>
+<tr>
+<td><strong>Indices</strong></td>
+<td>Index results, <strong>the seven computation wizards</strong> (numbered 1️⃣–7️⃣), and computation history</td>
+</tr>
+<tr>
+<td><strong>COICOP</strong></td>
+<td>The product-classification ladder: Divisions → Groups → Classes → Sub Classes → Micro Classes → Elementary Aggregates</td>
+</tr>
+<tr>
+<td><strong>Items</strong></td>
+<td>The item catalogue and Units of Measure</td>
+</tr>
+<tr>
+<td><strong>Outlets</strong></td>
+<td>Outlets, outlet items, observations, consumption segments, and EA weights</td>
+</tr>
+</tbody>
+</table>
+<p>The monthly working rhythm only really uses <strong>Data Collection</strong> and <strong>Indices</strong>. The other three menus are mostly one-time configuration that you barely touch after the first setup.</p>
+<hr />
+<h2 id="phase-0-one-time-setup-a-fresh-instance">Phase 0 — One-time setup (a fresh instance)</h2>
+<p>You only do this once when standing up a new country instance. Order matters: each step depends on the one above.</p>
+<h3 id="01-build-the-coicop-classification-ladder">0.1 Build the COICOP classification ladder</h3>
+<p>Menu: <strong>COICOP</strong></p>
+<p>Build it top-down, in this exact order — each level points to its parent:</p>
+<ol>
+<li><strong>COICOP → Divisions</strong> → click <strong>New</strong> → fill in COICOP code and name (e.g. <em>"01 — Food and non-alcoholic beverages"</em>) → <strong>Save</strong>.</li>
+<li><strong>COICOP → Groups</strong> → New → pick the Division → Save.</li>
+<li><strong>COICOP → Classes</strong> → New → pick the Group → Save.</li>
+<li><strong>COICOP → Sub Classes</strong> → New → pick the Class → Save.</li>
+<li><strong>COICOP → Micro Classes</strong> → New → pick the Sub Class → Save.</li>
+<li><strong>COICOP → Elementary Aggregates</strong> → New → pick the Micro Class → Save. <em>(This is the rung where the index actually starts being computed — see <a href="../concepts/how-calculations-work/#stage-4-the-elementary-aggregate-index-the-foundation">Stage 4 of the calculations page</a>.)</em></li>
+</ol>
+<h3 id="02-define-units-of-measure-and-items">0.2 Define units of measure and items</h3>
+<p>Menu: <strong>Items</strong></p>
+<ol>
+<li><strong>Items → Units of Measure</strong> → New → for each unit you'll record prices in (kg, litre, piece, …).</li>
+<li><strong>Items → Items</strong> → New. For each item: name (e.g. <em>"White bread loaf, 500 g"</em>), link to its <strong>Elementary Aggregate</strong> and <strong>Micro Class</strong>, set the <strong>standard quantity</strong> and <strong>standard unit</strong>.</li>
+</ol>
+<p>The link to the Elementary Aggregate is the chain that, weeks later, will route the item's price up the right COICOP ladder.</p>
+<h3 id="03-define-consumption-segments-the-baskets">0.3 Define consumption segments (the "baskets")</h3>
+<p>Menu: <strong>Outlets → Consumption Segments</strong></p>
+<p>Click <strong>New</strong>, name the segment (e.g. <em>"Kampala Urban"</em>, <em>"Rural North"</em>), save. You will create one segment per population stratum — each one has its own weights and produces its own basket-level index.</p>
+<h3 id="04-define-outlets">0.4 Define outlets</h3>
+<p>Menu: <strong>Outlets</strong></p>
+<ol>
+<li><strong>Outlets → Configuration → Outlet Types</strong> → New → categories like <em>"Supermarket"</em>, <em>"Open market stall"</em>, <em>"Pharmacy"</em>. <em>(Reusable across all outlets.)</em></li>
+<li><strong>Outlets → Outlets</strong> → New → name, address, <strong>outlet type</strong>, and the <strong>consumption segment</strong> it belongs to.</li>
+<li>Open the outlet form. In the header, click <strong>"Add Items"</strong> (header button, visible to users in the <em>Outlet Manager</em> group). This opens a wizard that lets you link multiple items at once to this outlet and record each item's <strong>base price</strong> (the reference-period price each long-term relative is measured against).</li>
+</ol>
+<p>After this, each link is an <code>hcpi.outlet.item</code> record — visible under <strong>Outlets → Outlet Items</strong>.</p>
+<h3 id="05-enter-ea-weights">0.5 Enter EA weights</h3>
+<p>Menu: <strong>Outlets → Elementary Aggregate Weights</strong></p>
+<p>Click <strong>New</strong>, pick an <strong>Elementary Aggregate</strong> and a <strong>Consumption Segment</strong>, type in the <strong>weight</strong> (the household expenditure share of that EA in that basket), save. Repeat for every (EA × segment) pair.</p>
+<div class="admonition warning">
+<p class="admonition-title">Weights are the only thing stored manually above the EA</p>
+<p>Every higher-level weight (class, group, division, basket) is the <strong>sum</strong> of the EA weights beneath it — computed automatically. You never enter a class weight or a division weight by hand.</p>
+</div>
+<hr />
+<h2 id="phase-1-designing-the-monthly-questionnaire-optional-helpers">Phase 1 — Designing the monthly questionnaire (optional helpers)</h2>
+<p>Before enumerators go into the field, you may want to bulk-generate or assign their questionnaires.</p>
+<p>Menu: <strong>Data Collection</strong></p>
+<ul>
+<li><strong>Data Collection → Bulk Questionnaires</strong> — wizard to create many <code>hcpi.data.collection</code> records at once (one per outlet × month).</li>
+<li><strong>Data Collection → Assign Questionnaires</strong> — wizard to assign collectors and supervisors in bulk.</li>
+</ul>
+<p>If your team creates questionnaires one at a time on phones, you can skip both.</p>
+<hr />
+<h2 id="phase-2-collecting-prices-monthly">Phase 2 — Collecting prices (monthly)</h2>
+<p>This is what enumerators do at the start of every month.</p>
+<p>Menu: <strong>Data Collection → Data Collection</strong></p>
+<h3 id="21-create-or-open-a-questionnaire">2.1 Create or open a questionnaire</h3>
+<p>Click <strong>New</strong>, pick the <strong>Outlet</strong>, the <strong>Collection Date</strong>, and the <strong>Consumption Segment</strong>. Assign a <strong>Data Collector</strong> and <strong>Supervisor</strong>. Save. State is now <code>draft</code>.</p>
+<h3 id="22-the-state-machine-the-buttons-in-the-form-header">2.2 The state machine — the buttons in the form header</h3>
+<p>The collection record walks through five states. The header button you see changes with the state:</p>
+<pre class="mermaid"><code>flowchart LR
+    D["draft&lt;br/&gt;state"] --&gt;|"Approve"| S["survey&lt;br/&gt;state"]
+    S --&gt;|"Standardize"| ST["standardization&lt;br/&gt;state"]
+    ST --&gt;|"Validate Prices"| V["validation&lt;br/&gt;state"]
+    V --&gt; DN["done&lt;br/&gt;state"]
+    D -.-&gt;|"Cancel"| C["cancel&lt;br/&gt;state"]
+    C -.-&gt;|"Reset to Draft"| D
+    V -.-&gt;|"Reject"| ST
+    V -.-&gt;|"Reset to Standardization"| ST</code></pre>
+<p>The actual button labels (verbatim from the form):</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>When visible</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>"Approve"</strong></td>
+<td>state = <code>draft</code></td>
+<td>Marks the questionnaire ready for collection (state → <code>survey</code>); calls <code>approve()</code></td>
+</tr>
+<tr>
+<td><strong>"Cancel"</strong></td>
+<td>state = <code>draft</code></td>
+<td>Voids the questionnaire (state → <code>cancel</code>); calls <code>cancel()</code></td>
+</tr>
+<tr>
+<td><strong>"Standardize"</strong></td>
+<td>state = <code>survey</code></td>
+<td>Normalises each line's price to the item's standard quantity/unit, producing <code>standard_price</code>; calls <code>standardize()</code></td>
+</tr>
+<tr>
+<td><strong>"Validate Prices"</strong></td>
+<td>state = <code>standardization</code></td>
+<td>Commits the questionnaire for validation; calls <code>validate()</code></td>
+</tr>
+<tr>
+<td><strong>"Reject"</strong></td>
+<td>state = <code>standardization</code></td>
+<td>Sends back to draft with a reason form; calls <code>action_open_reject_view()</code></td>
+</tr>
+<tr>
+<td><strong>"Reset to Draft"</strong></td>
+<td>state = <code>cancel</code></td>
+<td>Restarts the workflow</td>
+</tr>
+<tr>
+<td><strong>"Reset to Standardization"</strong></td>
+<td>state = <code>validation</code></td>
+<td>Allows re-entering prices after validation has begun</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-add-the-price-lines">2.3 Add the price lines</h3>
+<p>In the form's "Observations" tab, add one line per item priced at this outlet today. Each line is an <code>hcpi.data.collection.line</code> and at minimum needs: <strong>outlet item</strong>, <strong>observed price</strong>, <strong>observed quantity</strong> (and unit if different from the item's standard).</p>
+<h3 id="24-move-it-through-the-workflow">2.4 Move it through the workflow</h3>
+<p>Once all lines are entered: <strong>Approve</strong> → <strong>Standardize</strong> → <strong>Validate Prices</strong>.</p>
+<p>When you click <strong>Validate Prices</strong>, the system automatically groups all lines for the same <strong>basket × month</strong> into a <code>hcpi.data.validation</code> record — the batch that the Tukey check will run on next.</p>
+<hr />
+<h2 id="phase-3-validating-prices-the-tukey-check">Phase 3 — Validating prices (the Tukey check)</h2>
+<p>This is what supervisors do to clean the month's prices before they become permanent observations. One validation record covers one <strong>consumption segment × month</strong>.</p>
+<p>Menu: <strong>Data Collection → Data Validations</strong></p>
+<p>Open a validation record (the one auto-created at the end of Phase 2). State is <code>draft</code>.</p>
+<h3 id="31-the-state-machine-the-buttons-in-the-form-header">3.1 The state machine — the buttons in the form header</h3>
+<pre class="mermaid"><code>flowchart LR
+    D["draft&lt;br/&gt;state"] --&gt;|"Validate"| V["validation&lt;br/&gt;state"]
+    V --&gt;|"Validate Inliers"| VI["validate_inliers&lt;br/&gt;state"]
+    VI --&gt;|"Impute"| I["imputation&lt;br/&gt;state"]
+    I --&gt; DN["done&lt;br/&gt;state"]
+    D -.-&gt;|"Reset to Draft"| D</code></pre>
+<p>The buttons:</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>When visible</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>"Validate"</strong></td>
+<td>state = <code>draft</code></td>
+<td>Runs the <strong>Tukey outlier algorithm</strong> — see <a href="../concepts/how-calculations-work/#stage-3-cleaning-the-data">Stage 3 of the calculations page</a>. Internally calls <code>action_validate()</code> which runs <code>run_turkey()</code>. State → <code>validation</code>.</td>
+</tr>
+<tr>
+<td><strong>"Validate Inliers"</strong></td>
+<td>state = <code>validation</code></td>
+<td>Flags items whose price has been identical for 12 months (potential forgotten entries). Internally calls <code>action_validate_inliers()</code> which runs <code>validate_inliers()</code>. State → <code>validate_inliers</code>.</td>
+</tr>
+<tr>
+<td><strong>"Impute"</strong></td>
+<td>state = <code>validate_inliers</code></td>
+<td>Fills gaps by climbing the COICOP ladder (<code>impute_with_prices</code> → <code>impute_with_ea</code> → <code>impute_with_micro_class</code> → …). <strong>Confirmation prompt:</strong> <em>"Please note that this action confirms the current inliers and outliers before proceeding with imputation."</em> Calls <code>action_impute()</code>. State → <code>imputation</code> → <code>done</code>.</td>
+</tr>
+<tr>
+<td><strong>"Reset to Draft"</strong></td>
+<td>any non-draft state</td>
+<td>Restarts the validation workflow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-reviewing-what-the-algorithm-flagged">3.2 Reviewing what the algorithm flagged</h3>
+<p>The validation form has <strong>stat buttons</strong> (the round counters at the top-right of the form) that take you to filtered list views:</p>
+<ul>
+<li><strong>Inliers</strong> — items flagged as suspiciously <em>unchanging</em> (<code>action_open_inliers()</code>)</li>
+<li><strong>Outliers</strong> — items flagged as suspiciously <em>moving</em> (<code>action_open_outliers()</code>)</li>
+<li><strong>Imputed Prices</strong> — items where the system filled a gap (<code>action_open_imputed()</code>)</li>
+</ul>
+<p>A supervisor's job is to walk these lists, accept/reject each flagged price, and then click the next workflow button. Once <strong>Impute</strong> runs and state goes to <code>done</code>, the surviving prices become permanent <code>hcpi.outlet.item.observation</code> records and are visible under <strong>Outlets → Price Data</strong>.</p>
+<hr />
+<h2 id="phase-4-computing-the-indices-monthly-strictly-in-order">Phase 4 — Computing the indices (monthly, strictly in order)</h2>
+<p>This is the heart of the monthly cycle. Each wizard is a separate menu entry, numbered to remind you of the order — <strong>do not skip ahead, each one reads from the level below</strong>.</p>
+<p>Menu: <strong>Indices → Computations</strong></p>
+<pre class="mermaid"><code>flowchart TD
+    A["1️⃣ Update EA Indices&lt;br/&gt;&lt;i&gt;geometric mean (Jevons) per EA × segment × month&lt;/i&gt;"] --&gt; B["2️⃣ Update Basket COICOP Indices&lt;br/&gt;&lt;i&gt;weighted mean: micro → sub → class → group → division&lt;/i&gt;"]
+    B --&gt; C["3️⃣ Update Basket Indices&lt;br/&gt;&lt;i&gt;headline per consumption segment&lt;/i&gt;"]
+    C --&gt; D["4️⃣ Update National Indices&lt;br/&gt;&lt;i&gt;weighted across all baskets&lt;/i&gt;"]
+    A -.-&gt; E["5️⃣ Update Special Indices&lt;br/&gt;&lt;i&gt;custom EA groups: Energy, Core…&lt;/i&gt;"]
+    B -.-&gt; F["6️⃣ Update Classification Indices&lt;br/&gt;&lt;i&gt;custom class groups: Food/Non-food…&lt;/i&gt;"]
+    C -.-&gt; G["7️⃣ Update Domestic Indices&lt;br/&gt;&lt;i&gt;regional subsets&lt;/i&gt;"]</code></pre>
+<h3 id="41-the-four-mandatory-wizards-run-in-this-order">4.1 The four mandatory wizards (run in this order)</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Menu</th>
+<th>Wizard (model)</th>
+<th>The button</th>
+<th>Method called</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1️⃣</td>
+<td><strong>Indices → Computations → Update EA Indices</strong></td>
+<td><code>hcpi.ea.index.update</code></td>
+<td><strong>"Start Update"</strong></td>
+<td><code>action_update_ea_indices()</code></td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td><strong>Indices → Computations → Update Basket COICOP Indices</strong></td>
+<td><code>hcpi.basket.coicop.index.update</code></td>
+<td><strong>"Start Update"</strong></td>
+<td><code>action_update_basket_coicop_indices()</code></td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td><strong>Indices → Computations → Update Basket Indices</strong></td>
+<td><code>hcpi.basket.index.update</code></td>
+<td><strong>"Start Update"</strong></td>
+<td><code>action_update_basket_indices()</code></td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td><strong>Indices → Computations → Update National Indices</strong></td>
+<td><code>hcpi.national.index.update</code></td>
+<td><strong>"Start Update"</strong></td>
+<td><code>action_update_national_indices()</code></td>
+</tr>
+</tbody>
+</table>
+<p>In each wizard's form, fill in the date range / segments to compute, then click <strong>"Start Update"</strong>. The button is only enabled when the state is <code>draft</code> and the zero-price gate is satisfied. State flow: <code>draft</code> → <code>processing</code> → <code>done</code> (or <code>failed</code>).</p>
+<p>If you need to abort a long-running EA, Special, or Classification update, the form shows a <strong>"Cancel"</strong> button while state is <code>processing</code> (calls <code>action_cancel()</code>). Note: <strong>the Basket COICOP, Basket all-items, National, and Domestic wizards do not currently expose a cancel button</strong> while running — wait for them to finish or fail.</p>
+<h3 id="42-the-three-optional-side-cut-wizards">4.2 The three optional / side-cut wizards</h3>
+<p>Run any time <em>after</em> their dependency has run:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Menu</th>
+<th>Wizard (model)</th>
+<th>Requires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5️⃣</td>
+<td><strong>Indices → Computations → Update Special Indices</strong></td>
+<td><code>hcpi.special.index.update</code></td>
+<td>EA indices (step 1)</td>
+</tr>
+<tr>
+<td>6️⃣</td>
+<td><strong>Indices → Computations → Update Classification Indices</strong></td>
+<td><code>hcpi.classification.index.update</code></td>
+<td>Basket COICOP indices (step 2)</td>
+</tr>
+<tr>
+<td>7️⃣</td>
+<td><strong>Indices → Computations → Update Domestic Indices</strong></td>
+<td><code>hcpi.domestic.index.update</code></td>
+<td>Basket indices (step 3)</td>
+</tr>
+</tbody>
+</table>
+<p>Same button — <strong>"Start Update"</strong> — same state flow.</p>
+<h3 id="43-what-happens-if-you-click-a-wizard-out-of-order">4.3 What happens if you click a wizard out of order?</h3>
+<p>Each wizard checks that no other computation is already running before starting (mutual exclusion via a PostgreSQL advisory lock). It also reads whatever indices are <em>currently in the database</em> at the level below — so if you skip step 2 and run step 3, the basket all-items index will be computed from <strong>stale</strong> COICOP indices, not freshly-recomputed ones. The result will be technically valid but reflect last month's COICOP roll-up, not this month's.</p>
+<p><strong>Rule of thumb:</strong> always run the chain end-to-end (1 → 2 → 3 → 4), then the optional side cuts.</p>
+<h3 id="44-the-zero-price-safety-gate">4.4 The zero-price safety gate</h3>
+<p>If any active observation has <code>observed_price = 0</code> in the month you're trying to compute, the <strong>"Start Update"</strong> button is disabled and a banner explains which month and which items are blocked. Fix the offending prices (Phase 2/3) and the button re-enables. See <a href="../concepts/how-calculations-work/#the-zero-price-safety-gate">The zero-price safety gate</a> for why this rule exists.</p>
+<hr />
+<h2 id="phase-5-viewing-the-results">Phase 5 — Viewing the results</h2>
+<p>Once a computation finishes, the results are visible as read-only list views — no buttons, just data.</p>
+<table>
+<thead>
+<tr>
+<th>What you want to see</th>
+<th>Menu path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The headline national index by COICOP level</td>
+<td><strong>Indices → National Indices → National Indices</strong></td>
+</tr>
+<tr>
+<td>Regional / sub-population indices</td>
+<td><strong>Indices → National Indices → Domestic Indices</strong></td>
+</tr>
+<tr>
+<td>All-items index for one basket (e.g. "Kampala Urban")</td>
+<td><strong>Indices → Basket Indices</strong></td>
+</tr>
+<tr>
+<td>Drill-down by COICOP level for a basket</td>
+<td><strong>Indices → Basket COICOP Indices → Division / Group / Class / … / Elementary Aggregate Indices</strong></td>
+</tr>
+<tr>
+<td>Energy, Core, etc.</td>
+<td><strong>Indices → Special Indices → National Special Indices</strong> (or <em>Basket Special Indices</em>)</td>
+</tr>
+<tr>
+<td>Food/Non-food, Goods/Services</td>
+<td><strong>Indices → Classification Indices → National Classification Indices</strong></td>
+</tr>
+<tr>
+<td>The Excel export</td>
+<td><strong>Indices → Export Excel Workbook</strong> (wizard)</td>
+</tr>
+<tr>
+<td>Computation logs / history</td>
+<td><strong>Indices → Computation History</strong> → pick the index type</td>
+</tr>
+</tbody>
+</table>
+<p>The default grouping in most index list views is by <strong>consumption segment</strong> or <strong>COICOP level</strong>, so you can collapse/expand to see a single segment's trajectory month-by-month.</p>
+<hr />
+<h2 id="the-monthly-cycle-in-one-screen">The monthly cycle, in one screen</h2>
+<p>Print this and stick it on the wall:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌──────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  MONTHLY HCPI WORKFLOW                                           │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├──────────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                                  │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  1. Enumerators                                                  │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│     Data Collection → Data Collection                            │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│     New → fill lines → Approve → Standardize → Validate Prices   │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                                                                  │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  2. Supervisors                                                  │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│     Data Collection → Data Validations                           │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│     Open → Validate (Tukey) → review Outliers/Inliers            │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│     → Validate Inliers → Impute                                  │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                                                                  │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  3. Statistician (in strict order)                               │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│     Indices → Computations →                                     │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│       1️⃣ Update EA Indices       → Start Update                  │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│       2️⃣ Update Basket COICOP    → Start Update                  │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│       3️⃣ Update Basket Indices   → Start Update                  │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│       4️⃣ Update National         → Start Update                  │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│       (5️⃣ Special, 6️⃣ Classification, 7️⃣ Domestic as needed)     │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│                                                                  │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│  4. View results                                                 │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│     Indices → National Indices → National Indices                │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│     Indices → Export Excel Workbook                              │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│                                                                  │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>└──────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="when-something-goes-wrong">When something goes wrong</h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Where to look</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>"Start Update" button is greyed out</strong> on a computation wizard</td>
+<td>The zero-price banner at the top of the wizard form</td>
+<td>Find the contaminated observations, fix them in Phase 2/3, then return</td>
+</tr>
+<tr>
+<td><strong>Tukey threw out a price you think is real</strong></td>
+<td><strong>Data Collection → Data Validations</strong> → open the validation → <strong>Outliers</strong> stat button → review</td>
+<td>Untick <code>is_outlier</code>, then re-run <strong>"Impute"</strong> so the price is included</td>
+</tr>
+<tr>
+<td><strong>Imputation filled a gap you'd rather leave empty</strong></td>
+<td>Same place → <strong>Imputed Prices</strong> stat button</td>
+<td>Untick <code>is_imputed</code>, then re-run the affected index update</td>
+</tr>
+<tr>
+<td><strong>Basket index looks wrong</strong></td>
+<td><strong>Indices → Basket COICOP Indices → Elementary Aggregate Indices</strong></td>
+<td>Inspect the underlying EA indices and their diagnostics (recorded by <code>_job_compute_indices_for_segment</code> — see <a href="../concepts/how-calculations-work/#stage-4-the-elementary-aggregate-index-the-foundation">Stage 4</a>)</td>
+</tr>
+<tr>
+<td><strong>A computation hangs in <code>processing</code></strong></td>
+<td><strong>Indices → Computation History</strong></td>
+<td>Check the history record for error messages; if EA/Special/Classification, click <strong>"Cancel"</strong> in the wizard form</td>
+</tr>
+<tr>
+<td><strong>Wizard won't start: "another computation is running"</strong></td>
+<td><strong>Indices → Computation History</strong></td>
+<td>Wait for the running one to finish, or check whether a stale job needs to be cancelled</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="where-to-go-next">Where to go next</h2>
+<ul>
+<li><strong><a href="../concepts/how-calculations-work/">How the Calculations Work</a></strong> — the maths behind every button you just clicked.</li>
+<li><strong><a href="../concepts/data-flow/">Data Flow Walkthrough</a></strong> — a narrative trace of one price observation through the full system, with model names.</li>
+<li><strong><a href="../concepts/cpi-concepts/">CPI Concepts</a></strong> — the building blocks (basket, weights, base period) with the system's vocabulary.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../first-edits/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Making Your First Edits">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Making Your First Edits
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="Next: Troubleshooting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Troubleshooting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
