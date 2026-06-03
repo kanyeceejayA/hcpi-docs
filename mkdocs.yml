@@ -62,9 +62,12 @@ nav:
     - Country Variants: understanding-the-codebase/country-variants.md
     - Making Your First Edits: first-edits/index.md
   - Using the System (UI Walkthrough): using-the-system.md
+  - Changes:
+    - Dashboard & Index Overhaul (June 2026): changes/dashboard-index-overhaul.md
   - Troubleshooting: troubleshooting.md
   - Next Steps:
     - Overview: next-steps/index.md
+    - Updating a Country Deployment: next-steps/updating-deployments.md
     - HTTPS with Apache: next-steps/https-apache.md
     - HTTPS with Nginx: next-steps/https-nginx.md
   - Training:
