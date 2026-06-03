@@ -2521,7 +2521,7 @@
 </tr>
 <tr>
 <td><code>xx_18_mtnce</code></td>
-<td>Maintenance branch for <code>xx_18</code> (release candidates / hotfixes that merge back into <code>xx_18</code>)</td>
+<td>Maintenance branch for <code>xx_18</code> (release candidates / hotfixes that merge back into <code>xx_18</code>). <strong>Note:</strong> the <code>ke_18_mtnce</code>/<code>tz_18_mtnce</code> instances are stale (frozen July 2025) — work on <code>ke_18</code>/<code>tz_18</code> instead</td>
 </tr>
 <tr>
 <td><code>xx</code> (no number)</td>
@@ -2565,20 +2565,20 @@
 <tr>
 <td><strong>Uganda</strong></td>
 <td><code>ug_18</code></td>
-<td>2026-04-21</td>
+<td>2026-05-12</td>
 <td>Active</td>
 </tr>
 <tr>
 <td><strong>Kenya</strong></td>
-<td><code>ke_18_mtnce</code></td>
-<td>2025-07-07</td>
-<td>Maintenance — last release rolled up here</td>
+<td><code>ke_18</code></td>
+<td>2026-04-13</td>
+<td>Active</td>
 </tr>
 <tr>
 <td><strong>Tanzania</strong></td>
-<td><code>tz_18_mtnce</code></td>
-<td>2025-07-09</td>
-<td>Maintenance</td>
+<td><code>tz_18</code></td>
+<td>2026-04-13</td>
+<td>Active</td>
 </tr>
 <tr>
 <td><strong>Zanzibar</strong></td>
@@ -2589,11 +2589,21 @@
 <tr>
 <td><strong>EAC Secretariat</strong></td>
 <td><code>secretariat</code></td>
-<td>2026-04-20</td>
+<td>2026-05-25</td>
 <td>Active (separate aggregator app)</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Use <code>ke_18</code>/<code>tz_18</code>, not the <code>_mtnce</code> branches</p>
+<p>An earlier version of this page listed <code>ke_18_mtnce</code>/<code>tz_18_mtnce</code> as the active
+Kenya/Tanzania branches. They are <strong>not</strong> — both have been frozen since July 2025
+and sit ~95 commits behind <code>18.0</code>. The live deployment branches are the plain
+<code>ke_18</code> (last commit 2026-04-13, 1 behind <code>18.0</code>) and <code>tz_18</code> (2026-04-13, 1
+behind). The <code>_mtnce</code> branches hold nothing unique — <code>ke_18_mtnce</code>'s only commit
+not in <code>ke_18</code> is a merge node, and <code>tz_18_mtnce</code> is fully contained in <code>tz_18</code>.
+Restored production databases match <code>ke_18</code>/<code>tz_18</code>, not <code>_mtnce</code>.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title"><code>zar</code> = Zanzibar, not South Africa</p>
 <p>Despite "ZAR" being the ISO currency code for South African Rand, in this repo <code>zar</code>/<code>zar_18</code> is <strong>Zanzibar</strong> (semi-autonomous part of Tanzania). The <code>zar_data_collection</code> manifest is explicit: <em>"Customize and manage Zanzibar data collections"</em>. South Africa isn't part of the HCPI deployment family.</p>
@@ -2755,34 +2765,43 @@
 <p>Common themes: <strong>bulk-creation wizards</strong> for spinning up many questionnaires at once, and <strong>assignment wizards</strong> for batching surveys to enumerators.</p>
 <h2 id="has-the-core-drifted-across-branches">Has the core drifted across branches?</h2>
 <p>In a perfect world, the core HCPI modules (<code>hcpi_outlet</code>, <code>hcpi_data_collection</code>, <code>hcpi_index</code>, etc.) would be <strong>identical</strong> between <code>18.0</code> and every country branch — country deltas would live entirely in the <code>xx_*</code> overlay modules.</p>
-<p>In practice, some drift has accumulated:</p>
+<p>In practice the drift is now small — the active branches all track <code>18.0</code> closely:</p>
 <table>
 <thead>
 <tr>
 <th>Branch</th>
+<th>Behind <code>18.0</code></th>
 <th>Diff in <code>hcpi_data_collection</code> vs. <code>18.0</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ug_18</code></td>
+<td>0</td>
+<td>1 file changed</td>
+</tr>
+<tr>
+<td><code>ke_18</code></td>
+<td>1</td>
+<td>None — fully in sync</td>
+</tr>
+<tr>
+<td><code>tz_18</code></td>
+<td>1</td>
 <td>None — fully in sync</td>
 </tr>
 <tr>
 <td><code>zar_18</code></td>
+<td>0</td>
 <td>None — fully in sync</td>
-</tr>
-<tr>
-<td><code>ke_18_mtnce</code></td>
-<td>28 files changed, mostly file moves and renames</td>
-</tr>
-<tr>
-<td><code>tz_18_mtnce</code></td>
-<td>9 files changed, includes small Python tweaks</td>
 </tr>
 </tbody>
 </table>
-<p>Kenya and Tanzania are on <code>_mtnce</code> branches that haven't merged the latest <code>18.0</code> yet — once they do, the drift should close. If you're inheriting maintenance of one of these branches, expect to do a <code>git merge 18.0</code> and resolve a handful of conflicts before adding new features.</p>
+<p>The earlier large drift (Kenya 28 files, Tanzania 9 files) was on the now-abandoned
+<code>ke_18_mtnce</code>/<code>tz_18_mtnce</code> branches, which were ~95 commits behind <code>18.0</code>. Moving
+Kenya and Tanzania onto <code>ke_18</code>/<code>tz_18</code> closed it — those branches have merged the
+latest <code>18.0</code>, so <code>hcpi_data_collection</code> is identical to upstream again. The country
+deltas now live entirely in the <code>xx_*</code> overlay modules, which is the intended state.</p>
 <h2 id="the-eac-secretariat-separate-application">The EAC Secretariat — separate application</h2>
 <p>The <code>secretariat</code> branch is <strong>not</strong> a country deployment. It's a regional aggregator: one Odoo instance that pulls CPI snapshots from each country's HCPI database over XML-RPC and presents a consolidated dashboard.</p>
 <p>Folder layout:</p>
