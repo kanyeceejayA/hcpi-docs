@@ -1586,10 +1586,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-add-the-eac-remote-first-time-only" class="md-nav__link">
+  <a href="#step-1-ssh-access-to-github-from-wsl-first-time-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Add the eac remote (first time only)
+        Step 1: SSH access to GitHub from WSL (first time only)
       
     </span>
   </a>
@@ -1597,10 +1597,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-make-eac-the-default-for-this-branch" class="md-nav__link">
+  <a href="#step-2-add-the-eac-remote-first-time-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Make eac the default for this branch
+        Step 2: Add the eac remote (first time only)
       
     </span>
   </a>
@@ -1619,10 +1619,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-pull-the-latest-for-that-branch" class="md-nav__link">
+  <a href="#step-4-point-this-branch-at-eac-first-time-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: Pull the latest for that branch
+        Step 4: Point this branch at eac (first time only)
       
     </span>
   </a>
@@ -1630,10 +1630,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-apply-model-or-view-changes-when-needed" class="md-nav__link">
+  <a href="#step-5-pull-the-latest-for-that-branch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Apply model or view changes (when needed)
+        Step 5: Pull the latest for that branch
       
     </span>
   </a>
@@ -1641,10 +1641,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-restart" class="md-nav__link">
+  <a href="#step-6-apply-model-or-view-changes-when-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6: Restart
+        Step 6: Apply model or view changes (when needed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Restart
       
     </span>
   </a>
@@ -2331,10 +2342,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-add-the-eac-remote-first-time-only" class="md-nav__link">
+  <a href="#step-1-ssh-access-to-github-from-wsl-first-time-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Add the eac remote (first time only)
+        Step 1: SSH access to GitHub from WSL (first time only)
       
     </span>
   </a>
@@ -2342,10 +2353,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-make-eac-the-default-for-this-branch" class="md-nav__link">
+  <a href="#step-2-add-the-eac-remote-first-time-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Make eac the default for this branch
+        Step 2: Add the eac remote (first time only)
       
     </span>
   </a>
@@ -2364,10 +2375,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-pull-the-latest-for-that-branch" class="md-nav__link">
+  <a href="#step-4-point-this-branch-at-eac-first-time-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: Pull the latest for that branch
+        Step 4: Point this branch at eac (first time only)
       
     </span>
   </a>
@@ -2375,10 +2386,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-apply-model-or-view-changes-when-needed" class="md-nav__link">
+  <a href="#step-5-pull-the-latest-for-that-branch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Apply model or view changes (when needed)
+        Step 5: Pull the latest for that branch
       
     </span>
   </a>
@@ -2386,10 +2397,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-restart" class="md-nav__link">
+  <a href="#step-6-apply-model-or-view-changes-when-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6: Restart
+        Step 6: Apply model or view changes (when needed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Restart
       
     </span>
   </a>
@@ -2431,92 +2453,136 @@
 <p class="admonition-title">One branch per deployment</p>
 <p>A deployment's database is built against its branch's code. Always pull the <strong>same branch</strong> the deployment already runs — never switch a live deployment to a different country's branch, or the installed modules won't match the database.</p>
 </div>
-<h2 id="step-1-add-the-eac-remote-first-time-only">Step 1: Add the <code>eac</code> remote (first time only)</h2>
-<p>If this machine has never pushed to or pulled from the EAC repo, add it as a remote. Skip this step if <code>git remote -v</code> already lists <code>eac</code> (or an <code>origin</code> pointing at <code>East-African-Community-HCPI/HCPI</code>).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
+<h2 id="step-1-ssh-access-to-github-from-wsl-first-time-only">Step 1: SSH access to GitHub from WSL (first time only)</h2>
+<p>Most teams run these updates from WSL, and the single most common reason <code>git fetch</code> / <code>git pull</code> fails is that this WSL instance has no SSH key registered with the GitHub account that can read the EAC repo. <strong>If you see <code>Permission denied (publickey)</code>, this is the step that fixes it.</strong></p>
+<p>Quick check — if this prints your GitHub username, you can skip the rest of this step:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Hi &lt;your-username&gt;! You&#39;ve successfully authenticated, ...</span>
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Full remote setup lives on its own page</p>
-<p>SSH-vs-HTTPS, key setup, access requests, and replacing <code>origin</code> are all covered in detail on <a href="../../getting-started/git-remotes/">Git Remotes (EAC)</a>. Come back here once <code>git fetch eac</code> works.</p>
+<p>Otherwise, run the following <strong>inside the WSL shell</strong> (not in PowerShell or Git Bash on the Windows side):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Generate a key (press Enter through all prompts to accept the defaults)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your-email@example.com&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 2. Print the public key — copy the whole line that starts with ssh-ed25519</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+</code></pre></div>
+<p>Open <a href="https://github.com/settings/keys">https://github.com/settings/keys</a> → <strong>New SSH key</strong>, paste the public key, give it a descriptive title (e.g. <em>"WSL on KE server"</em>), and save.</p>
+<p>Test the connection again:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</code></pre></div>
+<p>You should now see the <code>Hi &lt;your-username&gt;!</code> line. If you do, move on to Step 2.</p>
+<div class="admonition warning">
+<p class="admonition-title">WSL gotchas that cause <code>Permission denied</code></p>
+<ul>
+<li><strong>WSL has its own <code>~/.ssh/</code></strong> — completely separate from <code>%USERPROFILE%\.ssh\</code> on the Windows side. A key that works in Git Bash will not be picked up here. Generate the key inside WSL.</li>
+<li><strong>Don't put the key under <code>/mnt/c/...</code>.</strong> NTFS permissions don't translate to POSIX, and <code>ssh</code> will refuse a private key whose file mode isn't <code>600</code>. Keep it in the WSL home directory (<code>~/.ssh/id_ed25519</code>).</li>
+<li><strong>Every WSL distro / instance needs its own key.</strong> A fresh <code>wsl --install</code> starts with no keys at all.</li>
+<li><strong>Agent not running?</strong> If a later <code>git push</code> says <code>Could not open a connection to your authentication agent</code>, start one and add the key:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ssh-add<span class="w"> </span>~/.ssh/id_ed25519
+</code></pre></div></li>
+</ul>
 </div>
-<h2 id="step-2-make-eac-the-default-for-this-branch">Step 2: Make <code>eac</code> the default for this branch</h2>
-<p>Point the current branch's upstream at <code>eac</code> so plain <code>git pull</code> and <code>git push</code> target the EAC repo without you naming it every time:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># replace ug_18 with this deployment&#39;s branch</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/ug_18
-</code></pre></div>
-<p>Optionally make <code>eac</code> the default remote for the whole repo, so new branches and pushes go there too:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>config<span class="w"> </span>remote.pushDefault<span class="w"> </span>eac
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>config<span class="w"> </span>checkout.defaultRemote<span class="w"> </span>eac
+<details class="note">
+<summary>Authenticated but still denied — <code>Permission to East-African-Community-HCPI/HCPI.git denied</code></summary>
+<p><code>ssh -T</code> worked but <code>git push</code> fails with the message above. That means GitHub recognises your key but your account hasn't been granted write access to the EAC organisation. Request access from <a href="mailto:mkakinyi@eachq.org">mkakinyi@eachq.org</a>.</p>
+</details>
+<p>For HTTPS-with-Personal-Access-Token (no SSH) and the non-WSL setup, see <a href="../../getting-started/git-remotes/">Git Remotes (EAC)</a>.</p>
+<h2 id="step-2-add-the-eac-remote-first-time-only">Step 2: Add the <code>eac</code> remote (first time only)</h2>
+<p>If this machine has never pushed to or pulled from the EAC repo, add it as a remote. Skip this step if <code>git remote -v</code> already lists <code>eac</code> (or an <code>origin</code> pointing at <code>East-African-Community-HCPI/HCPI</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
 </code></pre></div>
 <h2 id="step-3-check-the-current-branch">Step 3: Check the current branch</h2>
-<p>Confirm which branch this deployment is on <strong>before</strong> pulling — this is what tells you the country, and what you pass in the next step:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="w">      </span><span class="c1"># e.g. ug_18</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>status<span class="w">                     </span><span class="c1"># should say &quot;nothing to commit, working tree clean&quot;</span>
+<p>Find out which branch this deployment runs on — every step below uses it. Capture it into <code>$BR</code> so you can paste the same commands without retyping the name:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span><span class="w">                     </span><span class="c1"># e.g. ug_18</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>status<span class="w">                     </span><span class="c1"># should say &quot;nothing to commit, working tree clean&quot;</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Uncommitted local changes?</p>
 <p>If <code>git status</code> shows modified files, a previous edit was made directly on the server. Stash or commit it before pulling, or the pull will refuse to run:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>stash<span class="w">            </span><span class="c1"># set the changes aside</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># ... do the update ...</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>stash<span class="w"> </span>pop<span class="w">        </span><span class="c1"># bring them back, then resolve any conflicts</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>stash<span class="w">            </span><span class="c1"># set the changes aside</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># ... do the update ...</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>stash<span class="w"> </span>pop<span class="w">        </span><span class="c1"># bring them back, then resolve any conflicts</span>
 </code></pre></div></p>
 </div>
-<h2 id="step-4-pull-the-latest-for-that-branch">Step 4: Pull the latest for that branch</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span>ug_18<span class="w">   </span><span class="c1"># use the branch from Step 3</span>
+<h2 id="step-4-point-this-branch-at-eac-first-time-only">Step 4: Point this branch at <code>eac</code> (first time only)</h2>
+<p>Now that you know the branch, set its upstream to <code>eac</code> so plain <code>git pull</code> and <code>git push</code> target the EAC repo without naming it every time. You only need this once per branch — skip it on subsequent updates.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+</code></pre></div>
+<details class="note">
+<summary>Optional: make <code>eac</code> the default for the whole repo</summary>
+<p>So new branches and pushes go to <code>eac</code> too:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>config<span class="w"> </span>remote.pushDefault<span class="w"> </span>eac
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>config<span class="w"> </span>checkout.defaultRemote<span class="w"> </span>eac
+</code></pre></div>
+</details>
+<h2 id="step-5-pull-the-latest-for-that-branch">Step 5: Pull the latest for that branch</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p><code>--ff-only</code> keeps the deployment's history a clean fast-forward — it refuses to create a surprise merge commit. If it fails, the working tree has diverged (see the warning above).</p>
 <details class="note">
 <summary><code>git pull</code> reports conflicts or refuses to fast-forward</summary>
-<p>The deployment has commits that aren't on <code>eac</code> (someone edited on the server). Inspect what diverged with <code>git log --oneline eac/ug_18..HEAD</code>, then either push those commits to a branch for review or stash them. Don't force the pull — you'd lose server-side work.</p>
+<p>The deployment has commits that aren't on <code>eac</code> (someone edited on the server). Inspect what diverged with <code>git log --oneline eac/"$BR"..HEAD</code>, then either push those commits to a branch for review or stash them. Don't force the pull — you'd lose server-side work.</p>
 </details>
-<h2 id="step-5-apply-model-or-view-changes-when-needed">Step 5: Apply model or view changes (when needed)</h2>
+<h2 id="step-6-apply-model-or-view-changes-when-needed">Step 6: Apply model or view changes (when needed)</h2>
 <p>Pure Python logic changes load on restart alone. But if the pulled commits touched <strong>models/fields, views (XML), security, or data files</strong>, you must upgrade the affected modules once so the database schema and views update:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init<span class="w">   </span><span class="c1"># name the changed module(s), comma-separated</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init<span class="w">   </span><span class="c1"># name the changed module(s), comma-separated</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Not sure what changed?</p>
 <p><code>git diff --stat HEAD@{1} HEAD</code> shows the files the pull brought in. If any are under a module's <code>models/</code>, <code>views/</code>, <code>security/</code>, or <code>data/</code>, upgrade that module. When in doubt, <code>-u all</code> is safe but slower.</p>
 </div>
-<h2 id="step-6-restart">Step 6: Restart</h2>
+<h2 id="step-7-restart">Step 7: Restart</h2>
 <p>Restart so the running process picks up the new code. <strong>Local development</strong> is the default below; production servers running under systemd are in the collapsed section.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
 </code></pre></div>
 <p>Watch the log as it boots — <code>Registry loaded</code> with no <code>CRITICAL</code>/<code>Failed to load</code> lines means the update is live. Open the site and confirm.</p>
 <details class="note">
 <summary>On a production server (systemd)</summary>
 <p>A server deployment runs HCPI as the <code>hcpi</code> service (defined during <a href="../../installation/linux/#running-as-a-service-recommended-for-production">Linux installation</a>), so you don't launch <code>odoo-bin</code> by hand — you restart the unit:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>hcpi
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi<span class="w">        </span><span class="c1"># should show &quot;active (running)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>hcpi
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi<span class="w">        </span><span class="c1"># should show &quot;active (running)&quot;</span>
 </code></pre></div>
-<p>If you ran the <code>-u</code> upgrade in Step 5, do it through the service account or stop the service first so two processes don't touch the database at once:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>/opt/hcpi/venv/bin/python<span class="w"> </span>/opt/hcpi/odoo/odoo-bin<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>-c<span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
+<p>If you ran the <code>-u</code> upgrade in Step 6, do it through the service account or stop the service first so two processes don't touch the database at once:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>/opt/hcpi/venv/bin/python<span class="w"> </span>/opt/hcpi/odoo/odoo-bin<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span>-c<span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
 </code></pre></div>
 <p>Follow the logs with <code>sudo journalctl -u hcpi -f</code> (or <code>tail -f</code> on the <code>logfile</code> set in the conf).</p>
 </details>
 <h2 id="quick-reference">Quick reference</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git<span class="w">   </span><span class="c1"># first time only</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span><span class="w">                                          </span><span class="c1"># this deployment&#39;s branch</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>git<span class="w"> </span>status<span class="w">                                                               </span><span class="c1"># must be clean</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># apply + restart (local)</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>&lt;changed_module&gt;<span class="w"> </span>--stop-after-init
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="c1"># apply + restart (server)</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># sudo systemctl restart hcpi</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># first time only: SSH key + remote + upstream</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com<span class="w">                            </span><span class="c1"># must say &quot;Hi &lt;your-username&gt;!&quot; before continuing</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># if not, generate a key inside WSL and add it at https://github.com/settings/keys</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1">#   ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1">#   cat ~/.ssh/id_ed25519.pub</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span><span class="w">                  </span><span class="c1"># this deployment&#39;s branch, e.g. ug_18</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="c1"># every update from here on</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>git<span class="w"> </span>status<span class="w">                                       </span><span class="c1"># must be clean</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="c1"># apply + restart (local)</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>&lt;changed_module&gt;<span class="w"> </span>--stop-after-init
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="c1"># apply + restart (server)</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="c1"># sudo systemctl restart hcpi</span>
 </code></pre></div>
 <table>
 <thead>
