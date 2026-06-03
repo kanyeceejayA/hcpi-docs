@@ -44,6 +44,7 @@ nav:
   - Concepts:
     - CPI Explained: concepts/cpi-explained.md
     - CPI Concepts: concepts/cpi-concepts.md
+    - How the Calculations Work: concepts/how-calculations-work.md
     - Data Flow Walkthrough: concepts/data-flow.md
     - Glossary: concepts/glossary.md
   - Working with the Code:
@@ -60,6 +61,7 @@ nav:
       - Infrastructure & Third-party: modules/infrastructure.md
     - Country Variants: understanding-the-codebase/country-variants.md
     - Making Your First Edits: first-edits/index.md
+  - Using the System (UI Walkthrough): using-the-system.md
   - Troubleshooting: troubleshooting.md
   - Next Steps:
     - Overview: next-steps/index.md
@@ -86,12 +88,21 @@ nav:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.tabbed:
       alternate_style: true
   - attr_list
   - md_in_html
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

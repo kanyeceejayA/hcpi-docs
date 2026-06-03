@@ -14,7 +14,7 @@ Sixteen branches in current use. Read the suffixes:
 |---|---|
 | `18.0` | The shared upstream — Odoo 18 base, no country overlay |
 | `xx_18` | Country `xx` deployment, currently on Odoo 18 |
-| `xx_18_mtnce` | Maintenance branch for `xx_18` (release candidates / hotfixes that merge back into `xx_18`) |
+| `xx_18_mtnce` | Maintenance branch for `xx_18` (release candidates / hotfixes that merge back into `xx_18`). **Note:** the `ke_18_mtnce`/`tz_18_mtnce` instances are stale (frozen July 2025) — work on `ke_18`/`tz_18` instead |
 | `xx` (no number) | **Legacy** — pre-Odoo 18 deployment, single-folder architecture, frozen since March 2024 |
 | `xx-18` | Old intermediate naming — superseded by `xx_18` |
 | `ft-...` | Feature branches (e.g. `ft-imputations_ug`, `ft-ug-outliers`) |
@@ -26,11 +26,20 @@ Sixteen branches in current use. Read the suffixes:
 | Country | Active branch | Last commit | Status |
 |---|---|---|---|
 | **Upstream** | `18.0` | 2026-04-14 | Shared base |
-| **Uganda** | `ug_18` | 2026-04-21 | Active |
-| **Kenya** | `ke_18_mtnce` | 2025-07-07 | Maintenance — last release rolled up here |
-| **Tanzania** | `tz_18_mtnce` | 2025-07-09 | Maintenance |
+| **Uganda** | `ug_18` | 2026-05-12 | Active |
+| **Kenya** | `ke_18` | 2026-04-13 | Active |
+| **Tanzania** | `tz_18` | 2026-04-13 | Active |
 | **Zanzibar** | `zar_18` | 2026-04-14 | Active |
-| **EAC Secretariat** | `secretariat` | 2026-04-20 | Active (separate aggregator app) |
+| **EAC Secretariat** | `secretariat` | 2026-05-25 | Active (separate aggregator app) |
+
+!!! warning "Use `ke_18`/`tz_18`, not the `_mtnce` branches"
+    An earlier version of this page listed `ke_18_mtnce`/`tz_18_mtnce` as the active
+    Kenya/Tanzania branches. They are **not** — both have been frozen since July 2025
+    and sit ~95 commits behind `18.0`. The live deployment branches are the plain
+    `ke_18` (last commit 2026-04-13, 1 behind `18.0`) and `tz_18` (2026-04-13, 1
+    behind). The `_mtnce` branches hold nothing unique — `ke_18_mtnce`'s only commit
+    not in `ke_18` is a merge node, and `tz_18_mtnce` is fully contained in `tz_18`.
+    Restored production databases match `ke_18`/`tz_18`, not `_mtnce`.
 
 !!! warning "`zar` = Zanzibar, not South Africa"
     Despite "ZAR" being the ISO currency code for South African Rand, in this repo `zar`/`zar_18` is **Zanzibar** (semi-autonomous part of Tanzania). The `zar_data_collection` manifest is explicit: *"Customize and manage Zanzibar data collections"*. South Africa isn't part of the HCPI deployment family.
@@ -118,16 +127,20 @@ Common themes: **bulk-creation wizards** for spinning up many questionnaires at 
 
 In a perfect world, the core HCPI modules (`hcpi_outlet`, `hcpi_data_collection`, `hcpi_index`, etc.) would be **identical** between `18.0` and every country branch — country deltas would live entirely in the `xx_*` overlay modules.
 
-In practice, some drift has accumulated:
+In practice the drift is now small — the active branches all track `18.0` closely:
 
-| Branch | Diff in `hcpi_data_collection` vs. `18.0` |
-|---|---|
-| `ug_18` | None — fully in sync |
-| `zar_18` | None — fully in sync |
-| `ke_18_mtnce` | 28 files changed, mostly file moves and renames |
-| `tz_18_mtnce` | 9 files changed, includes small Python tweaks |
+| Branch | Behind `18.0` | Diff in `hcpi_data_collection` vs. `18.0` |
+|---|---|---|
+| `ug_18` | 0 | 1 file changed |
+| `ke_18` | 1 | None — fully in sync |
+| `tz_18` | 1 | None — fully in sync |
+| `zar_18` | 0 | None — fully in sync |
 
-Kenya and Tanzania are on `_mtnce` branches that haven't merged the latest `18.0` yet — once they do, the drift should close. If you're inheriting maintenance of one of these branches, expect to do a `git merge 18.0` and resolve a handful of conflicts before adding new features.
+The earlier large drift (Kenya 28 files, Tanzania 9 files) was on the now-abandoned
+`ke_18_mtnce`/`tz_18_mtnce` branches, which were ~95 commits behind `18.0`. Moving
+Kenya and Tanzania onto `ke_18`/`tz_18` closed it — those branches have merged the
+latest `18.0`, so `hcpi_data_collection` is identical to upstream again. The country
+deltas now live entirely in the `xx_*` overlay modules, which is the intended state.
 
 ## The EAC Secretariat — separate application
 

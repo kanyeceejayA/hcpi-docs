@@ -120,7 +120,7 @@ You'll spend a lot of time looking at this file.
 ### `admin_passwd` — the master password
 
 ```ini
-admin_passwd = UGhci876@
+admin_passwd = passwd
 ```
 
 This is **not** a user login password. It's the password Odoo asks for when you do database-level operations through the web UI's database manager: create, duplicate, drop, backup, restore. It's a single shared secret per Odoo install.

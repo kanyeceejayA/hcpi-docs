@@ -97,7 +97,7 @@ db_user     = hcpi          ; ← DB_USER
 db_name     = hcpi          ; ← DB_NAME
 db_host     = False         ; ← note if this is False or a real hostname
 db_password = False         ; ← note if this is False or a real password
-admin_passwd = UGhci876@    ; ← the master password (keep this safe)
+admin_passwd = passwd    ; ← the master password (keep this safe)
 http_port   = 9201          ; ← for reference
 addons_path = /opt/hcpi/odoo/addons,/opt/hcpi/custom/HCPI
 ```

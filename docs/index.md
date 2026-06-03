@@ -50,4 +50,4 @@ If you encounter issues during installation or usage, please refer to the specif
 
 ## User Manual
 
-Download the user manual here: [User Manual](https://kanyeceejaya.github.io/hcpi-docs/User_Manual_EAC CPI_Software_PS_March 2023.pdf)
+Download the user manual here: [User Manual](User_Manual_EAC_CPI_Software_PS_March_2023.pdf)
