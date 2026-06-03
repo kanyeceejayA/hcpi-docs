@@ -1,139 +1,138 @@
-# Dashboard & Index Overhaul (June 2026)
+# HCPI Index Engine & Dashboard Overhaul (June 2026)
 
-This page explains, in plain terms, a set of changes made to the CPI engine and
-dashboards: **what was broken, what we changed, where it lives, and how to run
-it.** It is written for a mixed audience — statisticians and developers.
+Plain-language summary of a set of changes to the CPI engine and dashboards:
+**what was broken, what changed and where, how to operate it, and the things to
+keep in mind.** Written for both statisticians and developers.
 
-## The problem we set out to fix
+## The problems we set out to fix
 
-On the dashboard, the four coloured division cards (Education, Transport,
-Health, Insurance) and the headline National CPI were showing **0 or obviously
-wrong numbers** — for example a national CPI of `30` when the real figure was
-around `136`.
+1. **Division cards and the National CPI showed wrong or zero values.** For a
+   month that had not been fully collected yet, the headline could read `0` or a
+   nonsensical number (e.g. a national CPI of `30` when it should be ~`136`).
+2. **No way to see a current-month figure before collection finished**, nor how
+   much had been collected.
+3. **No operational view** of collection status, missing items or data-quality
+   counts.
 
-Two separate causes:
+## Why the numbers were wrong (root causes)
 
-1. **Missing data was being counted as zero.** Each index is a *weighted
-   average* of its parts. When a month had not been fully collected yet, the
-   not‑yet‑computed parts had a value of `0` but still carried their full
-   weight. Averaging real numbers together with those `0`s dragged the whole
-   index down toward zero. So an incomplete month looked like prices had
-   crashed, when really the data just was not in yet.
+- **Missing data counted as zero.** Each index is a *weighted average* of its
+  parts. Parts not yet computed had value `0` but still carried their full
+  weight, so averaging real numbers with those `0`s dragged the whole index
+  toward zero. An incomplete month therefore looked like prices had crashed.
+- **The dashboard read one tiny slice instead of the whole.** A "division"
+  figure is built from ~10 regional/segment sub-rows that must be combined by
+  weight. The old dashboard showed one arbitrary sub-row (sometimes a region
+  worth under 2%) as if it were the whole division.
 
-2. **The dashboard was reading a single tiny slice instead of the whole.** A
-   "division" figure is really made of ~10 regional/segment sub‑rows (Kampala,
-   Gulu, Arua, …) that must be combined by weight. The old dashboard grabbed
-   *one arbitrary* sub‑row (often a region worth less than 2% of the division)
-   and showed it as if it were the whole division.
+## What changed (and where)
 
-## What we changed (and where)
+All changes live on the shared **`18.0`** base branch and are fanned out to each
+country (`bin/hcpi propagate`). **Uganda is tested first**, then Kenya, Tanzania
+and Zanzibar.
 
-All changes were made on the shared **`18.0`** base branch and then propagated
-to each country (Uganda first, then Kenya, Tanzania, Zanzibar).
-
-### 1. Only average the data that actually exists — *the real fix*
-**Where:** `hcpi_index/models/computations/` — `national_index_update.py`,
+### 1. Only average data that exists — the real engine fix
+`hcpi_index/models/computations/` — `national_index_update.py`,
 `basket_coicop_index_update.py`, `basket_index_update.py`.
 
-The averaging code used to say "include this part if it has a weight." It now
-says "include this part if it has a weight **and** an actual computed value."
-Parts that have not been computed yet (value `0`) are simply left out of the
-average instead of dragging it down. An incomplete month is now an honest
-average of what *has* been collected — no more collapse to zero.
+Every weighted-average step now includes a part only if it has **both a weight
+and an actual computed value**. Not-yet-computed parts (value `0`) are left out
+instead of dragging the average down. Incomplete months are now an honest
+average of what has been collected.
 
 ### 2. One correct number per division per month
-**Where:** new model `hcpi.national.division.index`
-(`hcpi_index/models/national_indices/hcpi_national_division_index.py`),
-computed during the National Index update.
+New model **`hcpi.national.division.index`**
+(`hcpi_index/models/national_indices/hcpi_national_division_index.py`), computed
+during the National Index run. It stores one properly weighted figure per
+division per month (the weighted mean across all regions/segments). The
+dashboard reads this single correct row.
 
-Instead of the dashboard guessing which sub‑row to show, the engine now stores
-**one properly weighted figure per division per month** (the weighted average
-across all regions/segments). The dashboard just reads that one correct row.
+### 3. Provisional index — a usable figure before collection finishes
+`hcpi.national.index.update` — `refresh_provisional_division_index()` plus a
+**"Refresh Provisional"** button on the National Index Update form.
 
-### 3. Provisional index — a useful number before collection finishes
-**Where:** `hcpi.national.index.update` — `refresh_provisional_division_index()`
-and a **"Refresh Provisional"** button on the National Index Update form.
-
-For the **in‑progress month** (the one still being collected), the system can now
-produce a *provisional* estimate: for any item not yet priced this month, it
-**carries forward that item's last known price**, then runs the normal
-calculation. This gives a publishable estimate from day one of the month, which
-firms up as real prices arrive.
-
-- Provisional figures are stored **separately** (flagged `provisional`) and
-  **never overwrite** the official series.
-- Alongside it we show **"% of expected data collected"** so you know how
-  complete the estimate is.
+For the **in-progress month**, the system carries forward each not-yet-priced
+item's **last known price**, then runs the normal calculation, to produce a
+*provisional* estimate. Provisional figures are stored **separately** (flagged)
+and **never overwrite** the official series. A **collection-coverage** metric
+("% of expected price cells collected") is computed alongside.
 
 ### 4. Redesigned analytical dashboard
-**Where:** `hcpi_dashboard/` — `models/hcpi_dashboard.py`, `static/src/js/hcpi_dashboard.js`,
+`hcpi_dashboard/` — `models/hcpi_dashboard.py`, `static/src/js/hcpi_dashboard.js`,
 `static/src/xml/hcpi_dashboard.xml`.
 
-- The **National CPI is now the first KPI card**, followed by three division
-  cards (same style as before).
-- The **historical trend chart** sits at half‑width just below the cards, next
-  to the by‑division table.
-- A **Month dropdown** at the top lets you view the figures as of any month.
-- Empty/zero handling was hardened: the dashboard no longer silently blanks
-  everything to zero when one piece fails — each section is guarded and errors
-  are logged, and a real `0` is distinguished from "missing".
+- A **Month selector** (top-right) — view the figures as of any month.
+- **National CPI is the first KPI card**, then division cards. Each card shows a
+  **month-over-month change pill** (▲/▼ %) and a sparkline. Division names are
+  title-cased and truncate (full name on hover); all cards are equal height.
+- A **historical trend** chart (half width) beside a **by-division table**.
+- **Provisional tag logic:** the latest (in-progress) month is shown with a
+  **"Provisional · X% collected"** tag, and its headline number is the official
+  partial figure if one exists, otherwise the carry-forward estimate. Once a
+  month is **both computed and fully collected**, it becomes a normal official
+  month with no tag. Months with no computed index are hidden from the trend,
+  the dropdown and the min/max — but the in-progress month stays selectable.
+- Each dashboard section is guarded individually and errors are logged, so one
+  failure can no longer blank the whole page to zero.
 
-### 5. New "Operations" screen (collection monitoring)
-**Where:** `hcpi_dashboard` — `operations_hooks()` in the model, plus
-`static/src/js/hcpi_operations.js` and `static/src/xml/hcpi_operations.xml`; new
-menu **Dashboard → Operations**.
+### 5. New "Operations" screen
+`hcpi_dashboard` — `operations_hooks()` plus `static/src/js/hcpi_operations.js`
+and `static/src/xml/hcpi_operations.xml`; menu **Dashboard → Operations**.
 
-For a selected month it shows: **% data collected** (overall and per division),
-the **provisional CPI**, number of **collections**, **temporarily‑missing
-items**, items **missing for more than 2 months**, and **outliers / inliers /
-imputed** counts (read from the existing data‑validation records). It also has
-the same **Month dropdown** and a **Refresh provisional** button.
+For a selected month: **% data collected** (overall and per division), the
+**provisional CPI**, number of **collections**, **temporarily-missing items**
+(with a count of those **missing > 2 months**), **outlier / inlier / imputed**
+counts, and a month selector. Its month list spans observation, validation and
+collection months so quality counts are always reachable (see note below).
 
-## How it is deployed
+## How to compute a month officially
 
-The work lives on the `18.0` base worktree and is fanned out with
-`bin/hcpi propagate`. Per the team workflow we **test Uganda first**, then the
-other countries. A one‑time index **recompute** is needed after deploying so the
-new per‑division table and corrected values are populated:
+The official index is built **bottom-up**, and the **Elementary-Aggregate step
+is the foundation** — it must be run for new months before anything above it can
+be computed. In the Index **Computations** menus, run in order:
+
+1. **Update EA Indices** — `hcpi.ea.index.update.action_update_ea_indices`
+2. **Update Basket COICOP Indices** — `action_update_basket_coicop_indices`
+3. **Update Basket Indices** — `action_update_basket_indices`
+4. **Update National Indices** — `action_update_national_indices`
+   (also fills `hcpi.national.division.index`)
+
+If a month's prices are collected but its official index still reads as
+provisional/zero, it usually means the **EA step has not been run** for that
+month yet (running only the higher levels reuses stale EA indices). Re-run from
+step 1.
+
+After deploying the code, do this once per database (Uganda first), then press
+**Refresh Provisional** for the in-progress month.
+
+## Deploy sequence (multi-country)
 
 ```bash
-# in the base worktree, after committing on 18.0
-bin/hcpi propagate            # merge 18.0 into all country branches
-bin/hcpi update ug hcpi_index,hcpi_dashboard   # upgrade modules (creates the new table)
-# then run, in the Odoo shell, the index updates in order:
-#   Basket COICOP -> Basket -> National
-# the National run also fills hcpi.national.division.index.
-# finally press "Refresh Provisional" (or call refresh_provisional_division_index()).
+bin/hcpi propagate                         # merge 18.0 into all country branches
+bin/hcpi update ug hcpi_index,hcpi_dashboard   # upgrade (creates the new table)
+# recompute: EA -> Basket COICOP -> Basket -> National (see above)
+# repeat for ke / tz / zar after Uganda passes
 ```
-
-To refresh the provisional in‑progress month at any time, press **Refresh
-Provisional** on the National Index Update form (or the button on the Operations
-screen).
 
 ## Things to keep in mind
 
-- **Incomplete months are now shown honestly**, not hidden. The latest month's
-  official figure is a weighted average of whatever has been collected so far;
-  the **provisional** figure next to it is the carry‑forward estimate. Use the
-  **% collected** indicator to judge how final a month is.
-- **Provisional ≠ official.** Provisional rows are flagged and kept out of the
-  published series; they are recomputed on demand.
-- **Uganda's earlier bespoke fix was replaced.** Uganda's branch previously had
-  its own version of this fix (a different weighting plus extra trace logging).
-  To keep all four countries on one method, Uganda now uses the same base‑branch
-  approach (which also adds a safeguard at the lowest level that the old Uganda
-  version lacked). The old trace logging was dropped and can be re‑added if
-  needed.
-- The Operations screen reports the **in‑progress index month** by default; use
-  the month dropdown to inspect other months. Outlier/inlier counts come from
-  the data‑validation step, so they only appear for months that have been
-  validated.
-- The "items missing > 2 months" list is capped at 500 entries (shown as
-  "500+").
+- **Incomplete months are shown honestly, clearly tagged provisional** — not
+  hidden and not collapsed to zero. Use the **% collected** indicator to judge
+  how final a month is.
+- **Provisional ≠ official.** Provisional rows are flagged, kept out of the
+  published series, and recomputed on demand.
+- **Where outlier/inlier/imputed counts come from:** the data-validation step
+  (`hcpi.data.validation`, TURKEY algorithm). They are bucketed by the
+  **validation's month**, which can differ from the month the prices were
+  observed (collection and observation dates are not always aligned in the
+  data). If a month shows `0` outliers, select the month the validation was
+  recorded under.
+- The "items missing > 2 months" list is capped at 500 rows in the table, but
+  the headline count is exact.
 
-## Still outstanding (nice‑to‑haves)
+## Outstanding / nice-to-have
 
 - A scheduled job to refresh the provisional month automatically (currently
-  button‑driven).
-- Re‑adding Uganda's detailed `_national_trace` diagnostics on the shared
-  method, if the team still wants them.
+  button-driven).
+- Reconcile collection vs observation dating so quality counts and price months
+  line up without manual month-switching.
