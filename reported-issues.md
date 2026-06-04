@@ -53,3 +53,32 @@ core and non-core to indicator cards
 - After 3 months of temporarily missing, the system should indicate how long it has been
 - A report on items that have been temporarily missing for 3 months or more.
 - Code on replacement of items not sufficient.
+
+Now, some updates:
+swap blue and red, and add blue to key for matrix on dashboard. and have the key explain them
+operational dashboard should show which consumption segments are so far behind in terms of low coverage of outlet-items or something like that which is relevant. 
+
+We need to review the computations that happen, and compare current process to how it should be. 
+1. there should be no zero prices. if price has not been captured for an item, it should have been imputed, or should be imputed. Those imputations need to follow one of the proper imputation methods
+2. there should be no 0s or missing values are w ecompute the heigher levels. any item that has a weight should have a value, ensuring that these figures cascade up to the final view
+3. If a figure is missing, it needs to be highlighted on operational dashboard for each of the levels.
+4. For the provisional CPI, carry-forward method can be used, with operational dashboard highlighting that
+There should be no zeros at all i nthe computation at all the levels
+all active items should be included in ccalculations, impute where none
+all EA indexes should be included, no gaps. if item has weight, it needs to have a figure. highlight any on operational dashboard, calc
+impute prices, not later fields 
+carry-forward can be used at start of calculations, but is temporary. Proper method should be proper imputation using one of imputation methods. 
+Add a link to report for validations on the provisional
+a repor tshowing when collections are happening vs days
+Link the matrix of events from 
+
+# Data Collection App
+- When Questionnaires synced to app, they shouldcome with the questionnaire content, not coming afterwards. so that once sync happens they can work offline.
+- reorder questionnaire so that collection code is selected after price is entered, and we clear the price if temporarily missing or permanently missing is selected as the code. 
+
+- Pulish a version of the APK on the servers so that it can be used to ensure data collectors are always on the right version
+- Publish to play store to replace the existing entry 
+- 
+
+ssh ocgs_ubuntu@hcpi.ocgs.go.tz -p 7575
+

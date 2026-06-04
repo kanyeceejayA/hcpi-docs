@@ -60,6 +60,7 @@ nav:
       - Country Overlays (UG, KE, TZ, ZAR): modules/country-overlay.md
       - Infrastructure & Third-party: modules/infrastructure.md
     - Country Variants: understanding-the-codebase/country-variants.md
+    - Mobile App (Flutter): understanding-the-codebase/mobile-app.md
     - Making Your First Edits: first-edits/index.md
   - Using the System (UI Walkthrough): using-the-system.md
   - Changes:
