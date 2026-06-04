@@ -1658,10 +1658,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-pull-the-latest-for-that-branch" class="md-nav__link">
+  <a href="#step-5-back-up-the-database-and-filestore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Pull the latest for that branch
+        Step 5: Back up the database and filestore
       
     </span>
   </a>
@@ -1669,10 +1669,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-apply-model-or-view-changes-when-needed" class="md-nav__link">
+  <a href="#step-6-pull-the-latest-for-that-branch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6: Apply model or view changes (when needed)
+        Step 6: Pull the latest for that branch
       
     </span>
   </a>
@@ -1680,10 +1680,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-restart" class="md-nav__link">
+  <a href="#step-7-apply-model-or-view-changes-when-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 7: Restart
+        Step 7: Apply model or view changes (when needed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Restart
       
     </span>
   </a>
@@ -2414,10 +2425,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-pull-the-latest-for-that-branch" class="md-nav__link">
+  <a href="#step-5-back-up-the-database-and-filestore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Pull the latest for that branch
+        Step 5: Back up the database and filestore
       
     </span>
   </a>
@@ -2425,10 +2436,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-apply-model-or-view-changes-when-needed" class="md-nav__link">
+  <a href="#step-6-pull-the-latest-for-that-branch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6: Apply model or view changes (when needed)
+        Step 6: Pull the latest for that branch
       
     </span>
   </a>
@@ -2436,10 +2447,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-restart" class="md-nav__link">
+  <a href="#step-7-apply-model-or-view-changes-when-needed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 7: Restart
+        Step 7: Apply model or view changes (when needed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Restart
       
     </span>
   </a>
@@ -2548,70 +2570,143 @@ git stash pop        # bring them back, then resolve any conflicts</code></p>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>config<span class="w"> </span>checkout.defaultRemote<span class="w"> </span>eac
 </code></pre></div>
 </details>
-<h2 id="step-5-pull-the-latest-for-that-branch">Step 5: Pull the latest for that branch</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<h2 id="step-5-back-up-the-database-and-filestore">Step 5: Back up the database and filestore</h2>
+<p>Before pulling any code or applying any schema upgrades, take a snapshot of the live database and the Odoo filestore. If anything in the steps that follow misbehaves — a bad migration, a corrupted view, a module that won't load — this backup is what lets you revert in minutes instead of hours.</p>
+<p>You need three pieces of information from <code>/opt/hcpi/conf/hcpi.conf</code>:</p>
+<ul>
+<li><code>db_name</code> — the database to back up (often <code>hcpi</code> or <code>hcpi18</code>).</li>
+<li><code>db_user</code> — the role that owns it.</li>
+<li><code>data_dir</code> — where the Odoo filestore lives. The filestore holds binary attachments (images, exports, report PDFs); a database dump alone is not a full backup.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_name&#39;</span><span class="w">  </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^data_dir&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span>/opt/hcpi/backups
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># 1. Database dump (custom format — compressed, supports pg_restore)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_dump<span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># 2. Filestore (attachments and binary fields)</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">&quot;</span><span class="w"> </span>filestore/<span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># 3. Record the current git commit so you can return to it</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>git<span class="w"> </span>-C<span class="w"> </span>/opt/hcpi/custom/HCPI<span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5
+</code></pre></div>
+<p>The three files you should now see — <code>&lt;db&gt;-&lt;ts&gt;.dump</code>, <code>filestore-&lt;db&gt;-&lt;ts&gt;.tar.gz</code>, and <code>git-head-&lt;ts&gt;.txt</code> — together let you reconstruct the deployment exactly as it was right now.</p>
+<div class="admonition tip">
+<p class="admonition-title">Keep backups outside the deployment folder</p>
+<p><code>/opt/hcpi/backups</code> is fine for a quick rollback, but for anything you care about long-term, copy these three files off the server (rsync to a backup host, push to object storage, etc.). A disk failure on the deployment server takes the in-tree backups with it.</p>
+</div>
+<details class="warning">
+<summary>If something goes wrong — rolling back</summary>
+<p>Open this section <strong>only if a later step fails</strong> (the pull conflicts, the <code>-u</code> upgrade errors out, or the service refuses to boot after restart). The rollback is destructive — it replaces the current database with the snapshot you just took, so any data entered after the backup will be lost.</p>
+<p><strong>Stop the service first</strong> so nothing writes while you restore:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
+</code></pre></div>
+<p><strong>Revert the database</strong> to the snapshot. The drop/recreate pattern is the most reliable — <code>pg_restore</code> against an existing database can leave orphaned objects:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">DB</span><span class="o">=</span>&lt;the<span class="w"> </span>db<span class="w"> </span>name&gt;<span class="w">                     </span><span class="c1"># same as Step 5</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">TS</span><span class="o">=</span>&lt;the<span class="w"> </span>timestamp<span class="w"> </span>from<span class="w"> </span>Step<span class="w"> </span><span class="m">5</span>&gt;
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span>/opt/hcpi/backups
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>dropdb<span class="w">   </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createdb<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-O<span class="w"> </span>&lt;db_user&gt;
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_restore<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+</code></pre></div>
+<p><strong>Revert the filestore:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">DATA_DIR</span><span class="o">=</span>&lt;data_dir<span class="w"> </span>from<span class="w"> </span>hcpi.conf&gt;
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">/filestore/</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>tar<span class="w"> </span>-xzf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p><strong>Revert the code</strong> to the commit you recorded:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">PREV</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="k">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PREV</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Alternatively, if you have not done anything else with git since the failed pull, <code>git reset --hard HEAD@{1}</code> jumps back to the pre-pull state using the reflog.</p>
+<p><strong>Bring the service back up</strong> and confirm it boots cleanly:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w">      </span><span class="c1"># check for CRITICAL / Failed to load lines</span>
+</code></pre></div>
+<p>Once you're stable, investigate the failure <em>before</em> attempting the update again — running the same broken pull a second time will produce the same result.</p>
+</details>
+<h2 id="step-6-pull-the-latest-for-that-branch">Step 6: Pull the latest for that branch</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p><code>--ff-only</code> keeps the deployment's history a clean fast-forward — it refuses to create a surprise merge commit. If it fails, the working tree has diverged (see the warning above).</p>
 <details class="note">
 <summary><code>git pull</code> reports conflicts or refuses to fast-forward</summary>
 <p>The deployment has commits that aren't on <code>eac</code> (someone edited on the server). Inspect what diverged with <code>git log --oneline eac/"$BR"..HEAD</code>, then either push those commits to a branch for review or stash them. Don't force the pull — you'd lose server-side work.</p>
 </details>
-<h2 id="step-6-apply-model-or-view-changes-when-needed">Step 6: Apply model or view changes (when needed)</h2>
+<h2 id="step-7-apply-model-or-view-changes-when-needed">Step 7: Apply model or view changes (when needed)</h2>
 <p>Pure Python logic changes load on restart alone. But if the pulled commits touched <strong>models/fields, views (XML), security, or data files</strong>, you must upgrade the affected modules once so the database schema and views update:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init<span class="w">   </span><span class="c1"># name the changed module(s), comma-separated</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init<span class="w">   </span><span class="c1"># name the changed module(s), comma-separated</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Not sure what changed?</p>
 <p><code>git diff --stat HEAD@{1} HEAD</code> shows the files the pull brought in. If any are under a module's <code>models/</code>, <code>views/</code>, <code>security/</code>, or <code>data/</code>, upgrade that module. When in doubt, <code>-u all</code> is safe but slower.</p>
 </div>
-<h2 id="step-7-restart">Step 7: Restart</h2>
+<h2 id="step-8-restart">Step 8: Restart</h2>
 <p>Restart so the running process picks up the new code. <strong>Local development</strong> is the default below; production servers running under systemd are in the collapsed section.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
 </code></pre></div>
 <p>Watch the log as it boots — <code>Registry loaded</code> with no <code>CRITICAL</code>/<code>Failed to load</code> lines means the update is live. Open the site and confirm.</p>
 <details class="note">
 <summary>On a production server (systemd)</summary>
 <p>A server deployment runs HCPI as the <code>hcpi</code> service (defined during <a href="../../installation/linux/#running-as-a-service-recommended-for-production">Linux installation</a>), so you don't launch <code>odoo-bin</code> by hand — you restart the unit:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>hcpi
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi<span class="w">        </span><span class="c1"># should show &quot;active (running)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>hcpi
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi<span class="w">        </span><span class="c1"># should show &quot;active (running)&quot;</span>
 </code></pre></div>
-<p>If you ran the <code>-u</code> upgrade in Step 6, do it through the service account or stop the service first so two processes don't touch the database at once:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>/opt/hcpi/venv/bin/python<span class="w"> </span>/opt/hcpi/odoo/odoo-bin<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span>-c<span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
+<p>If you ran the <code>-u</code> upgrade in Step 7, do it through the service account or stop the service first so two processes don't touch the database at once:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>/opt/hcpi/venv/bin/python<span class="w"> </span>/opt/hcpi/odoo/odoo-bin<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span>-c<span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
 </code></pre></div>
 <p>Follow the logs with <code>sudo journalctl -u hcpi -f</code> (or <code>tail -f</code> on the <code>logfile</code> set in the conf).</p>
 </details>
 <h2 id="quick-reference">Quick reference</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># first time only: SSH key + remote + upstream</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com<span class="w">                            </span><span class="c1"># must say &quot;Hi &lt;your-username&gt;!&quot; before continuing</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># if not, generate a key inside WSL and add it at https://github.com/settings/keys</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1">#   ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1">#   cat ~/.ssh/id_ed25519.pub</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span><span class="w">                  </span><span class="c1"># this deployment&#39;s branch, e.g. ug_18</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="c1"># every update from here on</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>git<span class="w"> </span>status<span class="w">                                       </span><span class="c1"># must be clean</span>
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="c1"># apply + restart (local)</span>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>&lt;changed_module&gt;<span class="w"> </span>--stop-after-init
-<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
-<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="c1"># apply + restart (server)</span>
-<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="c1"># sudo systemctl restart hcpi</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># first time only: SSH key + remote + upstream</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com<span class="w">                            </span><span class="c1"># must say &quot;Hi &lt;your-username&gt;!&quot; before continuing</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1"># if not, generate a key inside WSL and add it at https://github.com/settings/keys</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1">#   ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1">#   cat ~/.ssh/id_ed25519.pub</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span><span class="w">                  </span><span class="c1"># this deployment&#39;s branch, e.g. ug_18</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="c1"># every update from here on</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>git<span class="w"> </span>status<span class="w">                                       </span><span class="c1"># must be clean</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="c1"># back up before pulling (see Step 5 for full commands)</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_name&#39;</span><span class="w">  </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^data_dir&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/hcpi/backups
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_dump<span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/opt/hcpi/backups/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;/opt/hcpi/backups/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">&quot;</span><span class="w"> </span>filestore/<span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>git<span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;/opt/hcpi/backups/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>
+<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="c1"># apply + restart (local)</span>
+<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>&lt;changed_module&gt;<span class="w"> </span>--stop-after-init
+<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
+<a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>
+<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a><span class="c1"># apply + restart (server)</span>
+<a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a><span class="c1"># sudo systemctl restart hcpi</span>
 </code></pre></div>
 <table>
 <thead>
