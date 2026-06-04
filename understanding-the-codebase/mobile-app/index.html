@@ -1,0 +1,3345 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the HCPI (Cost Price Index) system">
+      
+      
+        <meta name="author" content="HCPI Team">
+      
+      
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/mobile-app/">
+      
+      
+        <link rel="prev" href="../country-variants/">
+      
+      
+        <link rel="next" href="../../first-edits/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Mobile App (Flutter) - HCPI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-hcpi-mobile-app-flutter" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCPI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mobile App (Flutter)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    HCPI Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/getting-the-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/git-remotes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Remotes (EAC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exporting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From a Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows WSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows-native/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Native
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cpi-explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CPI Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/how-calculations-work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How the Calculations Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with the Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with the Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../odoo-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Odoo Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Codebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../module-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module Deep Dives
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Module Deep Dives
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/reference-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference Data (COICOP, Items, Brands)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/outlets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Outlets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/data-collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/indices-dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indices & Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/country-overlay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Overlays (UG, KE, TZ, ZAR)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/infrastructure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure & Third-party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../country-variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Country Variants
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App (Flutter)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App (Flutter)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-flutter-briefly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Flutter, briefly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-we-only-ship-for-android-for-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why we only ship for Android (for now)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-repository-folder-by-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The repository, folder by folder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-inside-lib-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Inside lib/ — architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-talking-to-the-server-auth-sessions-odoo-rpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Talking to the server — auth, sessions, Odoo RPC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Talking to the server — auth, sessions, Odoo RPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#picking-the-country-the-domain-dropdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Picking the country (the domain dropdown)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-in-and-session-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-in and session persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-call-pattern-callkw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The call pattern — callKw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-endpoints-the-models-and-methods-the-app-touches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Endpoints — the models and methods the app touches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-offline-first-local-cache-and-background-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Offline-first — local cache and background sync
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Offline-first — local cache and background sync">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-cache-via-sharedpreferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local cache via SharedPreferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workmanager-periodic-sync-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkManager periodic sync (Android)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-native-plugins-and-platform-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Native plugins and platform permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-map-of-mobile-app-server-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Map of mobile app ↔ server module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-build-sign-and-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Build, sign, and release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-where-to-look-to-change-something" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Where to look to change something
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-common-gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Common gotchas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-edits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Making Your First Edits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../using-the-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the System (UI Walkthrough)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Changes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changes/dashboard-index-overhaul/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard & Index Overhaul (June 2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Next Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Next Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/updating-deployments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Updating a Country Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Apache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS with Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Training
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/server-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environment & HCPI Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/dev-environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day1/user-administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/day2/python-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python for HCPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_4" id="__nav_11_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building an HCPI Module
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Building an HCPI Module
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/module/part1-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1: Models, Fields, Relationships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/module/part2-views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2: Views & UX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/module/part3-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3: Rights & Controllers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-flutter-briefly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is Flutter, briefly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-we-only-ship-for-android-for-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why we only ship for Android (for now)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-repository-folder-by-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The repository, folder by folder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-inside-lib-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Inside lib/ — architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-talking-to-the-server-auth-sessions-odoo-rpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Talking to the server — auth, sessions, Odoo RPC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Talking to the server — auth, sessions, Odoo RPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#picking-the-country-the-domain-dropdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Picking the country (the domain dropdown)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-in-and-session-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-in and session persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-call-pattern-callkw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The call pattern — callKw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-endpoints-the-models-and-methods-the-app-touches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Endpoints — the models and methods the app touches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-offline-first-local-cache-and-background-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Offline-first — local cache and background sync
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Offline-first — local cache and background sync">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-cache-via-sharedpreferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local cache via SharedPreferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workmanager-periodic-sync-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WorkManager periodic sync (Android)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-native-plugins-and-platform-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Native plugins and platform permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-map-of-mobile-app-server-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Map of mobile app ↔ server module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-build-sign-and-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Build, sign, and release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-where-to-look-to-change-something" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Where to look to change something
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-common-gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Common gotchas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="the-hcpi-mobile-app-flutter">The HCPI Mobile App (Flutter)</h1>
+<p>Field price collection happens almost entirely on a phone or tablet — enumerators visit outlets, record prices for each item, attach photos, and sync everything back to the country's HCPI Odoo server. That phone-side software is the <strong>HCPI Mobile App</strong>, a Flutter application that lives in <strong>its own git repository</strong>, separate from the Odoo codebase the rest of this documentation describes.</p>
+<p>This page is the orientation for that repository: what Flutter is, how the app is laid out, how it talks to the server, and where to look when you need to change something.</p>
+<div class="admonition info">
+<p class="admonition-title">Where the code lives</p>
+<p>The Flutter project is in a sibling folder: <code>C:\code\HCPI_MOBLIE_APP\</code> (the folder name has a long-standing typo — <em>"MOBLIE"</em> — that we have not renamed because it would break clones). The pubspec identifies it as package <code>hcpi</code> ("HCPI Data Collection App"). The companion server-side module is <a href="../../modules/data-collection/#hcpi_data_collection_mobile_app--the-flutter-surface"><code>hcpi_data_collection_mobile_app</code></a> inside the main HCPI repo — it exposes the fields and methods the app calls.</p>
+</div>
+<h2 id="1-what-is-flutter-briefly">1. What is Flutter, briefly</h2>
+<p>Flutter is Google's UI toolkit for building <strong>one codebase that runs as a native app on Android, iOS, Windows, macOS, Linux, and the web</strong>. You write in <strong>Dart</strong>; Flutter compiles that Dart down to platform-native code and ships a small runtime that draws the UI directly with the device's GPU.</p>
+<p>The compilation pipeline looks like this:</p>
+<pre class="mermaid"><code>flowchart LR
+    A["Dart source&lt;br/&gt;(lib/**.dart)"] --&gt; B["Flutter SDK&lt;br/&gt;dart compile"]
+    B --&gt; C1["Android: ARM/x64&lt;br/&gt;native binary +&lt;br/&gt;Skia/Impeller renderer"]
+    B --&gt; C2["iOS: ARM64&lt;br/&gt;native binary"]
+    B --&gt; C3["Windows / macOS /&lt;br/&gt;Linux desktop"]
+    B --&gt; C4["Web: WASM + JS"]
+    C1 --&gt; D1["APK / AAB&lt;br/&gt;(Google Play)"]
+    C2 --&gt; D2["IPA&lt;br/&gt;(App Store)"]
+    style C1 fill:#bbf7d0,stroke:#15803d
+    style D1 fill:#bbf7d0,stroke:#15803d</code></pre>
+<p>Two things to keep in mind from that picture:</p>
+<ul>
+<li><strong>It is real native code</strong>, not a WebView wrapper. Flutter doesn't render through HTML — it draws its own pixels via the <strong>Impeller / Skia</strong> engine bundled with the app. That's why a Flutter app feels as smooth as a hand-written native app, even though one developer wrote it once.</li>
+<li><strong>Each platform is a separate build target.</strong> The Dart source is shared; the output is not. Producing an Android <code>.aab</code> and an iOS <code>.ipa</code> requires two separate builds (and, for iOS, a Mac and an Apple Developer account).</li>
+</ul>
+<h2 id="2-why-we-only-ship-for-android-for-now">2. Why we only ship for Android (for now)</h2>
+<p>If you list the project root, every Flutter target is there:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>HCPI_MOBLIE_APP/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── android/    ← currently the only platform we ship
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── ios/        ← scaffolding exists, not actively built
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── linux/      ← unused
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── macos/      ← unused
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── web/        ← unused
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── windows/    ← unused
+</code></pre></div>
+<p>The reasons we have stuck to Android:</p>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Field hardware</td>
+<td>Every NSO that has adopted HCPI hands out Android tablets to enumerators — iOS deployments haven't been requested.</td>
+</tr>
+<tr>
+<td>iOS toolchain cost</td>
+<td>Building and shipping for iOS requires a Mac in the build pipeline and a paid Apple Developer Programme membership for the publishing organisation. Neither has been provisioned.</td>
+</tr>
+<tr>
+<td>Permission and lifecycle parity</td>
+<td>The offline-sync model the app relies on (Android <code>WorkManager</code>, exact alarms, foreground persistence) maps cleanly onto Android; iOS has a much stricter background-execution model that would require redesigning the sync loop.</td>
+</tr>
+</tbody>
+</table>
+<p>The codebase <strong>does not technically block</strong> building for iOS or desktop — the Dart layer is platform-agnostic, the <code>ios/</code> scaffold is checked in, and most of the dependencies (<code>odoo_rpc</code>, <code>shared_preferences</code>, <code>geolocator</code>, <code>image_picker</code>) are cross-platform. If a country office asks for iOS in future, the work is: get a Mac in CI, register the bundle ID, port the background-sync code to use <code>BackgroundFetch</code> or equivalent, and re-test. None of the app's business logic would change.</p>
+<h2 id="3-the-repository-folder-by-folder">3. The repository, folder by folder</h2>
+<p>Top level inside <code>HCPI_MOBLIE_APP/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Folder / file</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#4-inside-lib-architecture"><code>lib/</code></a></td>
+<td>All Dart source. This is where 99% of work happens.</td>
+</tr>
+<tr>
+<td><a href="#5-the-android-side-build-config-permissions"><code>android/</code></a></td>
+<td>Android-specific config, manifest, keystore wiring, native code (none custom right now).</td>
+</tr>
+<tr>
+<td><code>ios/</code>, <code>macos/</code>, <code>windows/</code>, <code>linux/</code>, <code>web/</code></td>
+<td>Other platform scaffolds. Generated by <code>flutter create</code>, untouched.</td>
+</tr>
+<tr>
+<td><a href="#6-assets"><code>assets/</code></a></td>
+<td>Bundled images, SVGs, custom fonts (Poppins).</td>
+</tr>
+<tr>
+<td><code>pubspec.yaml</code></td>
+<td>Dart's <code>package.json</code> — declares dependencies, version, fonts, assets.</td>
+</tr>
+<tr>
+<td><code>pubspec.lock</code></td>
+<td>Resolved exact versions. Check in.</td>
+</tr>
+<tr>
+<td><code>analysis_options.yaml</code></td>
+<td>Lint rules.</td>
+</tr>
+<tr>
+<td><code>test/</code></td>
+<td>Unit / widget tests (sparse).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-inside-lib-architecture">4. Inside <code>lib/</code> — architecture</h2>
+<p>The Dart source is organised around <strong>feature-first clean architecture</strong>. <code>main.dart</code> is the entry point and is deliberately tiny — it boots dependency injection, the background-sync worker, the local Odoo client, and then hands off to <code>MaterialApp</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lib/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── main.dart                 ← entrypoint: DI, work-manager, Odoo client
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── core/                     ← cross-cutting code
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── app routes/             route definitions
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   ├── dependency_injector/    get_it container
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── error/                  Failure / Exception classes
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── multiProviders/         BlocProvider wiring
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   └── util/
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│       ├── globals/
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│       │   ├── odooClient/     ← OdooClientStorage (auth + persistence)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│       │   └── variables/      ← country domains, model names
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│       ├── helpers/            work_manager.dart, location_helper.dart, …
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│       ├── network/            HTTP overrides (e.g. dev cert trust)
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│       └── widgets/            shared widgets
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>└── features/                 ← one folder per business capability
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    ├── auth/
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    ├── home/
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    ├── internetConnection/
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    ├── items/
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    ├── observations/         ← the prices themselves
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    ├── outlet/
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    ├── priceCodes/           ← &quot;out of stock&quot;, &quot;seasonal&quot;, …
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    ├── questionareItems/
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    ├── questionares/         ← the data-collection &quot;visit&quot;
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    ├── settings/
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    ├── units_of_measure/
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    └── work_manager_sync/    ← offline → server reconciliation
+</code></pre></div>
+<p>Each feature follows the same three-layer split:</p>
+<pre class="mermaid"><code>flowchart TD
+    P["presentation/&lt;br/&gt;pages, widgets, Bloc, state classes"] --&gt; D["domain/&lt;br/&gt;entities, repository contracts, usecases"]
+    D --&gt; DA["data/&lt;br/&gt;models, datasources (remote + local), repository impls"]
+    DA --&gt; S1[("Odoo server&lt;br/&gt;via odoo_rpc")]
+    DA --&gt; S2[("SharedPreferences&lt;br/&gt;(local cache)")]
+    style P fill:#dbeafe,stroke:#1e3a8a
+    style D fill:#fde68a,stroke:#b45309
+    style DA fill:#bbf7d0,stroke:#15803d</code></pre>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What lives there</th>
+<th>Why it's separate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>presentation/</strong></td>
+<td>Flutter widgets, screen pages, <strong>Bloc</strong> state machines (<code>flutter_bloc</code>), state classes.</td>
+<td>The only layer that knows about Flutter. Swapping UI doesn't touch business logic.</td>
+</tr>
+<tr>
+<td><strong>domain/</strong></td>
+<td>Pure-Dart entities, <code>abstract class</code> repositories, <code>UseCase</code> classes. No Flutter, no HTTP.</td>
+<td>This is the contract. Both UI and tests depend on it; nothing in it depends on them.</td>
+</tr>
+<tr>
+<td><strong>data/</strong></td>
+<td>Concrete implementations: <code>*RemoteDatasource</code> (talks to Odoo), <code>*LocalDatasource</code> (reads/writes <code>SharedPreferences</code>), <code>*RepositoryImpl</code> (chooses online vs. cached).</td>
+<td>The only place that knows about RPC formats, JSON, and SharedPreferences keys.</td>
+</tr>
+</tbody>
+</table>
+<p>State management is <strong>Bloc</strong> (<code>flutter_bloc</code> + <code>bloc</code>). Dependency injection is <strong><code>get_it</code></strong>, initialised once at startup in <code>core/dependency_injector/</code>. UI navigation is centralised in <code>core/app routes/routes.dart</code>.</p>
+<h2 id="5-talking-to-the-server-auth-sessions-odoo-rpc">5. Talking to the server — auth, sessions, Odoo RPC</h2>
+<p>The mobile app does <strong>not</strong> invoke any custom HTTP controller. It talks to the same Odoo JSON-RPC endpoint (<code>/web/dataset/call_kw/</code>) that the web client uses, via the <strong><code>odoo_rpc</code> Dart package</strong> (<code>^0.5.2</code> in <code>pubspec.yaml</code>).</p>
+<h3 id="picking-the-country-the-domain-dropdown">Picking the country (the domain dropdown)</h3>
+<p>When the app first launches, the user selects a country. The mapping lives in <a href="file:///c:/code/HCPI_MOBLIE_APP/lib/core/util/globals/variables/database_constants.dart"><code>lib/core/util/globals/variables/database_constants.dart</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">final</span><span class="w"> </span><span class="n">DOMAIN_MAPPINGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="s1">&#39;Uganda&#39;</span><span class="o">:</span><span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">UG_DOMAIN</span><span class="p">,</span><span class="w">      </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ug&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="s1">&#39;Kenya&#39;</span><span class="o">:</span><span class="w">             </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">KE_DOMAIN</span><span class="p">,</span><span class="w">      </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ke&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="s1">&#39;Tanzania Mainland&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">TZ_DOMAIN</span><span class="p">,</span><span class="w">      </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tz&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;db&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;hcpi18&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="s1">&#39;Zanzibar&#39;</span><span class="o">:</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">ZAR_DOMAIN</span><span class="p">,</span><span class="w">     </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;zar&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="s1">&#39;Rwanda&#39;</span><span class="o">:</span><span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">RW_DOMAIN</span><span class="p">,</span><span class="w">      </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;rw&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="s1">&#39;Burundi&#39;</span><span class="o">:</span><span class="w">           </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">BI_DOMAIN</span><span class="p">,</span><span class="w">      </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bi&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="s1">&#39;South sudan&#39;</span><span class="o">:</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">SS_DOMAIN</span><span class="p">,</span><span class="w">      </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ss&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="s1">&#39;Kenya Test&#39;</span><span class="o">:</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">KE_TEST_DOMAIN</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ke&#39;</span><span class="p">,</span><span class="w">  </span><span class="s1">&#39;db&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;hcpitest&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="s1">&#39;Dev Test&#39;</span><span class="o">:</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;domain&#39;</span><span class="o">:</span><span class="w"> </span><span class="n">DEV_DOMAIN</span><span class="p">,</span><span class="w">     </span><span class="s1">&#39;country&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dev&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">};</span>
+</code></pre></div>
+<p>Picking a country sets <code>DATABASE_URL</code>, optionally overrides the database name, and populates the per-country model variables that the rest of the app references:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">ctry_data_collection</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hcpi.data.collection&quot;</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">ctry_collection_product_price_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hcpi.data.collection.line&quot;</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">ctry_observed_price_line</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hcpi.data.observation.line&quot;</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">ctry_outlet_model</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hcpi.outlet&quot;</span><span class="p">;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">ctry_outlet_new_model</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hcpi.outlet.new&quot;</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">ctry_item_new_model</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hcpi.item.new&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Note that today every country resolves to the <strong>same</strong> generic <code>hcpi.*</code> model names — confirmation that the cross-country harmonisation described in <a href="../country-variants/">Country Variants</a> is live in the mobile layer too.</p>
+<h3 id="sign-in-and-session-persistence">Sign-in and session persistence</h3>
+<p>Sign-in is handled in <a href="file:///c:/code/HCPI_MOBLIE_APP/lib/core/util/globals/odooClient/odoo_client_storage.dart"><code>OdooClientStorage</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">static</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getSignInClientAndSession</span><span class="p">(</span><span class="n">login</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">domainMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getDomainMapping</span><span class="p">(</span><span class="n">DATABASE_URL</span><span class="p">);</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">client</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">OdooClient</span><span class="p">(</span><span class="n">DATABASE_URL</span><span class="p">);</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="n">session</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">authenticate</span><span class="p">(</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="n">domainMap</span><span class="p">[</span><span class="s1">&#39;db&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="n">DATABASE_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">login</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">client</span><span class="p">,</span><span class="w"> </span><span class="n">session</span><span class="p">];</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>After authentication, the <strong>session and base URL are serialised to <code>SharedPreferences</code></strong> so the app can resurrect the client on the next launch without re-prompting. That allows offline work — the persisted session is enough to read cached data, queue new observations locally, and submit later when the device is online again.</p>
+<h3 id="the-call-pattern-callkw">The call pattern — <code>callKw</code></h3>
+<p>Every server interaction uses the same shape. Example from the observations remote datasource:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">var</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">callKw</span><span class="p">({</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="s1">&#39;model&#39;</span><span class="o">:</span><span class="w">  </span><span class="n">ctry_observed_price_line</span><span class="p">,</span><span class="w">    </span><span class="c1">// &quot;hcpi.data.observation.line&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="s1">&#39;method&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;create&#39;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="s1">&#39;args&#39;</span><span class="o">:</span><span class="w">   </span><span class="p">[</span><span class="w"> </span><span class="cm">/* values */</span><span class="w"> </span><span class="p">],</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="s1">&#39;kwargs&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">});</span>
+</code></pre></div>
+<p>This translates to a JSON-RPC POST to <code>/web/dataset/call_kw/&lt;model&gt;/&lt;method&gt;</code> on the country's Odoo. <strong>There is no custom controller in between</strong> — the app is, from the server's point of view, just another authenticated client invoking ORM methods.</p>
+<h2 id="6-endpoints-the-models-and-methods-the-app-touches">6. Endpoints — the models and methods the app touches</h2>
+<p>Below is the complete surface as of this writing, extracted from the <code>*_remote_datasource.dart</code> / <code>*_remote_ds.dart</code> files. Each row is a server-side model the app reads or writes, with the methods invoked.</p>
+<table>
+<thead>
+<tr>
+<th>Feature folder</th>
+<th>Model</th>
+<th>Methods called</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auth/</code></td>
+<td><code>res.users</code></td>
+<td><code>write</code></td>
+<td>Edit profile fields.</td>
+</tr>
+<tr>
+<td><code>auth/</code></td>
+<td><code>res.company</code></td>
+<td><code>search_read</code></td>
+<td>Company name, logo, registry, currency — branded UI.</td>
+</tr>
+<tr>
+<td><code>auth/</code></td>
+<td><code>res.config.settings</code></td>
+<td><code>get_display_location_settings</code></td>
+<td>Geofence radius / popup mode for the location helper.</td>
+</tr>
+<tr>
+<td><code>items/</code></td>
+<td><code>hcpi.elementary.aggregate</code></td>
+<td><code>search_read</code></td>
+<td>EA lookup for new-item registration.</td>
+</tr>
+<tr>
+<td><code>items/</code></td>
+<td><code>hcpi.item</code></td>
+<td><code>search_read</code></td>
+<td>Existing catalog.</td>
+</tr>
+<tr>
+<td><code>items/</code></td>
+<td><code>hcpi.item.new</code> (<code>ctry_item_new_model</code>)</td>
+<td><code>search_read</code>, <code>create</code>, <code>write</code>, <code>action_confirm</code></td>
+<td>Mobile-side new-item submission queue (supervisor approves on server).</td>
+</tr>
+<tr>
+<td><code>outlet/</code></td>
+<td><code>hcpi.outlet</code> (<code>ctry_outlet_model</code>)</td>
+<td><code>search_read</code></td>
+<td>List existing outlets the collector is assigned to.</td>
+</tr>
+<tr>
+<td><code>outlet/</code></td>
+<td><code>hcpi.outlet.new</code> (<code>ctry_outlet_new_model</code>)</td>
+<td><code>search_read</code>, <code>create</code>, <code>write</code>, <code>action_confirm</code></td>
+<td>Mobile-side new-outlet submission queue.</td>
+</tr>
+<tr>
+<td><code>outlet/</code></td>
+<td><code>hcpi.outlet.type</code></td>
+<td><code>search_read</code></td>
+<td>Outlet type dropdown.</td>
+</tr>
+<tr>
+<td><code>outlet/</code></td>
+<td><code>hcpi.consumption.segment</code></td>
+<td><code>search_read</code></td>
+<td>Basket (e.g. <em>Kampala Urban</em>) for the outlet.</td>
+</tr>
+<tr>
+<td><code>outlet/</code></td>
+<td>contact model (related)</td>
+<td><code>search_read</code></td>
+<td>Outlet contacts.</td>
+</tr>
+<tr>
+<td><code>questionares/</code></td>
+<td><code>hcpi.data.collection</code> (<code>ctry_data_collection</code>)</td>
+<td><code>search_read</code>, <code>validate</code>, <code>standardize</code></td>
+<td>Questionnaires + state-machine transitions.</td>
+</tr>
+<tr>
+<td><code>questionareItems/</code></td>
+<td><code>hcpi.data.collection.line</code> (<code>ctry_collection_product_price_line</code>)</td>
+<td><code>search_read</code></td>
+<td>The priced items inside a questionnaire.</td>
+</tr>
+<tr>
+<td><code>observations/</code></td>
+<td><code>hcpi.data.observation.line</code> (<code>ctry_observed_price_line</code>)</td>
+<td><code>search_read</code>, <code>create</code>, <code>write</code>, <code>unlink</code></td>
+<td>The actual price entries (multiple per line).</td>
+</tr>
+<tr>
+<td><code>priceCodes/</code></td>
+<td><code>hcpi.price.collection.code</code></td>
+<td><code>search_read</code></td>
+<td><em>Out of stock</em>, <em>seasonal</em>, <em>new product</em> exception codes.</td>
+</tr>
+<tr>
+<td><code>units_of_measure/</code></td>
+<td><code>hcpi.uoo</code></td>
+<td><code>search_read</code></td>
+<td>Units of observation (kg, L, piece, …).</td>
+</tr>
+</tbody>
+</table>
+<p>Two observations from that table:</p>
+<ul>
+<li>The app uses the <strong>standard ORM methods</strong> (<code>search_read</code>, <code>create</code>, <code>write</code>, <code>unlink</code>) almost everywhere — no bespoke RPC. The only custom server-side methods called are <code>validate</code>, <code>standardize</code> (state-machine transitions on <code>hcpi.data.collection</code>), <code>action_confirm</code> (on the *.new mobile-submission queues), and <code>get_display_location_settings</code>.</li>
+<li>The <code>*.new</code> suffix models (<code>hcpi.item.new</code>, <code>hcpi.outlet.new</code>) are mobile-submission staging tables. A collector can create a new item or outlet from the field; the record sits in the staging model until a supervisor confirms it on the web UI, after which it is promoted into the real <code>hcpi.item</code> / <code>hcpi.outlet</code>. This is what <code>action_confirm</code> triggers.</li>
+</ul>
+<h2 id="7-offline-first-local-cache-and-background-sync">7. Offline-first — local cache and background sync</h2>
+<p>A collector standing in a roadside market with no signal still has to be able to file prices. The app handles this in two layers.</p>
+<h3 id="local-cache-via-sharedpreferences">Local cache via <code>SharedPreferences</code></h3>
+<p>Every feature has a <code>*LocalDataSource</code> alongside its remote one. Lookups (outlets, items, UoOs, price codes) are mirrored into <code>SharedPreferences</code> on login. New observations the user creates while offline are written <strong>locally first</strong> and queued for submission.</p>
+<h3 id="workmanager-periodic-sync-android"><code>WorkManager</code> periodic sync (Android)</h3>
+<p>The app registers a periodic Android <code>WorkManager</code> task at boot, in <a href="file:///c:/code/HCPI_MOBLIE_APP/lib/core/util/helpers/work_manager.dart"><code>lib/core/util/helpers/work_manager.dart</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">await</span><span class="w"> </span><span class="n">Workmanager</span><span class="p">().</span><span class="n">initialize</span><span class="p">(</span><span class="n">callbackDispatcher</span><span class="p">,</span><span class="w"> </span><span class="nl">isInDebugMode:</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">await</span><span class="w"> </span><span class="n">Workmanager</span><span class="p">().</span><span class="n">registerPeriodicTask</span><span class="p">(</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="s2">&quot;periodic-task-identifier&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="s2">&quot;syncToServer&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nl">constraints:</span><span class="w"> </span><span class="n">Constraints</span><span class="p">(</span><span class="nl">networkType:</span><span class="w"> </span><span class="n">NetworkType</span><span class="p">.</span><span class="n">connected</span><span class="p">),</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">);</span>
+</code></pre></div>
+<p>When the OS deems the device idle and connected, <code>callbackDispatcher</code> instantiates a <code>WorkManagerSynchronizer</code> (in <code>features/work_manager_sync/data/synchronizer.dart</code>) and calls <code>submit_observations()</code>. That walks the local queue, replays each pending observation against the server via <code>callKw('create' / 'write' / 'unlink')</code>, and clears the queue on success.</p>
+<p>The <code>connectivity_plus</code> + <code>internet_connection_checker</code> packages drive an <code>InternetConnectionBloc</code> that also re-triggers <code>initialiseUserClient()</code> when connectivity returns — so a session that expired while offline is refreshed as soon as the device is back online.</p>
+<pre class="mermaid"><code>flowchart LR
+    U["Enumerator&lt;br/&gt;records a price"] --&gt; L["Local cache&lt;br/&gt;(SharedPreferences)"]
+    L -.connection lost.-&gt; Q["Pending&lt;br/&gt;queue"]
+    Q --&gt; W["Android WorkManager&lt;br/&gt;periodic, network-required"]
+    W --&gt; R[("Odoo server&lt;br/&gt;callKw create/write")]
+    R --&gt; S["hcpi.data.observation.line"]
+    style L fill:#fde68a,stroke:#b45309
+    style W fill:#bbf7d0,stroke:#15803d</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">iOS implication</p>
+<p>The <code>Platform.isIOS</code> check in <code>initialise_work_manager</code> is a no-op — iOS does not have an equivalent always-on background scheduler. Any future iOS port would need a different sync strategy (e.g. <code>BackgroundFetch</code> for opportunistic syncs, plus an explicit "sync now" button in-app).</p>
+</div>
+<h2 id="8-native-plugins-and-platform-permissions">8. Native plugins and platform permissions</h2>
+<p>The app uses several Flutter packages that wrap platform-native APIs. The ones that change app behaviour most:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it gives us</th>
+<th>Permissions added</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geolocator</code></td>
+<td>Tags each questionnaire with GPS coordinates for outlet-visit verification.</td>
+<td><code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code></td>
+</tr>
+<tr>
+<td><code>image_picker</code></td>
+<td>Snap photos of items / shop fronts.</td>
+<td>(camera prompt at use-time)</td>
+</tr>
+<tr>
+<td><code>connectivity_plus</code>, <code>internet_connection_checker</code></td>
+<td>Detect online/offline state.</td>
+<td><code>INTERNET</code></td>
+</tr>
+<tr>
+<td><code>flutter_local_notifications</code></td>
+<td>Local reminders (e.g. "you have unsynced observations").</td>
+<td><code>SCHEDULE_EXACT_ALARM</code>, boot-completed receiver</td>
+</tr>
+<tr>
+<td><code>workmanager</code></td>
+<td>Periodic background sync.</td>
+<td><code>INTERNET</code>, exact-alarm</td>
+</tr>
+<tr>
+<td><code>in_app_update</code></td>
+<td>Prompt the user to update via Play Store when a new version is published.</td>
+<td>(Play Store managed)</td>
+</tr>
+<tr>
+<td><code>package_info_plus</code>, <code>device_info_plus</code></td>
+<td>Diagnostics — app version, device model — sent with bug reports.</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>url_launcher</code></td>
+<td>Open phone numbers / SMS / web links.</td>
+<td>tel/sms/web <code>&lt;intent-filter&gt;</code> queries</td>
+</tr>
+<tr>
+<td><code>google_sign_in</code></td>
+<td>(Wired but currently unused for production sign-in.)</td>
+<td>none on Android</td>
+</tr>
+</tbody>
+</table>
+<p>The Android-side declarations live in <a href="file:///c:/code/HCPI_MOBLIE_APP/android/app/src/main/AndroidManifest.xml"><code>android/app/src/main/AndroidManifest.xml</code></a>. The build configuration (<a href="file:///c:/code/HCPI_MOBLIE_APP/android/app/build.gradle"><code>android/app/build.gradle</code></a>) sets:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">namespace</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;eac.hcpi.app&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">applicationId</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;eac.hcpi.app&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">compileSdk</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mi">36</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">targetSdk</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">35</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">multiDexEnabled</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+<p><code>eac.hcpi.app</code> is the Play Store package identifier. Signing reads from a <code>key.properties</code> file at the Android module root — that file is <strong>not</strong> checked in and must exist on whatever machine produces the release <code>.aab</code>.</p>
+<h2 id="9-map-of-mobile-app-server-module">9. Map of mobile app ↔ server module</h2>
+<p>The Flutter app and the server-side Odoo module <a href="../../modules/data-collection/#hcpi_data_collection_mobile_app--the-flutter-surface"><code>hcpi_data_collection_mobile_app</code></a> are the two halves of the same feature. They are versioned and deployed independently but must agree on field names and method signatures.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph M["Mobile (Flutter, this page)"]
+        F1["features/observations&lt;br/&gt;features/questionares&lt;br/&gt;features/outlet&lt;br/&gt;features/items"]
+    end
+    subgraph S["Server (Odoo)"]
+        SS1["hcpi_data_collection_mobile_app&lt;br/&gt;&lt;i&gt;_inherit adds mobile-only fields&lt;br/&gt;and submit_* methods&lt;/i&gt;"]
+        SS2["hcpi_data_collection&lt;br/&gt;&lt;i&gt;base models &amp; workflow&lt;/i&gt;"]
+        SS3["hcpi_outlet, hcpi_item, hcpi_outlet_item_observation"]
+    end
+    F1 -- "JSON-RPC&lt;br/&gt;callKw" --&gt; SS1
+    SS1 -.inherits.-&gt; SS2
+    SS2 --&gt; SS3
+    style SS1 fill:#dbeafe,stroke:#1e3a8a</code></pre>
+<p>When you add a field that the mobile app needs to send, you add it on the <strong>server</strong> side via <code>_inherit</code> in <code>hcpi_data_collection_mobile_app</code>, and on the <strong>mobile</strong> side in the matching <code>*Model</code> class (a Dart data class with <code>fromJson</code> / <code>toJson</code>). Forget either half and the field silently vanishes.</p>
+<h2 id="10-build-sign-and-release">10. Build, sign, and release</h2>
+<p>The release flow today is:</p>
+<ol>
+<li>Bump the version in <code>pubspec.yaml</code> (<code>version: 1.0.X+X</code>). The first number is <code>versionName</code> (Android), the second is <code>versionCode</code>.</li>
+<li>Ensure <code>android/key.properties</code> is in place on the build machine (Kola's developer machine today).</li>
+<li><code>flutter build appbundle --release</code> produces <code>build/app/outputs/bundle/release/app-release.aab</code>.</li>
+<li>Upload the <code>.aab</code> to the Google Play Console.</li>
+<li>The app's own <code>in_app_update</code> plugin prompts existing users to update once the release rolls out.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Play Store account migration (open issue 5.4)</p>
+<p>The Google Play listing is currently under Kola's developer account, not under EAC. Moving it to an EAC-controlled Play account is on the reported-issues backlog (<a href="../../issues-report.md">5.4 in the issues report</a>). When that happens, the package identifier <code>eac.hcpi.app</code> stays the same — only the publishing account changes — so existing installs keep updating without user intervention, provided the migration uses Google Play's <a href="https://support.google.com/googleplay/android-developer/answer/6230247">App transfer</a> flow rather than a new listing.</p>
+</div>
+<h2 id="11-where-to-look-to-change-something">11. Where to look to change something</h2>
+<table>
+<thead>
+<tr>
+<th>You want to…</th>
+<th>Open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a new country to the dropdown</td>
+<td><code>lib/core/util/globals/variables/database_constants.dart</code> — add an entry to <code>DOMAIN_MAPPINGS</code> and a currency to <code>getCurrencyToUse</code>.</td>
+</tr>
+<tr>
+<td>Change which Odoo URL each country points at</td>
+<td>Same file — the <code>*_DOMAIN</code> constants at the top.</td>
+</tr>
+<tr>
+<td>Add a new field to the new-outlet form</td>
+<td><code>features/outlet/data/models/</code> (Dart side, <code>fromJson</code> / <code>toJson</code>), then <code>features/outlet/presentation/</code> for the form widget. Server-side, extend <code>hcpi.outlet.new</code>.</td>
+</tr>
+<tr>
+<td>Add a new screen</td>
+<td>New folder under <code>features/</code>, mirror the existing <code>data</code> / <code>domain</code> / <code>presentation</code> shape, register routes in <code>core/app routes/routes.dart</code>, register Blocs in <code>core/multiProviders/multiProvider.dart</code>.</td>
+</tr>
+<tr>
+<td>Change what the background sync does</td>
+<td><code>features/work_manager_sync/data/synchronizer.dart</code> (the work) + <code>core/util/helpers/work_manager.dart</code> (the scheduling).</td>
+</tr>
+<tr>
+<td>Change the geofence / location prompt</td>
+<td>Server side — <code>res.config.settings.get_display_location_settings</code> controls <code>display_location_pop_up</code> and <code>distance_diff</code>. The mobile side reads it in <code>OdooClientStorage.saveLocationSettings</code>.</td>
+</tr>
+<tr>
+<td>Investigate a sync failure</td>
+<td><code>features/work_manager_sync/data/synchronizer.dart</code> — wrap <code>submit_observations()</code> in <code>try/catch</code> and log to a persistent file via <code>path_provider</code>. The current code only <code>print</code>s.</td>
+</tr>
+<tr>
+<td>Add a new RPC call</td>
+<td>A new <code>*RemoteDatasource</code> method using <code>client.callKw({...})</code>. Wire it into the matching repository and usecase.</td>
+</tr>
+<tr>
+<td>Bump the minimum Android version</td>
+<td><code>android/app/build.gradle</code> — <code>minSdkVersion</code> defaults to <code>flutter.minSdkVersion</code>; override there.</td>
+</tr>
+<tr>
+<td>Ship for iOS</td>
+<td>Get a Mac, register <code>eac.hcpi.app</code> with Apple, replace <code>WorkManager</code> calls with <code>BackgroundFetch</code>, re-test offline scenarios.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-common-gotchas">12. Common gotchas</h2>
+<ul>
+<li><strong>Folder name typo.</strong> The repo on disk is <code>HCPI_MOBLIE_APP</code> (not <code>MOBILE</code>). Don't rename — paths in CI / build scripts depend on it.</li>
+<li><strong><code>get_it</code> registrations are order-sensitive.</strong> If a <code>Bloc</code> you added to <code>multiProvider.dart</code> can't be resolved at startup, check that its dependencies are registered earlier in <code>core/dependency_injector/__init__.dart</code>.</li>
+<li><strong><code>shared_preferences</code> is your "database".</strong> There is no SQLite layer. Large lists (items, outlets) are serialised to JSON strings under keys. If you add a feature that caches a lot, watch the preference size — Android imposes a soft cap before performance degrades.</li>
+<li><strong><code>SharedPreferences.getString</code> returns <code>null</code> on first run.</strong> The robust pattern in this codebase is <code>_readAuthDataSafely</code> in <code>OdooClientStorage</code> — wrap reads in <code>try / catch</code> and return defaults; don't bang (<code>!</code>) the result.</li>
+<li><strong>Session expiry while offline is silent.</strong> The session JSON in <code>SharedPreferences</code> may be unauthenticated by the time you sync. The connectivity bloc re-runs <code>initialiseUserClient</code> on reconnect, but a long-stale session needs the user to re-enter their password.</li>
+<li><strong><code>WorkManager</code> is Android-only.</strong> The <code>Platform.isIOS</code> guard short-circuits initialisation on iOS — meaning the iOS scaffold is unusable for production today even though it builds.</li>
+<li><strong>Two model variables per country (<code>*_model</code> and <code>*_new_model</code>).</strong> The <code>*.new</code> models are mobile-submission staging tables; the plain models are the canonical post-approval records. Confusing one for the other is a common cause of "my new outlet didn't show up on the dashboard" tickets.</li>
+</ul>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><strong>Server-side counterpart:</strong> <a href="../../modules/data-collection/#hcpi_data_collection_mobile_app--the-flutter-surface">Data Collection module — <code>hcpi_data_collection_mobile_app</code></a></li>
+<li><strong>What the data eventually becomes:</strong> <a href="../../concepts/how-calculations-work/">How the Calculations Work</a></li>
+<li><strong>Country differences (which the mobile app reads):</strong> <a href="../country-variants/">Country Variants</a></li>
+<li><strong>External:</strong> <a href="https://docs.flutter.dev">Flutter documentation</a>, <a href="https://pub.dev/packages/odoo_rpc"><code>odoo_rpc</code> package</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../country-variants/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Country Variants">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Country Variants
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../first-edits/" class="md-footer__link md-footer__link--next" aria-label="Next: Making Your First Edits">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Making Your First Edits
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
