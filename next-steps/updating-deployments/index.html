@@ -1666,6 +1666,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Step 5: Back up the database and filestore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discover-the-database-and-filestore-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discover the database and filestore paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#take-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Take the backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2433,6 +2461,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Step 5: Back up the database and filestore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discover-the-database-and-filestore-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discover the database and filestore paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#take-the-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Take the backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2498,7 +2554,15 @@
 
 <h1 id="updating-a-country-deployment">Updating a Country Deployment</h1>
 <p>Each country runs its own HCPI deployment off its own branch — Uganda on <code>ug_18</code>, Kenya on <code>ke_18</code>, Tanzania on <code>tz_18</code>, Zanzibar on <code>zar_18</code> (see <a href="../../understanding-the-codebase/country-variants/">Country Variants</a> for the full map). "Updating" a deployment means pulling the latest commits for <strong>that country's branch</strong> from the canonical EAC repo and restarting the service so the new code loads.</p>
-<p>This page is the routine for doing that safely. It assumes the code lives in <code>/opt/hcpi/custom/HCPI</code> and the config is <code>/opt/hcpi/conf/hcpi.conf</code> (the paths used throughout this documentation).</p>
+<p>This page is the routine for doing that safely. Every command below uses two shell variables — the deployment folder and its config file — so the same commands work whether your install lives in <code>/opt/hcpi</code>, <code>/opt/cpi18</code>, or anywhere else.</p>
+<div class="admonition info">
+<p class="admonition-title">Set <code>$INSTALL</code> and <code>$CONF</code> at the top of your session</p>
+<p>Before running any of the steps below, set these two variables. They persist for the rest of the shell session and every later command picks them up:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">INSTALL</span><span class="o">=</span>/opt/hcpi<span class="w">               </span><span class="c1"># the deployment root</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">CONF</span><span class="o">=</span><span class="nv">$INSTALL</span>/conf/hcpi.conf<span class="w">    </span><span class="c1"># the config file Odoo runs with</span>
+</code></pre></div>
+<p>Edit both lines if your install lives elsewhere (e.g. <code>INSTALL=/opt/cpi18</code> and <code>CONF=$INSTALL/conf/cpi18.conf</code>). Not sure? <code>ps auxf | grep odoo-bin</code> shows the running process's <code>-c</code> argument — the file path right after <code>-c</code> is <code>$CONF</code>, and the folder above <code>odoo/</code> is <code>$INSTALL</code>.</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">One branch per deployment</p>
 <p>A deployment's database is built against its branch's code. Always pull the <strong>same branch</strong> the deployment already runs — never switch a live deployment to a different country's branch, or the installed modules won't match the database.</p>
@@ -2506,19 +2570,19 @@
 <h2 id="step-1-ssh-access-to-github-from-wsl-first-time-only">Step 1: SSH access to GitHub from WSL (first time only)</h2>
 <p>Most teams run these updates from WSL, and the single most common reason <code>git fetch</code> / <code>git pull</code> fails is that this WSL instance has no SSH key registered with the GitHub account that can read the EAC repo. <strong>If you see <code>Permission denied (publickey)</code>, this is the step that fixes it.</strong></p>
 <p>Quick check — if this prints your GitHub username, you can skip the rest of this step:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Hi &lt;your-username&gt;! You&#39;ve successfully authenticated, ...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Hi &lt;your-username&gt;! You&#39;ve successfully authenticated, ...</span>
 </code></pre></div>
 <p>Otherwise, run the following <strong>inside the WSL shell</strong> (not in PowerShell or Git Bash on the Windows side):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Generate a key (press Enter through all prompts to accept the defaults)</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your-email@example.com&quot;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 2. Print the public key — copy the whole line that starts with ssh-ed25519</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Generate a key (press Enter through all prompts to accept the defaults)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your-email@example.com&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 2. Print the public key — copy the whole line that starts with ssh-ed25519</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
 </code></pre></div>
 <p>Open <a href="https://github.com/settings/keys">https://github.com/settings/keys</a> → <strong>New SSH key</strong>, paste the public key, give it a descriptive title (e.g. <em>"WSL on KE server"</em>), and save.</p>
 <p>Test the connection again:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
 </code></pre></div>
 <p>You should now see the <code>Hi &lt;your-username&gt;!</code> line. If you do, move on to Step 2.</p>
 <div class="admonition warning">
@@ -2528,8 +2592,8 @@
 <li><strong>Don't put the key under <code>/mnt/c/...</code>.</strong> NTFS permissions don't translate to POSIX, and <code>ssh</code> will refuse a private key whose file mode isn't <code>600</code>. Keep it in the WSL home directory (<code>~/.ssh/id_ed25519</code>).</li>
 <li><strong>Every WSL distro / instance needs its own key.</strong> A fresh <code>wsl --install</code> starts with no keys at all.</li>
 <li><strong>Agent not running?</strong> If a later <code>git push</code> says <code>Could not open a connection to your authentication agent</code>, start one and add the key:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ssh-add<span class="w"> </span>~/.ssh/id_ed25519
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>ssh-agent<span class="w"> </span>-s<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ssh-add<span class="w"> </span>~/.ssh/id_ed25519
 </code></pre></div></li>
 </ul>
 </div>
@@ -2540,20 +2604,20 @@
 <p>For HTTPS-with-Personal-Access-Token (no SSH) and the non-WSL setup, see <a href="../../getting-started/git-remotes/">Git Remotes (EAC)</a>.</p>
 <h2 id="step-2-add-the-eac-remote-first-time-only">Step 2: Add the <code>eac</code> remote (first time only)</h2>
 <p>If this machine has never pushed to or pulled from the EAC repo, add it as a remote. Skip this step if <code>git remote -v</code> already lists <code>eac</code> (or an <code>origin</code> pointing at <code>East-African-Community-HCPI/HCPI</code>).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$INSTALL</span>/custom/HCPI
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
 </code></pre></div>
 <h2 id="step-3-check-the-current-branch">Step 3: Check the current branch</h2>
 <p>Find out which branch this deployment runs on — every step below uses it. Capture it into <code>$BR</code> so you can paste the same commands without retyping the name:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span><span class="w">                     </span><span class="c1"># e.g. ug_18</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>status<span class="w">                     </span><span class="c1"># should say &quot;nothing to commit, working tree clean&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span><span class="w">                     </span><span class="c1"># e.g. ug_18</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>status<span class="w">                     </span><span class="c1"># should say &quot;nothing to commit, working tree clean&quot;</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Uncommitted local changes?</p>
 <p>If <code>git status</code> shows modified files, a previous edit was made directly on the server. Stash or commit it before pulling, or the pull will refuse to run:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>stash<span class="w"> </span>--include-untracked<span class="w">         </span><span class="c1"># set the changes aside</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>stash<span class="w"> </span>--include-untracked<span class="w">         </span><span class="c1"># set the changes aside</span>
 </code></pre></div>
 To recover the changes and bring them back, run
  <code>bash
@@ -2561,108 +2625,139 @@ git stash pop        # bring them back, then resolve any conflicts</code></p>
 </div>
 <h2 id="step-4-point-this-branch-at-eac-first-time-only">Step 4: Point this branch at <code>eac</code> (first time only)</h2>
 <p>Now that you know the branch, set its upstream to <code>eac</code> so plain <code>git pull</code> and <code>git push</code> target the EAC repo without naming it every time. You only need this once per branch — skip it on subsequent updates.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
 </code></pre></div>
 <details class="note">
 <summary>Optional: make <code>eac</code> the default for the whole repo</summary>
 <p>So new branches and pushes go to <code>eac</code> too:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>config<span class="w"> </span>remote.pushDefault<span class="w"> </span>eac
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>config<span class="w"> </span>checkout.defaultRemote<span class="w"> </span>eac
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>config<span class="w"> </span>remote.pushDefault<span class="w"> </span>eac
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>config<span class="w"> </span>checkout.defaultRemote<span class="w"> </span>eac
 </code></pre></div>
 </details>
 <h2 id="step-5-back-up-the-database-and-filestore">Step 5: Back up the database and filestore</h2>
 <p>Before pulling any code or applying any schema upgrades, take a snapshot of the live database and the Odoo filestore. If anything in the steps that follow misbehaves — a bad migration, a corrupted view, a module that won't load — this backup is what lets you revert in minutes instead of hours.</p>
 <p>Run this as the Linux user that runs Odoo (often <code>hcpi</code> or <code>odoo</code>) — that user already has the right filesystem permissions on the filestore, and PostgreSQL's default local auth will accept it as the database owner without a password. If you are logged in as someone else, <code>sudo -iu hcpi</code> (or the right username) first.</p>
-<p>You need three pieces of information from <code>/opt/hcpi/conf/hcpi.conf</code>:</p>
-<ul>
-<li><code>db_name</code> — the database to back up (often <code>hcpi</code> or <code>hcpi18</code>).</li>
-<li><code>db_user</code> — the PostgreSQL role that owns it; we use this so <code>pg_dump</code> doesn't need the postgres superuser.</li>
-<li><code>data_dir</code> — where the Odoo filestore lives. If this line is absent or blank in the conf, Odoo falls back to <code>~/.local/share/Odoo</code> of the user running it — and the snippet below does the same.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w">      </span><span class="s1">&#39;^db_name&#39;</span><span class="w">   </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">DB_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w">   </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^data_dir&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.local/share/Odoo</span><span class="si">}</span><span class="w">    </span><span class="c1"># Odoo default when data_dir is unset</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span>/opt/hcpi/backups
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># 1. Database dump (custom format — compressed, supports pg_restore)</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># 2. Filestore (attachments and binary fields)</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">&quot;</span><span class="w"> </span>filestore/<span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
-<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="c1"># 3. Record the current git commit so you can return to it</span>
-<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>git<span class="w"> </span>-C<span class="w"> </span>/opt/hcpi/custom/HCPI<span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span>
-<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
-<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5
+<h3 id="discover-the-database-and-filestore-paths">Discover the database and filestore paths</h3>
+<p>The same pattern as the export guide (<a href="../../extraction/linux-export/#find-the-filestore">Find the filestore</a>) — read the conf, then derive the filestore from the run user's HOME via <code>getent</code> so the path is correct regardless of which user is currently logged in:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w">      </span><span class="s1">&#39;^db_name&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nv">DB_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># By convention the Linux user that runs Odoo matches the db_user. If not, set RUN_USER manually.</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nv">RUN_USER</span><span class="o">=</span><span class="nv">$DB_USER</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nv">RUN_USER_HOME</span><span class="o">=</span><span class="k">$(</span>getent<span class="w"> </span>passwd<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f6<span class="k">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nv">FILESTORE_PARENT</span><span class="o">=</span><span class="nv">$RUN_USER_HOME</span>/.local/share/Odoo/filestore
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nv">FILESTORE</span><span class="o">=</span><span class="nv">$FILESTORE_PARENT</span>/<span class="nv">$DB</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Filestore: </span><span class="nv">$FILESTORE</span><span class="s2">&quot;</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>sudo<span class="w"> </span>ls<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILESTORE</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+</code></pre></div>
+<p>You should see a bunch of two-character folders (<code>01</code>, <code>02</code>, <code>03</code>, …) plus a <code>checklist</code> file. That confirms the path is right.</p>
+<details class="note">
+<summary>Didn't find it there?</summary>
+<p>Same fallback ladder as the export guide:</p>
+<ol>
+<li>
+<p><strong>Check the config for an explicit <code>data_dir</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;^\s*data_dir&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>If it prints something, override the discovered path with <code>&lt;data_dir&gt;/filestore</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">FILESTORE_PARENT</span><span class="o">=</span>&lt;the<span class="w"> </span>data_dir&gt;/filestore
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">FILESTORE</span><span class="o">=</span><span class="nv">$FILESTORE_PARENT</span>/<span class="nv">$DB</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>Search the filesystem:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>find<span class="w"> </span>/<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span>filestore<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+<p>Several results are possible (old Odoo installs, multi-instance hosts). Pick the one that contains a subfolder matching your <code>$DB</code>, then set <code>FILESTORE_PARENT</code> to that and re-run the <code>sudo ls "$FILESTORE"</code> check.</p>
+</li>
+<li>
+<p><strong>Confirm the live process is using the conf you think it is:</strong> <code>ps -ef | grep odoo-bin</code> and look at the <code>-c</code> argument. If it's a different conf, repeat Step 5 against that one.</p>
+</li>
+</ol>
+</details>
+<h3 id="take-the-backup">Take the backup</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="nv">$INSTALL</span>/backups
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># 1. Database dump (custom format — compressed, supports pg_restore)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1"># 2. Filestore (attachments and binary fields). -C makes the tar store a clean</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="c1">#    &quot;$DB/&quot; top-level entry, the same trick the export guide uses with zip.</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILESTORE_PARENT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="c1"># 3. Record the current git commit so you can return to it</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>git<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/custom/HCPI&quot;</span><span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>ls<span class="w"> </span>-lh<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-5
 </code></pre></div>
 <p>The three files you should now see — <code>&lt;db&gt;-&lt;ts&gt;.dump</code>, <code>filestore-&lt;db&gt;-&lt;ts&gt;.tar.gz</code>, and <code>git-head-&lt;ts&gt;.txt</code> — together let you reconstruct the deployment exactly as it was right now.</p>
 <details class="note">
 <summary>If <code>pg_dump</code> asks for a password or refuses to connect</summary>
 <p><code>pg_dump -U "$DB_USER"</code> relies on PostgreSQL's local <code>peer</code> or <code>trust</code> auth — the usual setup for HCPI — so it just works when you're logged in as the Odoo user. If your installation uses password auth, or you can't switch to the Odoo user, pick one of these fallbacks:</p>
 <p><strong>Pass the password from the conf:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">DB_PASS</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_password&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nv">PGPASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$DB_PASS</span><span class="s2">&quot;</span><span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">DB_PASS</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_password&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">PGPASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$DB_PASS</span><span class="s2">&quot;</span><span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
 </code></pre></div>
 <p><strong>Dump as the <code>postgres</code> superuser</strong> (works regardless of how <code>db_user</code> is configured, but needs sudo and leaves a root-owned dump file that you may need to <code>chown</code> afterwards):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_dump<span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">:</span><span class="nv">$USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_dump<span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">:</span><span class="nv">$USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
 </code></pre></div>
-</details>
-<details class="note">
-<summary>If the filestore directory doesn't exist where you expect</summary>
-<p>Confirm the path with <code>ls "$DATA_DIR/filestore/"</code> — you should see one directory per database that's been run on this host. If <code>filestore/$DB</code> is missing, either the database has never produced an attachment yet (rare but possible) or the running Odoo is reading from a different <code>data_dir</code> than what's in the conf you just parsed. Run <code>ps -ef | grep odoo-bin</code> and check the <code>-c</code> argument to confirm which conf the live process is using.</p>
 </details>
 <div class="admonition tip">
 <p class="admonition-title">Keep backups outside the deployment folder</p>
-<p><code>/opt/hcpi/backups</code> is fine for a quick rollback, but for anything you care about long-term, copy these three files off the server (rsync to a backup host, push to object storage, etc.). A disk failure on the deployment server takes the in-tree backups with it.</p>
+<p><code>$INSTALL/backups</code> is fine for a quick rollback, but for anything you care about long-term, copy these three files off the server (rsync to a backup host, push to object storage, etc.). A disk failure on the deployment server takes the in-tree backups with it.</p>
 </div>
 <details class="warning">
 <summary>If something goes wrong — rolling back</summary>
 <p>Open this section <strong>only if a later step fails</strong> (the pull conflicts, the <code>-u</code> upgrade errors out, or the service refuses to boot after restart). The rollback is destructive — it replaces the current database with the snapshot you just took, so any data entered after the backup will be lost.</p>
 <p><strong>Stop the service first</strong> so nothing writes while you restore:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
 </code></pre></div>
 <p><strong>Revert the database</strong> to the snapshot. The drop/recreate pattern is the most reliable — <code>pg_restore</code> against an existing database can leave orphaned objects. Run as the Odoo user (same as Step 5):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w">      </span><span class="s1">&#39;^db_name&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">DB_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">TS</span><span class="o">=</span>&lt;the<span class="w"> </span>timestamp<span class="w"> </span>from<span class="w"> </span>Step<span class="w"> </span><span class="m">5</span>&gt;
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span>/opt/hcpi/backups
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>dropdb<span class="w">     </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>createdb<span class="w">   </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>pg_restore<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w">      </span><span class="s1">&#39;^db_name&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nv">DB_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nv">TS</span><span class="o">=</span>&lt;the<span class="w"> </span>timestamp<span class="w"> </span>from<span class="w"> </span>Step<span class="w"> </span><span class="m">5</span>&gt;
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="nv">$INSTALL</span>/backups
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>dropdb<span class="w">     </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>createdb<span class="w">   </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>pg_restore<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
 </code></pre></div>
 <p>If <code>db_user</code> lacks <code>CREATEDB</code> (rare on HCPI deployments but possible), or you hit auth errors, do the same three commands as the postgres superuser instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>dropdb<span class="w">   </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createdb<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_restore<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>dropdb<span class="w">   </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createdb<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>pg_restore<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
 </code></pre></div>
-<p><strong>Revert the filestore:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^data_dir&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.local/share/Odoo</span><span class="si">}</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">/filestore/</span><span class="nv">$DB</span><span class="s2">&quot;</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>tar<span class="w"> </span>-xzf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">&quot;</span>
+<p><strong>Revert the filestore.</strong> Re-derive <code>FILESTORE_PARENT</code> the same way Step 5 did (so it's correct even if you're now in a fresh session):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">RUN_USER</span><span class="o">=</span><span class="nv">$DB_USER</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nv">RUN_USER_HOME</span><span class="o">=</span><span class="k">$(</span>getent<span class="w"> </span>passwd<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f6<span class="k">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nv">FILESTORE_PARENT</span><span class="o">=</span><span class="nv">$RUN_USER_HOME</span>/.local/share/Odoo/filestore
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILESTORE_PARENT</span><span class="s2">/</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>tar<span class="w"> </span>-xzf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILESTORE_PARENT</span><span class="s2">&quot;</span>
 </code></pre></div>
+<p>If Step 5's "Didn't find it there?" fallback was used, set <code>FILESTORE_PARENT</code> to the same override value here.</p>
 <p><strong>Revert the code</strong> to the commit you recorded:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">PREV</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="k">)</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PREV</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$INSTALL</span>/custom/HCPI
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nv">PREV</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="k">)</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PREV</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>Alternatively, if you have not done anything else with git since the failed pull, <code>git reset --hard HEAD@{1}</code> jumps back to the pre-pull state using the reflog.</p>
 <p><strong>Bring the service back up</strong> and confirm it boots cleanly:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w">      </span><span class="c1"># check for CRITICAL / Failed to load lines</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>-n<span class="w"> </span><span class="m">100</span><span class="w">      </span><span class="c1"># check for CRITICAL / Failed to load lines</span>
 </code></pre></div>
 <p>Once you're stable, investigate the failure <em>before</em> attempting the update again — running the same broken pull a second time will produce the same result.</p>
 </details>
 <h2 id="step-6-pull-the-latest-for-that-branch">Step 6: Pull the latest for that branch</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<p>If you <code>sudo -iu</code> switched users for the backup, your shell may not be inside the repo any more. <code>cd</code> back in before fetching:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/custom/HCPI&quot;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p><code>--ff-only</code> keeps the deployment's history a clean fast-forward — it refuses to create a surprise merge commit. If it fails, the working tree has diverged (see the warning above).</p>
 <details class="note">
@@ -2671,9 +2766,8 @@ git stash pop        # bring them back, then resolve any conflicts</code></p>
 </details>
 <h2 id="step-7-apply-model-or-view-changes-when-needed">Step 7: Apply model or view changes (when needed)</h2>
 <p>Pure Python logic changes load on restart alone. But if the pulled commits touched <strong>models/fields, views (XML), security, or data files</strong>, you must upgrade the affected modules once so the database schema and views update:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init<span class="w">   </span><span class="c1"># name the changed module(s), comma-separated</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/venv/bin/activate&quot;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>python<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/odoo/odoo-bin&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init<span class="w">   </span><span class="c1"># name the changed module(s), comma-separated</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Not sure what changed?</p>
@@ -2681,61 +2775,91 @@ git stash pop        # bring them back, then resolve any conflicts</code></p>
 </div>
 <h2 id="step-8-restart">Step 8: Restart</h2>
 <p>Restart so the running process picks up the new code. <strong>Local development</strong> is the default below; production servers running under systemd are in the collapsed section.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/venv/bin/activate&quot;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>python<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/odoo/odoo-bin&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>Watch the log as it boots — <code>Registry loaded</code> with no <code>CRITICAL</code>/<code>Failed to load</code> lines means the update is live. Open the site and confirm.</p>
 <details class="note">
 <summary>On a production server (systemd)</summary>
-<p>A server deployment runs HCPI as the <code>hcpi</code> service (defined during <a href="../../installation/linux/#running-as-a-service-recommended-for-production">Linux installation</a>), so you don't launch <code>odoo-bin</code> by hand — you restart the unit:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>hcpi
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>hcpi<span class="w">        </span><span class="c1"># should show &quot;active (running)&quot;</span>
+<p>A server deployment runs HCPI under a systemd unit (defined during <a href="../../installation/linux/#running-as-a-service-recommended-for-production">Linux installation</a>), so you don't launch <code>odoo-bin</code> by hand — you restart the unit. <strong>The unit name varies by deployment</strong> — Uganda's is <code>hcpi</code>, others have shipped as <code>odoo</code>, <code>cpi18</code>, <code>eac-cpi</code>, etc. Set <code>SERVICE</code> once and reuse:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nv">SERVICE</span><span class="o">=</span>hcpi<span class="w">                          </span><span class="c1"># edit to match this deployment&#39;s unit name</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE</span><span class="s2">&quot;</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w">  </span><span class="s2">&quot;</span><span class="nv">$SERVICE</span><span class="s2">&quot;</span><span class="w">     </span><span class="c1"># should show &quot;active (running)&quot;</span>
 </code></pre></div>
-<p>If you ran the <code>-u</code> upgrade in Step 7, do it through the service account or stop the service first so two processes don't touch the database at once:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hcpi
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span>hcpi<span class="w"> </span>/opt/hcpi/venv/bin/python<span class="w"> </span>/opt/hcpi/odoo/odoo-bin<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span>-c<span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hcpi
+<p>If you ran the <code>-u</code> upgrade in Step 7, do it through the service account or stop the service first so two processes don't touch the database at once. <code>RUN_USER</code> is whichever Linux user the unit runs as — usually the same as <code>db_user</code> from <code>$CONF</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">RUN_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE</span><span class="s2">&quot;</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>sudo<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/venv/bin/python&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/odoo/odoo-bin&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span>-u<span class="w"> </span>hcpi_index<span class="w"> </span>--stop-after-init
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SERVICE</span><span class="s2">&quot;</span>
 </code></pre></div>
-<p>Follow the logs with <code>sudo journalctl -u hcpi -f</code> (or <code>tail -f</code> on the <code>logfile</code> set in the conf).</p>
+<p>Follow the logs with <code>sudo journalctl -u "$SERVICE" -f</code> (or <code>tail -f</code> on the <code>logfile</code> set in the conf).</p>
+<details class="note">
+<summary><code>Unit &lt;name&gt;.service could not be found</code> — how to discover the real name</summary>
+<p>If <code>systemctl status</code> reports the unit isn't loaded, the deployment was either registered under a different name or never set up as a systemd service at all. Find out which:</p>
+<p><strong>1. Ask the kernel which unit owns the running Odoo process</strong> — the most reliable signal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>pgrep<span class="w"> </span>-fo<span class="w"> </span><span class="s2">&quot;odoo-bin -c </span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="k">)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>cat<span class="w"> </span>/proc/<span class="nv">$PID</span>/cgroup
+</code></pre></div>
+<p>A line like <code>0::/system.slice/&lt;name&gt;.service</code> is your unit — use that name. Anything under <code>user.slice/...</code> means the process was started by a login shell (nohup / screen / tmux), not systemd, and there is no unit to manage.</p>
+<p><strong>2. Grep unit files for this install's paths:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sudo<span class="w"> </span>grep<span class="w"> </span>-rEl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">|</span><span class="k">$(</span>basename<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span>/etc/systemd/system/<span class="w"> </span>/lib/systemd/system/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+<p>The matching <code>.service</code> filename (minus the extension) is the unit name.</p>
+<p><strong>3. Sweep all registered units:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>systemctl<span class="w"> </span>list-units<span class="w">      </span>--type<span class="o">=</span>service<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;cpi|odoo|hcpi&#39;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>systemctl<span class="w"> </span>list-unit-files<span class="w"> </span>--type<span class="o">=</span>service<span class="w">       </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;cpi|odoo|hcpi&#39;</span>
+</code></pre></div>
+<p><strong>4. If none of the above match</strong>, the install was started manually. Stop and restart it the same way:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>sudo<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="nb">kill</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PID</span><span class="s2">&quot;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>sudo<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUN_USER</span><span class="s2">&quot;</span><span class="w"> </span>nohup<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/venv/bin/python&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/odoo/odoo-bin&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div>
+<p>Once you know the real name, write it down — it should become a registered systemd unit so future updates don't go through this lookup. The <a href="../../installation/linux/#running-as-a-service-recommended-for-production">Linux installation guide's service section</a> covers how to set one up.</p>
+</details>
 </details>
 <h2 id="quick-reference">Quick reference</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># first time only: SSH key + remote + upstream</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com<span class="w">                            </span><span class="c1"># must say &quot;Hi &lt;your-username&gt;!&quot; before continuing</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="c1"># if not, generate a key inside WSL and add it at https://github.com/settings/keys</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1">#   ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="c1">#   cat ~/.ssh/id_ed25519.pub</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
-<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi/custom/HCPI
-<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
-<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span><span class="w">                  </span><span class="c1"># this deployment&#39;s branch, e.g. ug_18</span>
-<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
-<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>
-<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="c1"># every update from here on</span>
-<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
-<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>git<span class="w"> </span>status<span class="w">                                       </span><span class="c1"># must be clean</span>
-<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>
-<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="c1"># back up before pulling (see Step 5 for full commands and fallbacks)</span>
-<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w">      </span><span class="s1">&#39;^db_name&#39;</span><span class="w">   </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="nv">DB_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w">   </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^data_dir&#39;</span><span class="w"> </span>/opt/hcpi/conf/hcpi.conf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
-<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="nv">DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_DIR</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.local/share/Odoo</span><span class="si">}</span>
-<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
-<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/hcpi/backups
-<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;/opt/hcpi/backups/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
-<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;/opt/hcpi/backups/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DATA_DIR</span><span class="s2">&quot;</span><span class="w"> </span>filestore/<span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
-<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>git<span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;/opt/hcpi/backups/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span>
-<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>
-<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
-<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>
-<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="c1"># apply + restart (local)</span>
-<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a><span class="nb">cd</span><span class="w"> </span>/opt/hcpi<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf<span class="w"> </span>-u<span class="w"> </span>&lt;changed_module&gt;<span class="w"> </span>--stop-after-init
-<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>python<span class="w"> </span>odoo/odoo-bin<span class="w"> </span>-c<span class="w"> </span>conf/hcpi.conf
-<a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>
-<a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a><span class="c1"># apply + restart (server)</span>
-<a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a><span class="c1"># sudo systemctl restart hcpi</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Set once per session — edit if your install lives elsewhere</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="nv">INSTALL</span><span class="o">=</span>/opt/hcpi
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="nv">CONF</span><span class="o">=</span><span class="nv">$INSTALL</span>/conf/hcpi.conf
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="c1"># first time only: SSH key + remote + upstream</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com<span class="w">                            </span><span class="c1"># must say &quot;Hi &lt;your-username&gt;!&quot; before continuing</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="c1"># if not, generate a key inside WSL and add it at https://github.com/settings/keys</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="c1">#   ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="c1">#   cat ~/.ssh/id_ed25519.pub</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/custom/HCPI&quot;</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>eac<span class="w"> </span>git@github.com:East-African-Community-HCPI/HCPI.git
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span><span class="w">                  </span><span class="c1"># this deployment&#39;s branch, e.g. ug_18</span>
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>eac/<span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>
+<a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="c1"># every update from here on</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a><span class="nv">BR</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>
+<a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a>git<span class="w"> </span>status<span class="w">                                       </span><span class="c1"># must be clean</span>
+<a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a>
+<a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a><span class="c1"># back up before pulling (see Step 5 for full commands, filestore discovery, and fallbacks)</span>
+<a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a><span class="nv">DB</span><span class="o">=</span><span class="k">$(</span>grep<span class="w">      </span><span class="s1">&#39;^db_name&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a><span class="nv">DB_USER</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span><span class="s1">&#39;^db_user&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
+<a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a><span class="nv">RUN_USER_HOME</span><span class="o">=</span><span class="k">$(</span>getent<span class="w"> </span>passwd<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f6<span class="k">)</span>
+<a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a><span class="nv">FILESTORE_PARENT</span><span class="o">=</span><span class="nv">$RUN_USER_HOME</span>/.local/share/Odoo/filestore
+<a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a><span class="nv">TS</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span>
+<a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/backups&quot;</span>
+<a id="__codelineno-32-27" name="__codelineno-32-27" href="#__codelineno-32-27"></a>pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB_USER</span><span class="s2">&quot;</span><span class="w"> </span>-Fc<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/backups/</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.dump&quot;</span>
+<a id="__codelineno-32-28" name="__codelineno-32-28" href="#__codelineno-32-28"></a>tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/backups/filestore-</span><span class="si">${</span><span class="nv">DB</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILESTORE_PARENT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DB</span><span class="s2">&quot;</span>
+<a id="__codelineno-32-29" name="__codelineno-32-29" href="#__codelineno-32-29"></a>git<span class="w"> </span>rev-parse<span class="w"> </span>HEAD<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/backups/git-head-</span><span class="si">${</span><span class="nv">TS</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+<a id="__codelineno-32-30" name="__codelineno-32-30" href="#__codelineno-32-30"></a>
+<a id="__codelineno-32-31" name="__codelineno-32-31" href="#__codelineno-32-31"></a>git<span class="w"> </span>fetch<span class="w"> </span>eac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only<span class="w"> </span>eac<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BR</span><span class="s2">&quot;</span>
+<a id="__codelineno-32-32" name="__codelineno-32-32" href="#__codelineno-32-32"></a>
+<a id="__codelineno-32-33" name="__codelineno-32-33" href="#__codelineno-32-33"></a><span class="c1"># apply + restart (local)</span>
+<a id="__codelineno-32-34" name="__codelineno-32-34" href="#__codelineno-32-34"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/venv/bin/activate&quot;</span>
+<a id="__codelineno-32-35" name="__codelineno-32-35" href="#__codelineno-32-35"></a>python<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/odoo/odoo-bin&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span><span class="w"> </span>-u<span class="w"> </span>&lt;changed_module&gt;<span class="w"> </span>--stop-after-init
+<a id="__codelineno-32-36" name="__codelineno-32-36" href="#__codelineno-32-36"></a>python<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$INSTALL</span><span class="s2">/odoo/odoo-bin&quot;</span><span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CONF</span><span class="s2">&quot;</span>
+<a id="__codelineno-32-37" name="__codelineno-32-37" href="#__codelineno-32-37"></a>
+<a id="__codelineno-32-38" name="__codelineno-32-38" href="#__codelineno-32-38"></a><span class="c1"># apply + restart (server)</span>
+<a id="__codelineno-32-39" name="__codelineno-32-39" href="#__codelineno-32-39"></a><span class="c1"># SERVICE=hcpi                                   # see Step 8 systemd note for how to find your unit name</span>
+<a id="__codelineno-32-40" name="__codelineno-32-40" href="#__codelineno-32-40"></a><span class="c1"># sudo systemctl restart &quot;$SERVICE&quot;</span>
 </code></pre></div>
 <table>
 <thead>
