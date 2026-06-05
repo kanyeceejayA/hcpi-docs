@@ -65,6 +65,7 @@ nav:
   - Using the System (UI Walkthrough): using-the-system.md
   - Changes:
     - Dashboard & Index Overhaul (June 2026): changes/dashboard-index-overhaul.md
+    - Validation, Observations & Imputation (June 2026): changes/validation-to-observations-and-imputation.md
   - Troubleshooting: troubleshooting.md
   - Next Steps:
     - Overview: next-steps/index.md
