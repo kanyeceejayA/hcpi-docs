@@ -2979,6 +2979,48 @@ problems that surfaced. <strong>Status</strong> shows what's been done since:
 <td>A killed run left its record <strong>stuck "processing", blocking every other computation forever</strong>; deleting update history left a lock; and the update forms reloaded over in-flight actions, dismissing dialogs and stranding records.</td>
 <td>✅</td>
 </tr>
+<tr>
+<td>G16</td>
+<td>Mobile app</td>
+<td><strong>Sync doesn't include questionnaire content</strong> — questionnaires sync without their content, so a collector can't work offline straight after syncing; the content arrives later.</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>G17</td>
+<td>Mobile app</td>
+<td><strong>Questionnaire field order</strong> — the collection code is chosen <em>before</em> the price; it should come <em>after</em>, and selecting <em>temporarily / permanently missing</em> should clear the price automatically.</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>G18</td>
+<td>Mobile app</td>
+<td><strong>No on-device period filter</strong> — collectors can't filter to the current collection period, and a device can't be limited to show only questionnaires.</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>G19</td>
+<td>Mobile app</td>
+<td><strong>GPS not captured during collection</strong> (NBS) — location isn't recorded; needs reproduction on a device.</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>G20</td>
+<td>Mobile app</td>
+<td><strong>Offline operation unconfirmed</strong> — whether a tablet keeps working when the server is offline is untested/undocumented (NBS).</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>G21</td>
+<td>Mobile app</td>
+<td><strong>No version control / distribution</strong> — no pinned APK on the servers, not (re)published to the Play Store, and the app sits under <strong>Kola's</strong> Google Play account instead of an <strong>EAC-controlled</strong> one.</td>
+<td>⬜</td>
+</tr>
+<tr>
+<td>G22</td>
+<td>Mobile app</td>
+<td><strong>XML/RPC endpoints undocumented</strong> — the integration contract the app relies on isn't documented or maintained.</td>
+<td>⬜</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
@@ -2986,6 +3028,10 @@ problems that surfaced. <strong>Status</strong> shows what's been done since:
 <code>hcpi_data_collection/IMPUTATION_METHODOLOGY_AUDIT.md</code>. They change published
 numbers, so each is a recommendation pending statistician sign-off — see
 <strong><a href="#whats-still-pending">What's still pending</a></strong>.</p>
+<p>The mobile-app findings (G16–G22) are <strong>field-reported</strong> (not from the June
+engine audit). The Flutter app was <strong>not touched</strong> in June, so all are still
+open — the full detail and roadmap is in
+<strong><a href="#a-mobile-data-collection-app--untouched-separate-repo">section A</a></strong>.</p>
 </blockquote>
 <hr />
 <h2 id="changes-implemented">Changes implemented</h2>
