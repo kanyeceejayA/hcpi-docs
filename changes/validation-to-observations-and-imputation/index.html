@@ -12,31 +12,31 @@
         <meta name="author" content="HCPI Team">
       
       
-        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/understanding-the-codebase/">
+        <link rel="canonical" href="https://kanyeceejaya.github.io/hcpi-docs/changes/validation-to-observations-and-imputation/">
       
       
-        <link rel="prev" href="odoo-basics/">
+        <link rel="prev" href="../dashboard-index-overhaul/">
       
       
-        <link rel="next" href="module-reference/">
+        <link rel="next" href="../../troubleshooting/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Understanding the Codebase - HCPI Documentation</title>
+        <title>Validation, Observations & Imputation (June 2026) - HCPI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#understanding-the-codebase" class="md-skip">
+        <a href="#validation-observations-imputation-import-conflicts-june-2026" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../.." title="HCPI Documentation" class="md-header__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Understanding the Codebase
+              Validation, Observations & Imputation (June 2026)
             
           </span>
         </div>
@@ -220,7 +220,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
+    <a href="../.." title="HCPI Documentation" class="md-nav__button md-logo" aria-label="HCPI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -238,7 +238,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -319,7 +319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/prerequisites/" class="md-nav__link">
+      <a href="../../getting-started/prerequisites/" class="md-nav__link">
         
   
   
@@ -347,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/getting-the-code/" class="md-nav__link">
+      <a href="../../getting-started/getting-the-code/" class="md-nav__link">
         
   
   
@@ -375,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/git-remotes/" class="md-nav__link">
+      <a href="../../getting-started/git-remotes/" class="md-nav__link">
         
   
   
@@ -464,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extraction/linux-export/" class="md-nav__link">
+      <a href="../../extraction/linux-export/" class="md-nav__link">
         
   
   
@@ -553,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/windows-wsl/" class="md-nav__link">
+      <a href="../../installation/windows-wsl/" class="md-nav__link">
         
   
   
@@ -581,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/windows-native/" class="md-nav__link">
+      <a href="../../installation/windows-native/" class="md-nav__link">
         
   
   
@@ -609,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/linux/" class="md-nav__link">
+      <a href="../../installation/linux/" class="md-nav__link">
         
   
   
@@ -698,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/cpi-explained/" class="md-nav__link">
+      <a href="../../concepts/cpi-explained/" class="md-nav__link">
         
   
   
@@ -726,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/cpi-concepts/" class="md-nav__link">
+      <a href="../../concepts/cpi-concepts/" class="md-nav__link">
         
   
   
@@ -754,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/how-calculations-work/" class="md-nav__link">
+      <a href="../../concepts/how-calculations-work/" class="md-nav__link">
         
   
   
@@ -782,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/data-flow/" class="md-nav__link">
+      <a href="../../concepts/data-flow/" class="md-nav__link">
         
   
   
@@ -810,7 +810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/glossary/" class="md-nav__link">
+      <a href="../../concepts/glossary/" class="md-nav__link">
         
   
   
@@ -842,8 +842,6 @@
       
   
   
-    
-  
   
   
     
@@ -856,11 +854,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -881,7 +881,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -899,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="odoo-basics/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/odoo-basics/" class="md-nav__link">
         
   
   
@@ -924,37 +924,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Understanding the Codebase
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../understanding-the-codebase/" class="md-nav__link">
         
   
   
@@ -970,104 +943,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#your-install-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Your install layout
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anatomy-of-an-hcpi-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Anatomy of an HCPI module
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Anatomy of an HCPI module">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#inside-one-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Inside one module
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#matching-the-ui-to-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Matching the UI to the code
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Matching the UI to the code">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-worked-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A worked example
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What's next?
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1080,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="module-reference/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/module-reference/" class="md-nav__link">
         
   
   
@@ -1159,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../modules/" class="md-nav__link">
         
   
   
@@ -1187,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/reference-data/" class="md-nav__link">
+      <a href="../../modules/reference-data/" class="md-nav__link">
         
   
   
@@ -1215,7 +1090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outlets/" class="md-nav__link">
+      <a href="../../modules/outlets/" class="md-nav__link">
         
   
   
@@ -1243,7 +1118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/data-collection/" class="md-nav__link">
+      <a href="../../modules/data-collection/" class="md-nav__link">
         
   
   
@@ -1271,7 +1146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/indices-dashboard/" class="md-nav__link">
+      <a href="../../modules/indices-dashboard/" class="md-nav__link">
         
   
   
@@ -1299,7 +1174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/country-overlay/" class="md-nav__link">
+      <a href="../../modules/country-overlay/" class="md-nav__link">
         
   
   
@@ -1327,7 +1202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/infrastructure/" class="md-nav__link">
+      <a href="../../modules/infrastructure/" class="md-nav__link">
         
   
   
@@ -1363,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="country-variants/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/country-variants/" class="md-nav__link">
         
   
   
@@ -1391,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="mobile-app/" class="md-nav__link">
+      <a href="../../understanding-the-codebase/mobile-app/" class="md-nav__link">
         
   
   
@@ -1419,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../first-edits/" class="md-nav__link">
+      <a href="../../first-edits/" class="md-nav__link">
         
   
   
@@ -1454,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using-the-system/" class="md-nav__link">
+      <a href="../../using-the-system/" class="md-nav__link">
         
   
   
@@ -1478,8 +1353,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1490,13 +1367,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1517,7 +1392,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1535,7 +1410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../changes/dashboard-index-overhaul/" class="md-nav__link">
+      <a href="../dashboard-index-overhaul/" class="md-nav__link">
         
   
   
@@ -1560,10 +1435,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../changes/validation-to-observations-and-imputation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation, Observations & Imputation (June 2026)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1579,6 +1481,225 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-we-set-out-to-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The problem we set out to fix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-changed-and-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed (and where)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What changed (and where)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-validation-now-completes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Validation now completes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-promote-validated-prices-into-observations-with-conflict-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Promote validated prices into Observations (with conflict review)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-import-no-longer-aborts-on-duplicates-the-uploaded-row-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Import no longer aborts on duplicates — the uploaded row wins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-imputation-made-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Imputation made fast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-see-a-particular-collection-period-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. See a particular collection period at a glance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-operational-dashboard-promotion-collections-vs-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operational dashboard: promotion + collections-vs-validations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-a-previewalert-before-imputing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. A preview/alert before imputing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-imputation-works-and-the-rule-we-relaxed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How imputation works (and the rule we relaxed)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How imputation works (and the rule we relaxed)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rule-that-was-too-strict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The rule that was too strict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is-now-aligned-with-standard-cpi-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it is now (aligned with standard CPI practice)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-a-missing-item-is-missing-the-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why a missing item is missing — the breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#honest-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Honest counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-taken-for-statistician-dev-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions taken (for statistician / dev review)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methodology-points-still-open-recommended-not-yet-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methodology points still open (recommended, not yet changed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-operate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to operate it
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1598,7 +1719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -1679,7 +1800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../next-steps/" class="md-nav__link">
+      <a href="../../next-steps/" class="md-nav__link">
         
   
   
@@ -1707,7 +1828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../next-steps/updating-deployments/" class="md-nav__link">
+      <a href="../../next-steps/updating-deployments/" class="md-nav__link">
         
   
   
@@ -1735,7 +1856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../next-steps/https-apache/" class="md-nav__link">
+      <a href="../../next-steps/https-apache/" class="md-nav__link">
         
   
   
@@ -1763,7 +1884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../next-steps/https-nginx/" class="md-nav__link">
+      <a href="../../next-steps/https-nginx/" class="md-nav__link">
         
   
   
@@ -1852,7 +1973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/" class="md-nav__link">
+      <a href="../../training/" class="md-nav__link">
         
   
   
@@ -1931,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/introduction/" class="md-nav__link">
+      <a href="../../training/day1/introduction/" class="md-nav__link">
         
   
   
@@ -1959,7 +2080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/server-setup/" class="md-nav__link">
+      <a href="../../training/day1/server-setup/" class="md-nav__link">
         
   
   
@@ -1987,7 +2108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/dependencies/" class="md-nav__link">
+      <a href="../../training/day1/dependencies/" class="md-nav__link">
         
   
   
@@ -2015,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/postgresql/" class="md-nav__link">
+      <a href="../../training/day1/postgresql/" class="md-nav__link">
         
   
   
@@ -2043,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/virtualenv-install/" class="md-nav__link">
+      <a href="../../training/day1/virtualenv-install/" class="md-nav__link">
         
   
   
@@ -2071,7 +2192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/dev-environment/" class="md-nav__link">
+      <a href="../../training/day1/dev-environment/" class="md-nav__link">
         
   
   
@@ -2099,7 +2220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/configuration/" class="md-nav__link">
+      <a href="../../training/day1/configuration/" class="md-nav__link">
         
   
   
@@ -2127,7 +2248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day1/user-administration/" class="md-nav__link">
+      <a href="../../training/day1/user-administration/" class="md-nav__link">
         
   
   
@@ -2163,7 +2284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/day2/python-intro/" class="md-nav__link">
+      <a href="../../training/day2/python-intro/" class="md-nav__link">
         
   
   
@@ -2242,7 +2363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/module/part1-models/" class="md-nav__link">
+      <a href="../../training/module/part1-models/" class="md-nav__link">
         
   
   
@@ -2270,7 +2391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/module/part2-views/" class="md-nav__link">
+      <a href="../../training/module/part2-views/" class="md-nav__link">
         
   
   
@@ -2298,7 +2419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../training/module/part3-security/" class="md-nav__link">
+      <a href="../../training/module/part3-security/" class="md-nav__link">
         
   
   
@@ -2341,7 +2462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -2388,10 +2509,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#your-install-layout" class="md-nav__link">
+  <a href="#the-problem-we-set-out-to-fix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Your install layout
+        The problem we set out to fix
       
     </span>
   </a>
@@ -2399,22 +2520,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anatomy-of-an-hcpi-module" class="md-nav__link">
+  <a href="#what-changed-and-where" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anatomy of an HCPI module
+        What changed (and where)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Anatomy of an HCPI module">
+    <nav class="md-nav" aria-label="What changed (and where)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#inside-one-module" class="md-nav__link">
+  <a href="#1-validation-now-completes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Inside one module
+        1. Validation now completes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-promote-validated-prices-into-observations-with-conflict-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Promote validated prices into Observations (with conflict review)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-import-no-longer-aborts-on-duplicates-the-uploaded-row-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Import no longer aborts on duplicates — the uploaded row wins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-imputation-made-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Imputation made fast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-see-a-particular-collection-period-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. See a particular collection period at a glance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-operational-dashboard-promotion-collections-vs-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operational dashboard: promotion + collections-vs-validations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-a-previewalert-before-imputing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. A preview/alert before imputing
       
     </span>
   </a>
@@ -2427,22 +2614,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#matching-the-ui-to-the-code" class="md-nav__link">
+  <a href="#how-imputation-works-and-the-rule-we-relaxed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Matching the UI to the code
+        How imputation works (and the rule we relaxed)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Matching the UI to the code">
+    <nav class="md-nav" aria-label="How imputation works (and the rule we relaxed)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#a-worked-example" class="md-nav__link">
+  <a href="#the-rule-that-was-too-strict" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A worked example
+        The rule that was too strict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is-now-aligned-with-standard-cpi-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it is now (aligned with standard CPI practice)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-a-missing-item-is-missing-the-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why a missing item is missing — the breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#honest-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Honest counts
       
     </span>
   </a>
@@ -2455,10 +2675,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
+  <a href="#assumptions-taken-for-statistician-dev-review" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What's next?
+        Assumptions taken (for statistician / dev review)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methodology-points-still-open-recommended-not-yet-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methodology points still open (recommended, not yet changed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-operate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to operate it
       
     </span>
   </a>
@@ -2482,161 +2724,203 @@
 
 
 
-<h1 id="understanding-the-codebase">Understanding the Codebase</h1>
-<p>Now that HCPI is running on your machine, this section will help you find your way around the code. Our goal here isn't to make you an Odoo expert in one sitting — it's to give you a map so that when you look at a folder or file, you know roughly what it's for and where to change things.</p>
-<p>We'll move from big picture down to detail:</p>
-<ol>
-<li><strong>The folders on your disk</strong> — what each top-level folder is for</li>
-<li><strong>Anatomy of an HCPI module</strong> — what's inside <code>custom/HCPI/*</code> and why</li>
-<li><strong>Matching the UI to the code</strong> — when you see something in the browser, how do you find the file that produces it?</li>
-</ol>
-<h2 id="your-install-layout">Your install layout</h2>
-<p>When you finished the installation guide, you ended up with something like this (paths are Linux/WSL — Windows has the same shape with backslashes):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/opt/hcpi/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── conf/          ← HCPI-specific configuration
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── custom/        ← HCPI&#39;s own code (the Uganda-specific modules)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── HCPI/
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── log/           ← Runtime log files
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── odoo/          ← Odoo 18 framework (cloned from GitHub)
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── addons/    ← Odoo&#39;s built-in modules (mail, web, etc.)
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── odoo/      ← The Odoo core (not usually touched)
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── odoo-bin   ← The entry-point script you run
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└── venv/          ← Python virtual environment (dependencies)
+<h1 id="validation-observations-imputation-import-conflicts-june-2026">Validation → Observations, Imputation &amp; Import Conflicts (June 2026)</h1>
+<p>Plain-language summary of a set of changes to the price <strong>validation</strong>,
+<strong>imputation</strong> and <strong>import</strong> pipeline: <strong>what was broken, what changed and
+where, the imputation method and the assumptions taken, how to operate it, and
+what to keep in mind.</strong> Written for both statisticians and developers, and
+intended for review/sign-off before the methodology assumptions are treated as
+official.</p>
+<hr />
+<h2 id="the-problem-we-set-out-to-fix">The problem we set out to fix</h2>
+<p>Collected prices flow:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Questionnaire (collection)  →  Validation (outliers, inliers, imputation)  →  Observations  →  Index
 </code></pre></div>
-<p>Three of these folders matter day-to-day:</p>
-<table>
-<thead>
-<tr>
-<th>Folder</th>
-<th>What you'll do here</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>conf/</code></td>
-<td>Change how HCPI runs (ports, DB connection, addon paths)</td>
-</tr>
-<tr>
-<td><code>custom/HCPI/</code></td>
-<td><strong>This is where HCPI's logic lives</strong> — the folder you'll edit most</td>
-</tr>
-<tr>
-<td><code>odoo/</code></td>
-<td>Look up how built-in Odoo features work (read-only in practice)</td>
-</tr>
-</tbody>
-</table>
-<p>The <code>odoo/</code> folder is big and slightly intimidating, but you'll mostly just <em>read</em> from it — to understand how a built-in field or method works so you can use or extend it. You won't modify it; changes there get overwritten the next time you update Odoo.</p>
-<div class="admonition info">
-<p class="admonition-title">Placeholder: folder tree screenshot</p>
-<p><em>(A screenshot of the folder tree as it appears in VS Code's file explorer, with <code>custom/HCPI/</code> highlighted, will go here.)</em></p>
-</div>
-<h2 id="anatomy-of-an-hcpi-module">Anatomy of an HCPI module</h2>
-<p>Open <code>custom/HCPI/</code> in your IDE. You'll see a list of folders like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>custom/HCPI/
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── hcpi_brand/
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── hcpi_coicop/
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── hcpi_computation/
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── hcpi_dashboard/
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── hcpi_data_collection/
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├── hcpi_item/
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── hcpi_outlet/
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── queue_job/
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── ug_base_import/
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── ug_location/
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── ug_outlet/
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>└── ... (more)
-</code></pre></div>
-<p><strong>Each folder is its own "module".</strong> A module is the smallest unit of functionality in Odoo — it bundles together database models, user interface, access rules, and data for one coherent feature. For example, <code>hcpi_outlet/</code> is everything about outlets (shops where prices are collected); <code>hcpi_dashboard/</code> is everything about the dashboard.</p>
-<p>Modules with the <code>ug_</code> prefix are Uganda-specific; others are generic HCPI. Countries adopting HCPI may replace or add to the <code>ug_*</code> modules with their own.</p>
-<h3 id="inside-one-module">Inside one module</h3>
-<p>Open any module folder, e.g. <code>hcpi_outlet/</code>. A typical module has this layout:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hcpi_outlet/
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── __init__.py            ← Makes Python treat this as a package
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── __manifest__.py        ← The module&#39;s &quot;identity card&quot; (metadata)
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>├── models/                ← Python files that define database tables
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   ├── __init__.py
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   └── outlet.py
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├── views/                 ← XML files that define the UI
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   └── outlet_views.xml
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>├── security/              ← Who can see/edit what
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   ├── ir.model.access.csv
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   └── outlet_security.xml
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├── data/                  ← Seed data loaded at install time
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   └── outlet_data.xml
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>├── static/                ← JavaScript, CSS, images
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   └── description/
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│       └── icon.png
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>└── i18n/                  ← Translations
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    └── fr.po
-</code></pre></div>
-<p>Here's what you'd change in each:</p>
-<table>
-<thead>
-<tr>
-<th>Folder/file</th>
-<th>When you change it</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>__manifest__.py</code></td>
-<td>Changing version, dependencies, author, or what other files to load</td>
-</tr>
-<tr>
-<td><code>models/</code></td>
-<td>Adding a new database field, writing a calculation, validating input</td>
-</tr>
-<tr>
-<td><code>views/</code></td>
-<td>Changing what a form/list looks like, adding buttons, reorganizing fields</td>
-</tr>
-<tr>
-<td><code>security/</code></td>
-<td>Granting or restricting access to a model for a user group</td>
-</tr>
-<tr>
-<td><code>data/</code></td>
-<td>Pre-filling a table with default records at install time</td>
-</tr>
-<tr>
-<td><code>static/</code></td>
-<td>Adding an icon, a stylesheet, a piece of JavaScript</td>
-</tr>
-<tr>
-<td><code>i18n/</code></td>
-<td>Adding or updating a translation</td>
-</tr>
-</tbody>
-</table>
-<p>Most day-to-day work happens in <code>models/</code> and <code>views/</code>. Security is critical but rarely changes once set up.</p>
-<div class="admonition info">
-<p class="admonition-title">Placeholder: module structure screenshot</p>
-<p><em>(A screenshot of <code>hcpi_outlet/</code> expanded in VS Code's file explorer, with each subfolder labeled with a short description, will go here.)</em></p>
-</div>
-<h2 id="matching-the-ui-to-the-code">Matching the UI to the code</h2>
-<p>When you see a feature in the browser and want to know "where is this defined?", here's the general flow:</p>
+<p>Three things were broken in the middle of that chain:</p>
 <ol>
-<li><strong>Turn on Developer Mode.</strong> Top-right user menu → Settings → in the Settings app → click "Activate the developer mode". A small bug icon appears in the top bar.</li>
-<li><strong>Hover over any field.</strong> With developer mode on, hover a field label in a form view; a tooltip shows you the <strong>technical name</strong> of the model (e.g. <code>hcpi.outlet</code>) and field (e.g. <code>name</code>).</li>
-<li><strong>Use that technical name to find the file.</strong> If the model is <code>hcpi.outlet</code>, it's defined in a Python file somewhere under <code>custom/HCPI/</code>. Grep for it: <code>grep -r "_name = 'hcpi.outlet'" custom/HCPI/</code>.</li>
-<li><strong>Views work the same way.</strong> With developer mode, you can open the "Edit Form View" dialog (Developer menu → Edit View → Form) which shows you the view's XML ID. Grep for that ID in the <code>views/</code> folders.</li>
+<li><strong>Validation never finished.</strong> The "Validate" step didn't advance the record,
+   so the next button never appeared; and "Impute" never moved the record to a
+   completed state. A validation could not reach <strong>Done</strong>.</li>
+<li><strong>Validated/imputed prices never reached the index.</strong> The engine wrote prices
+   onto the validation lines but <strong>nothing copied them into the Observations
+   table</strong> — which is the only table the index actually reads. So even a fully
+   validated month did not change the published index. (This is why field-
+   collected prices and the index could diverge wildly — e.g. school fees of
+   1.35M in observations vs 12M collected.)</li>
+<li><strong>Spreadsheet import aborted on any duplicate.</strong> Re-importing a month that
+   already had data failed the whole file with an error, instead of letting the
+   user decide.</li>
 </ol>
-<div class="admonition info">
-<p class="admonition-title">Placeholder: developer mode screenshots</p>
-<p><em>(Two screenshots go here: (1) the Settings page showing the "Activate the developer mode" link; (2) a form view with developer mode on, hovering a field to show the tooltip with the technical name.)</em></p>
-</div>
-<h3 id="a-worked-example">A worked example</h3>
-<p>Let's say you want to find where "Outlet Name" is displayed on the outlet form.</p>
+<p>Alongside these, imputation was <strong>very slow</strong> (minutes for a large segment), and
+its rule for choosing where to impute from was <strong>too strict</strong> (explained below).</p>
+<hr />
+<h2 id="what-changed-and-where">What changed (and where)</h2>
+<p>All changes live on the shared <strong><code>18.0</code></strong> base branch and are fanned out to each
+country with <code>bin/hcpi propagate</code>. <strong>Uganda is tested first</strong>, then Kenya,
+Tanzania, Zanzibar.</p>
+<h3 id="1-validation-now-completes">1. Validation now completes</h3>
+<p><code>hcpi_data_collection/models/hcpi_data_validation.py</code></p>
+<p>The state machine was repaired: <strong>Validate → Validate Inliers → Impute →
+Finalize → Done</strong>. A new <strong>Finalize</strong> step closes the validation; it warns that
+any line still without a price will be excluded from the index. A new
+<strong>"Unimputed (no price)"</strong> counter and stat button make those excluded lines
+visible instead of silently dropped.</p>
+<h3 id="2-promote-validated-prices-into-observations-with-conflict-review">2. Promote validated prices into Observations (with conflict review)</h3>
+<p>New wizard <code>hcpi.promote.observation.wizard</code>.</p>
+<p>A <strong>"Promote to Observations"</strong> button on a finalized validation copies its
+prices into the Observations table — <strong>batched by collection month</strong> for one
+consumption segment. Each line is shown as <strong>NEW</strong> (no observation yet that
+month) or <strong>CLASH</strong> (one already exists). Clashes default to <strong>the validated
+value winning</strong>, and any row can be switched to <strong>keep existing</strong>. This is the
+missing link that lets validated prices reach the index. Writes go straight to
+the observation records, so the dedup guard used by the importer is never in the
+way.</p>
+<h3 id="3-import-no-longer-aborts-on-duplicates-the-uploaded-row-wins">3. Import no longer aborts on duplicates — the uploaded row wins</h3>
+<p><code>base_import_inherit/models/base_import.py</code></p>
+<p>A spreadsheet row that duplicates an existing observation (same outlet-item +
+month) is now resolved by a <strong>policy</strong> instead of failing the import:</p>
+<ul>
+<li><strong>overwrite</strong> (default): the <strong>uploaded row wins</strong> — the existing observation's
+  price is replaced.</li>
+<li><strong>skip</strong>: keep the existing observation, ignore the upload.</li>
+<li><strong>block</strong>: the old behaviour (abort).</li>
+</ul>
+<p>Non-conflicting rows always import. Every overwrite/skip is reported back as a
+non-blocking warning, and the "Test" preview shows it too. The policy is the
+system parameter <code>hcpi_import.observation_conflict_policy</code> (default <code>overwrite</code>).</p>
+<h3 id="4-imputation-made-fast">4. Imputation made fast</h3>
+<p>Imputing one segment used to fire tens of thousands of database lookups (a
+previous-price query for every collected line, repeated for every missing line,
+plus a completeness query per candidate group). These are now <strong>pre-computed
+once per validation</strong> in two queries, and a missing database index was added.
+Result on a large segment (876 lines, 175 missing): <strong>from minutes to ~16
+seconds</strong>, with identical results. A <strong>progress bar</strong> now shows while imputing.</p>
+<h3 id="5-see-a-particular-collection-period-at-a-glance">5. See a particular collection period at a glance</h3>
+<p>Observations, Questionnaires and Validations list views gained <strong>This Month /
+Last Month</strong> quick filters and a monthly <strong>group-by</strong>. Questionnaires now group
+by month instead of by individual day.</p>
+<h3 id="6-operational-dashboard-promotion-collections-vs-validations">6. Operational dashboard: promotion + collections-vs-validations</h3>
+<p><code>hcpi_dashboard</code> operational dashboard gained two sections:</p>
+<ul>
+<li><strong>Promotion status</strong>: how many validations are done, how many of those have
+  been promoted vs still pending, and the total unimputed lines for the month.</li>
+<li><strong>Collections vs validations</strong>: for the month, how many validated prices match
+  an observation, how many exist only in validation, how many <strong>clash</strong>, and the
+  <strong>mean absolute % difference</strong> — the live version of the old ad-hoc comparison
+  spreadsheet.</li>
+</ul>
+<h3 id="7-a-previewalert-before-imputing">7. A preview/alert before imputing</h3>
+<p>Clicking <strong>Impute</strong> now opens a short preview showing how many lines will be
+imputed, the segment's <strong>collection completeness %</strong>, and a <strong>breakdown of why</strong>
+each missing item is missing (see the imputation section). It nudges users to
+collect more before imputing when completeness is low. <strong>Proceed</strong> runs the work;
+<strong>Cancel</strong> aborts.</p>
+<hr />
+<h2 id="how-imputation-works-and-the-rule-we-relaxed">How imputation works (and the rule we relaxed)</h2>
+<p>When an item has <strong>no price</strong> this month, the engine does not invent a number. It
+takes the item's <strong>own previous price</strong> and multiplies it by the <strong>price movement
+of a group of similar items</strong> that <em>were</em> collected:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>imputed_price(item)  =  item&#39;s previous price  ×  (price movement of a donor group)
+</code></pre></div>
+<p>The "price movement" of a group is its current average ÷ its previous average
+(a geometric mean). The engine looks for a <strong>donor group</strong> from <strong>closest to
+broadest</strong> and uses the first usable one:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>the item&#39;s Elementary Aggregate → micro-class → sub-class → class → group → division
+</code></pre></div>
+<p>Closer groups contain more similar products, so they give better imputations.</p>
+<h3 id="the-rule-that-was-too-strict">The rule that was too strict</h3>
+<p>A donor group used to be usable <strong>only if 100% of its items were collected</strong> this
+month. One missing price disqualified the whole group, forcing the item up to a
+broader, less-similar group — or leaving it un-imputable.</p>
+<p><strong>Example.</strong> Item X (rice at outlet A) is missing. X's "rice" Elementary
+Aggregate has 5 items; 4 were collected, 1 was not. Under the old rule the whole
+group was rejected (not 100% complete), so the 4 good rice prices were thrown
+away and X was pushed to a broader group or dropped.</p>
+<h3 id="what-it-is-now-aligned-with-standard-cpi-practice">What it is now (aligned with standard CPI practice)</h3>
+<p>A donor group is usable once it has <strong>at least <em>N</em> collected prices</strong> (default
+<strong>N = 1</strong>), and the movement is computed from whatever <strong>is</strong> present. This is the
+standard "impute from the lowest-level cell that has data" approach. In the
+example, the 4 collected rice prices are now used to impute X. The minimum is the
+system parameter <code>hcpi_index.impute_min_donor_quotes</code> (default <code>1</code>) so it can be
+raised per country.</p>
+<blockquote>
+<p><strong>Effect observed.</strong> Relaxing the rule lets more items impute from closer, more
+representative groups. On the Uganda test month it did <strong>not</strong> by itself empty
+the "could not impute" list, because the remaining gaps are caused by a
+different thing: <strong>missing previous-period indices</strong> for the donor groups (you
+cannot compute a movement without a prior value). That is a data prerequisite
+(run the historical index first), not a rule problem.</p>
+</blockquote>
+<h3 id="why-a-missing-item-is-missing-the-breakdown">Why a missing item is missing — the breakdown</h3>
+<p>Each priceless line carries (from collection) a reason, so the preview classifies
+them into three buckets:</p>
+<ul>
+<li><strong>Temporarily missing</strong> — collected with a reason code (e.g. <em>Temporarily
+  Missing</em>, out of season). Imputed normally.</li>
+<li><strong>Permanently missing</strong> — code <strong>P</strong> (<em>Permanently Missing</em> / discontinued).
+  <strong>Imputed only as a stopgap</strong> and tagged
+  <code>[PERMANENTLY MISSING - review for replacement]</code>, because a discontinued item
+  should be <strong>substituted</strong>, not imputed forever.</li>
+<li><strong>Not collected at all</strong> — no price and no reason recorded. Imputed, but it
+  signals a <strong>collection gap</strong> worth following up.</li>
+</ul>
+<h3 id="honest-counts">Honest counts</h3>
+<p>A line that an imputation rule touched but that still ended at <strong>0</strong> (e.g. its
+donor group had no prior index) is <strong>not</strong> counted as imputed. So
+<code>imputed_count</code> = real successes and <code>unimputed_count</code> = real gaps. On the
+Uganda test month: of 175 missing, <strong>129 imputed, 46 genuinely un-imputable</strong>
+(all 46 blocked by missing prior indices).</p>
+<hr />
+<h2 id="assumptions-taken-for-statistician-dev-review">Assumptions taken (for statistician / dev review)</h2>
+<p>These are deliberate choices that affect published numbers. Please confirm or
+correct them:</p>
 <ol>
-<li>Go to Field Operations → Outlets → pick any outlet to open its form.</li>
-<li>With developer mode on, hover the "Name" label — the tooltip shows model <code>hcpi.outlet</code>, field <code>name</code>.</li>
-<li>In your IDE, grep for <code>_name = 'hcpi.outlet'</code>. You'll find it in <code>custom/HCPI/hcpi_outlet/models/outlet.py</code>.</li>
-<li>For the view, Developer menu → Edit View → Form shows you the view's XML ID, e.g. <code>hcpi_outlet.outlet_form_view</code>. That's defined in <code>custom/HCPI/hcpi_outlet/views/outlet_views.xml</code>.</li>
+<li><strong>Donor minimum = 1 collected price</strong> (configurable). We impute from the
+   lowest-level group that has any data, per standard practice. Raise
+   <code>hcpi_index.impute_min_donor_quotes</code> if a larger minimum is preferred.</li>
+<li><strong>Import conflicts: the uploaded row wins by default</strong> (<code>overwrite</code>). The
+   assumption is that a fresh upload is the corrected/canonical figure.</li>
+<li><strong>Promotion conflicts: the validated value wins by default</strong> (per row
+   overridable). The assumption is that the validated number supersedes an
+   earlier observation for the same month.</li>
+<li><strong>Permanently-missing items are imputed as a stopgap and flagged</strong>, not
+   excluded. They should be replaced via substitution (no substitution workflow
+   exists yet — flagged for follow-up).</li>
+<li><strong>Un-imputable items stay excluded from the index</strong> (left at 0, surfaced via
+   <code>unimputed_count</code>) rather than carried forward. A separate opt-in EA
+   carry-forward exists for the provisional path only.</li>
+<li><strong>Previous-price look-backs are bounded to before the validation month</strong>, so
+   promoting the current month cannot make it act as its own "previous" period.</li>
 </ol>
-<p>Now you know exactly which two files to edit if you want to change how "Outlet Name" looks or behaves.</p>
-<h2 id="whats-next">What's next?</h2>
-<p>Ready to make your first change? Continue to <strong><a href="../first-edits/">Making Your First Edits</a></strong> — a short series of small, safe changes that build your confidence step by step.</p>
+<h2 id="methodology-points-still-open-recommended-not-yet-changed">Methodology points still open (recommended, not yet changed)</h2>
+<p>From the engine audit (<code>hcpi_data_collection/IMPUTATION_METHODOLOGY_AUDIT.md</code>):</p>
+<ul>
+<li>The <strong>outlier ("Turkey") rule</strong> is a custom <em>trimmed mean ± 2.5 × spread</em>, not
+  classic Tukey IQR fences, and it excludes exactly-unchanged prices before
+  computing limits. Confirm the intended method or document this variant.</li>
+<li>The same-product previous price is fetched <strong>by item across all outlets</strong>; it
+  should arguably use the <strong>same outlet-item's</strong> own previous price.</li>
+<li><strong>Inlier detection</strong> (flagging prices unchanged for 12 months) is informational
+  only; administered/regulated prices will always flag — a whitelist would cut
+  noise.</li>
+<li>Decide the official policy for genuinely un-imputable items (exclude vs carry
+  forward) and for discontinued-item substitution.</li>
+</ul>
+<hr />
+<h2 id="how-to-operate-it">How to operate it</h2>
+<ul>
+<li><strong>Validate a month</strong>: open the Validation, click <strong>Validate → Validate Inliers
+  → Impute</strong> (review the preview, then Proceed) <strong>→ Finalize</strong>.</li>
+<li><strong>Publish to the index</strong>: on the finalized validation click <strong>Promote to
+  Observations</strong>, resolve any clashes, <strong>Promote</strong>. Then run the index
+  computation as usual.</li>
+<li><strong>Re-import a spreadsheet</strong>: just import; duplicates are resolved by the policy
+  and reported. Change <code>hcpi_import.observation_conflict_policy</code> if you want
+  <code>skip</code> or <code>block</code> instead of <code>overwrite</code>.</li>
+<li><strong>Watch progress</strong>: the operational dashboard's <em>Promotion status</em> and
+  <em>Collections vs validations</em> cards track how much of a month has been promoted
+  and how validated prices compare to what's in observations.</li>
+</ul>
 
 
 
@@ -2672,7 +2956,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="odoo-basics/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Odoo Basics">
+          <a href="../dashboard-index-overhaul/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dashboard &amp; Index Overhaul (June 2026)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2682,20 +2966,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Odoo Basics
+                Dashboard & Index Overhaul (June 2026)
               </div>
             </div>
           </a>
         
         
           
-          <a href="module-reference/" class="md-footer__link md-footer__link--next" aria-label="Next: Module Reference">
+          <a href="../../troubleshooting/" class="md-footer__link md-footer__link--next" aria-label="Next: Troubleshooting">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Module Reference
+                Troubleshooting
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2732,10 +3016,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.expand", "navigation.footer", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
